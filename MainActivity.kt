@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener, AdapterView.OnI
     var editIdx : Int = -1
     var vocaArr : ArrayList<String> = arrayListOf()
 //    var engArr : ArrayList<String> = arrayListOf()
-//    var korArr : ArrayList<String> = arrayListOf()
+
     lateinit var btn : Button
     lateinit var engEt : EditText
     lateinit var korEt : EditText
