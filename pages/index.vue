@@ -37,9 +37,9 @@
             >.
           </p>
           <v-btn
-  elevation="2"
-  loading
-></v-btn>
+            elevation="2"
+            loading
+          ></v-btn>
           <p>
             Find a bug? Report it on the github
             <a
