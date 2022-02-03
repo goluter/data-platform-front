@@ -8,6 +8,15 @@
           <small>
             <em>&mdash;John Johnson</em>
           </small>
+          <v-btn
+  disabled
+  elevation="2"
+  large
+  loading
+  small
+  x-large
+  x-small
+></v-btn>
         </footer>
       </blockquote>
     </v-col>
