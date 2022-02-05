@@ -6,6 +6,7 @@
         @click="
           TopTab1 = true
           TopTab2 = false
+          ShowUserInfo = false
         "
         >대시보드</v-tab
       >
@@ -13,6 +14,7 @@
         @click="
           TopTab2 = true
           TopTab1 = false
+          ShowUserInfo = false
         "
         >회원관리</v-tab
       >
@@ -114,7 +116,8 @@
           </div>
         </div>
       </div>
-      <div style="border: 1px solid green" v-if="TopTab2 == true">
+      <!-- 유저목록-->
+      <div v-if="TopTab2 == true">
         <div class="Tab2_Sidebar">
           <div>
             <h2>회원관리</h2>
@@ -150,7 +153,7 @@
           </div>
           <div style="padding-top: 3%">--개의 데이터</div>
           <div>
-            <div class="UserInfo">
+            <div class="UserInfo" @click="ShowUserInfo = true">
               <ul>
                 <li>-유저이름-</li>
                 <li>생성일 : 0000. 00. 00.</li>
@@ -178,33 +181,34 @@
                 <li>Example@email.com</li>
               </ul>
             </div>
-            <div class="UserInfo">
+            <div class="UserInfo" @click="ShowUserInfo = true">
               <ul>
                 <li>-유저이름-</li>
                 <li>생성일 : 0000. 00. 00.</li>
                 <li>Example@email.com</li>
               </ul>
-              <div class="UserInfo">
-                <ul>
-                  <li>-유저이름-</li>
-                  <li>생성일 : 0000. 00. 00.</li>
-                  <li>Example@email.com</li>
-                </ul>
-              </div>
-              <div class="UserInfo">
-                <ul>
-                  <li>-유저이름-</li>
-                  <li>생성일 : 0000. 00. 00.</li>
-                  <li>Example@email.com</li>
-                </ul>
-              </div>
+            </div>
+            <div class="UserInfo" @click="ShowUserInfo = true">
+              <ul>
+                <li>-유저이름-</li>
+                <li>생성일 : 0000. 00. 00.</li>
+                <li>Example@email.com</li>
+              </ul>
+            </div>
+            <div class="UserInfo" @click="ShowUserInfo = true">
+              <ul>
+                <li>-유저이름-</li>
+                <li>생성일 : 0000. 00. 00.</li>
+                <li>Example@email.com</li>
+              </ul>
             </div>
             <div class="text-center">
               <v-pagination v-model="page" :length="6"></v-pagination>
             </div>
           </div>
         </div>
-        <div style="border: 1px solid red; float: left; width: 80%">
+        <!-- 유저상세정보-->
+        <div style="float: left; width: 80%" v-if="ShowUserInfo == true">
           <div>
             <select style="float: right; background: gray; border-radius: 5px">
               <option selected>정지처리</option>
@@ -215,7 +219,7 @@
             <h3>-유저이름-</h3>
           </div>
           <div style="padding: 1%">
-            <div style="border: 1px solid snow">
+            <div style="border: 1px solid #323232">
               <h3>일반정보</h3>
               <ul style="font-size: 20pt">
                 <li>닉네임 : -유저이름-</li>
@@ -223,6 +227,60 @@
                 <li>유저타입 : 구글로그인</li>
                 <li>가입일 : 0000. 00. 00.</li>
               </ul>
+            </div>
+          </div>
+          <div>
+            <v-tabs fixed-tabs dark>
+              <v-tab
+                @click="
+                  ShowUnivCertify = true
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                "
+              >
+                인증정보
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = true
+                  ShowAgreeOrNot = false
+                "
+              >
+                설문 참여이력
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = true
+                "
+              >
+                동의 여부
+              </v-tab>
+            </v-tabs>
+          </div>
+          <div v-if="ShowUnivCertify == true">
+            <h2>대학교 인증</h2>
+            <div>
+              <div style="float: left; font-size: larger">상명대학교</div>
+              <div style="float: right; font-size: larger">0000. 00. 00.</div>
+            </div>
+          </div>
+          <div v-if="ShowHistory == true">
+            <h2>설문 참여이력</h2>
+            <div>
+              <div style="float: left; font-size: larger">설문A</div>
+              <div style="float: right; font-size: larger">0000. 00. 00.</div>
+            </div>
+          </div>
+          <div v-if="ShowAgreeOrNot == true">
+            <h2>동의 여부</h2>
+            <div>
+              <div style="float: left; font-size: larger">
+                개인정보처리방침 : 동의
+              </div>
+              <div style="float: right; font-size: larger">0000. 00. 00.</div>
             </div>
           </div>
         </div>
@@ -249,6 +307,10 @@ export default {
       TopTab11: false,
       ShowModal_Filter: false,
       ShowModal_Create: false,
+      ShowUserInfo: false,
+      ShowUnivCertify: false,
+      ShowHistory: false,
+      ShowAgreeOrNot: false,
     }
   },
 }
@@ -277,7 +339,7 @@ export default {
   border-radius: 5px;
 }
 .icondiv {
-  background: gray;
+  background: #323232;
   margin: 2%;
   padding-top: 1%;
   width: 20%;
@@ -287,11 +349,13 @@ export default {
   border-radius: 5px;
 }
 .Tab2_Sidebar {
-  border: 1px solid gold;
+  border: 1px solid #323232;
   width: 20%;
   float: left;
 }
 .UserInfo {
-  border: 1px solid blue;
+  border: 1px solid #323232;
+  margin: 1%;
+  border-radius: 5px;
 }
 </style>
