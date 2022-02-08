@@ -6,19 +6,29 @@
         @click="
           TopTab1 = true
           TopTab2 = false
+          TopTab3 = false
           ShowUserInfo = false
         "
-        >대시보드</v-tab
-      >
+        >대시보드
+      </v-tab>
       <v-tab
         @click="
-          TopTab2 = true
           TopTab1 = false
+          TopTab2 = true
+          TopTab3 = false
           ShowUserInfo = false
         "
-        >회원관리</v-tab
-      >
-      <v-tab>설문관리</v-tab>
+        >회원관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = true
+          ShowUserInfo = false
+        "
+        >설문관리
+      </v-tab>
       <v-tab>이벤트</v-tab>
       <v-tab>공지사항</v-tab>
       <v-tab>Q&A</v-tab>
@@ -82,7 +92,7 @@
         <div>
           <v-btn
             style="float: right"
-            @click="ShowModal_Create = false"
+            @click="ShowModal_UserAdd = true"
             elevation="2"
             x-small
           >
@@ -91,9 +101,47 @@
         </div>
       </div>
     </div>
+    <!--유저추가 모달창-->
+    <div class="modal-black" v-if="ShowModal_UserAdd == true">
+      <div class="modal-white">
+        <h4>회원 추가</h4>
+        <div>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Username"
+              required
+            />
+          </div>
+          <div class="col-12">
+            <input
+              type="text"
+              class="form-control"
+              id="address2"
+              placeholder="Example@gmail.com"
+            />
+          </div>
+          <div class="col-12">
+            <input
+              type="text"
+              class="form-control"
+              id="address2"
+              placeholder="추가정보"
+            />
+          </div>
+        </div>
+
+        <div>
+          <v-btn @click="ShowModal_UserAdd = false" elevation="2">추가</v-btn>
+          <v-btn @click="ShowModal_UserAdd = false" elevation="2">닫기</v-btn>
+        </div>
+      </div>
+    </div>
+    <!-- 대시보드-->
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
-        <!-- 대시보드-->
         <h2>대시보드</h2>
         기간설정
         <input class="date" type="date" />~<input class="date" type="date" />
@@ -285,6 +333,8 @@
           </div>
         </div>
       </div>
+      <!-- 설문관리-->
+      <div v-if="(TopTab3 = true)"></div>
     </div>
   </div>
 </template>
@@ -307,6 +357,7 @@ export default {
       TopTab11: false,
       ShowModal_Filter: false,
       ShowModal_Create: false,
+      ShowModal_UserAdd: false,
       ShowUserInfo: false,
       ShowUnivCertify: false,
       ShowHistory: false,
