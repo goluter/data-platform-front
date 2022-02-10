@@ -334,7 +334,7 @@
         </div>
       </div>
       <!-- 설문관리-->
-      <div v-if="(TopTab3 = true)"></div>
+      <div v-if="TopTab3 == true">asd</div>
     </div>
   </div>
 </template>
