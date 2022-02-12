@@ -139,8 +139,42 @@
         </div>
       </div>
     </div>
+    <!--설문상세 모달창-->
+    <div class="modal-black" v-if="ShowSurveyInfo == true">
+      <div class="modal-white">
+        <h3>설문상세</h3>
+        <div>
+          <a href="#">설문 링크</a>
+        </div>
+        <div>
+          <form>
+            <select name="language">
+              <option value="none" selected disabled>=== 선택 ===</option>
+              <option value="approve">승인</option>
+              <option value="decline">거절</option>
+            </select>
+            <textarea
+              name="content"
+              style="width: 98%; height: 10%; background: whitesmoke"
+              placeholder="사유입력"
+              v-if="value == decline"
+            ></textarea>
+          </form>
+        </div>
+
+        <div>
+          <v-btn @click="ShowSurveyInfo = false" elevation="2">적용</v-btn>
+          <v-btn @click="ShowSurveyInfo = false" elevation="2">닫기</v-btn>
+        </div>
+      </div>
+    </div>
     <!-- 대시보드-->
     <div style="z-index: 3">
+      <ul>
+        <li>MBTI별 음식 성향</li>
+        <li>생성일 : 0000. 00. 00.</li>
+        <li>-작성자 이름-</li>
+      </ul>
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
         기간설정
@@ -334,7 +368,69 @@
         </div>
       </div>
       <!-- 설문관리-->
-      <div v-if="TopTab3 == true">asd</div>
+      <div v-if="TopTab3 == true">
+        <div style="padding: 1%">
+          <div style="border: 1px solid #323232">
+            <h2>설문관리</h2>
+            <ul style="font-size: larger">
+              <li>심사를 기다리는 설문: --개</li>
+              <li>신규작성된 설문: --개</li>
+              <li>지금까지 작성된 설문: --개</li>
+            </ul>
+          </div>
+        </div>
+        <div style="padding-left: 1%">
+          <v-btn elevation="2"> 설문추가 </v-btn>
+        </div>
+        <div style="border: 1px solid #323232; margin-top: 1%">
+          심사 대기 중 --개
+          <div class="UserInfo">
+            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
+              승인설정
+            </v-btn>
+            <ul>
+              <li>MBTI별 음식 성향</li>
+              <li>생성일 : 0000. 00. 00.</li>
+              <li>-작성자 이름-</li>
+            </ul>
+          </div>
+          <div class="UserInfo">
+            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
+              승인설정
+            </v-btn>
+            <ul>
+              <li>MBTI별 음식 성향</li>
+              <li>생성일 : 0000. 00. 00.</li>
+              <li>-작성자 이름-</li>
+            </ul>
+          </div>
+          <div class="UserInfo">
+            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
+              승인설정
+            </v-btn>
+            <ul>
+              <li>MBTI별 음식 성향</li>
+              <li>생성일 : 0000. 00. 00.</li>
+              <li>-작성자 이름-</li>
+            </ul>
+          </div>
+          <div class="UserInfo">
+            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
+              승인설정
+            </v-btn>
+            <ul>
+              <li>MBTI별 음식 성향</li>
+              <li>생성일 : 0000. 00. 00.</li>
+              <li>-작성자 이름-</li>
+            </ul>
+          </div>
+        </div>
+        <footer>
+          <div class="text-center">
+            <v-pagination v-model="page" :length="6"></v-pagination>
+          </div>
+        </footer>
+      </div>
     </div>
   </div>
 </template>
@@ -362,6 +458,7 @@ export default {
       ShowUnivCertify: false,
       ShowHistory: false,
       ShowAgreeOrNot: false,
+      ShowSurveyInfo: false,
     }
   },
 }
