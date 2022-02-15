@@ -7,6 +7,7 @@
           TopTab1 = true
           TopTab2 = false
           TopTab3 = false
+          TopTab4 = false
           ShowUserInfo = false
         "
         >대시보드
@@ -16,6 +17,7 @@
           TopTab1 = false
           TopTab2 = true
           TopTab3 = false
+          TopTab4 = false
           ShowUserInfo = false
         "
         >회원관리
@@ -25,11 +27,21 @@
           TopTab1 = false
           TopTab2 = false
           TopTab3 = true
+          TopTab4 = false
           ShowUserInfo = false
         "
         >설문관리
       </v-tab>
-      <v-tab>이벤트</v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = true
+          ShowUserInfo = false
+        "
+        >이벤트</v-tab
+      >
       <v-tab>공지사항</v-tab>
       <v-tab>Q&A</v-tab>
       <v-tab>문의게시판</v-tab>
@@ -143,6 +155,13 @@
     <div class="modal-black" v-if="ShowSurveyInfo == true">
       <div class="modal-white">
         <h3>설문상세</h3>
+
+        <div style="border: 1px solid #323232; text-align: left">
+          <p>제목 : MBTI별 음식 성향</p>
+          <p>생성일 : 0000. 00. 00.</p>
+          <p>작성자 : -작성자 이름-</p>
+          태그: #-- #-- #--
+        </div>
         <div>
           <a href="#">설문 링크</a>
         </div>
@@ -161,20 +180,38 @@
             ></textarea>
           </form>
         </div>
+      </div>
+    </div>
+    <!--이벤트추가 모달창-->
+    <div class="modal-black" v-if="ShowEventAdd == true">
+      <div class="modal-white">
+        <h3>이벤트 등록</h3>
+        <div>
+          이벤트 기간
+          <input class="date" type="date" />~<input class="date" type="date" />
+        </div>
+        <v-btn elevation="2" style="margin: 1%">이벤트 배너 사진등록</v-btn>
+        <textarea
+          name="content"
+          style="width: 98%; height: 2rem; background: whitesmoke"
+          placeholder="이벤트 제목"
+          v-if="value == decline"
+        ></textarea>
+        <textarea
+          name="content"
+          style="width: 98%; height: 10rem; background: whitesmoke"
+          placeholder="이벤트 내용"
+          v-if="value == decline"
+        ></textarea>
 
         <div>
-          <v-btn @click="ShowSurveyInfo = false" elevation="2">적용</v-btn>
-          <v-btn @click="ShowSurveyInfo = false" elevation="2">닫기</v-btn>
+          <v-btn @click="ShowEventAdd = false" elevation="2">등록</v-btn>
+          <v-btn @click="ShowEventAdd = false" elevation="2">닫기</v-btn>
         </div>
       </div>
     </div>
     <!-- 대시보드-->
     <div style="z-index: 3">
-      <ul>
-        <li>MBTI별 음식 성향</li>
-        <li>생성일 : 0000. 00. 00.</li>
-        <li>-작성자 이름-</li>
-      </ul>
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
         기간설정
@@ -379,9 +416,6 @@
             </ul>
           </div>
         </div>
-        <div style="padding-left: 1%">
-          <v-btn elevation="2"> 설문추가 </v-btn>
-        </div>
         <div style="border: 1px solid #323232; margin-top: 1%">
           심사 대기 중 --개
           <div class="UserInfo">
@@ -431,6 +465,38 @@
           </div>
         </footer>
       </div>
+      <!-- 이벤트-->
+      <div v-if="TopTab4 == true">
+        <h2>이벤트</h2>
+        <div>
+          <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
+          <input type="checkbox" name="fruits" value="orange" />지난 이벤트
+        </div>
+        <div>
+          <v-btn elevation="2" @click="ShowEventAdd = true">
+            이벤트 등록
+          </v-btn>
+          <div style="height: 10%">
+            <img
+              src="../assets/99A04B475BC982642A.jpg"
+              style="width: 100%; height: 11rem; padding: 1%"
+            />
+            <img
+              src="../assets/99A04B475BC982642A.jpg"
+              style="width: 100%; height: 11rem; padding: 1%"
+            />
+            <img
+              src="../assets/99A04B475BC982642A.jpg"
+              style="width: 100%; height: 11rem; padding: 1%"
+            />
+          </div>
+          <footer>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
+          </footer>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -459,6 +525,7 @@ export default {
       ShowHistory: false,
       ShowAgreeOrNot: false,
       ShowSurveyInfo: false,
+      ShowEventAdd: false,
     }
   },
 }
