@@ -8,6 +8,7 @@
           TopTab2 = false
           TopTab3 = false
           TopTab4 = false
+          TopTab5 = false
           ShowUserInfo = false
         "
         >대시보드
@@ -18,6 +19,7 @@
           TopTab2 = true
           TopTab3 = false
           TopTab4 = false
+          TopTab5 = false
           ShowUserInfo = false
         "
         >회원관리
@@ -28,6 +30,7 @@
           TopTab2 = false
           TopTab3 = true
           TopTab4 = false
+          TopTab5 = false
           ShowUserInfo = false
         "
         >설문관리
@@ -38,11 +41,22 @@
           TopTab2 = false
           TopTab3 = false
           TopTab4 = true
+          TopTab5 = false
           ShowUserInfo = false
         "
         >이벤트</v-tab
       >
-      <v-tab>공지사항</v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = true
+          ShowUserInfo = false
+        "
+        >공지사항</v-tab
+      >
       <v-tab>Q&A</v-tab>
       <v-tab>문의게시판</v-tab>
       <v-tab>칭호관리</v-tab>
@@ -167,18 +181,29 @@
         </div>
         <div>
           <form>
-            <select name="language">
-              <option value="none" selected disabled>=== 선택 ===</option>
-              <option value="approve">승인</option>
-              <option value="decline">거절</option>
-            </select>
+            <v-radio-group v-model="row" row style="display: inline-block">
+              <v-radio
+                label="승인"
+                value="radio-1"
+                @click="value = 0"
+              ></v-radio>
+              <v-radio
+                label="거절"
+                value="radio-2"
+                @click="value = 1"
+              ></v-radio>
+            </v-radio-group>
             <textarea
               name="content"
               style="width: 98%; height: 10%; background: whitesmoke"
               placeholder="사유입력"
-              v-if="value == decline"
+              v-if="value == 1"
             ></textarea>
           </form>
+          <div>
+            <v-btn @click="ShowSurveyInfo = false" elevation="2">추가</v-btn>
+            <v-btn @click="ShowSurveyInfo = false" elevation="2">닫기</v-btn>
+          </div>
         </div>
       </div>
     </div>
@@ -190,23 +215,52 @@
           이벤트 기간
           <input class="date" type="date" />~<input class="date" type="date" />
         </div>
-        <v-btn elevation="2" style="margin: 1%">이벤트 배너 사진등록</v-btn>
+        <div>
+          <v-file-input
+            truncate-length="15"
+            prepend-icon="mdi-camera"
+            placeholder="이벤트 배너사진 등록"
+          ></v-file-input>
+        </div>
+
         <textarea
           name="content"
           style="width: 98%; height: 2rem; background: whitesmoke"
           placeholder="이벤트 제목"
-          v-if="value == decline"
         ></textarea>
         <textarea
           name="content"
           style="width: 98%; height: 10rem; background: whitesmoke"
           placeholder="이벤트 내용"
-          v-if="value == decline"
         ></textarea>
 
         <div>
           <v-btn @click="ShowEventAdd = false" elevation="2">등록</v-btn>
           <v-btn @click="ShowEventAdd = false" elevation="2">닫기</v-btn>
+        </div>
+      </div>
+    </div>
+    <!--공지사항추가 모달창-->
+    <div class="modal-black" v-if="ShowNoticeAdd == true">
+      <div class="modal-white">
+        <h3>공지사항 등록</h3>
+
+        <v-textarea
+          filled
+          auto-grow
+          label="공지사항 제목"
+          rows="2"
+          row-height="20"
+        ></v-textarea>
+
+        <v-textarea
+          clearable
+          clear-icon="mdi-close-circle"
+          label="공지사항 내용"
+        ></v-textarea>
+        <div>
+          <v-btn @click="ShowNoticeAdd = false" elevation="2">등록</v-btn>
+          <v-btn @click="ShowNoticeAdd = false" elevation="2">닫기</v-btn>
         </div>
       </div>
     </div>
@@ -406,9 +460,9 @@
       </div>
       <!-- 설문관리-->
       <div v-if="TopTab3 == true">
+        <h2>설문관리</h2>
         <div style="padding: 1%">
           <div style="border: 1px solid #323232">
-            <h2>설문관리</h2>
             <ul style="font-size: larger">
               <li>심사를 기다리는 설문: --개</li>
               <li>신규작성된 설문: --개</li>
@@ -471,6 +525,8 @@
         <div>
           <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
           <input type="checkbox" name="fruits" value="orange" />지난 이벤트
+
+          <v-btn depressed elevation="2" small>새로고침</v-btn>
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
@@ -497,6 +553,82 @@
           </footer>
         </div>
       </div>
+      <!-- 이벤트-->
+      <div v-if="TopTab5 == true">
+        <h2>공지사항</h2>
+        <v-btn
+          elevation="2"
+          @click="ShowNoticeAdd = true"
+          style="margin-bottom: 1%"
+        >
+          공지사항 등록
+        </v-btn>
+        <table border="1px solid #323232">
+          <th style="width: 5%">번호</th>
+          <th style="width: 80%">제목</th>
+          <th style="width: 5%">이름</th>
+          <th style="width: 10%">날짜</th>
+          <tr>
+            <td style="text-align: center">1</td>
+            <td>공지사항 첫번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">2</td>
+            <td>공지사항 두번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">3</td>
+            <td>공지사항 세번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">4</td>
+            <td>공지사항 네번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">5</td>
+            <td>공지사항 다섯번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">5</td>
+            <td>공지사항 다섯번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">5</td>
+            <td>공지사항 다섯번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">5</td>
+            <td>공지사항 다섯번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">5</td>
+            <td>공지사항 다섯번째</td>
+            <td>관리자</td>
+            <td>0000. 00. 00.</td>
+          </tr>
+        </table>
+        <footer style="">
+          <div class="text-center">
+            <v-pagination v-model="page" :length="6"></v-pagination>
+          </div>
+        </footer>
+      </div>
     </div>
   </div>
 </template>
@@ -517,6 +649,7 @@ export default {
       TopTab9: false,
       TopTab10: false,
       TopTab11: false,
+      value: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
       ShowModal_UserAdd: false,
@@ -526,6 +659,7 @@ export default {
       ShowAgreeOrNot: false,
       ShowSurveyInfo: false,
       ShowEventAdd: false,
+      ShowNoticeAdd: false,
     }
   },
 }
