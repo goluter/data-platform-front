@@ -568,62 +568,14 @@
           <th style="width: 80%">제목</th>
           <th style="width: 5%">이름</th>
           <th style="width: 10%">날짜</th>
-          <tr>
-            <td style="text-align: center">1</td>
-            <td>공지사항 첫번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">2</td>
-            <td>공지사항 두번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">3</td>
-            <td>공지사항 세번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">4</td>
-            <td>공지사항 네번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">5</td>
-            <td>공지사항 다섯번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">5</td>
-            <td>공지사항 다섯번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">5</td>
-            <td>공지사항 다섯번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">5</td>
-            <td>공지사항 다섯번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
-          </tr>
-          <tr>
-            <td style="text-align: center">5</td>
-            <td>공지사항 다섯번째</td>
-            <td>관리자</td>
-            <td>0000. 00. 00.</td>
+          <tr v-for="(a, i) in data" :key="a">
+            <td style="text-align: center">{{ i + 1 }}</td>
+            <td>{{ data[i].title }}</td>
+            <td>{{ data[i].name }}</td>
+            <td>{{ data[i].date }}</td>
           </tr>
         </table>
-        <footer style="">
+        <footer>
           <div class="text-center">
             <v-pagination v-model="page" :length="6"></v-pagination>
           </div>
@@ -634,6 +586,8 @@
 </template>
 
 <script>
+import data from '../assets/NoticeData.js'
+
 export default {
   name: 'app',
   data() {
@@ -649,6 +603,7 @@ export default {
       TopTab9: false,
       TopTab10: false,
       TopTab11: false,
+      data: data,
       value: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
