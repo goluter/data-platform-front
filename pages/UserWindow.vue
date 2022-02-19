@@ -9,6 +9,7 @@
           TopTab3 = false
           TopTab4 = false
           TopTab5 = false
+          TopTab6 = false
           ShowUserInfo = false
         "
         >대시보드
@@ -20,6 +21,7 @@
           TopTab3 = false
           TopTab4 = false
           TopTab5 = false
+          TopTab6 = false
           ShowUserInfo = false
         "
         >회원관리
@@ -31,6 +33,7 @@
           TopTab3 = true
           TopTab4 = false
           TopTab5 = false
+          TopTab6 = false
           ShowUserInfo = false
         "
         >설문관리
@@ -42,6 +45,7 @@
           TopTab3 = false
           TopTab4 = true
           TopTab5 = false
+          TopTab6 = false
           ShowUserInfo = false
         "
         >이벤트</v-tab
@@ -53,10 +57,23 @@
           TopTab3 = false
           TopTab4 = false
           TopTab5 = true
+          TopTab6 = false
           ShowUserInfo = false
         "
         >공지사항</v-tab
       >
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = true
+          ShowUserInfo = false
+        "
+        >FAQ
+      </v-tab>
       <v-tab>Q&A</v-tab>
       <v-tab>문의게시판</v-tab>
       <v-tab>칭호관리</v-tab>
@@ -261,6 +278,30 @@
         <div>
           <v-btn @click="ShowNoticeAdd = false" elevation="2">등록</v-btn>
           <v-btn @click="ShowNoticeAdd = false" elevation="2">닫기</v-btn>
+        </div>
+      </div>
+    </div>
+    <!--FAQ추가 모달창-->
+    <div class="modal-black" v-if="ShowFAQAdd == true">
+      <div class="modal-white">
+        <h3>FAQ 추가</h3>
+
+        <v-textarea
+          filled
+          auto-grow
+          label="FAQ 제목"
+          rows="2"
+          row-height="20"
+        ></v-textarea>
+
+        <v-textarea
+          clearable
+          clear-icon="mdi-close-circle"
+          label="FAQ 내용"
+        ></v-textarea>
+        <div>
+          <v-btn @click="ShowFAQAdd = false" elevation="2">등록</v-btn>
+          <v-btn @click="ShowFAQAdd = false" elevation="2">닫기</v-btn>
         </div>
       </div>
     </div>
@@ -553,7 +594,7 @@
           </footer>
         </div>
       </div>
-      <!-- 이벤트-->
+      <!-- 공지사항-->
       <div v-if="TopTab5 == true">
         <h2>공지사항</h2>
         <v-btn
@@ -581,12 +622,40 @@
           </div>
         </footer>
       </div>
+      <!--FAQ-->
+      <div v-if="TopTab6 == true">
+        <h2>FAQ</h2>
+        <v-btn
+          elevation="2"
+          @click="ShowFAQAdd = true"
+          style="margin-bottom: 1%"
+        >
+          FAQ 추가
+        </v-btn>
+        <table border="1px solid #323232">
+          <th style="width: 5%">번호</th>
+          <th style="width: 80%">제목</th>
+          <th style="width: 5%">이름</th>
+          <th style="width: 10%">날짜</th>
+          <tr v-for="(a, i) in data" :key="a">
+            <td style="text-align: center">{{ i + 1 }}</td>
+            <td>
+              <a :href="FAQdata[i].url" style="text-decoration: none">
+                {{ FAQdata[i].title }}
+              </a>
+            </td>
+            <td>{{ FAQdata[i].name }}</td>
+            <td>{{ FAQdata[i].date }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import data from '../assets/NoticeData.js'
+import FAQdata from '../assets/data/FAQdata.js'
 
 export default {
   name: 'app',
@@ -603,7 +672,9 @@ export default {
       TopTab9: false,
       TopTab10: false,
       TopTab11: false,
+      TopTab12: false,
       data: data,
+      FAQdata: FAQdata,
       value: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
@@ -615,6 +686,7 @@ export default {
       ShowSurveyInfo: false,
       ShowEventAdd: false,
       ShowNoticeAdd: false,
+      ShowFAQAdd: false,
     }
   },
 }
