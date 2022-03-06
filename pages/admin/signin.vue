@@ -24,7 +24,7 @@
             <v-btn
               elevation="2"
               style="width: 100%; background-color: #11aacc"
-              href="/UserWindow"
+              to="/admin/"
             >
               login
             </v-btn>
@@ -35,7 +35,12 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: 'signin-page',
+  layout: 'admin',
+}
+</script>
 
 <style>
 .wrap {

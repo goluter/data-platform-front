@@ -11,9 +11,10 @@
 </template>
 
 <script>
-import FAQdata from '../../assets/data/FAQdata.js'
+import FAQdata from 'assets/data/FAQdata.js'
 export default {
   name: 'app',
+  layout: 'admin',
   data() {
     return {
       FAQdata: FAQdata,
@@ -22,4 +23,3 @@ export default {
 }
 </script>
 
-<style></style>

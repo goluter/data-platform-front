@@ -49,8 +49,7 @@
 <script>
 
 export default {
-  name: 'InspirePage',
-  
+  name: 'signin-page',
 }
 </script>
 

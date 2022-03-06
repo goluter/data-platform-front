@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: white">
+  <v-app dark>
     <v-main>
       <v-container>
         <Nuxt />
@@ -13,11 +13,6 @@
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  data() {
-    return {
-      title: 'Govery',
-    }
-  },
+  name: 'admin'
 }
 </script>
