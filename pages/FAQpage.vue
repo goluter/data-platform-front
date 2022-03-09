@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import FAQdata from '../../assets/data/FAQdata.js'
+import FAQdata from '../assets/data/FAQdata.js'
 export default {
   name: 'app',
   data() {

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import QAdata from '../../assets/data/QAdata.js'
+import QAdata from '../assets/data/QAdata.js'
 export default {
   name: 'app',
   data() {
