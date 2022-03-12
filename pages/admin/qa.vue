@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       QAdata: QAdata,
+      layout: 'admin',
     }
   },
 }

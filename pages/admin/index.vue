@@ -11,6 +11,7 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = false
+          TopTab8 = false
           ShowUserInfo = false
         "
         >대시보드
@@ -24,6 +25,7 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = false
+          TopTab8 = false
           ShowUserInfo = false
         "
         >회원관리
@@ -37,6 +39,7 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = false
+          TopTab8 = false
           ShowUserInfo = false
         "
         >설문관리
@@ -50,6 +53,7 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = false
+          TopTab8 = false
           ShowUserInfo = false
         "
         >이벤트</v-tab
@@ -63,6 +67,7 @@
           TopTab5 = true
           TopTab6 = false
           TopTab7 = false
+          TopTab8 = false
           ShowUserInfo = false
         "
         >공지사항</v-tab
@@ -76,6 +81,7 @@
           TopTab5 = false
           TopTab6 = true
           TopTab7 = false
+          TopTab8 = false
           ShowUserInfo = false
         "
         >FAQ
@@ -89,15 +95,25 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = true
+          TopTab8 = false
           ShowUserInfo = false
         "
         >Q&A</v-tab
       >
-      <v-tab>문의게시판</v-tab>
-      <v-tab>칭호관리</v-tab>
-      <v-tab>등급관리</v-tab>
-      <v-tab>포인트관리</v-tab>
-      <v-tab>상품관리</v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = true
+          ShowUserInfo = false
+        "
+        >문의게시판</v-tab
+      >
     </v-tabs>
     <!--필터 모달창-->
     <div class="modal-black" v-if="ShowModal_Filter == true">
@@ -303,20 +319,22 @@
     <div class="modal-black" v-if="ShowFAQAdd == true">
       <div class="modal-white">
         <h3>FAQ 추가</h3>
+        <div>
+          <v-textarea
+            filled
+            auto-grow
+            label="FAQ 제목"
+            rows="2"
+            row-height="20"
+          ></v-textarea>
 
-        <v-textarea
-          filled
-          auto-grow
-          label="FAQ 제목"
-          rows="2"
-          row-height="20"
-        ></v-textarea>
+          <v-textarea
+            clearable
+            clear-icon="mdi-close-circle"
+            label="FAQ 내용"
+          ></v-textarea>
+        </div>
 
-        <v-textarea
-          clearable
-          clear-icon="mdi-close-circle"
-          label="FAQ 내용"
-        ></v-textarea>
         <div>
           <v-btn @click="ShowFAQAdd = false" elevation="2">등록</v-btn>
           <v-btn @click="ShowFAQAdd = false" elevation="2">닫기</v-btn>
@@ -347,6 +365,44 @@
         </div>
       </div>
     </div>
+    <!--등급조정 모달창-->
+    <div class="modal-black" v-if="ShowGradeSetting == true">
+      <div class="modal-white">
+        <h3>회원등급조절</h3>
+
+        <v-select :items="items" filled></v-select>
+
+        <div>
+          <v-btn @click="ShowGradeSetting = false" elevation="2">적용</v-btn>
+          <v-btn @click="ShowGradeSetting = false" elevation="2">닫기</v-btn>
+        </div>
+      </div>
+    </div>
+    <!--포인트조정 모달창-->
+    <div class="modal-black" v-if="ShowPointSetting == true">
+      <div class="modal-white">
+        <h3>포인트조정</h3>
+        현재 포인트: 9999포인트
+        <v-textarea
+          filled
+          auto-grow
+          label="부여할 포인트"
+          rows="2"
+          row-height="20"
+        ></v-textarea>
+
+        <v-textarea
+          filled
+          clear-icon="mdi-close-circle"
+          label="부여 내용"
+        ></v-textarea>
+        <div>
+          <v-btn @click="ShowPointSetting = false" elevation="2">적용</v-btn>
+          <v-btn @click="ShowPointSetting = false" elevation="2">닫기</v-btn>
+        </div>
+      </div>
+    </div>
+
     <!-- 대시보드-->
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
@@ -492,6 +548,10 @@
                   ShowUnivCertify = true
                   ShowHistory = false
                   ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
                 "
               >
                 인증정보
@@ -501,6 +561,10 @@
                   ShowUnivCertify = false
                   ShowHistory = true
                   ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
                 "
               >
                 설문 참여이력
@@ -510,9 +574,65 @@
                   ShowUnivCertify = false
                   ShowHistory = false
                   ShowAgreeOrNot = true
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
                 "
               >
                 동의 여부
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = true
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
+                "
+              >
+                칭호관리
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = true
+                  ShowUserPoint = false
+                  ShowUserProduct = false
+                "
+              >
+                등급관리
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = true
+                  ShowUserProduct = false
+                "
+              >
+                포인트관리
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = true
+                "
+              >
+                상품관리
               </v-tab>
             </v-tabs>
           </div>
@@ -537,6 +657,81 @@
                 개인정보처리방침 : 동의
               </div>
               <div style="float: right; font-size: larger">0000. 00. 00.</div>
+            </div>
+          </div>
+          <div v-if="ShowUserTitle == true">
+            <h2>칭호관리</h2>
+            <table border="1px solid #323232">
+              <th style="width: 5%">번호</th>
+              <th style="width: 80%">칭호이름</th>
+              <th style="width: 10%">획득날짜</th>
+              <tr v-for="(a, i) in QAdata" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a style="text-decoration: none">
+                    {{ QAdata[i].title }}
+                  </a>
+                </td>
+                <td>{{ QAdata[i].date }}</td>
+              </tr>
+            </table>
+          </div>
+          <div v-if="ShowUserGrade == true">
+            <h2>등급관리</h2>
+            <div>
+              <div style="float: left; font-size: larger">
+                현재회원등급 : A+
+              </div>
+            </div>
+            <v-btn elevation="2" x-small @click="ShowGradeSetting = true">
+              회원등급조절
+            </v-btn>
+          </div>
+          <div v-if="ShowUserPoint == true">
+            <h2>포인트관리</h2>
+            <div style="font-size: larger">현재포인트 : 9999포인트</div>
+            <v-btn elevation="2" x-small @click="ShowPointSetting = true">
+              포인트조정
+            </v-btn>
+            <div>
+              <table border="1px solid #323232">
+                <th style="width: 5%">번호</th>
+                <th style="width: 80%">포인트 획득사유</th>
+                <th style="width: 10%">획득날짜</th>
+                <th style="width: 10%">내역</th>
+                <tr v-for="(a, i) in Pointdata" :key="a">
+                  <td style="text-align: center">{{ i + 1 }}</td>
+                  <td>
+                    <a style="text-decoration: none">
+                      {{ Pointdata[i].title }}
+                    </a>
+                  </td>
+                  <td>{{ Pointdata[i].date }}</td>
+                  <td>{{ Pointdata[i].reward }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div v-if="ShowUserProduct == true">
+            <h2>상품관리</h2>
+
+            <div>
+              <table border="1px solid #323232">
+                <th style="width: 3%">번호</th>
+                <th style="width: 30%">포인트 획득사유</th>
+                <th style="width: 5%">획득날짜</th>
+                <th style="width: 10%">내역</th>
+                <tr v-for="(a, i) in Productdata" :key="a">
+                  <td style="text-align: center">{{ i + 1 }}</td>
+                  <td>
+                    <a :href="Productdata[i].url" style="text-decoration: none">
+                      {{ Productdata[i].title }}
+                    </a>
+                  </td>
+                  <td>{{ Productdata[i].date }}</td>
+                  <td>{{ Productdata[i].reward }}</td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -718,14 +913,38 @@
           </tr>
         </table>
       </div>
+      <!--문의게시판-->
+      <div v-if="TopTab8 == true">
+        <h2>문의게시판</h2>
+
+        <table border="1px solid #323232">
+          <th style="width: 5%">번호</th>
+          <th style="width: 80%">제목</th>
+          <th style="width: 5%">이름</th>
+          <th style="width: 10%">날짜</th>
+          <tr v-for="(a, i) in data" :key="a">
+            <td style="text-align: center">{{ i + 1 }}</td>
+            <td>
+              <a :href="Inquirydata[i].url" style="text-decoration: none">
+                {{ Inquirydata[i].title }}
+              </a>
+            </td>
+            <td>{{ Inquirydata[i].name }}</td>
+            <td>{{ Inquirydata[i].date }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import data from 'assets/NoticeData.js'
-import FAQdata from 'assets/data/FAQdata.js'
-import QAdata from 'assets/data/QAdata.js'
+import data from '../../assets/NoticeData'
+import FAQdata from '../../assets/data/FAQdata'
+import QAdata from '../../assets/data/QAdata'
+import Pointdata from '../../assets/data/Pointdata'
+import Productdata from '../../assets/data/Productdata'
+import Inquirydata from '../../assets/data/Inquirydata'
 
 export default {
   name: 'app',
@@ -740,13 +959,13 @@ export default {
       TopTab6: false,
       TopTab7: false,
       TopTab8: false,
-      TopTab9: false,
-      TopTab10: false,
-      TopTab11: false,
-      TopTab12: false,
+      items: ['A+', 'A', 'B', 'C', 'D'],
       data: data,
       FAQdata: FAQdata,
       QAdata: QAdata,
+      Pointdata: Pointdata,
+      Inquirydata: Inquirydata,
+      Productdata: Productdata,
       value: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
@@ -760,6 +979,14 @@ export default {
       ShowNoticeAdd: false,
       ShowFAQAdd: false,
       ShowQAAdd: false,
+      ShowUserTitle: false,
+      ShowUserGrade: false,
+      ShowUserPoint: false,
+      ShowUserProduct: false,
+      ShowTitleadd: false,
+      ShowGradeSetting: false,
+      ShowPointSetting: false,
+      layout: 'admin',
     }
   },
 }
