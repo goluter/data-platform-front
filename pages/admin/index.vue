@@ -355,19 +355,19 @@
         <input class="date" type="date" />~<input class="date" type="date" />
         <div>
           <div class="icondiv">
-            <img src="../assets/free-icon-briefcase-3916670.png" />
+            <img src="../../assets/free-icon-briefcase-3916670.png" />
             <p>새로운 유저 +100</p>
           </div>
           <div class="icondiv">
-            <img src="../assets/free-icon-heart-3916579.png" />
+            <img src="../../assets/free-icon-heart-3916579.png" />
             <p>새로운 유저 +100</p>
           </div>
           <div class="icondiv">
-            <img src="../assets/free-icon-shopping-bag-add-.png" />
+            <img src="../../assets/free-icon-shopping-bag-add-.png" />
             <p>새로운 유저 +100</p>
           </div>
           <div class="icondiv">
-            <img src="../assets/chess-clock-6627624.png" />
+            <img src="../../assets/chess-clock-6627624.png" />
             <p>새로운 유저 +100</p>
           </div>
         </div>
@@ -617,15 +617,15 @@
           </v-btn>
           <div style="height: 10%">
             <img
-              src="../assets/99A04B475BC982642A.jpg"
+              src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
             />
             <img
-              src="../assets/99A04B475BC982642A.jpg"
+              src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
             />
             <img
-              src="../assets/99A04B475BC982642A.jpg"
+              src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
             />
           </div>
@@ -723,12 +723,13 @@
 </template>
 
 <script>
-import data from '../assets/NoticeData.js'
-import FAQdata from '../assets/data/FAQdata.js'
-import QAdata from '../assets/data/QAdata.js'
+import data from 'assets/NoticeData.js'
+import FAQdata from 'assets/data/FAQdata.js'
+import QAdata from 'assets/data/QAdata.js'
 
 export default {
   name: 'app',
+  layout: 'admin',
   data() {
     return {
       TopTab1: false,
