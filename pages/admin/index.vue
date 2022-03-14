@@ -465,57 +465,17 @@
           </div>
           <div style="padding-top: 3%">--개의 데이터</div>
           <div>
-            <div class="UserInfo" @click="ShowUserInfo = true">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
+            <div
+              v-for="(a, i) in userdata"
+              :key="a"
+              class="UserInfo"
+              @click="ShowUserInfo = true"
+            >
+              <ul @click="UserNum = i">
+                <li>{{ userdata[i].username }}</li>
+                <li>생성일: {{ userdata[i].register_date }}</li>
+                <li>{{ userdata[i].email }}</li>
               </ul>
-            </div>
-            <div class="UserInfo">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
-              </ul>
-            </div>
-            <div class="UserInfo">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
-              </ul>
-            </div>
-            <div class="UserInfo">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
-              </ul>
-            </div>
-            <div class="UserInfo" @click="ShowUserInfo = true">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
-              </ul>
-            </div>
-            <div class="UserInfo" @click="ShowUserInfo = true">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
-              </ul>
-            </div>
-            <div class="UserInfo" @click="ShowUserInfo = true">
-              <ul>
-                <li>-유저이름-</li>
-                <li>생성일 : 0000. 00. 00.</li>
-                <li>Example@email.com</li>
-              </ul>
-            </div>
-            <div class="text-center">
-              <v-pagination v-model="page" :length="6"></v-pagination>
             </div>
           </div>
         </div>
@@ -528,16 +488,16 @@
               <option>Option2</option>
             </select>
             <v-btn style="float: right" elevation="2" small> 탈퇴 </v-btn>
-            <h3>-유저이름-</h3>
+            <h3>{{ userdata[UserNum].username }}</h3>
           </div>
           <div style="padding: 1%">
             <div style="border: 1px solid #323232">
               <h3>일반정보</h3>
               <ul style="font-size: 20pt">
-                <li>닉네임 : -유저이름-</li>
-                <li>이메일 : Example@email.com</li>
-                <li>유저타입 : 구글로그인</li>
-                <li>가입일 : 0000. 00. 00.</li>
+                <li>닉네임 : {{ userdata[UserNum].username }}</li>
+                <li>이메일 : {{ userdata[UserNum].email }}</li>
+                <li>유저타입 : {{ userdata[UserNum].usertype }}</li>
+                <li>가입일 : {{ userdata[UserNum].register_date }}</li>
               </ul>
             </div>
           </div>
@@ -639,24 +599,33 @@
           <div v-if="ShowUnivCertify == true">
             <h2>대학교 인증</h2>
             <div>
-              <div style="float: left; font-size: larger">상명대학교</div>
-              <div style="float: right; font-size: larger">0000. 00. 00.</div>
+              <div style="float: left; font-size: larger">
+                {{ userdata[UserNum].univ_cert }}
+              </div>
+              <div style="float: right; font-size: larger">
+                {{ userdata[UserNum].univ_cert_date }}
+              </div>
             </div>
           </div>
           <div v-if="ShowHistory == true">
             <h2>설문 참여이력</h2>
-            <div>
-              <div style="float: left; font-size: larger">설문A</div>
-              <div style="float: right; font-size: larger">0000. 00. 00.</div>
-            </div>
+            <table border="1px solid #232323">
+              <th style="width: 20%">번호</th>
+              <th style="width: 60%">참여설문</th>
+              <th style="width: 20%">참여날짜</th>
+              <tr v-for="(a, i) in userdata[UserNum].survey_record" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>{{ userdata[UserNum].survey_record[i] }}</td>
+                <td>{{ userdata[UserNum].survey_record_date[i] }}</td>
+              </tr>
+            </table>
           </div>
           <div v-if="ShowAgreeOrNot == true">
             <h2>동의 여부</h2>
             <div>
               <div style="float: left; font-size: larger">
-                개인정보처리방침 : 동의
+                {{ userdata[UserNum].term_agree }}
               </div>
-              <div style="float: right; font-size: larger">0000. 00. 00.</div>
             </div>
           </div>
           <div v-if="ShowUserTitle == true">
@@ -940,11 +909,12 @@
 
 <script>
 import data from '../../assets/NoticeData'
-import FAQdata from '../../assets/data/FAQdata'
-import QAdata from '../../assets/data/QAdata'
-import Pointdata from '../../assets/data/Pointdata'
-import Productdata from '../../assets/data/Productdata'
-import Inquirydata from '../../assets/data/Inquirydata'
+import FAQdata from '../../assets/data/FaqData'
+import QAdata from '../../assets/data/QaData'
+import Pointdata from '../../assets/data/PointData'
+import Productdata from '../../assets/data/ProductData'
+import Inquirydata from '../../assets/data/InquiryData'
+import userdata from '../../assets/data/UserData'
 
 export default {
   name: 'app',
@@ -966,6 +936,7 @@ export default {
       Pointdata: Pointdata,
       Inquirydata: Inquirydata,
       Productdata: Productdata,
+      userdata: userdata,
       value: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
@@ -986,7 +957,7 @@ export default {
       ShowTitleadd: false,
       ShowGradeSetting: false,
       ShowPointSetting: false,
-      layout: 'admin',
+      UserNum: 0,
     }
   },
 }
