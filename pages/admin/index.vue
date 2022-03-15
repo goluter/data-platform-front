@@ -466,15 +466,15 @@
           <div style="padding-top: 3%">--개의 데이터</div>
           <div>
             <div
-              v-for="(a, i) in userdata"
+              v-for="(a, i) in UserData"
               :key="a"
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
               <ul @click="UserNum = i">
-                <li>{{ userdata[i].username }}</li>
-                <li>생성일: {{ userdata[i].register_date }}</li>
-                <li>{{ userdata[i].email }}</li>
+                <li>{{ UserData[i].UserName }}</li>
+                <li>생성일: {{ UserData[i].RegisterDate }}</li>
+                <li>{{ UserData[i].Email }}</li>
               </ul>
             </div>
           </div>
@@ -488,16 +488,16 @@
               <option>Option2</option>
             </select>
             <v-btn style="float: right" elevation="2" small> 탈퇴 </v-btn>
-            <h3>{{ userdata[UserNum].username }}</h3>
+            <h3>{{ UserData[UserNum].UserName }}</h3>
           </div>
           <div style="padding: 1%">
             <div style="border: 1px solid #323232">
               <h3>일반정보</h3>
               <ul style="font-size: 20pt">
-                <li>닉네임 : {{ userdata[UserNum].username }}</li>
-                <li>이메일 : {{ userdata[UserNum].email }}</li>
-                <li>유저타입 : {{ userdata[UserNum].usertype }}</li>
-                <li>가입일 : {{ userdata[UserNum].register_date }}</li>
+                <li>닉네임 : {{ UserData[UserNum].UserName }}</li>
+                <li>이메일 : {{ UserData[UserNum].Email }}</li>
+                <li>유저타입 : {{ UserData[UserNum].UserType }}</li>
+                <li>가입일 : {{ UserData[UserNum].RegisterDate }}</li>
               </ul>
             </div>
           </div>
@@ -600,10 +600,10 @@
             <h2>대학교 인증</h2>
             <div>
               <div style="float: left; font-size: larger">
-                {{ userdata[UserNum].univ_cert }}
+                {{ UserData[UserNum].UnivCert }}
               </div>
               <div style="float: right; font-size: larger">
-                {{ userdata[UserNum].univ_cert_date }}
+                {{ UserData[UserNum].UnivCertDate }}
               </div>
             </div>
           </div>
@@ -613,10 +613,10 @@
               <th style="width: 20%">번호</th>
               <th style="width: 60%">참여설문</th>
               <th style="width: 20%">참여날짜</th>
-              <tr v-for="(a, i) in userdata[UserNum].survey_record" :key="a">
+              <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
                 <td style="text-align: center">{{ i + 1 }}</td>
-                <td>{{ userdata[UserNum].survey_record[i] }}</td>
-                <td>{{ userdata[UserNum].survey_record_date[i] }}</td>
+                <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
+                <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
               </tr>
             </table>
           </div>
@@ -624,7 +624,7 @@
             <h2>동의 여부</h2>
             <div>
               <div style="float: left; font-size: larger">
-                {{ userdata[UserNum].term_agree }}
+                {{ UserData[UserNum].TermAgree }}
               </div>
             </div>
           </div>
@@ -914,7 +914,7 @@ import QAdata from '../../assets/data/QaData'
 import Pointdata from '../../assets/data/PointData'
 import Productdata from '../../assets/data/ProductData'
 import Inquirydata from '../../assets/data/InquiryData'
-import userdata from '../../assets/data/UserData'
+import UserData from '../../assets/data/UserData'
 
 export default {
   name: 'app',
@@ -936,7 +936,7 @@ export default {
       Pointdata: Pointdata,
       Inquirydata: Inquirydata,
       Productdata: Productdata,
-      userdata: userdata,
+      UserData: UserData,
       value: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
