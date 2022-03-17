@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap">
         <header class="pb-5">
             <h1 class="pb-3">govey</h1>
             <hr>
@@ -53,4 +53,9 @@ export default {
 }
 </script>
 
+<style>
+.wrap{
+    color:black;
+}
+</style>
 
