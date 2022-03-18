@@ -634,14 +634,12 @@
               <th style="width: 5%">번호</th>
               <th style="width: 80%">칭호이름</th>
               <th style="width: 10%">획득날짜</th>
-              <tr v-for="(a, i) in QAdata" :key="a">
+              <tr v-for="(a, i) in UserData[UserNum].UserTitle" :key="a">
                 <td style="text-align: center">{{ i + 1 }}</td>
                 <td>
-                  <a style="text-decoration: none">
-                    {{ QAdata[i].title }}
-                  </a>
+                  {{ UserData[UserNum].UserTitle[i] }}
                 </td>
-                <td>{{ QAdata[i].date }}</td>
+                <td>{{ UserData[UserNum].UserTitleDate[i] }}</td>
               </tr>
             </table>
           </div>
@@ -649,7 +647,7 @@
             <h2>등급관리</h2>
             <div>
               <div style="float: left; font-size: larger">
-                현재회원등급 : A+
+                현재회원등급 : {{ UserData[UserNum].UserGrade }}
               </div>
             </div>
             <v-btn elevation="2" x-small @click="ShowGradeSetting = true">
@@ -668,15 +666,15 @@
                 <th style="width: 80%">포인트 획득사유</th>
                 <th style="width: 10%">획득날짜</th>
                 <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in Pointdata" :key="a">
+                <tr v-for="(a, i) in UserData[UserNum].UserPoint" :key="a">
                   <td style="text-align: center">{{ i + 1 }}</td>
                   <td>
                     <a style="text-decoration: none">
-                      {{ Pointdata[i].title }}
+                      {{ UserData[UserNum].UserPoint[i][0] }}
                     </a>
                   </td>
-                  <td>{{ Pointdata[i].date }}</td>
-                  <td>{{ Pointdata[i].reward }}</td>
+                  <td>{{ UserData[UserNum].UserPoint[i][1] }}</td>
+                  <td>{{ UserData[UserNum].UserPoint[i][2] }}</td>
                 </tr>
               </table>
             </div>
@@ -690,15 +688,15 @@
                 <th style="width: 30%">포인트 획득사유</th>
                 <th style="width: 5%">획득날짜</th>
                 <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in Productdata" :key="a">
+                <tr v-for="(a, i) in UserData[UserNum].UserProduct" :key="a">
                   <td style="text-align: center">{{ i + 1 }}</td>
                   <td>
-                    <a :href="Productdata[i].url" style="text-decoration: none">
-                      {{ Productdata[i].title }}
+                    <a style="text-decoration: none">
+                      {{ UserData[UserNum].UserProduct[i][0] }}
                     </a>
                   </td>
-                  <td>{{ Productdata[i].date }}</td>
-                  <td>{{ Productdata[i].reward }}</td>
+                  <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
+                  <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
                 </tr>
               </table>
             </div>
@@ -911,8 +909,6 @@
 import data from '../../assets/NoticeData'
 import FAQdata from '../../assets/data/FaqData'
 import QAdata from '../../assets/data/QaData'
-import Pointdata from '../../assets/data/PointData'
-import Productdata from '../../assets/data/ProductData'
 import Inquirydata from '../../assets/data/InquiryData'
 import UserData from '../../assets/data/UserData'
 
@@ -933,9 +929,7 @@ export default {
       data: data,
       FAQdata: FAQdata,
       QAdata: QAdata,
-      Pointdata: Pointdata,
       Inquirydata: Inquirydata,
-      Productdata: Productdata,
       UserData: UserData,
       value: 0,
       ShowModal_Filter: false,
