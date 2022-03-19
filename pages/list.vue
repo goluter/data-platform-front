@@ -66,7 +66,7 @@
             <v-card-title>
               <v-row justify="space-between">
                 <v-col cols="auto">
-                  {{quelists[i]}}
+                  {{list_main[i].que}}
                 </v-col>
                 <v-col cols="auto">
                   사진
@@ -77,10 +77,10 @@
             <v-card-subtitle>
               <v-row justify="space-between">
                 <v-col cols="auto">
-                  설문 일자 : {{quedates[i]}}
+                  설문 일자 : {{list_main[i].date}}
                 </v-col>
                 <v-col cols="auto">
-                  {{que_num[i] }} 명 참여중
+                  {{list_main[i].num }} 명 참여중
                 </v-col>
               </v-row>
               
@@ -111,7 +111,7 @@
                     <v-card-title>
                     <v-row justify="space-between">
                         <v-col cols="auto">
-                        {{quelists[i]}}
+                        {{list1[i].que}}
                         </v-col>
                         <v-col cols="auto">
                         사진
@@ -122,10 +122,10 @@
                     <v-card-subtitle>
                     <v-row justify="space-between">
                         <v-col cols="auto">
-                        설문 일자 : {{quedates[i]}}
+                        설문 일자 : {{list1[i].date}}
                         </v-col>
                         <v-col cols="auto">
-                        {{que_num[i] }} 명 참여중
+                        {{list1[i].num }} 명 참여중
                         </v-col>
                     </v-row>
                     
@@ -144,7 +144,7 @@
                     <v-card-title>
                     <v-row justify="space-between">
                         <v-col cols="auto">
-                        {{quelists[i]}}
+                        {{list2[i].que}}
                         </v-col>
                         <v-col cols="auto">
                         사진
@@ -155,10 +155,10 @@
                     <v-card-subtitle>
                     <v-row justify="space-between">
                         <v-col cols="auto">
-                        설문 일자 : {{quedates[i]}}
+                        설문 일자 : {{list2[i].date}}
                         </v-col>
                         <v-col cols="auto">
-                        {{que_num[i] }} 명 참여중
+                        {{list2[i].num }} 명 참여중
                         </v-col>
                     </v-row>
                     
@@ -181,6 +181,10 @@
 
 
 <script>
+import list_main from 'assets/data/Listdata_main.js'
+import list1 from 'assets/data/Listdata1'
+import list2 from 'assets/data/Listdata2'
+
 export default {
   name: 'list-Page',
   data(){
@@ -189,10 +193,12 @@ export default {
       tabs : ['홈', '설문예정', '설문참여', '설문등록', '레포트', '명예의 전당', '이벤트'  ],
       
      
-      //설문 목록
-      quelists : ['유튜버들에게 묻습니다', '상명인에게 묻습니다', 'BJ 좋아하시나요?'],
-      quedates : ['예정', '2021.12.11~2021.12.15', '2022.02.03~2022.02.05'],
-      que_num : [12,157,156]
+      //인기 설문
+      list_main : list_main,
+
+      //설문
+      list1 : list1,
+      list2 : list2
     }
   },
   componets:{
