@@ -1,6 +1,6 @@
 <template>
 <v-container fluid style="width:80%">
-    <div>
+    <div class="wrap">
         <header class="pb-5">
             <h1 class="pb-3">govey</h1>
             <hr>
@@ -63,7 +63,9 @@
         </v-container>
         <footer>
             <hr>
-            Copyright © goveycompany. All rights reserved.
+            <div class="text-md-center">
+                Copyright © goveycompany. All rights reserved.
+            </div>
         </footer>
     </div>
 </v-container>
@@ -80,3 +82,9 @@ export default {
    }
 }
 </script>
+
+<style >
+    .wrap{
+        color:black;
+    }
+</style>

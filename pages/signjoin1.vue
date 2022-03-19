@@ -1,5 +1,5 @@
-template>
-    <div>
+<template>
+    <div class="wrap">
         <header class="pb-5">
             <h1 class="pb-3">govey</h1>
             <hr>
@@ -18,7 +18,7 @@ template>
                     </div>
                     <div>
                         아직 고베이 계정이 있으세요?<br><br>
-                        <v-btn class="float-right" href="/login">
+                        <v-btn class="float-right" href="/signin">
                             로그인
                         </v-btn>
                     </div>
@@ -105,7 +105,9 @@ template>
         </section>
         <footer>
             <hr>
-            Copyright © goveycompany. All rights reserved.
+            <div class="text-md-center">
+                Copyright © goveycompany. All rights reserved.
+            </div>
         </footer>
     </div>
 </template>
@@ -130,3 +132,9 @@ export default {
     },
 }
 </script>
+
+<style >
+    .wrap{
+        color:black;
+    }
+</style>

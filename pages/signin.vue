@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         아직 고베이 계정이 없나요?<br><br>
-                        <v-btn class="float-right" href="/logjoin">
+                        <v-btn class="float-right" href="/logjoin1">
                             회원가입
                         </v-btn>
                     </div>
@@ -29,7 +29,7 @@
         </nav>
         <hr >
         <section class="pt-3">
-            <v-container style=" width:50%; ">
+            <v-container style=" width:50%;">
                     <div >
                         이메일
                         <v-text-field label="example@gamil.com"></v-text-field>
@@ -43,6 +43,10 @@
                     </v-btn>
             </v-container>
         </section>
+        <footer>
+            <hr>
+            Copyright © goveycompany. All rights reserved.
+        </footer>
     </div>
 </template>
 
