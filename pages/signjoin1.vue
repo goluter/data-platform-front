@@ -31,27 +31,21 @@
         <section class="pt-3">
             <v-container style=" width:50%; ">
                     <div>
-                        
                         <v-text-field label="example@gamil.com"></v-text-field>
                     </div>
                     <div>
-                        
                         <v-text-field type="password" label="비밀번호"></v-text-field>
                     </div>
                     <div>
-                        
                         <v-text-field type="password" label="비밀번호 확인"></v-text-field>
                     </div>
                     <div>
-                        
                         <v-text-field label="이름"></v-text-field>
                     </div>
                     <div>
-                        
                         <v-text-field label="닉네임"></v-text-field>
                     </div>
-                    <div>
-                        
+                    <div>  
                         <v-select
                         :items="['남자', '여자', '무응답',]"
                         label="성별"
@@ -70,7 +64,7 @@
                     </v-select>
                     </div>
                     <div>
-                        <div class="mb-6">Active picker: <code>{{ activePicker || 'null' }}</code></div>
+                        
                             <v-menu
                             ref="menu"
                             v-model="menu"
@@ -130,6 +124,7 @@ export default {
         this.$refs.menu.save(date)
       },
     },
+    
 }
 </script>
 
