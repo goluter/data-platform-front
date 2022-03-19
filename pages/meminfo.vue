@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap">
         <header class="pb-5">
             <h1 class="pb-3">govey</h1>
             <hr>
@@ -22,13 +22,16 @@
                     </v-col>
                 </v-row>
                 <br><br>
-                   
-                    <v-btn>수정하기</v-btn>
+                <div class="text-md-center">   
+                <v-btn>수정하기</v-btn>
+                </div>
             </v-container>
         </section>
         <footer>
             <hr>
-            Copyright © goveycompany. All rights reserved.
+            <div class="text-md-center">
+                Copyright © goveycompany. All rights reserved.
+            </div>
         </footer>
     </div>
 </template>
@@ -49,3 +52,9 @@ export default {
   
 }
 </script>
+
+<style>
+  .wrap{
+    color:black;
+  }
+</style>
