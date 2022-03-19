@@ -13,12 +13,12 @@
                     </v-col>
                     <v-col>
                         <br>
-                        닉네임 : {{nickname}}<br>
-                        칭호 : {{title}} <br>
-                        포인트 : {{point}}<br>
-                        이름 : {{name}}<br>
-                        성별 : {{gender}}<br>
-                        생일 : {{birth}}
+                        닉네임 : {{meminfo[0].nickname}}<br>
+                        칭호 : {{meminfo[0].title}} <br>
+                        포인트 : {{meminfo[0].point}}<br>
+                        이름 : {{meminfo[0].name}}<br>
+                        성별 : {{meminfo[0].gender}}<br>
+                        생일 : {{meminfo[0].birth}}
                     </v-col>
                 </v-row>
                 <br><br>
@@ -37,16 +37,13 @@
 </template>
 
 <script>
+import mem_info from 'assets/data/mem_info.js'
+
 export default {
   name: 'meminfo-Page',
   data(){
       return{
-          name : '고베이',
-          nickname : '고베이판다',
-          gender : '여',
-          birth : '1998-01-21',
-          point : 150,
-          title : '멋쟁이 사자'
+          meminfo : mem_info
       }
   }
   
