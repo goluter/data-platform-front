@@ -52,7 +52,7 @@
                       outlined
                       tile
                     >
-                      <span style="font-size:40px; font-weight:500;"><span style="color:yellow">{{main_num}}</span>명 참여중</span>
+                      <span style="font-size:40px; font-weight:500;"><span style="color:yellow">{{mainque[0].num}}</span>명 참여중</span>
                     </v-card>
                   </v-col>
                 </v-row>
@@ -80,7 +80,7 @@
                       center
                     >
                       <p class="text-md-center">
-                      <span style="font-size:20px;">{{main_subject}}</span>
+                      <span style="font-size:20px;">{{mainque[0].subject}}</span>
                       </p>
                     </v-card>
                   </v-col>
@@ -103,7 +103,7 @@
                       outlined
                       tile
                     >
-                      {{sub1_num}}명이 참여중입니다!
+                      {{subque[0].num}}명이 참여중입니다!
                     </v-card>
                   </v-col>
                 </v-row>
@@ -117,7 +117,7 @@
                       outlined
                       tile
                     >
-                      {{sub1_que1}}
+                       {{subque[0].que1}}
                     </v-card>
                   </v-col>
                   <v-col>
@@ -133,7 +133,7 @@
                       outlined
                       tile
                     >
-                      {{sub1_que2}}
+                      {{subque[0].que2}}
                     </v-card>
                   </v-col>
                 </v-row>
@@ -146,8 +146,8 @@
                       center
                     >
                       <p class="text-md-center">
-                      {{sub1_subject}}<br>
-                      설문자: {{sub1_orga}}
+                      {{subque[0].subject}}<br>
+                      설문자: {{subque[0].orga}}
                       </p>
                     </v-card>
                   </v-col>
@@ -166,7 +166,7 @@
                       outlined
                       tile
                     >
-                      {{sub2_num}}명이 참여중입니다!
+                      {{subque[1].num}}명이 참여중입니다!
                     </v-card>
                   </v-col>
                 </v-row>
@@ -180,7 +180,7 @@
                       outlined
                       tile
                     >
-                      {{sub2_que1}}
+                      {{subque[1].que1}}
                     </v-card>
                   </v-col>
                   <v-col
@@ -192,7 +192,7 @@
                       outlined
                       tile
                     >
-                      {{sub2_que2}}
+                      {{subque[1].que2}}
                     </v-card>
                   </v-col>
                 </v-row>
@@ -205,8 +205,8 @@
                       center
                     >
                       <p class="text-md-center">
-                      {{sub2_subject}}<br>
-                      설문자: {{sub2_orga}}
+                      {{subque[1].subject}}<br>
+                      설문자: {{subque[1].orga}}
                       </p>
                     </v-card>
                   </v-col>
@@ -249,7 +249,7 @@
             <v-card-title>
               <v-row justify="space-between">
                 <v-col cols="auto">
-                  {{quelists[i]}}
+                  {{mainlist[i].que}}
                 </v-col>
                 <v-col cols="auto">
                   사진
@@ -260,10 +260,10 @@
             <v-card-subtitle>
               <v-row justify="space-between">
                 <v-col cols="auto">
-                  설문 일자 : {{quedates[i]}}
+                  설문 일자 : {{mainlist[i].date}}
                 </v-col>
                 <v-col cols="auto">
-                  {{que_num[i] }} 명 참여중
+                  {{mainlist[i].num}} 명 참여중
                 </v-col>
               </v-row>
               
@@ -284,28 +284,27 @@
 
 
 <script>
+import mainque from 'assets/data/main_que.js'
+import subque from 'assets/data/main_subque.js'
+import mainlist from 'assets/data/main_list.js'
+
+
 export default {
   name: 'MainPage',
   data(){
     return{
+     
       //탭
       tabs : ['홈', '설문예정', '설문참여', '설문등록', '레포트', '명예의 전당', '이벤트'  ],
       
       //메인 질문
-      main_num : 2000,
-      main_subject : '코로나를 경험한 대학생들에게 묻습니다.',
-      //서브 질문1
-      sub1_num : 3001,
-      sub1_que1 : '비대면이 좋으시나요?',
-      sub1_que2 : '학비는 어느정도 적당할까요?',
-      sub1_subject : '2021 대학생들에게 물어봅니다!',
-      sub1_orga : '상명대학교',
-      //서브 질문2
-      sub2_num : 3421,
-      sub2_que1 : '우왁굳이 최고다',
-      sub2_que2 : '감스트',
-      sub2_subject : '가장 선호하는 유튜버 설문조사',
-      sub2_orga : '상명대학교',
+      mainque : mainque,
+      //서브 질문
+      subque : subque,
+
+      //설문 목록
+      mainlist : mainlist,
+    
       //설문 목록
       quelists : ['유튜버들에게 묻습니다', '상명인에게 묻습니다', 'BJ 좋아하시나요?'],
       quedates : ['예정', '2021.12.11~2021.12.15', '2022.02.03~2022.02.05'],
