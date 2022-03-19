@@ -1,6 +1,6 @@
 <template>
   <v-container fluid style="width:80%">
-    <div>
+    <div class="wrap">
       <header>
           <v-row no-gutters>
             <v-col cols="2">
@@ -25,10 +25,11 @@
                 </v-tabs>
               </v-card>
             </v-col>
-            <v-col cols="1">
-            </v-col>
             <v-col cols="2">
-              <v-text-field label="검색"></v-text-field>
+              <v-text-field label="검색" color="black"></v-text-field>
+            </v-col>
+            <v-col cols="1">
+              <v-img src="/manicon.png" height="50px" width="50px"></v-img>
             </v-col>
           </v-row>
       </header>
@@ -273,7 +274,9 @@
       </section>
       <footer>
         <hr>
-        Copyright © goveycompany. All rights reserved.
+        <div class="text-md-center">
+          Copyright © goveycompany. All rights reserved.
+        </div>
       </footer>
     </div>
   </v-container>
@@ -314,3 +317,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .wrap{
+    color:black;
+  }
+</style>
