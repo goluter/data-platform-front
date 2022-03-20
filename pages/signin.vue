@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap">
         <header class="pb-5">
             <h1 class="pb-3">govey</h1>
             <hr>
@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         아직 고베이 계정이 없나요?<br><br>
-                        <v-btn class="float-right" href="/logjoin">
+                        <v-btn class="float-right" href="/logjoin1">
                             회원가입
                         </v-btn>
                     </div>
@@ -29,13 +29,11 @@
         </nav>
         <hr >
         <section class="pt-3">
-            <v-container style=" width:50%; ">
-                    <div >
-                        이메일
+            <v-container style=" width:50%;">
+                    <div >                       
                         <v-text-field label="example@gamil.com"></v-text-field>
                     </div>
                     <div >
-                        비밀번호
                         <v-text-field type="password" label="password"></v-text-field>
                     </div>
                     <v-btn >
@@ -43,6 +41,12 @@
                     </v-btn>
             </v-container>
         </section>
+        <footer>
+            <hr>
+            <div class="text-md-center">
+                Copyright © goveycompany. All rights reserved.
+            </div>
+        </footer>
     </div>
 </template>
 
@@ -50,7 +54,14 @@
 
 export default {
   name: 'signin-page',
+  layout: 'DefaultLayout',
 }
 </script>
+
+<style>
+    .wrap{
+        color:black;
+    }
+</style>
 
 
