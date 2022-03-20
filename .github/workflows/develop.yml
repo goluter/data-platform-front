@@ -35,8 +35,8 @@ jobs:
             git checkout develop
             git pull origin develop
             docker build --build-arg API_HOST=https://api-stage.govey.app/ --tag "data-platform-front-stage" .
-            docker stop data-platform-front-stage
-            docker rm -f data-platform-front-stage
+            docker stop data-platform-front-stage 2> /dev/null || true
+            docker rm -f data-platform-front-stage 2> /dev/null || true
       - name: Run
         uses: appleboy/ssh-action@master
         with:

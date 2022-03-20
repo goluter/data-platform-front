@@ -39,8 +39,8 @@ jobs:
             git checkout main
             git pull origin main
             docker build --build-arg API_HOST=https://api.govey.app/ --tag "data-platform-front" .
-            docker stop data-platform-front
-            docker rm -f data-platform-front
+            docker stop data-platform-front 2> /dev/null || true
+            docker rm -f data-platform-front 2> /dev/null || true
       - name: Run
         uses: appleboy/ssh-action@master
         with:
