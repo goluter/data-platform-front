@@ -25,7 +25,11 @@
           </div>
           <div>
             아직 고베이 계정이 없나요?<br /><br />
+<<<<<<< HEAD
             <v-btn class="float-right" href="/logjoin1"> 회원가입 </v-btn>
+=======
+            <v-btn class="float-right" href="/logjoin"> 회원가입 </v-btn>
+>>>>>>> 82bd166e42876e25eed96ce7d8ddefdc37b43748
           </div>
         </v-row>
       </v-container>
@@ -34,7 +38,10 @@
     <section class="pt-3">
       <v-container style="width: 50%">
         <div>
+<<<<<<< HEAD
           이메일
+=======
+>>>>>>> 82bd166e42876e25eed96ce7d8ddefdc37b43748
           <v-text-field label="example@gamil.com"></v-text-field>
         </div>
         <div>
