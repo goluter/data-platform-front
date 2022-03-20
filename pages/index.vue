@@ -290,7 +290,7 @@ import mainlist from 'assets/data/main_list.js'
 
 
 export default {
-  name: 'MainPage',
+  name: 'index',
   layout: 'DefaultLayout',
   data(){
     return{
