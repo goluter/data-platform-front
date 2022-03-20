@@ -222,13 +222,12 @@
         <h3>설문상세</h3>
 
         <div style="border: 1px solid #323232; text-align: left">
-          <p>제목 : MBTI별 음식 성향</p>
-          <p>생성일 : 0000. 00. 00.</p>
-          <p>작성자 : -작성자 이름-</p>
-          태그: #-- #-- #--
+          <p>제목 : {{ SurveyData[SurveyDataClick].title }}</p>
+          <p>날짜 : {{ SurveyData[SurveyDataClick].date }}</p>
+          <p>작성자 : {{ SurveyData[SurveyDataClick].name }}</p>
         </div>
         <div>
-          <a href="#">설문 링크</a>
+          <a :href="SurveyData[SurveyDataClick].url">설문 링크</a>
         </div>
         <div>
           <form>
@@ -717,44 +716,21 @@
         </div>
         <div style="border: 1px solid #323232; margin-top: 1%">
           심사 대기 중 --개
-          <div class="UserInfo">
-            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
+          <div class="UserInfo" v-for="(a, i) in SurveyData" :key="a">
+            <v-btn
+              elevation="2"
+              x-small
+              @click="
+                ShowSurveyInfo = true
+                SurveyDataClick = i
+              "
+            >
               승인설정
             </v-btn>
             <ul>
-              <li>MBTI별 음식 성향</li>
-              <li>생성일 : 0000. 00. 00.</li>
-              <li>-작성자 이름-</li>
-            </ul>
-          </div>
-          <div class="UserInfo">
-            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
-              승인설정
-            </v-btn>
-            <ul>
-              <li>MBTI별 음식 성향</li>
-              <li>생성일 : 0000. 00. 00.</li>
-              <li>-작성자 이름-</li>
-            </ul>
-          </div>
-          <div class="UserInfo">
-            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
-              승인설정
-            </v-btn>
-            <ul>
-              <li>MBTI별 음식 성향</li>
-              <li>생성일 : 0000. 00. 00.</li>
-              <li>-작성자 이름-</li>
-            </ul>
-          </div>
-          <div class="UserInfo">
-            <v-btn elevation="2" x-small @click="ShowSurveyInfo = true">
-              승인설정
-            </v-btn>
-            <ul>
-              <li>MBTI별 음식 성향</li>
-              <li>생성일 : 0000. 00. 00.</li>
-              <li>-작성자 이름-</li>
+              <li>{{ SurveyData[i].title }}</li>
+              <li>{{ SurveyData[i].date }}</li>
+              <li>{{ SurveyData[i].name }}</li>
             </ul>
           </div>
         </div>
@@ -815,7 +791,11 @@
           <th style="width: 10%">날짜</th>
           <tr v-for="(a, i) in data" :key="a">
             <td style="text-align: center">{{ i + 1 }}</td>
-            <td>{{ data[i].title }}</td>
+            <td>
+              <a :href="data[i].url" style="text-decoration: none">{{
+                data[i].title
+              }}</a>
+            </td>
             <td>{{ data[i].name }}</td>
             <td>{{ data[i].date }}</td>
           </tr>
@@ -906,11 +886,12 @@
 </template>
 
 <script>
-import data from '../../assets/NoticeData'
+import data from '../../assets/data/NoticeData.js'
 import FAQdata from '../../assets/data/FaqData'
 import QAdata from '../../assets/data/QaData'
 import Inquirydata from '../../assets/data/InquiryData'
 import UserData from '../../assets/data/UserData'
+import SurveyData from '../../assets/data/SurveyData'
 
 export default {
   name: 'app',
@@ -931,7 +912,9 @@ export default {
       QAdata: QAdata,
       Inquirydata: Inquirydata,
       UserData: UserData,
+      SurveyData: SurveyData,
       value: 0,
+      SurveyDataClick: 0,
       ShowModal_Filter: false,
       ShowModal_Create: false,
       ShowModal_UserAdd: false,
