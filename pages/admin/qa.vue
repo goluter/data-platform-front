@@ -12,7 +12,7 @@
 import QAdata from 'assets/data/QAdata.js'
 export default {
   name: 'app',
-  layout: 'admin',
+  layout: 'Admin',
   data() {
     return {
       QAdata: QAdata,

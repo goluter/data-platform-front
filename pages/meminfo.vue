@@ -41,6 +41,7 @@ import mem_info from 'assets/data/mem_info.js'
 
 export default {
   name: 'meminfo-Page',
+  layout: 'DefaultLayout',
   data(){
       return{
           meminfo : mem_info

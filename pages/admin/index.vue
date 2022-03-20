@@ -887,15 +887,15 @@
 
 <script>
 import data from '../../assets/data/NoticeData.js'
-import FAQdata from '../../assets/data/FaqData'
-import QAdata from '../../assets/data/QaData'
-import Inquirydata from '../../assets/data/InquiryData'
+import FAQdata from '../../assets/data/FAQdata'
+import QAdata from '../../assets/data/QAdata'
+import Inquirydata from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
 
 export default {
   name: 'app',
-  layout: 'admin',
+  layout: 'Admin',
   data() {
     return {
       TopTab1: false,
