@@ -37,9 +37,9 @@ jobs:
             cd ~/deploy/data-platform-front
             git checkout develop
             git pull origin develop
+            docker build --build-arg API_HOST=https://api-stage.govey.app/ --tag "data-platform-front-stage" .
             docker stop data-platform-front-stage
             docker rm -f data-platform-front-stage
-            docker build --build-arg API_HOST=https://api-stage.govey.app/ --tag "data-platform-front-stage" .
             docker run -it --rm -p 7200:80 -d --name data-platform-front-stage data-platform-front-stage
       - uses: act10ns/slack@v1
         with:
