@@ -35,7 +35,7 @@
                         outlined
                         height="100px"
                         >
-                        <v-card-title>   
+                        <v-card-title class="justify-center">  
                             {{sections[i]}}
                         </v-card-title>
                         </v-card>
@@ -49,16 +49,13 @@
                         outlined
                         height="100px"
                         >
-                        <v-card-title>   
+                        <v-card-title class="justify-center">   
                             {{sections2[i]}}
                         </v-card-title>
                         </v-card>
                     </v-col>
                 </v-row>
             </div>
-
-
-
         </section>
         </v-container>
         <footer>
