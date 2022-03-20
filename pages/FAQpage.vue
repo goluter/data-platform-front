@@ -11,11 +11,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD:pages/FAQpage.vue
-import FAQdata from '../assets/data/FAQdata.js'
-=======
 import FAQdata from 'assets/data/FAQdata.js'
->>>>>>> 84865ac85ba501bb76e6f6a714840b77730b1f5e:pages/admin/faq.vue
 export default {
   name: 'app',
   layout: 'admin',
@@ -26,4 +22,3 @@ export default {
   },
 }
 </script>
-
