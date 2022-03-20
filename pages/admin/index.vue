@@ -937,7 +937,7 @@
       </div>
       <!--문의게시판-->
       <div v-if="TopTab8 == true">
-        <h2>문의게시판</h2>
+        <h2>문의게시판1</h2>
 
         <table border="1px solid #323232">
           <th style="width: 5%">번호</th>
