@@ -24,8 +24,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: yarn install --frozen-lockfile
-
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -41,9 +39,9 @@ jobs:
             cd ~/deploy/data-platform-front
             git checkout main
             git pull origin main
+            docker build --build-arg API_HOST=https://api.govey.app/ --tag "data-platform-front" .
             docker stop data-platform-front
             docker rm -f data-platform-front
-            docker build --build-arg API_HOST=https://api.govey.app/ --tag "data-platform-front" .
             docker run -it --rm -p 7100:80 -d --name data-platform-front data-platform-front
       - uses: act10ns/slack@v1
         with:

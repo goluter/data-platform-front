@@ -14,7 +14,7 @@
 import FAQdata from 'assets/data/FAQdata.js'
 export default {
   name: 'app',
-  layout: 'admin',
+  layout: 'AdminLayout',
   data() {
     return {
       FAQdata: FAQdata,
