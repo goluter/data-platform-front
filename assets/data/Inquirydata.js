@@ -6,7 +6,11 @@ var Inquirydata = [
     question: '이거는 어떻게 하나요?1',
     date: '0000. 00. 00.',
     answer: '이렇게 합니다1',
+<<<<<<< HEAD
+    url: '/Inquirypage/0',
+=======
     url: '/admin/inquiry/0',
+>>>>>>> 0c58357934ee3e0e479c5849b524c4a3858805b8
   },
   {
     id: 1,
