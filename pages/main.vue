@@ -4,7 +4,7 @@
       <header>
           <v-row no-gutters>
             <v-col cols="2">
-              <h1>govey</h1>
+              <h1>Govey</h1>
             </v-col>
             <v-col cols="7">
               <v-card>
@@ -291,21 +291,22 @@ import mainlist from 'assets/data/main_list.js'
 
 export default {
   name: 'MainPage',
+  layout: 'DefaultLayout',
   data(){
     return{
      
-      //탭
+      // 탭
       tabs : ['홈', '설문예정', '설문참여', '설문등록', '레포트', '명예의 전당', '이벤트'  ],
       
-      //메인 질문
-      mainque : mainque,
-      //서브 질문
-      subque : subque,
+      // 메인 질문
+      mainque,
+      // 서브 질문
+      subque,
 
-      //설문 목록
-      mainlist : mainlist,
+      // 설문 목록
+      mainlist,
     
-      //설문 목록
+      // 설문 목록
       quelists : ['유튜버들에게 묻습니다', '상명인에게 묻습니다', 'BJ 좋아하시나요?'],
       quedates : ['예정', '2021.12.11~2021.12.15', '2022.02.03~2022.02.05'],
       que_num : [12,157,156]
