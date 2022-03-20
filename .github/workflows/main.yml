@@ -31,8 +31,6 @@ jobs:
           username: ${{ secrets.REMOTE_SSH_ID }}
           password: ${{ secrets.REMOTE_SSH_PASSWORD }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
-          sync: true
-          script_stop: true
           script: |
             whoami
             mkdir -p ~/deploy
@@ -50,8 +48,6 @@ jobs:
           username: ${{ secrets.REMOTE_SSH_ID }}
           password: ${{ secrets.REMOTE_SSH_PASSWORD }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
-          sync: true
-          script_stop: true
           script: |
             docker run -it --rm -p 7100:80 -d --name data-platform-front data-platform-front
       - uses: act10ns/slack@v1
