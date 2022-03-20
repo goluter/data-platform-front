@@ -36,7 +36,7 @@
 <script>
 export default {
   name: 'Login',
-  layout: 'admin',
+  layout: 'Admin',
   data: function () {
     return {
       memberId: '',

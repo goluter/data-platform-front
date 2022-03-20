@@ -10,5 +10,6 @@
 <script>
 export default {
   name: 'index-page',
+  layout: 'DefaultLayout',
 }
 </script>

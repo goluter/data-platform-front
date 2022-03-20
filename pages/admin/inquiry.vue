@@ -14,7 +14,7 @@
 import Inquirydata from '../../assets/data/Inquirydata'
 export default {
   name: 'app',
-  layout: 'admin',
+  layout: 'Admin',
   data() {
     return {
       Inquirydata: Inquirydata,

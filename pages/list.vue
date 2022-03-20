@@ -187,6 +187,7 @@ import list2 from 'assets/data/Listdata2'
 
 export default {
   name: 'list-Page',
+  layout: 'DefaultLayout',
   data(){
     return{
       //탭

@@ -54,6 +54,7 @@
 
 export default {
   name: 'signin-page',
+  layout: 'DefaultLayout',
 }
 </script>
 
