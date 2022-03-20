@@ -14,6 +14,7 @@
 <script>
 export default {
   name: 'DefaultLayout',
+  fixed: true,
   data() {
     return {
       title: 'Govey',
