@@ -78,10 +78,10 @@ export default {
     mounted(){
         var i = 1;
         $(".add_btn").click(function(){
-            $(".boxplus1").append(
-                `<div class="que_list${i} pt-3"><v-row>설문 내용 추가${i}</v-row></div>`
-            );
             i++;
+            $(".boxplus1").append(
+                `<div class="que_list${i}"><v-row><input placeholder="옵션${i}" class="input_que${a}"></v-row></div>`
+            );
         });
         $(".delete_btn").click(function(){
             $(".que_list"+i+"").remove();
@@ -103,18 +103,18 @@ export default {
                     </v-col>
                 </v-row>
                 <div class="boxplus${k}">
-                    <div class="que_list1">
+                    <div class="que_list_${k}_1">
                         <v-row>
-                            <input placeholder="옵션1" class="input_que1">
+                            <input placeholder="옵션1" class="input_que_${k}_1">
                         </v-row>
                     </div>
                 </div>
                 <v-row class="pt-3">
                     <div>
-                        <button type="button" class="add_btn" data-id="${k}" data-check="2">
+                        <button type="button" class="add_btn" data-id="${k}">
                             생성
                         </button>
-                       <button type="button" class="delete_btn">
+                       <button type="button" class="delete_btn" data-id="${k}">
                             삭제
                         </button>
                     </div>
@@ -123,22 +123,25 @@ export default {
            );
            k++;
         });
-
-
+        var option = [];
+        for(var t = 2; t<=100; t++){
+            option[t] = 2;
+        }
         var a = 2;
         $("#bigboxplus").on('click','.add_btn',function(){
             var dataid = $(this).data("id");
+            var check = option[dataid];
             $(".boxplus"+dataid+"").append(
-                `<div class="que_list${a}"><v-row><input placeholder="옵션${a}" class="input_que${a}"></v-row></div>`
+                `<div class="que_list_${dataid}_${check}"><v-row><input placeholder="옵션${check}" class="input_que_${dataid}_${check}"></v-row></div>`
             );
-            a++;
+            option[dataid]++;
         });
-        //  $("#bigboxplus").on('click','.btn1',function(){
-        //     $(".boxplus3").append(
-        //         `<div class="que_list${a}"><v-row>추가${a}</v-row></div>`
-        //     );
-        //     a++;
-        // });
+         $("#bigboxplus").on('click','.delete_btn',function(){
+            var dataid = $(this).data("id");
+            var check = option[dataid];
+            $(".que_list_"+dataid+"_"+check+"").remove();
+            option[dataid]--;
+        });
     }
   
   
