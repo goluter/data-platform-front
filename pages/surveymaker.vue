@@ -22,40 +22,29 @@
             </v-card>
            </div>
            <div class="pt-5" id="bigboxplus">
-               <div class="cardbox1  pb-5">
-                <v-row>
-                    <v-col cols="6">
-                        <input placeholder="제목 없는 질문1" class="input_title1">
-                    </v-col>
-                    <v-col cols="2">
-                        사진
-                    </v-col>
-                    <v-col cols="4">
-                        박스
-                    </v-col>
-                </v-row>
-                <div class="boxplus1">
-                    <div class="que_list1">
-                        <v-row>
-                            <input placeholder="옵션1" class="input_que1">
-                        </v-row>
+                <div class="cardbox1">
+                    <input placeholder="제목 없는 질문1" class="input_title1">   사진  박스
+                    <div class="boxplus1">
+                        <div class="que_list_1_1">
+                            <input placeholder="옵션1" class="input_que_1_1">
+                        </div>
                     </div>
-                </div>
-                <v-row class="pt-3">
                     <div>
                         <button type="button" class="add_btn">
                             생성
                         </button>
-                       <button type="button" class="delete_btn">
+                        <button type="button" class="delete_btn">
                             삭제
                         </button>
                     </div>
-                </v-row>
-               </div>
+                </div>
            </div>
            <div class="pt-5">
-               <v-btn id="card_btn1" >
+               <v-btn id="card_add_btn" >
                    카드 생성
+               </v-btn>
+               <v-btn id="card_delete_btn" >
+                   카드 삭제
                </v-btn>
            </div>
        </section> 
@@ -76,53 +65,63 @@ export default {
   name: 'survey-Page',
         
     mounted(){
+        //1번 질문 옵션 추가
         var i = 1;
         $(".add_btn").click(function(){
             i++;
             $(".boxplus1").append(
-                `<div class="que_list${i}"><v-row><input placeholder="옵션${i}" class="input_que${a}"></v-row></div>`
+                `<div class="que_list_1_${i}"><v-row><input placeholder="옵션${i}" class="input_que_1_${a}"></v-row></div>`
             );
         });
+        
+        //1번 질문 옵션 제거
         $(".delete_btn").click(function(){
-            $(".que_list"+i+"").remove();
-            i--;
+            if(i == 1){
+                alert("삭제하실 수 없습니다.");
+            }
+            else{
+                $(".que_list_1_"+i+"").remove();
+                i--;
+            }
         });
+        
+        //카드 생성
         var k = 2;
-        $("#card_btn1").click(function(){
+        $("#card_add_btn").click(function(){
            $("#bigboxplus").append(
-               `<div =class="cardbox${k} pt-5">
-                <v-row>
-                    <v-col cols="6">
-                        <input placeholder="제목 없는 질문${k}" class="input_title${k}">
-                    </v-col>
-                    <v-col cols="2">
-                        사진
-                    </v-col>
-                    <v-col cols="4">
-                        박스
-                    </v-col>
-                </v-row>
-                <div class="boxplus${k}">
-                    <div class="que_list_${k}_1">
-                        <v-row>
+                `<div class="cardbox${k} pt-5">
+                    <input placeholder="제목 없는 질문${k}" class="input_title${k}">   사진  박스
+                    <div class="boxplus${k}">
+                        <div class="que_list_${k}_1">
                             <input placeholder="옵션1" class="input_que_${k}_1">
-                        </v-row>
+                        </div>
                     </div>
-                </div>
-                <v-row class="pt-3">
                     <div>
                         <button type="button" class="add_btn" data-id="${k}">
                             생성
                         </button>
-                       <button type="button" class="delete_btn" data-id="${k}">
+                        <button type="button" class="delete_btn" data-id="${k}">
                             삭제
                         </button>
                     </div>
-                </v-row>
-               </div>`
+                </div>`            
            );
            k++;
         });
+
+        //카드 제거
+        $(document).on("click","#card_delete_btn",function(){
+            var t = k - 1;
+            if(t == 1){
+                alert("삭제하실 수 없습니다.");
+            }
+            else{
+                $(".cardbox"+t+"").remove();
+                k--;
+            }
+        });
+       
+        //2번 이상 질문 옵션 추가
         var option = [];
         for(var t = 2; t<=100; t++){
             option[t] = 2;
@@ -136,11 +135,18 @@ export default {
             );
             option[dataid]++;
         });
+
+        //2번 이상 질문 옵션 제거
          $("#bigboxplus").on('click','.delete_btn',function(){
             var dataid = $(this).data("id");
-            var check = option[dataid];
-            $(".que_list_"+dataid+"_"+check+"").remove();
-            option[dataid]--;
+            var check = option[dataid] - 1;
+            if(check == 1){
+                alert("삭제하실 수 없습니다.");
+            }
+            else{
+                $(".que_list_"+dataid+"_"+check+"").remove();
+                option[dataid]--;
+            }
         });
     }
   
