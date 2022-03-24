@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import Inquirydata from '../../assets/data/Inquirydata'
+import Inquirydata from '../assets/data/Inquirydata.js'
+
 export default {
-  name: 'inquiry',
-  layout: 'Admin',
+  name: 'inquirypage',
   data() {
     return {
       Inquirydata: Inquirydata,
@@ -22,3 +22,5 @@ export default {
   },
 }
 </script>
+
+<style></style>

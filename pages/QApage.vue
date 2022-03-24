@@ -11,8 +11,8 @@
 <script>
 import QAdata from 'assets/data/QAdata.js'
 export default {
-  name: 'qa',
-  layout: 'Admin',
+  name: 'qapage',
+  layout: 'admin',
   data() {
     return {
       QAdata: QAdata,

@@ -700,6 +700,81 @@
               </table>
             </div>
           </div>
+          <div v-if="ShowUserTitle == true">
+            <h2>칭호관리</h2>
+            <table border="1px solid #323232">
+              <th style="width: 5%">번호</th>
+              <th style="width: 80%">칭호이름</th>
+              <th style="width: 10%">획득날짜</th>
+              <tr v-for="(a, i) in QAdata" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a style="text-decoration: none">
+                    {{ QAdata[i].title }}
+                  </a>
+                </td>
+                <td>{{ QAdata[i].date }}</td>
+              </tr>
+            </table>
+          </div>
+          <div v-if="ShowUserGrade == true">
+            <h2>등급관리</h2>
+            <div>
+              <div style="float: left; font-size: larger">
+                현재회원등급 : A+
+              </div>
+            </div>
+            <v-btn elevation="2" x-small @click="ShowGradeSetting = true">
+              회원등급조절
+            </v-btn>
+          </div>
+          <div v-if="ShowUserPoint == true">
+            <h2>포인트관리</h2>
+            <div style="font-size: larger">현재포인트 : 9999포인트</div>
+            <v-btn elevation="2" x-small @click="ShowPointSetting = true">
+              포인트조정
+            </v-btn>
+            <div>
+              <table border="1px solid #323232">
+                <th style="width: 5%">번호</th>
+                <th style="width: 80%">포인트 획득사유</th>
+                <th style="width: 10%">획득날짜</th>
+                <th style="width: 10%">내역</th>
+                <tr v-for="(a, i) in Pointdata" :key="a">
+                  <td style="text-align: center">{{ i + 1 }}</td>
+                  <td>
+                    <a style="text-decoration: none">
+                      {{ Pointdata[i].title }}
+                    </a>
+                  </td>
+                  <td>{{ Pointdata[i].date }}</td>
+                  <td>{{ Pointdata[i].reward }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div v-if="ShowUserProduct == true">
+            <h2>상품관리</h2>
+
+            <div>
+              <table border="1px solid #323232">
+                <th style="width: 3%">번호</th>
+                <th style="width: 30%">포인트 획득사유</th>
+                <th style="width: 5%">획득날짜</th>
+                <th style="width: 10%">내역</th>
+                <tr v-for="(a, i) in Productdata" :key="a">
+                  <td style="text-align: center">{{ i + 1 }}</td>
+                  <td>
+                    <a :href="Productdata[i].url" style="text-decoration: none">
+                      {{ Productdata[i].title }}
+                    </a>
+                  </td>
+                  <td>{{ Productdata[i].date }}</td>
+                  <td>{{ Productdata[i].reward }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
       <!-- 설문관리-->
@@ -862,7 +937,7 @@
       </div>
       <!--문의게시판-->
       <div v-if="TopTab8 == true">
-        <h2>문의게시판</h2>
+        <h2>문의게시판1</h2>
 
         <table border="1px solid #323232">
           <th style="width: 5%">번호</th>
@@ -887,15 +962,15 @@
 
 <script>
 import data from '../../assets/data/NoticeData.js'
-import FAQdata from '../../assets/data/FaqData'
-import QAdata from '../../assets/data/QaData'
-import Inquirydata from '../../assets/data/InquiryData'
+import FAQdata from '../../assets/data/FAQdata'
+import QAdata from '../../assets/data/QAdata'
+import Inquirydata from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
 
 export default {
-  name: 'app',
-  layout: 'admin',
+  name: 'index',
+  layout: 'Admin',
   data() {
     return {
       TopTab1: false,
