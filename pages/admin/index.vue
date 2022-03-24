@@ -491,13 +491,13 @@
           </div>
           <div style="padding: 1%">
             <div style="border: 1px solid #323232">
-              <h3>일반정보</h3>
-              <ul style="font-size: 20pt">
-                <li>닉네임 : {{ UserData[UserNum].UserName }}</li>
-                <li>이메일 : {{ UserData[UserNum].Email }}</li>
-                <li>유저타입 : {{ UserData[UserNum].UserType }}</li>
-                <li>가입일 : {{ UserData[UserNum].RegisterDate }}</li>
-              </ul>
+              <h1>💾</h1>
+              <dl style="font-size: 20pt">
+                <dd>닉네임 : {{ UserData[UserNum].UserName }}</dd>
+                <dd>이메일 : {{ UserData[UserNum].Email }}</dd>
+                <dd>유저타입 : {{ UserData[UserNum].UserType }}</dd>
+                <dd>가입일 : {{ UserData[UserNum].RegisterDate }}</dd>
+              </dl>
             </div>
           </div>
           <div>
@@ -747,7 +747,13 @@
           <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
           <input type="checkbox" name="fruits" value="orange" />지난 이벤트
 
-          <v-btn depressed elevation="2" small>새로고침</v-btn>
+          <v-btn
+            depressed
+            elevation="2"
+            small
+            href="http://localhost:3000/admin/"
+            >새로고침</v-btn
+          >
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
