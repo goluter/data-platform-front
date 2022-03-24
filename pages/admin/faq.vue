@@ -18,7 +18,7 @@ export default {
   layout: 'Admin',
   data() {
     return {
-      FAQdata: FAQdata,
+      FAQdata,
       layout: 'admin',
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: white">
+  <v-app>
     <v-main>
       <v-container>
         <Nuxt />
@@ -14,9 +14,10 @@
 <script>
 export default {
   name: 'DefaultLayout',
+  fixed: true,
   data() {
     return {
-      title: 'Govery',
+      title: 'Govey',
     }
   },
 }

@@ -15,7 +15,7 @@ export default {
   layout: 'Admin',
   data() {
     return {
-      QAdata: QAdata,
+      QAdata,
     }
   },
 }

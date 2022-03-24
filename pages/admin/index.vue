@@ -116,7 +116,7 @@
       >
     </v-tabs>
     <!--필터 모달창-->
-    <div class="modal-black" v-if="ShowModal_Filter == true">
+    <div v-if="ShowModal_Filter == true" class="modal-black">
       <div class="modal-white">
         <h4>필터</h4>
         <div>
@@ -126,30 +126,30 @@
         </div>
 
         <div>
-          <v-btn @click="ShowModal_Filter = false" elevation="2">적용</v-btn>
-          <v-btn @click="ShowModal_Filter = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowModal_Filter = false">적용</v-btn>
+          <v-btn elevation="2" @click="ShowModal_Filter = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--추가 모달창-->
-    <div class="modal-black" v-if="ShowModal_Create == true">
+    <div v-if="ShowModal_Create == true" class="modal-black">
       <div class="modal-white">
         <div>
           <label>회원정보</label>
           <div>
             <input
+              id="username"
               type="text"
               class="form-control"
-              id="username"
               placeholder="Username"
               required
             />
           </div>
           <div class="col-12">
             <input
+              id="address2"
               type="text"
               class="form-control"
-              id="address2"
               placeholder="Example@gmail.com"
             />
           </div>
@@ -157,21 +157,21 @@
 
         <div class="col-12">
           <input
+            id="address2"
             type="text"
             class="form-control"
-            id="address2"
             placeholder="추가정보"
           />
         </div>
 
-        <v-btn @click="ShowModal_Create = false" elevation="2">닫기</v-btn>
+        <v-btn elevation="2" @click="ShowModal_Create = false">닫기</v-btn>
 
         <div>
           <v-btn
             style="float: right"
-            @click="ShowModal_UserAdd = true"
             elevation="2"
             x-small
+            @click="ShowModal_UserAdd = true"
           >
             유저추가
           </v-btn>
@@ -179,45 +179,45 @@
       </div>
     </div>
     <!--유저추가 모달창-->
-    <div class="modal-black" v-if="ShowModal_UserAdd == true">
+    <div v-if="ShowModal_UserAdd == true" class="modal-black">
       <div class="modal-white">
         <h4>회원 추가</h4>
         <div>
           <div>
             <input
+              id="username"
               type="text"
               class="form-control"
-              id="username"
               placeholder="Username"
               required
             />
           </div>
           <div class="col-12">
             <input
+              id="address2"
               type="text"
               class="form-control"
-              id="address2"
               placeholder="Example@gmail.com"
             />
           </div>
           <div class="col-12">
             <input
+              id="address2"
               type="text"
               class="form-control"
-              id="address2"
               placeholder="추가정보"
             />
           </div>
         </div>
 
         <div>
-          <v-btn @click="ShowModal_UserAdd = false" elevation="2">추가</v-btn>
-          <v-btn @click="ShowModal_UserAdd = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowModal_UserAdd = false">추가</v-btn>
+          <v-btn elevation="2" @click="ShowModal_UserAdd = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--설문상세 모달창-->
-    <div class="modal-black" v-if="ShowSurveyInfo == true">
+    <div v-if="ShowSurveyInfo == true" class="modal-black">
       <div class="modal-white">
         <h3>설문상세</h3>
 
@@ -244,21 +244,21 @@
               ></v-radio>
             </v-radio-group>
             <textarea
+              v-if="value == 1"
               name="content"
               style="width: 98%; height: 10%; background: whitesmoke"
               placeholder="사유입력"
-              v-if="value == 1"
             ></textarea>
           </form>
           <div>
-            <v-btn @click="ShowSurveyInfo = false" elevation="2">추가</v-btn>
-            <v-btn @click="ShowSurveyInfo = false" elevation="2">닫기</v-btn>
+            <v-btn elevation="2" @click="ShowSurveyInfo = false">추가</v-btn>
+            <v-btn elevation="2" @click="ShowSurveyInfo = false">닫기</v-btn>
           </div>
         </div>
       </div>
     </div>
     <!--이벤트추가 모달창-->
-    <div class="modal-black" v-if="ShowEventAdd == true">
+    <div v-if="ShowEventAdd == true" class="modal-black">
       <div class="modal-white">
         <h3>이벤트 등록</h3>
         <div>
@@ -285,13 +285,13 @@
         ></textarea>
 
         <div>
-          <v-btn @click="ShowEventAdd = false" elevation="2">등록</v-btn>
-          <v-btn @click="ShowEventAdd = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowEventAdd = false">등록</v-btn>
+          <v-btn elevation="2" @click="ShowEventAdd = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--공지사항추가 모달창-->
-    <div class="modal-black" v-if="ShowNoticeAdd == true">
+    <div v-if="ShowNoticeAdd == true" class="modal-black">
       <div class="modal-white">
         <h3>공지사항 등록</h3>
 
@@ -309,13 +309,13 @@
           label="공지사항 내용"
         ></v-textarea>
         <div>
-          <v-btn @click="ShowNoticeAdd = false" elevation="2">등록</v-btn>
-          <v-btn @click="ShowNoticeAdd = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowNoticeAdd = false">등록</v-btn>
+          <v-btn elevation="2" @click="ShowNoticeAdd = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--FAQ추가 모달창-->
-    <div class="modal-black" v-if="ShowFAQAdd == true">
+    <div v-if="ShowFAQAdd == true" class="modal-black">
       <div class="modal-white">
         <h3>FAQ 추가</h3>
         <div>
@@ -335,13 +335,13 @@
         </div>
 
         <div>
-          <v-btn @click="ShowFAQAdd = false" elevation="2">등록</v-btn>
-          <v-btn @click="ShowFAQAdd = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowFAQAdd = false">등록</v-btn>
+          <v-btn elevation="2" @click="ShowFAQAdd = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--Q&A추가 모달창-->
-    <div class="modal-black" v-if="ShowQAAdd == true">
+    <div v-if="ShowQAAdd == true" class="modal-black">
       <div class="modal-white">
         <h3>Q&A 추가</h3>
 
@@ -359,26 +359,26 @@
           label="Q&A 내용"
         ></v-textarea>
         <div>
-          <v-btn @click="ShowQAAdd = false" elevation="2">등록</v-btn>
-          <v-btn @click="ShowQAAdd = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowQAAdd = false">등록</v-btn>
+          <v-btn elevation="2" @click="ShowQAAdd = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--등급조정 모달창-->
-    <div class="modal-black" v-if="ShowGradeSetting == true">
+    <div v-if="ShowGradeSetting == true" class="modal-black">
       <div class="modal-white">
         <h3>회원등급조절</h3>
 
         <v-select :items="items" filled></v-select>
 
         <div>
-          <v-btn @click="ShowGradeSetting = false" elevation="2">적용</v-btn>
-          <v-btn @click="ShowGradeSetting = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowGradeSetting = false">적용</v-btn>
+          <v-btn elevation="2" @click="ShowGradeSetting = false">닫기</v-btn>
         </div>
       </div>
     </div>
     <!--포인트조정 모달창-->
-    <div class="modal-black" v-if="ShowPointSetting == true">
+    <div v-if="ShowPointSetting == true" class="modal-black">
       <div class="modal-white">
         <h3>포인트조정</h3>
         현재 포인트: 9999포인트
@@ -396,8 +396,8 @@
           label="부여 내용"
         ></v-textarea>
         <div>
-          <v-btn @click="ShowPointSetting = false" elevation="2">적용</v-btn>
-          <v-btn @click="ShowPointSetting = false" elevation="2">닫기</v-btn>
+          <v-btn elevation="2" @click="ShowPointSetting = false">적용</v-btn>
+          <v-btn elevation="2" @click="ShowPointSetting = false">닫기</v-btn>
         </div>
       </div>
     </div>
@@ -447,17 +447,17 @@
             </div>
             <v-btn
               class="modalbtn"
-              @click="ShowModal_Filter = true"
               elevation="2"
               x-small
+              @click="ShowModal_Filter = true"
             >
               필터
             </v-btn>
             <v-btn
               class="modalbtn"
-              @click="ShowModal_Create = true"
               elevation="2"
               x-small
+              @click="ShowModal_Create = true"
             >
               +
             </v-btn>
@@ -479,7 +479,7 @@
           </div>
         </div>
         <!-- 유저상세정보-->
-        <div style="float: left; width: 80%" v-if="ShowUserInfo == true">
+        <div v-if="ShowUserInfo == true" style="float: left; width: 80%">
           <div>
             <select style="float: right; background: gray; border-radius: 5px">
               <option selected>정지처리</option>
@@ -491,13 +491,13 @@
           </div>
           <div style="padding: 1%">
             <div style="border: 1px solid #323232">
-              <h3>일반정보</h3>
-              <ul style="font-size: 20pt">
-                <li>닉네임 : {{ UserData[UserNum].UserName }}</li>
-                <li>이메일 : {{ UserData[UserNum].Email }}</li>
-                <li>유저타입 : {{ UserData[UserNum].UserType }}</li>
-                <li>가입일 : {{ UserData[UserNum].RegisterDate }}</li>
-              </ul>
+              <h1>💾</h1>
+              <dl style="font-size: 20pt">
+                <dd>닉네임 : {{ UserData[UserNum].UserName }}</dd>
+                <dd>이메일 : {{ UserData[UserNum].Email }}</dd>
+                <dd>유저타입 : {{ UserData[UserNum].UserType }}</dd>
+                <dd>가입일 : {{ UserData[UserNum].RegisterDate }}</dd>
+              </dl>
             </div>
           </div>
           <div>
@@ -791,7 +791,7 @@
         </div>
         <div style="border: 1px solid #323232; margin-top: 1%">
           심사 대기 중 --개
-          <div class="UserInfo" v-for="(a, i) in SurveyData" :key="a">
+          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo">
             <v-btn
               elevation="2"
               x-small
@@ -822,7 +822,13 @@
           <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
           <input type="checkbox" name="fruits" value="orange" />지난 이벤트
 
-          <v-btn depressed elevation="2" small>새로고침</v-btn>
+          <v-btn
+            depressed
+            elevation="2"
+            small
+            href="http://localhost:3000/admin/"
+            >새로고침</v-btn
+          >
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
@@ -854,8 +860,8 @@
         <h2>공지사항</h2>
         <v-btn
           elevation="2"
-          @click="ShowNoticeAdd = true"
           style="margin-bottom: 1%"
+          @click="ShowNoticeAdd = true"
         >
           공지사항 등록
         </v-btn>
@@ -886,8 +892,8 @@
         <h2>FAQ</h2>
         <v-btn
           elevation="2"
-          @click="ShowFAQAdd = true"
           style="margin-bottom: 1%"
+          @click="ShowFAQAdd = true"
         >
           FAQ 추가
         </v-btn>
@@ -913,8 +919,8 @@
         <h2>Q&A</h2>
         <v-btn
           elevation="2"
-          @click="ShowQAAdd = true"
           style="margin-bottom: 1%"
+          @click="ShowQAAdd = true"
         >
           Q&A 추가
         </v-btn>
@@ -982,12 +988,12 @@ export default {
       TopTab7: false,
       TopTab8: false,
       items: ['A+', 'A', 'B', 'C', 'D'],
-      data: data,
-      FAQdata: FAQdata,
-      QAdata: QAdata,
-      Inquirydata: Inquirydata,
-      UserData: UserData,
-      SurveyData: SurveyData,
+      data,
+      FAQdata,
+      QAdata,
+      Inquirydata,
+      UserData,
+      SurveyData,
       value: 0,
       SurveyDataClick: 0,
       ShowModal_Filter: false,
