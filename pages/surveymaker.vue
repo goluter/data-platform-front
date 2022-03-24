@@ -22,15 +22,15 @@
             </v-card>
            </div>
            <div class="pt-5" id="bigboxplus">
-                <div class="cardbox1">
+                <div class="cardbox1 cardboxcss">
                     <input placeholder="제목 없는 질문1" class="input_title1">   사진  박스
                     <div class="boxplus1">
-                        <div class="que_list_1_1">
+                        <div class="que_list_1_1 pt-1">
                             <input placeholder="옵션1" class="input_que_1_1">
                         </div>
                     </div>
-                    <div>
-                        <button type="button" class="add_btn">
+                    <div class="pt-3">
+                        <button type="button" class="add_btn mr-3">
                             생성
                         </button>
                         <button type="button" class="delete_btn">
@@ -48,7 +48,7 @@
                </v-btn>
            </div>
        </section> 
-        <footer>
+        <footer class="pt-2">
             <hr>
             <div class="text-center">
                 Copyright © goveycompany. All rights reserved.
@@ -70,7 +70,7 @@ export default {
         $(".add_btn").click(function(){
             i++;
             $(".boxplus1").append(
-                `<div class="que_list_1_${i}"><v-row><input placeholder="옵션${i}" class="input_que_1_${a}"></v-row></div>`
+                `<div class="que_list_1_${i} pt-1"><v-row><input placeholder="옵션${i}" class="input_que_1_${a}"></v-row></div>`
             );
         });
         
@@ -89,15 +89,15 @@ export default {
         var k = 2;
         $("#card_add_btn").click(function(){
            $("#bigboxplus").append(
-                `<div class="cardbox${k} pt-5">
+                `<div class="cardbox${k} cardboxcss mt-5">
                     <input placeholder="제목 없는 질문${k}" class="input_title${k}">   사진  박스
                     <div class="boxplus${k}">
-                        <div class="que_list_${k}_1">
+                        <div class="que_list_${k}_1 pt-1">
                             <input placeholder="옵션1" class="input_que_${k}_1">
                         </div>
                     </div>
-                    <div>
-                        <button type="button" class="add_btn" data-id="${k}">
+                    <div class="pt-3">
+                        <button type="button" class="add_btn mr-3" data-id="${k}">
                             생성
                         </button>
                         <button type="button" class="delete_btn" data-id="${k}">
@@ -157,5 +157,15 @@ export default {
 <style>
   .wrap{
     color:black;
+  }
+
+  .cardboxcss{
+      border : 1px solid black;
+      background-color : skyblue;
+  }
+
+  button{
+      border : 1px solid blue;
+      background-color : white;
   }
 </style>
