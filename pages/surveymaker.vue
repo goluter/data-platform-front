@@ -14,10 +14,10 @@
                 class="red"
                 >
                 <v-card-title>
-                    <input placeholder="제목 없는 설문지">
+                    <input placeholder="제목 없는 설문지" style="width:70%; outline:none;" class="title">
                 </v-card-title>
-                <v-card-subtitle>
-                    <input placeholder="설문지 내용">
+                <v-card-subtitle class="pt-2">
+                    <input placeholder="설문지 내용" style="width:50%; outline:none;" class="sub_title">
                 </v-card-subtitle>
             </v-card>
            </div>
@@ -267,5 +267,13 @@ export default {
   button{
       border : 1px solid blue;
       background-color : white;
+  }
+
+  .title:focus{
+      border-bottom:1px solid black;
+  }
+
+  .sub_title:focus{
+      border-bottom:1px solid black;
   }
 </style>
