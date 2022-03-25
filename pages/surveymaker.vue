@@ -36,12 +36,12 @@
                         </div>
                     </div>
                     <div class="pt-3">
-                        <button type="button" class="add_btn mr-3">
+                        <button type="button" class="add_btn mr-3 btn">
                             생성
                         </button>
-                        <button type="button" class="delete_btn">
+                        <v-btn class="delete_btn">
                             삭제
-                        </button>
+                        </v-btn>
                     </div>
                 </div>
            </div>
@@ -114,16 +114,17 @@ export default {
                         </div>
                     </div>
                     <div class="pt-3">
-                        <button type="button" class="add_btn mr-3" data-id="${k}">
+                        <v-btn class="add_btn mr-3" data-id="${k}">
                             생성
-                        </button>
+                        </v-btn>
                         <button type="button" class="delete_btn" data-id="${k}">
                             삭제
                         </button>
                     </div>
                 </div>`            
-           );
+           ).trigger("create");
            k++;
+           content.trigger("create");
         });
 
         //카드 제거
@@ -270,7 +271,7 @@ export default {
   }
 
   .title:focus{
-      border-bottom:px solid black;
+      border-bottom:1px solid black;
   }
 
   .sub_title:focus{
