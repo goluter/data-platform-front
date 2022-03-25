@@ -270,7 +270,7 @@ export default {
   }
 
   .title:focus{
-      border-bottom:1px solid black;
+      border-bottom:px solid black;
   }
 
   .sub_title:focus{
