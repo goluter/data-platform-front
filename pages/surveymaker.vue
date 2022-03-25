@@ -23,10 +23,16 @@
            </div>
            <div class="pt-5" id="bigboxplus">
                 <div class="cardbox1 cardboxcss">
-                    <input placeholder="제목 없는 질문1" class="input_title1">   사진  박스
+                    <input placeholder="제목 없는 질문1" class="input_title1" style="width:70%">   사진 
+                    <select class="selectbox" style="float:right">
+                        <option value="객관식 질문">객관식 질문</option>
+                        <option value="주관식 질문">주관식 질문</option>
+                        <option value="날짜 질문">날짜 질문</option>
+                        <option value="시간 질문">시간 질문</option>
+                    </select>
                     <div class="boxplus1">
                         <div class="que_list_1_1 pt-1">
-                            <input placeholder="옵션1" class="input_que_1_1">
+                            <input placeholder="옵션1" class="input_que_1_1" style="width:50%">
                         </div>
                     </div>
                     <div class="pt-3">
@@ -45,6 +51,9 @@
                </v-btn>
                <v-btn id="card_delete_btn" >
                    카드 삭제
+               </v-btn>
+               <v-btn id="send_btn" style="float:right">
+                   보내기
                </v-btn>
            </div>
        </section> 
@@ -70,7 +79,9 @@ export default {
         $(".add_btn").click(function(){
             i++;
             $(".boxplus1").append(
-                `<div class="que_list_1_${i} pt-1"><v-row><input placeholder="옵션${i}" class="input_que_1_${a}"></v-row></div>`
+                `<div class="que_list_1_${i} pt-1">
+                    <input placeholder="옵션${i}" class="input_que_1_${a}" style="width:50%">
+                </div>`
             );
         });
         
@@ -90,10 +101,16 @@ export default {
         $("#card_add_btn").click(function(){
            $("#bigboxplus").append(
                 `<div class="cardbox${k} cardboxcss mt-5">
-                    <input placeholder="제목 없는 질문${k}" class="input_title${k}">   사진  박스
+                    <input placeholder="제목 없는 질문${k}" class="input_title${k}" style="width:70%">   사진  
+                    <select class="selectbox" data-select="${k}" style="float:right">
+                        <option value="객관식 질문">객관식 질문</option>
+                        <option value="주관식 질문">주관식 질문</option>
+                        <option value="날짜 질문">날짜 질문</option>
+                        <option value="시간 질문">시간 질문</option>
+                    </select>
                     <div class="boxplus${k}">
                         <div class="que_list_${k}_1 pt-1">
-                            <input placeholder="옵션1" class="input_que_${k}_1">
+                            <input placeholder="옵션1" class="input_que_${k}_1" style="width:50%">
                         </div>
                     </div>
                     <div class="pt-3">
@@ -131,7 +148,9 @@ export default {
             var dataid = $(this).data("id");
             var check = option[dataid];
             $(".boxplus"+dataid+"").append(
-                `<div class="que_list_${dataid}_${check}"><v-row><input placeholder="옵션${check}" class="input_que_${dataid}_${check}"></v-row></div>`
+                `<div class="que_list_${dataid}_${check} pt-1">
+                    <input placeholder="옵션${check}" class="input_que_${dataid}_${check}" style="width:50%">
+                </div>`
             );
             option[dataid]++;
         });
@@ -146,6 +165,87 @@ export default {
             else{
                 $(".que_list_"+dataid+"_"+check+"").remove();
                 option[dataid]--;
+            }
+        });
+
+        //객관식 주관식 
+        $(".selectbox").change(function(){
+            if($(this).val() == "주관식 질문"){
+                $(".boxplus1").after(
+                    `<div class = "essay_div1 pt-1" style="border-bottom:2px dotted black; font-weight:lighter; width:50%;">
+                        주관식 텍스트
+                    </div>`
+                );
+                $(".boxplus1").hide();
+                $(".date_div1").remove();
+                $(".time_div1").remove();
+            }
+            else if($(this).val() == "객관식 질문"){
+                $(".boxplus1").show();
+                $(".essay_div1").remove();
+                $(".date_div1").remove();
+                $(".time_div1").remove();
+            }
+            else if($(this).val() == "날짜 질문"){
+                $(".boxplus1").after(
+                    `<div class = "date_div1 pt-1" style="border-bottom:2px dotted black; font-weight:lighter; width:25%;">
+                        월, 일, 년
+                    </div>`
+                );
+                $(".boxplus1").hide();
+                $(".essay_div1").remove();
+                $(".time_div1").remove();
+            }
+            else if($(this).val() == "시간 질문"){
+                $(".boxplus1").after(
+                    `<div class = "time_div1 pt-1" style="border-bottom:2px dotted black; font-weight:lighter; width:25%;">
+                        시간
+                    </div>`
+                );
+                $(".boxplus1").hide();
+                $(".essay_div1").remove();
+                $(".date_div1").remove();
+            }
+        });
+
+        //2번부터 객관식 주관식
+        $(document).on('change','.selectbox',function(){
+            var select_id = $(this).data("select");
+            if($(this).val() == "주관식 질문"){
+                $(".boxplus"+select_id+"").after(
+                    `<div class = "essay_div${select_id} pt-1" style="border-bottom:2px dotted black; font-weight:lighter; width:50%;">
+                        주관식 텍스트
+                    </div>`
+                );
+                $(".boxplus"+select_id+"").hide();
+                $(".date_div"+select_id+"").remove();
+                $(".time_div"+select_id+"").remove();
+            }
+            else if($(this).val() == "객관식 질문"){
+                $(".boxplus"+select_id+"").show();
+                $(".essay_div"+select_id+"").remove();
+                $(".date_div"+select_id+"").remove();
+                $(".time_div"+select_id+"").remove();
+            }
+            else if($(this).val() == "날짜 질문"){
+                $(".boxplus"+select_id+"").after(
+                    `<div class = "date_div${select_id} pt-1" style="border-bottom:2px dotted black; font-weight:lighter; width:25%;">
+                        날짜 테스트
+                    </div>`
+                );
+                $(".boxplus"+select_id+"").hide();
+                $(".essay_div"+select_id+"").remove();
+                $(".time_div"+select_id+"").remove();
+            }
+            else if($(this).val() == "시간 질문"){
+                $(".boxplus"+select_id+"").after(
+                    `<div class = "time_div${select_id} pt-1" style="border-bottom:2px dotted black; font-weight:lighter; width:25%;">
+                        시간 테스트
+                    </div>`
+                );
+                $(".boxplus"+select_id+"").hide();
+                $(".essay_div"+select_id+"").remove();
+                $(".date_div"+select_id+"").remove();
             }
         });
     }
