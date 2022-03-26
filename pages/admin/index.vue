@@ -401,6 +401,46 @@
         </div>
       </div>
     </div>
+    <!--유저정보수정 모달창-->
+    <div v-if="ShowUserModify == true" class="modal-black">
+      <div class="modal-white">
+        <h3>정보수정</h3>
+        <v-textarea
+          :label="UserData[UserNum].UserName"
+          auto-grow
+          outlined
+          rows="1"
+          row-height="15"
+        ></v-textarea>
+        <v-textarea
+          :label="UserData[UserNum].Email"
+          auto-grow
+          outlined
+          rows="1"
+          row-height="15"
+        ></v-textarea>
+        <v-select
+          solo
+          :label="UserData[UserNum].UserType"
+          :items="typelist"
+          filled
+          auto-grow
+        ></v-select>
+
+        <!-- <v-textarea
+          :label="UserData[UserNum].UserType"
+          auto-grow
+          outlined
+          rows="1"
+          row-height="15"
+        ></v-textarea> -->
+        <v-date-picker v-model="date1"></v-date-picker>
+        <div>
+          <v-btn elevation="2" @click="ShowUserModify = false">적용</v-btn>
+          <v-btn elevation="2" @click="ShowUserModify = false">닫기</v-btn>
+        </div>
+      </div>
+    </div>
 
     <!-- 대시보드-->
     <div style="z-index: 3">
@@ -429,8 +469,8 @@
       </div>
       <!-- 유저목록-->
       <div v-if="TopTab2 == true">
-        <div class="Tab2_Sidebar">
-          <div>
+        <v-banner outlined class="Tab2_Sidebar">
+          <div style="padding: 2%">
             <h2>회원관리</h2>
             <div>
               <input
@@ -470,36 +510,79 @@
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
-              <ul @click="UserNum = i">
-                <li>{{ UserData[i].UserName }}</li>
-                <li>생성일: {{ UserData[i].RegisterDate }}</li>
-                <li>{{ UserData[i].Email }}</li>
-              </ul>
+              <v-banner color="primary" rounded single-line
+                ><dl @click="UserNum = i">
+                  <dd>{{ UserData[i].UserName }}</dd>
+
+                  <dd>{{ UserData[i].Email }}</dd>
+                </dl></v-banner
+              >
             </div>
           </div>
-        </div>
+        </v-banner>
         <!-- 유저상세정보-->
         <div v-if="ShowUserInfo == true" style="float: left; width: 80%">
-          <div>
-            <select style="float: right; background: gray; border-radius: 5px">
-              <option selected>정지처리</option>
-              <option>Option1</option>
-              <option>Option2</option>
-            </select>
-            <v-btn style="float: right" elevation="2" small> 탈퇴 </v-btn>
-            <h3>{{ UserData[UserNum].UserName }}</h3>
-          </div>
-          <div style="padding: 1%">
-            <div style="border: 1px solid #323232">
-              <h1>💾</h1>
-              <dl style="font-size: 20pt">
-                <dd>닉네임 : {{ UserData[UserNum].UserName }}</dd>
-                <dd>이메일 : {{ UserData[UserNum].Email }}</dd>
-                <dd>유저타입 : {{ UserData[UserNum].UserType }}</dd>
-                <dd>가입일 : {{ UserData[UserNum].RegisterDate }}</dd>
-              </dl>
+          <v-card outlined shaped style="margin: 1%; padding: 1%">
+            <v-btn
+              @click="ShowUserModify = true"
+              style="float: right"
+              elevation="2"
+              small
+              >ℹ
+            </v-btn>
+            <!-- 이름 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-person-2815428.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Name
+                <br />
+                {{ UserData[UserNum].UserName }}
+              </p>
             </div>
-          </div>
+            <!-- 이메일 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-open-mail-2468421.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Email
+                <br />
+                {{ UserData[UserNum].Email }}
+              </p>
+            </div>
+            <!-- 유저타입 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-login-3682245.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Type
+                <br />
+                {{ UserData[UserNum].UserType }}
+              </p>
+            </div>
+            <!-- 가입날짜 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-calendar-4511116.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Date
+                <br />
+                {{ UserData[UserNum].RegisterDate }}
+              </p>
+            </div>
+          </v-card>
           <div>
             <v-tabs fixed-tabs dark>
               <v-tab
@@ -627,21 +710,7 @@
               </div>
             </div>
           </div>
-          <div v-if="ShowUserTitle == true">
-            <h2>칭호관리</h2>
-            <table border="1px solid #323232">
-              <th style="width: 5%">번호</th>
-              <th style="width: 80%">칭호이름</th>
-              <th style="width: 10%">획득날짜</th>
-              <tr v-for="(a, i) in UserData[UserNum].UserTitle" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
-                <td>
-                  {{ UserData[UserNum].UserTitle[i] }}
-                </td>
-                <td>{{ UserData[UserNum].UserTitleDate[i] }}</td>
-              </tr>
-            </table>
-          </div>
+
           <div v-if="ShowUserGrade == true">
             <h2>등급관리</h2>
             <div>
@@ -716,64 +785,6 @@
                 <td>{{ QAdata[i].date }}</td>
               </tr>
             </table>
-          </div>
-          <div v-if="ShowUserGrade == true">
-            <h2>등급관리</h2>
-            <div>
-              <div style="float: left; font-size: larger">
-                현재회원등급 : A+
-              </div>
-            </div>
-            <v-btn elevation="2" x-small @click="ShowGradeSetting = true">
-              회원등급조절
-            </v-btn>
-          </div>
-          <div v-if="ShowUserPoint == true">
-            <h2>포인트관리</h2>
-            <div style="font-size: larger">현재포인트 : 9999포인트</div>
-            <v-btn elevation="2" x-small @click="ShowPointSetting = true">
-              포인트조정
-            </v-btn>
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 5%">번호</th>
-                <th style="width: 80%">포인트 획득사유</th>
-                <th style="width: 10%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in Pointdata" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a style="text-decoration: none">
-                      {{ Pointdata[i].title }}
-                    </a>
-                  </td>
-                  <td>{{ Pointdata[i].date }}</td>
-                  <td>{{ Pointdata[i].reward }}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div v-if="ShowUserProduct == true">
-            <h2>상품관리</h2>
-
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 3%">번호</th>
-                <th style="width: 30%">포인트 획득사유</th>
-                <th style="width: 5%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in Productdata" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a :href="Productdata[i].url" style="text-decoration: none">
-                      {{ Productdata[i].title }}
-                    </a>
-                  </td>
-                  <td>{{ Productdata[i].date }}</td>
-                  <td>{{ Productdata[i].reward }}</td>
-                </tr>
-              </table>
-            </div>
           </div>
         </div>
       </div>
@@ -988,6 +999,7 @@ export default {
       TopTab7: false,
       TopTab8: false,
       items: ['A+', 'A', 'B', 'C', 'D'],
+      typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
       data,
       FAQdata,
       QAdata,
@@ -1015,6 +1027,7 @@ export default {
       ShowTitleadd: false,
       ShowGradeSetting: false,
       ShowPointSetting: false,
+      ShowUserModify: false,
       UserNum: 0,
     }
   },
@@ -1022,6 +1035,10 @@ export default {
 </script>
 
 <style>
+.iconsize {
+  width: 50px;
+  height: 50px;
+}
 .modal-black {
   width: 100%;
   height: 100%;
@@ -1054,8 +1071,6 @@ export default {
   border-radius: 5px;
 }
 .Tab2_Sidebar {
-  border: 1px solid #323232;
-  width: 20%;
   float: left;
 }
 .UserInfo {
