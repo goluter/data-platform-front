@@ -1,7 +1,9 @@
 <template>
     <div class="wrap">
         <header class="pb-5">
-            <h1 class="pb-3">govey</h1>
+            <NuxtLink to="/" style="color:black;  text-decoration-line: none;">
+                <h1 class="pb-3">govey</h1>
+            </NuxtLink>
             <hr>
         </header>
         <nav class="pt-5 pb-3">
@@ -18,9 +20,11 @@
                     </div>
                     <div>
                         아직 고베이 계정이 있으세요?<br><br>
-                        <v-btn class="float-right" href="/signin">
-                            로그인
-                        </v-btn>
+                        <NuxtLink to="/signin">
+                            <v-btn class="float-right">
+                                로그인
+                            </v-btn>
+                        </NuxtLink>
                     </div>
                     
                 </v-row>
