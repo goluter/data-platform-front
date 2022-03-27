@@ -427,13 +427,6 @@
           auto-grow
         ></v-select>
 
-        <!-- <v-textarea
-          :label="UserData[UserNum].UserType"
-          auto-grow
-          outlined
-          rows="1"
-          row-height="15"
-        ></v-textarea> -->
         <v-date-picker v-model="date1"></v-date-picker>
         <div>
           <v-btn elevation="2" @click="ShowUserModify = false">적용</v-btn>
@@ -469,22 +462,20 @@
       </div>
       <!-- 유저목록-->
       <div v-if="TopTab2 == true">
-        <v-banner outlined class="Tab2_Sidebar">
-          <div style="padding: 2%">
-            <h2>회원관리</h2>
-            <div>
-              <input
-                type="text"
-                placeholder="검색어 입력"
-                style="
-                  background: #001111;
-                  width: 70%;
-                  border: 1px solid gray;
-                  border-radius: 4px;
-                "
-              />
-              <v-btn elevation="2" x-small> 검색 </v-btn>
-            </div>
+        <div style="width: 20rem">
+          <h2>회원관리</h2>
+          <div>
+            <input
+              type="text"
+              placeholder="검색어 입력"
+              style="
+                background: #001111;
+                width: 10rem;
+                border: 1px solid gray;
+                border-radius: 4px;
+              "
+            />
+            <v-btn elevation="2" x-small> 검색 </v-btn>
             <v-btn
               class="modalbtn"
               elevation="2"
@@ -502,7 +493,8 @@
               +
             </v-btn>
           </div>
-          <div style="padding-top: 3%">--개의 데이터</div>
+        </div>
+        <v-banner outlined class="Tab2_Sidebar">
           <div>
             <div
               v-for="(a, i) in UserData"
@@ -792,16 +784,51 @@
       <div v-if="TopTab3 == true">
         <h2>설문관리</h2>
         <div style="padding: 1%">
-          <div style="border: 1px solid #323232">
-            <ul style="font-size: larger">
-              <li>심사를 기다리는 설문: --개</li>
-              <li>신규작성된 설문: --개</li>
-              <li>지금까지 작성된 설문: --개</li>
-            </ul>
+          <div style="float: left">
+            <img
+              src="../../assets/duplicate.png"
+              class="iconsize"
+              style="vertical-align: top"
+            />
+            <p style="display: inline-block; text-align: center">
+              심사를 기다리는 설문
+              <br />
+              --개
+            </p>
+          </div>
+          <div style="float: left">
+            <img
+              src="../../assets/surveyor.png"
+              class="iconsize"
+              style="vertical-align: top"
+            />
+            <p style="display: inline-block; text-align: center">
+              지금까지 작성된 설문
+              <br />
+              --개
+            </p>
+          </div>
+          <div>
+            <img
+              src="../../assets/new.png"
+              class="iconsize"
+              style="vertical-align: top"
+            />
+            <p style="display: inline-block; text-align: center">
+              심사를 기다리는 설문
+              <br />
+              --개
+            </p>
           </div>
         </div>
-        <div style="border: 1px solid #323232; margin-top: 1%">
-          심사 대기 중 --개
+        <div
+          style="
+            border: 1px solid #323232;
+            margin-top: 1%;
+            overflow: auto;
+            height: 40em;
+          "
+        >
           <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo">
             <v-btn
               elevation="2"
@@ -813,18 +840,38 @@
             >
               승인설정
             </v-btn>
-            <ul>
-              <li>{{ SurveyData[i].title }}</li>
-              <li>{{ SurveyData[i].date }}</li>
-              <li>{{ SurveyData[i].name }}</li>
-            </ul>
+            <div>
+              <img
+                src="../../assets/tag.png"
+                class="iconsize2"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                {{ SurveyData[i].title }}
+              </p>
+            </div>
+            <div>
+              <img
+                src="../../assets/user-avatar.png"
+                class="iconsize2"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                {{ SurveyData[i].name }}
+              </p>
+            </div>
+            <div>
+              <img
+                src="../../assets/calendar.png"
+                class="iconsize2"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                {{ SurveyData[i].date }}
+              </p>
+            </div>
           </div>
         </div>
-        <footer>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="6"></v-pagination>
-          </div>
-        </footer>
       </div>
       <!-- 이벤트-->
       <div v-if="TopTab4 == true">
@@ -1039,6 +1086,10 @@ export default {
   width: 50px;
   height: 50px;
 }
+.iconsize2 {
+  width: 25px;
+  height: 25px;
+}
 .modal-black {
   width: 100%;
   height: 100%;
@@ -1072,6 +1123,9 @@ export default {
 }
 .Tab2_Sidebar {
   float: left;
+  height: 25rem;
+  overflow: auto;
+  width: 20rem;
 }
 .UserInfo {
   border: 1px solid #323232;
