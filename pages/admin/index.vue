@@ -427,7 +427,7 @@
           auto-grow
         ></v-select>
 
-        <v-date-picker v-model="date1"></v-date-picker>
+        <input class="date" type="date" />
         <div>
           <v-btn elevation="2" @click="ShowUserModify = false">적용</v-btn>
           <v-btn elevation="2" @click="ShowUserModify = false">닫기</v-btn>
