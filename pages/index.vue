@@ -25,13 +25,6 @@
                 </v-tabs>
               </v-card>
             </v-col>
-<<<<<<< HEAD
-            <v-col cols="2">
-              <v-text-field label="검색" color="black"></v-text-field>
-            </v-col>
-            <v-col cols="1">
-              <v-img src="/manicon.png" height="50px" width="50px"></v-img>
-=======
             <v-col cols="1">
               <v-text-field label="검색" color="black"></v-text-field>
             </v-col>
@@ -56,7 +49,6 @@
                   회원가입
                 </NuxtLink>
               </div>
->>>>>>> e9eabdfaf57b4ac55fd49c5ccf15aa153ac9b12a
             </v-col>
           </v-row>
       </header>
@@ -314,11 +306,6 @@
 import mainque from 'assets/data/main_que.js'
 import subque from 'assets/data/main_subque.js'
 import mainlist from 'assets/data/main_list.js'
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e9eabdfaf57b4ac55fd49c5ccf15aa153ac9b12a
 export default {
   name: 'index',
   layout: 'DefaultLayout',
@@ -332,10 +319,6 @@ export default {
       mainque,
       // 서브 질문
       subque,
-<<<<<<< HEAD
-
-=======
->>>>>>> e9eabdfaf57b4ac55fd49c5ccf15aa153ac9b12a
       // 설문 목록
       mainlist,
     
@@ -355,8 +338,4 @@ export default {
   .wrap{
     color:black;
   }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> e9eabdfaf57b4ac55fd49c5ccf15aa153ac9b12a
