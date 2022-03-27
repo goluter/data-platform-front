@@ -18,9 +18,11 @@
                     </div>
                     <div>
                         아직 고베이 계정이 없나요?<br><br>
-                        <v-btn class="float-right" href="/logjoin1">
-                            회원가입
-                        </v-btn>
+                        <NuxtLink to="/signjoin1">
+                            <v-btn class="float-right">
+                                회원가입
+                            </v-btn>
+                        </NuxtLink>
                     </div>
                     
                 </v-row>
