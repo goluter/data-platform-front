@@ -18,7 +18,7 @@
                   <v-tab style="color:black">{{tabs[0]}}</v-tab>
                   <v-tab style="color:black">{{tabs[1]}}</v-tab>
                   <v-tab style="color:black">{{tabs[2]}}</v-tab>
-                  <v-tab style="color:black">{{tabs[3]}}</v-tab>
+                  <v-tab style="color:black"><NuxtLink to="/meminfo" style="color:black;  text-decoration-line: none;">{{tabs[3]}}</NuxtLink></v-tab>
                   <v-tab style="color:black">{{tabs[4]}}</v-tab>
                   <v-tab style="color:black">{{tabs[5]}}</v-tab>
                   <v-tab style="color:black">{{tabs[6]}}</v-tab>
