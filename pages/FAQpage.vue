@@ -11,15 +11,13 @@
 </template>
 
 <script>
-import FAQdata from '../../assets/data/FAQdata'
-
+import FAQdata from 'assets/data/FAQdata.js'
 export default {
   name: 'app',
-  layout: 'Admin',
+  layout: 'admin',
   data() {
     return {
       FAQdata: FAQdata,
-      layout: 'admin',
     }
   },
 }

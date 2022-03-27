@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_SSH_IP }}
+          username: ${{ secrets.REMOTE_SSH_ID }}
+          password: ${{ secrets.REMOTE_SSH_PASSWORD }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script_stop: false
+          script: |
+            whoami
+            mkdir -p ~/deploy
+            echo "${{ github.repository }}-${{ env.branch }}-${{ github.sha }}"
+            cd ~/deploy/data-platform-front
+            git checkout develop
+            git pull origin develop
+            docker stop data-platform-front-stage
+            docker rm -f data-platform-front-stage
+            docker build --build-arg API_HOST=https://api-stage.govey.app/ --tag "data-platform-front-stage" .
+            docker run -it --rm -p 7200:80 -d --name data-platform-front-stage data-platform-front-stage
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#build-status'
+        if: always()
