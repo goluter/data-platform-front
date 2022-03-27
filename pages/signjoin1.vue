@@ -96,9 +96,11 @@
                             ></v-date-picker>
                             </v-menu>
                     </div>
-                    <v-btn href="/signjoin2">
-                        다음
-                    </v-btn>
+                    <NuxtLink to="/signjoin2">
+                        <v-btn>
+                            다음
+                        </v-btn>
+                    </NuxtLink>
             </v-container>
         </section>
         <footer>
