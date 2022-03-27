@@ -1,4 +1,5 @@
 <template>
+<v-container fluid style="width:80%">
     <div class="wrap">
         <header class="pb-5">
             <NuxtLink to="/" style="color:black;  text-decoration-line: none;">
@@ -68,7 +69,6 @@
                     </v-select>
                     </div>
                     <div>
-                        
                             <v-menu
                             ref="menu"
                             v-model="menu"
@@ -110,6 +110,7 @@
             </div>
         </footer>
     </div>
+</v-container>
 </template>
 
 <script>
