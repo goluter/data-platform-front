@@ -115,7 +115,33 @@
         >문의게시판</v-tab
       >
     </v-tabs>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        style="position: absolute; z-index: 3; width: 300px"
+        v-if="applysuccess == true"
+        class="applysuccess"
+        type="success"
+        >적용완료
+        <v-btn @click="applysuccess = false" style="float: right" x-small
+          >X</v-btn
+        >
+      </v-alert>
+    </div>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        style="position: absolute; z-index: 3; width: 300px"
+        v-if="addsuccess == true"
+        class="addsuccess"
+        type="success"
+        >추가완료
+        <v-btn @click="addsuccess = false" style="float: right" x-small
+          >X</v-btn
+        >
+      </v-alert>
+    </div>
+
     <!--필터 모달창-->
+
     <div v-if="ShowModal_Filter == true" class="modal-black">
       <div class="modal-white">
         <h4>필터</h4>
@@ -126,58 +152,25 @@
         </div>
 
         <div>
-          <v-btn elevation="2" @click="ShowModal_Filter = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowModal_Filter = false">닫기</v-btn>
-        </div>
-      </div>
-    </div>
-    <!--추가 모달창-->
-    <div v-if="ShowModal_Create == true" class="modal-black">
-      <div class="modal-white">
-        <div>
-          <label>회원정보</label>
-          <div>
-            <input
-              id="username"
-              type="text"
-              class="form-control"
-              placeholder="Username"
-              required
-            />
-          </div>
-          <div class="col-12">
-            <input
-              id="address2"
-              type="text"
-              class="form-control"
-              placeholder="Example@gmail.com"
-            />
-          </div>
-        </div>
-
-        <div class="col-12">
-          <input
-            id="address2"
-            type="text"
-            class="form-control"
-            placeholder="추가정보"
-          />
-        </div>
-
-        <v-btn elevation="2" @click="ShowModal_Create = false">닫기</v-btn>
-
-        <div>
           <v-btn
-            style="float: right"
+            class="filterapply"
             elevation="2"
-            x-small
-            @click="ShowModal_UserAdd = true"
+            @click="
+              ShowModal_Filter = false
+              applysuccess = true
+            "
+            >적용</v-btn
           >
-            유저추가
-          </v-btn>
+          <v-btn
+            id="filtercancel"
+            elevation="2"
+            @click="ShowModal_Filter = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
+
     <!--유저추가 모달창-->
     <div v-if="ShowModal_UserAdd == true" class="modal-black">
       <div class="modal-white">
@@ -211,8 +204,21 @@
         </div>
 
         <div>
-          <v-btn elevation="2" @click="ShowModal_UserAdd = false">추가</v-btn>
-          <v-btn elevation="2" @click="ShowModal_UserAdd = false">닫기</v-btn>
+          <v-btn
+            id="usraddapply"
+            elevation="2"
+            @click="
+              ShowModal_UserAdd = false
+              addsuccess = true
+            "
+            >추가</v-btn
+          >
+          <v-btn
+            id="usraddcancel"
+            elevation="2"
+            @click="ShowModal_UserAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -251,8 +257,21 @@
             ></textarea>
           </form>
           <div>
-            <v-btn elevation="2" @click="ShowSurveyInfo = false">추가</v-btn>
-            <v-btn elevation="2" @click="ShowSurveyInfo = false">닫기</v-btn>
+            <v-btn
+              id="surveyinfoapply"
+              elevation="2"
+              @click="
+                ShowSurveyInfo = false
+                applysuccess = true
+              "
+              >적용</v-btn
+            >
+            <v-btn
+              id="surveyinfocancel"
+              elevation="2"
+              @click="ShowSurveyInfo = false"
+              >닫기</v-btn
+            >
           </div>
         </div>
       </div>
@@ -285,8 +304,18 @@
         ></textarea>
 
         <div>
-          <v-btn elevation="2" @click="ShowEventAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowEventAdd = false">닫기</v-btn>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowEventAdd = false
+              addsuccess = true
+            "
+            >등록</v-btn
+          >
+          <v-btn id="eventcancel" elevation="2" @click="ShowEventAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -309,8 +338,18 @@
           label="공지사항 내용"
         ></v-textarea>
         <div>
-          <v-btn elevation="2" @click="ShowNoticeAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowNoticeAdd = false">닫기</v-btn>
+          <v-btn
+            id="noticeadd"
+            elevation="2"
+            @click="
+              ShowNoticeAdd = false
+              addsuccess = true
+            "
+            >등록</v-btn
+          >
+          <v-btn id="noticecancel" elevation="2" @click="ShowNoticeAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -335,8 +374,18 @@
         </div>
 
         <div>
-          <v-btn elevation="2" @click="ShowFAQAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowFAQAdd = false">닫기</v-btn>
+          <v-btn
+            id="faqadd"
+            elevation="2"
+            @click="
+              addsuccess = true
+              ShowFAQAdd = false
+            "
+            >등록</v-btn
+          >
+          <v-btn id="faqcancel" elevation="2" @click="ShowFAQAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -359,8 +408,18 @@
           label="Q&A 내용"
         ></v-textarea>
         <div>
-          <v-btn elevation="2" @click="ShowQAAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowQAAdd = false">닫기</v-btn>
+          <v-btn
+            id="qaadd"
+            elevation="2"
+            @click="
+              addsuccess = true
+              ShowQAAdd = false
+            "
+            >등록</v-btn
+          >
+          <v-btn id="qacancel" elevation="2" @click="ShowQAAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -372,8 +431,21 @@
         <v-select :items="items" filled></v-select>
 
         <div>
-          <v-btn elevation="2" @click="ShowGradeSetting = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowGradeSetting = false">닫기</v-btn>
+          <v-btn
+            id="gradeapply"
+            elevation="2"
+            @click="
+              applysuccess = true
+              ShowGradeSetting = false
+            "
+            >적용</v-btn
+          >
+          <v-btn
+            id="gradecancel"
+            elevation="2"
+            @click="ShowGradeSetting = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -396,8 +468,21 @@
           label="부여 내용"
         ></v-textarea>
         <div>
-          <v-btn elevation="2" @click="ShowPointSetting = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowPointSetting = false">닫기</v-btn>
+          <v-btn
+            id="pointapply"
+            elevation="2"
+            @click="
+              applysuccess = true
+              ShowPointSetting = false
+            "
+            >적용</v-btn
+          >
+          <v-btn
+            id="pointcancel"
+            elevation="2"
+            @click="ShowPointSetting = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -429,8 +514,18 @@
 
         <input class="date" type="date" />
         <div>
-          <v-btn elevation="2" @click="ShowUserModify = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowUserModify = false">닫기</v-btn>
+          <v-btn
+            id="modifyapply"
+            elevation="2"
+            @click="
+              applysuccess = true
+              ShowUserModify = false
+            "
+            >적용</v-btn
+          >
+          <v-btn id="modifycancel" elevation="2" @click="ShowUserModify = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -488,7 +583,7 @@
               class="modalbtn"
               elevation="2"
               x-small
-              @click="ShowModal_Create = true"
+              @click="ShowModal_UserAdd = true"
             >
               +
             </v-btn>
@@ -682,17 +777,24 @@
             </div>
           </div>
           <div v-if="ShowHistory == true">
-            <h2>설문 참여이력</h2>
-            <table border="1px solid #232323">
-              <th style="width: 20%">번호</th>
-              <th style="width: 60%">참여설문</th>
-              <th style="width: 20%">참여날짜</th>
-              <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
-                <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
-                <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
-              </tr>
-            </table>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">참여설문</th>
+                    <th class="text-left">참여날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
+                    <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
           <div v-if="ShowAgreeOrNot == true">
             <h2>동의 여부</h2>
@@ -715,68 +817,76 @@
             </v-btn>
           </div>
           <div v-if="ShowUserPoint == true">
-            <h2>포인트관리</h2>
             <div style="font-size: larger">현재포인트 : 9999포인트</div>
             <v-btn elevation="2" x-small @click="ShowPointSetting = true">
               포인트조정
             </v-btn>
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 5%">번호</th>
-                <th style="width: 80%">포인트 획득사유</th>
-                <th style="width: 10%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in UserData[UserNum].UserPoint" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a style="text-decoration: none">
-                      {{ UserData[UserNum].UserPoint[i][0] }}
-                    </a>
-                  </td>
-                  <td>{{ UserData[UserNum].UserPoint[i][1] }}</td>
-                  <td>{{ UserData[UserNum].UserPoint[i][2] }}</td>
-                </tr>
-              </table>
-            </div>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="width: 3%">번호</th>
+                    <th style="text-align: center">상품 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in QAdata" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
+                      {{ UserData[UserNum].UserProduct[i][0] }}
+                    </td>
+                    <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
+                    <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
           <div v-if="ShowUserProduct == true">
-            <h2>상품관리</h2>
-
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 3%">번호</th>
-                <th style="width: 30%">포인트 획득사유</th>
-                <th style="width: 5%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in UserData[UserNum].UserProduct" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a style="text-decoration: none">
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th style="text-align: center">포인트 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in QAdata" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
                       {{ UserData[UserNum].UserProduct[i][0] }}
-                    </a>
-                  </td>
-                  <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
-                  <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
-                </tr>
-              </table>
-            </div>
+                    </td>
+                    <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
+                    <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
           <div v-if="ShowUserTitle == true">
-            <h2>칭호관리</h2>
-            <table border="1px solid #323232">
-              <th style="width: 5%">번호</th>
-              <th style="width: 80%">칭호이름</th>
-              <th style="width: 10%">획득날짜</th>
-              <tr v-for="(a, i) in QAdata" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
-                <td>
-                  <a style="text-decoration: none">
-                    {{ QAdata[i].title }}
-                  </a>
-                </td>
-                <td>{{ QAdata[i].date }}</td>
-              </tr>
-            </table>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">칭호이름</th>
+                    <th class="text-left">획득날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in QAdata" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td>{{ QAdata[i].title }}</td>
+                    <td>{{ QAdata[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
         </div>
       </div>
@@ -1031,13 +1141,15 @@ import QAdata from '../../assets/data/QAdata'
 import Inquirydata from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
+import $ from 'jquery'
 
 export default {
   name: 'index',
   layout: 'Admin',
+
   data() {
     return {
-      TopTab1: false,
+      TopTab1: true,
       TopTab2: false,
       TopTab3: false,
       TopTab4: false,
@@ -1053,8 +1165,10 @@ export default {
       Inquirydata,
       UserData,
       SurveyData,
-      value: 0,
-      SurveyDataClick: 0,
+      value: 0, //option값 선택
+      SurveyDataClick: 0, //surveydata 검색변수
+      applysuccess: false,
+      addsuccess: false,
       ShowModal_Filter: false,
       ShowModal_Create: false,
       ShowModal_UserAdd: false,
@@ -1075,7 +1189,7 @@ export default {
       ShowGradeSetting: false,
       ShowPointSetting: false,
       ShowUserModify: false,
-      UserNum: 0,
+      UserNum: 0, //사용자데이터 검색변수
     }
   },
 }
@@ -1097,7 +1211,7 @@ export default {
   position: fixed;
   padding: 20px;
   text-align: center;
-  z-index: 2;
+  z-index: 4;
 }
 .modal-white {
   width: 30%;
