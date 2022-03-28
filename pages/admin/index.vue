@@ -1202,7 +1202,7 @@ export default {
       ShowModal_Create: false,
       ShowModal_UserAdd: false,
       ShowUserInfo: false,
-      ShowUnivCertify: false,
+      ShowUnivCertify: true,
       ShowHistory: false,
       ShowAgreeOrNot: false,
       ShowSurveyInfo: false,
