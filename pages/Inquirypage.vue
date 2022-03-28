@@ -14,7 +14,7 @@
 import Inquirydata from '../assets/data/Inquirydata.js'
 
 export default {
-  name: 'app',
+  name: 'inquirypage',
   data() {
     return {
       Inquirydata: Inquirydata,

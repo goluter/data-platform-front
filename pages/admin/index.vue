@@ -115,7 +115,33 @@
         >문의게시판</v-tab
       >
     </v-tabs>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        style="position: absolute; z-index: 3; width: 300px"
+        v-if="applysuccess == true"
+        class="applysuccess"
+        type="success"
+        >적용완료
+        <v-btn @click="applysuccess = false" style="float: right" x-small
+          >X</v-btn
+        >
+      </v-alert>
+    </div>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        style="position: absolute; z-index: 3; width: 300px"
+        v-if="addsuccess == true"
+        class="addsuccess"
+        type="success"
+        >추가완료
+        <v-btn @click="addsuccess = false" style="float: right" x-small
+          >X</v-btn
+        >
+      </v-alert>
+    </div>
+
     <!--필터 모달창-->
+
     <div v-if="ShowModal_Filter == true" class="modal-black">
       <div class="modal-white">
         <h4>필터</h4>
@@ -126,58 +152,25 @@
         </div>
 
         <div>
-          <v-btn elevation="2" @click="ShowModal_Filter = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowModal_Filter = false">닫기</v-btn>
-        </div>
-      </div>
-    </div>
-    <!--추가 모달창-->
-    <div v-if="ShowModal_Create == true" class="modal-black">
-      <div class="modal-white">
-        <div>
-          <label>회원정보</label>
-          <div>
-            <input
-              id="username"
-              type="text"
-              class="form-control"
-              placeholder="Username"
-              required
-            />
-          </div>
-          <div class="col-12">
-            <input
-              id="address2"
-              type="text"
-              class="form-control"
-              placeholder="Example@gmail.com"
-            />
-          </div>
-        </div>
-
-        <div class="col-12">
-          <input
-            id="address2"
-            type="text"
-            class="form-control"
-            placeholder="추가정보"
-          />
-        </div>
-
-        <v-btn elevation="2" @click="ShowModal_Create = false">닫기</v-btn>
-
-        <div>
           <v-btn
-            style="float: right"
+            class="filterapply"
             elevation="2"
-            x-small
-            @click="ShowModal_UserAdd = true"
+            @click="
+              ShowModal_Filter = false
+              applysuccess = true
+            "
+            >적용</v-btn
           >
-            유저추가
-          </v-btn>
+          <v-btn
+            id="filtercancel"
+            elevation="2"
+            @click="ShowModal_Filter = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
+
     <!--유저추가 모달창-->
     <div v-if="ShowModal_UserAdd == true" class="modal-black">
       <div class="modal-white">
@@ -211,8 +204,21 @@
         </div>
 
         <div>
-          <v-btn elevation="2" @click="ShowModal_UserAdd = false">추가</v-btn>
-          <v-btn elevation="2" @click="ShowModal_UserAdd = false">닫기</v-btn>
+          <v-btn
+            id="usraddapply"
+            elevation="2"
+            @click="
+              ShowModal_UserAdd = false
+              addsuccess = true
+            "
+            >추가</v-btn
+          >
+          <v-btn
+            id="usraddcancel"
+            elevation="2"
+            @click="ShowModal_UserAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -251,8 +257,21 @@
             ></textarea>
           </form>
           <div>
-            <v-btn elevation="2" @click="ShowSurveyInfo = false">추가</v-btn>
-            <v-btn elevation="2" @click="ShowSurveyInfo = false">닫기</v-btn>
+            <v-btn
+              id="surveyinfoapply"
+              elevation="2"
+              @click="
+                ShowSurveyInfo = false
+                applysuccess = true
+              "
+              >적용</v-btn
+            >
+            <v-btn
+              id="surveyinfocancel"
+              elevation="2"
+              @click="ShowSurveyInfo = false"
+              >닫기</v-btn
+            >
           </div>
         </div>
       </div>
@@ -285,8 +304,18 @@
         ></textarea>
 
         <div>
-          <v-btn elevation="2" @click="ShowEventAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowEventAdd = false">닫기</v-btn>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowEventAdd = false
+              addsuccess = true
+            "
+            >등록</v-btn
+          >
+          <v-btn id="eventcancel" elevation="2" @click="ShowEventAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -309,8 +338,18 @@
           label="공지사항 내용"
         ></v-textarea>
         <div>
-          <v-btn elevation="2" @click="ShowNoticeAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowNoticeAdd = false">닫기</v-btn>
+          <v-btn
+            id="noticeadd"
+            elevation="2"
+            @click="
+              ShowNoticeAdd = false
+              addsuccess = true
+            "
+            >등록</v-btn
+          >
+          <v-btn id="noticecancel" elevation="2" @click="ShowNoticeAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -335,8 +374,18 @@
         </div>
 
         <div>
-          <v-btn elevation="2" @click="ShowFAQAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowFAQAdd = false">닫기</v-btn>
+          <v-btn
+            id="faqadd"
+            elevation="2"
+            @click="
+              addsuccess = true
+              ShowFAQAdd = false
+            "
+            >등록</v-btn
+          >
+          <v-btn id="faqcancel" elevation="2" @click="ShowFAQAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -359,8 +408,18 @@
           label="Q&A 내용"
         ></v-textarea>
         <div>
-          <v-btn elevation="2" @click="ShowQAAdd = false">등록</v-btn>
-          <v-btn elevation="2" @click="ShowQAAdd = false">닫기</v-btn>
+          <v-btn
+            id="qaadd"
+            elevation="2"
+            @click="
+              addsuccess = true
+              ShowQAAdd = false
+            "
+            >등록</v-btn
+          >
+          <v-btn id="qacancel" elevation="2" @click="ShowQAAdd = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -372,8 +431,21 @@
         <v-select :items="items" filled></v-select>
 
         <div>
-          <v-btn elevation="2" @click="ShowGradeSetting = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowGradeSetting = false">닫기</v-btn>
+          <v-btn
+            id="gradeapply"
+            elevation="2"
+            @click="
+              applysuccess = true
+              ShowGradeSetting = false
+            "
+            >적용</v-btn
+          >
+          <v-btn
+            id="gradecancel"
+            elevation="2"
+            @click="ShowGradeSetting = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -396,8 +468,64 @@
           label="부여 내용"
         ></v-textarea>
         <div>
-          <v-btn elevation="2" @click="ShowPointSetting = false">적용</v-btn>
-          <v-btn elevation="2" @click="ShowPointSetting = false">닫기</v-btn>
+          <v-btn
+            id="pointapply"
+            elevation="2"
+            @click="
+              applysuccess = true
+              ShowPointSetting = false
+            "
+            >적용</v-btn
+          >
+          <v-btn
+            id="pointcancel"
+            elevation="2"
+            @click="ShowPointSetting = false"
+            >닫기</v-btn
+          >
+        </div>
+      </div>
+    </div>
+    <!--유저정보수정 모달창-->
+    <div v-if="ShowUserModify == true" class="modal-black">
+      <div class="modal-white">
+        <h3>정보수정</h3>
+        <v-textarea
+          :label="UserData[UserNum].UserName"
+          auto-grow
+          outlined
+          rows="1"
+          row-height="15"
+        ></v-textarea>
+        <v-textarea
+          :label="UserData[UserNum].Email"
+          auto-grow
+          outlined
+          rows="1"
+          row-height="15"
+        ></v-textarea>
+        <v-select
+          solo
+          :label="UserData[UserNum].UserType"
+          :items="typelist"
+          filled
+          auto-grow
+        ></v-select>
+
+        <input class="date" type="date" />
+        <div>
+          <v-btn
+            id="modifyapply"
+            elevation="2"
+            @click="
+              applysuccess = true
+              ShowUserModify = false
+            "
+            >적용</v-btn
+          >
+          <v-btn id="modifycancel" elevation="2" @click="ShowUserModify = false"
+            >닫기</v-btn
+          >
         </div>
       </div>
     </div>
@@ -429,22 +557,20 @@
       </div>
       <!-- 유저목록-->
       <div v-if="TopTab2 == true">
-        <div class="Tab2_Sidebar">
+        <div style="width: 20rem">
+          <h2>회원관리</h2>
           <div>
-            <h2>회원관리</h2>
-            <div>
-              <input
-                type="text"
-                placeholder="검색어 입력"
-                style="
-                  background: #001111;
-                  width: 70%;
-                  border: 1px solid gray;
-                  border-radius: 4px;
-                "
-              />
-              <v-btn elevation="2" x-small> 검색 </v-btn>
-            </div>
+            <input
+              type="text"
+              placeholder="검색어 입력"
+              style="
+                background: #001111;
+                width: 10rem;
+                border: 1px solid gray;
+                border-radius: 4px;
+              "
+            />
+            <v-btn elevation="2" x-small> 검색 </v-btn>
             <v-btn
               class="modalbtn"
               elevation="2"
@@ -457,12 +583,13 @@
               class="modalbtn"
               elevation="2"
               x-small
-              @click="ShowModal_Create = true"
+              @click="ShowModal_UserAdd = true"
             >
               +
             </v-btn>
           </div>
-          <div style="padding-top: 3%">--개의 데이터</div>
+        </div>
+        <v-banner outlined class="Tab2_Sidebar">
           <div>
             <div
               v-for="(a, i) in UserData"
@@ -470,36 +597,79 @@
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
-              <ul @click="UserNum = i">
-                <li>{{ UserData[i].UserName }}</li>
-                <li>생성일: {{ UserData[i].RegisterDate }}</li>
-                <li>{{ UserData[i].Email }}</li>
-              </ul>
+              <v-banner color="primary" rounded single-line
+                ><dl @click="UserNum = i">
+                  <dd>{{ UserData[i].UserName }}</dd>
+
+                  <dd>{{ UserData[i].Email }}</dd>
+                </dl></v-banner
+              >
             </div>
           </div>
-        </div>
+        </v-banner>
         <!-- 유저상세정보-->
         <div v-if="ShowUserInfo == true" style="float: left; width: 80%">
-          <div>
-            <select style="float: right; background: gray; border-radius: 5px">
-              <option selected>정지처리</option>
-              <option>Option1</option>
-              <option>Option2</option>
-            </select>
-            <v-btn style="float: right" elevation="2" small> 탈퇴 </v-btn>
-            <h3>{{ UserData[UserNum].UserName }}</h3>
-          </div>
-          <div style="padding: 1%">
-            <div style="border: 1px solid #323232">
-              <h3>일반정보</h3>
-              <ul style="font-size: 20pt">
-                <li>닉네임 : {{ UserData[UserNum].UserName }}</li>
-                <li>이메일 : {{ UserData[UserNum].Email }}</li>
-                <li>유저타입 : {{ UserData[UserNum].UserType }}</li>
-                <li>가입일 : {{ UserData[UserNum].RegisterDate }}</li>
-              </ul>
+          <v-card outlined shaped style="margin: 1%; padding: 1%">
+            <v-btn
+              @click="ShowUserModify = true"
+              style="float: right"
+              elevation="2"
+              small
+              >ℹ
+            </v-btn>
+            <!-- 이름 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-person-2815428.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Name
+                <br />
+                {{ UserData[UserNum].UserName }}
+              </p>
             </div>
-          </div>
+            <!-- 이메일 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-open-mail-2468421.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Email
+                <br />
+                {{ UserData[UserNum].Email }}
+              </p>
+            </div>
+            <!-- 유저타입 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-login-3682245.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Type
+                <br />
+                {{ UserData[UserNum].UserType }}
+              </p>
+            </div>
+            <!-- 가입날짜 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-calendar-4511116.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Date
+                <br />
+                {{ UserData[UserNum].RegisterDate }}
+              </p>
+            </div>
+          </v-card>
           <div>
             <v-tabs fixed-tabs dark>
               <v-tab
@@ -607,17 +777,24 @@
             </div>
           </div>
           <div v-if="ShowHistory == true">
-            <h2>설문 참여이력</h2>
-            <table border="1px solid #232323">
-              <th style="width: 20%">번호</th>
-              <th style="width: 60%">참여설문</th>
-              <th style="width: 20%">참여날짜</th>
-              <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
-                <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
-                <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
-              </tr>
-            </table>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">참여설문</th>
+                    <th class="text-left">참여날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
+                    <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
           <div v-if="ShowAgreeOrNot == true">
             <h2>동의 여부</h2>
@@ -627,21 +804,7 @@
               </div>
             </div>
           </div>
-          <div v-if="ShowUserTitle == true">
-            <h2>칭호관리</h2>
-            <table border="1px solid #323232">
-              <th style="width: 5%">번호</th>
-              <th style="width: 80%">칭호이름</th>
-              <th style="width: 10%">획득날짜</th>
-              <tr v-for="(a, i) in UserData[UserNum].UserTitle" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
-                <td>
-                  {{ UserData[UserNum].UserTitle[i] }}
-                </td>
-                <td>{{ UserData[UserNum].UserTitleDate[i] }}</td>
-              </tr>
-            </table>
-          </div>
+
           <div v-if="ShowUserGrade == true">
             <h2>등급관리</h2>
             <div>
@@ -654,126 +817,77 @@
             </v-btn>
           </div>
           <div v-if="ShowUserPoint == true">
-            <h2>포인트관리</h2>
             <div style="font-size: larger">현재포인트 : 9999포인트</div>
             <v-btn elevation="2" x-small @click="ShowPointSetting = true">
               포인트조정
             </v-btn>
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 5%">번호</th>
-                <th style="width: 80%">포인트 획득사유</th>
-                <th style="width: 10%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in UserData[UserNum].UserPoint" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a style="text-decoration: none">
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="width: 3%">번호</th>
+                    <th style="text-align: center">상품 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].UserPoint" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
                       {{ UserData[UserNum].UserPoint[i][0] }}
-                    </a>
-                  </td>
-                  <td>{{ UserData[UserNum].UserPoint[i][1] }}</td>
-                  <td>{{ UserData[UserNum].UserPoint[i][2] }}</td>
-                </tr>
-              </table>
-            </div>
+                    </td>
+                    <td>{{ UserData[UserNum].UserPoint[i][1] }}</td>
+                    <td>{{ UserData[UserNum].UserPoint[i][2] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
+          <!--상품관리탭-->
           <div v-if="ShowUserProduct == true">
-            <h2>상품관리</h2>
-
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 3%">번호</th>
-                <th style="width: 30%">포인트 획득사유</th>
-                <th style="width: 5%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in UserData[UserNum].UserProduct" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a style="text-decoration: none">
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th style="text-align: center">포인트 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].UserProduct" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
                       {{ UserData[UserNum].UserProduct[i][0] }}
-                    </a>
-                  </td>
-                  <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
-                  <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
-                </tr>
-              </table>
-            </div>
+                    </td>
+                    <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
+                    <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
           <div v-if="ShowUserTitle == true">
-            <h2>칭호관리</h2>
-            <table border="1px solid #323232">
-              <th style="width: 5%">번호</th>
-              <th style="width: 80%">칭호이름</th>
-              <th style="width: 10%">획득날짜</th>
-              <tr v-for="(a, i) in QAdata" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
-                <td>
-                  <a style="text-decoration: none">
-                    {{ QAdata[i].title }}
-                  </a>
-                </td>
-                <td>{{ QAdata[i].date }}</td>
-              </tr>
-            </table>
-          </div>
-          <div v-if="ShowUserGrade == true">
-            <h2>등급관리</h2>
-            <div>
-              <div style="float: left; font-size: larger">
-                현재회원등급 : A+
-              </div>
-            </div>
-            <v-btn elevation="2" x-small @click="ShowGradeSetting = true">
-              회원등급조절
-            </v-btn>
-          </div>
-          <div v-if="ShowUserPoint == true">
-            <h2>포인트관리</h2>
-            <div style="font-size: larger">현재포인트 : 9999포인트</div>
-            <v-btn elevation="2" x-small @click="ShowPointSetting = true">
-              포인트조정
-            </v-btn>
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 5%">번호</th>
-                <th style="width: 80%">포인트 획득사유</th>
-                <th style="width: 10%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in Pointdata" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a style="text-decoration: none">
-                      {{ Pointdata[i].title }}
-                    </a>
-                  </td>
-                  <td>{{ Pointdata[i].date }}</td>
-                  <td>{{ Pointdata[i].reward }}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div v-if="ShowUserProduct == true">
-            <h2>상품관리</h2>
-
-            <div>
-              <table border="1px solid #323232">
-                <th style="width: 3%">번호</th>
-                <th style="width: 30%">포인트 획득사유</th>
-                <th style="width: 5%">획득날짜</th>
-                <th style="width: 10%">내역</th>
-                <tr v-for="(a, i) in Productdata" :key="a">
-                  <td style="text-align: center">{{ i + 1 }}</td>
-                  <td>
-                    <a :href="Productdata[i].url" style="text-decoration: none">
-                      {{ Productdata[i].title }}
-                    </a>
-                  </td>
-                  <td>{{ Productdata[i].date }}</td>
-                  <td>{{ Productdata[i].reward }}</td>
-                </tr>
-              </table>
-            </div>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">칭호이름</th>
+                    <th class="text-left">획득날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in QAdata" :key="a">
+                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td>{{ QAdata[i].title }}</td>
+                    <td>{{ QAdata[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </div>
         </div>
       </div>
@@ -781,16 +895,51 @@
       <div v-if="TopTab3 == true">
         <h2>설문관리</h2>
         <div style="padding: 1%">
-          <div style="border: 1px solid #323232">
-            <ul style="font-size: larger">
-              <li>심사를 기다리는 설문: --개</li>
-              <li>신규작성된 설문: --개</li>
-              <li>지금까지 작성된 설문: --개</li>
-            </ul>
+          <div style="float: left">
+            <img
+              src="../../assets/duplicate.png"
+              class="iconsize"
+              style="vertical-align: top"
+            />
+            <p style="display: inline-block; text-align: center">
+              심사를 기다리는 설문
+              <br />
+              --개
+            </p>
+          </div>
+          <div style="float: left">
+            <img
+              src="../../assets/surveyor.png"
+              class="iconsize"
+              style="vertical-align: top"
+            />
+            <p style="display: inline-block; text-align: center">
+              지금까지 작성된 설문
+              <br />
+              --개
+            </p>
+          </div>
+          <div>
+            <img
+              src="../../assets/new.png"
+              class="iconsize"
+              style="vertical-align: top"
+            />
+            <p style="display: inline-block; text-align: center">
+              심사를 기다리는 설문
+              <br />
+              --개
+            </p>
           </div>
         </div>
-        <div style="border: 1px solid #323232; margin-top: 1%">
-          심사 대기 중 --개
+        <div
+          style="
+            border: 1px solid #323232;
+            margin-top: 1%;
+            overflow: auto;
+            height: 40em;
+          "
+        >
           <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo">
             <v-btn
               elevation="2"
@@ -802,18 +951,38 @@
             >
               승인설정
             </v-btn>
-            <ul>
-              <li>{{ SurveyData[i].title }}</li>
-              <li>{{ SurveyData[i].date }}</li>
-              <li>{{ SurveyData[i].name }}</li>
-            </ul>
+            <div>
+              <img
+                src="../../assets/tag.png"
+                class="iconsize2"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                {{ SurveyData[i].title }}
+              </p>
+            </div>
+            <div>
+              <img
+                src="../../assets/user-avatar.png"
+                class="iconsize2"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                {{ SurveyData[i].name }}
+              </p>
+            </div>
+            <div>
+              <img
+                src="../../assets/calendar.png"
+                class="iconsize2"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                {{ SurveyData[i].date }}
+              </p>
+            </div>
           </div>
         </div>
-        <footer>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="6"></v-pagination>
-          </div>
-        </footer>
       </div>
       <!-- 이벤트-->
       <div v-if="TopTab4 == true">
@@ -822,7 +991,13 @@
           <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
           <input type="checkbox" name="fruits" value="orange" />지난 이벤트
 
-          <v-btn depressed elevation="2" small>새로고침</v-btn>
+          <v-btn
+            depressed
+            elevation="2"
+            small
+            href="http://localhost:3000/admin/"
+            >새로고침</v-btn
+          >
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
@@ -859,27 +1034,31 @@
         >
           공지사항 등록
         </v-btn>
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="data[i].url" style="text-decoration: none">{{
-                data[i].title
-              }}</a>
-            </td>
-            <td>{{ data[i].name }}</td>
-            <td>{{ data[i].date }}</td>
-          </tr>
-        </table>
-        <footer>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="6"></v-pagination>
-          </div>
-        </footer>
+
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="data[i].url" style="text-decoration: none">{{
+                    data[i].title
+                  }}</a>
+                </td>
+                <td>{{ data[i].name }}</td>
+                <td>{{ data[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!--FAQ-->
       <div v-if="TopTab6 == true">
@@ -891,22 +1070,30 @@
         >
           FAQ 추가
         </v-btn>
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="FAQdata[i].url" style="text-decoration: none">
-                {{ FAQdata[i].title }}
-              </a>
-            </td>
-            <td>{{ FAQdata[i].name }}</td>
-            <td>{{ FAQdata[i].date }}</td>
-          </tr>
-        </table>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="FAQdata[i].url" style="text-decoration: none">
+                    {{ FAQdata[i].title }}
+                  </a>
+                </td>
+                <td>{{ FAQdata[i].name }}</td>
+                <td>{{ FAQdata[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!--Q&A-->
       <div v-if="TopTab7 == true">
@@ -918,43 +1105,59 @@
         >
           Q&A 추가
         </v-btn>
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="QAdata[i].url" style="text-decoration: none">
-                {{ QAdata[i].title }}
-              </a>
-            </td>
-            <td>{{ QAdata[i].name }}</td>
-            <td>{{ QAdata[i].date }}</td>
-          </tr>
-        </table>
+
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="QAdata[i].url" style="text-decoration: none">
+                    {{ QAdata[i].title }}
+                  </a>
+                </td>
+                <td>{{ QAdata[i].name }}</td>
+                <td>{{ QAdata[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!--문의게시판-->
       <div v-if="TopTab8 == true">
         <h2>문의게시판1</h2>
-
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="Inquirydata[i].url" style="text-decoration: none">
-                {{ Inquirydata[i].title }}
-              </a>
-            </td>
-            <td>{{ Inquirydata[i].name }}</td>
-            <td>{{ Inquirydata[i].date }}</td>
-          </tr>
-        </table>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="Inquirydata[i].url" style="text-decoration: none">
+                    {{ Inquirydata[i].title }}
+                  </a>
+                </td>
+                <td>{{ Inquirydata[i].name }}</td>
+                <td>{{ Inquirydata[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
     </div>
   </div>
@@ -967,13 +1170,15 @@ import QAdata from '../../assets/data/QAdata'
 import Inquirydata from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
+import $ from 'jquery'
 
 export default {
-  name: 'App',
-  layout: 'AdminLayout',
+  name: 'index',
+  layout: 'Admin',
+
   data() {
     return {
-      TopTab1: false,
+      TopTab1: true,
       TopTab2: false,
       TopTab3: false,
       TopTab4: false,
@@ -982,19 +1187,22 @@ export default {
       TopTab7: false,
       TopTab8: false,
       items: ['A+', 'A', 'B', 'C', 'D'],
+      typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
       data,
       FAQdata,
       QAdata,
       Inquirydata,
       UserData,
       SurveyData,
-      value: 0,
-      SurveyDataClick: 0,
+      value: 0, //option값 선택
+      SurveyDataClick: 0, //surveydata 검색변수
+      applysuccess: false,
+      addsuccess: false,
       ShowModal_Filter: false,
       ShowModal_Create: false,
       ShowModal_UserAdd: false,
       ShowUserInfo: false,
-      ShowUnivCertify: false,
+      ShowUnivCertify: true,
       ShowHistory: false,
       ShowAgreeOrNot: false,
       ShowSurveyInfo: false,
@@ -1009,13 +1217,22 @@ export default {
       ShowTitleadd: false,
       ShowGradeSetting: false,
       ShowPointSetting: false,
-      UserNum: 0,
+      ShowUserModify: false,
+      UserNum: 0, //사용자데이터 검색변수
     }
   },
 }
 </script>
 
 <style>
+.iconsize {
+  width: 50px;
+  height: 50px;
+}
+.iconsize2 {
+  width: 25px;
+  height: 25px;
+}
 .modal-black {
   width: 100%;
   height: 100%;
@@ -1023,7 +1240,7 @@ export default {
   position: fixed;
   padding: 20px;
   text-align: center;
-  z-index: 2;
+  z-index: 4;
 }
 .modal-white {
   width: 30%;
@@ -1048,9 +1265,10 @@ export default {
   border-radius: 5px;
 }
 .Tab2_Sidebar {
-  border: 1px solid #323232;
-  width: 20%;
   float: left;
+  height: 25rem;
+  overflow: auto;
+  width: 20rem;
 }
 .UserInfo {
   border: 1px solid #323232;

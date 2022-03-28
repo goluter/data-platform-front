@@ -13,8 +13,8 @@
 <script>
 import FAQdata from 'assets/data/FAQdata.js'
 export default {
-  name: 'App',
-  layout: 'AdminLayout',
+  name: 'product',
+  layout: 'Admin',
   data() {
     return {
       FAQdata,

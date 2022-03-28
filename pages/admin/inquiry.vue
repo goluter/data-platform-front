@@ -13,7 +13,7 @@
 <script>
 import Inquirydata from '../../assets/data/Inquirydata'
 export default {
-  name: 'app',
+  name: 'inquiry',
   layout: 'Admin',
   data() {
     return {
