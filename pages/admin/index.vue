@@ -825,7 +825,7 @@
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <th style="width: 3%">번호</th>
+                    <th style="text-align: center">번호</th>
                     <th style="text-align: center">상품 획득사유</th>
                     <th class="text-left">획득날짜</th>
                     <th class="text-left">내역</th>
