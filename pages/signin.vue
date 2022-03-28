@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap">
         <header class="pb-5">
             <h1 class="pb-3">govey</h1>
             <hr>
@@ -18,9 +18,11 @@
                     </div>
                     <div>
                         아직 고베이 계정이 없나요?<br><br>
-                        <v-btn class="float-right" href="/logjoin">
-                            회원가입
-                        </v-btn>
+                        <NuxtLink to="/signjoin1">
+                            <v-btn class="float-right">
+                                회원가입
+                            </v-btn>
+                        </NuxtLink>
                     </div>
                     
                 </v-row>
@@ -43,6 +45,12 @@
                     </v-btn>
             </v-container>
         </section>
+        <footer>
+            <hr>
+            <div class="text-center">
+                Copyright © goveycompany. All rights reserved.
+            </div>
+        </footer>
     </div>
 </template>
 

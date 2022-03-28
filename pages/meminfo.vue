@@ -1,7 +1,10 @@
 <template>
+<v-container fluid style="width:80%">
     <div class="wrap">
         <header class="pb-5">
-            <h1 class="pb-3">govey</h1>
+            <NuxtLink to="/" style="color:black; text-decoration-line: none;">
+                <h1 class="pb-3">govey</h1>
+            </NuxtLink>
             <hr>
         </header>
         
@@ -34,6 +37,7 @@
             </div>
         </footer>
     </div>
+</v-container>
 </template>
 
 <script>
