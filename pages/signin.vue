@@ -1,10 +1,6 @@
 <template>
-<<<<<<< HEAD
-    <div>
-=======
 <v-container fluid style="width:80%">
     <div class="wrap">
->>>>>>> 2bfdfca49068b458ccadf9a76b05c28055a6509f
         <header class="pb-5">
             <NuxtLink to="/" style="color:black; text-decoration-line: none;">
                 <h1 class="pb-3">govey</h1>
@@ -52,15 +48,12 @@
                     </v-btn>
             </v-container>
         </section>
-<<<<<<< HEAD
-=======
         <footer>
             <hr>
             <div class="text-center">
                 Copyright © goveycompany. All rights reserved.
             </div>
         </footer>
->>>>>>> 2bfdfca49068b458ccadf9a76b05c28055a6509f
     </div>
 </v-container>
 </template>
