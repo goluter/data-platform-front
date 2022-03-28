@@ -1,4 +1,5 @@
 <template>
+<v-container fluid style="width:80%">
     <div class="wrap">
         <header class="pb-5">
             <NuxtLink to="/" style="color:black; text-decoration-line: none;">
@@ -47,11 +48,12 @@
         </section>
         <footer>
             <hr>
-            <div class="text-md-center">
+            <div class="text-center">
                 Copyright © goveycompany. All rights reserved.
             </div>
         </footer>
     </div>
+</v-container>
 </template>
 
 <script>
