@@ -4,7 +4,9 @@
       <header>
           <v-row no-gutters>
             <v-col cols="2">
-              <h1>Govey</h1>
+              <NuxtLink to="/" style="color:black; text-decoration-line: none;">
+                <h1>Govey</h1>
+              </NuxtLink>
             </v-col>
             <v-col cols="7">
               <v-card>
