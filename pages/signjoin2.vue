@@ -19,7 +19,9 @@
                         <span style="font-size:30px">관심사 등록</span>
                     </v-col>
                     <v-col>
-                        <v-btn>다음에 할게요</v-btn>
+                         <NuxtLink to="/" style="color:black;  text-decoration-line: none;">
+                            <v-btn>다음에 할게요</v-btn>
+                         </NuxtLink>
                     </v-col>
                 </v-row>
             </div>
