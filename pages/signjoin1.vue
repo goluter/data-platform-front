@@ -27,9 +27,7 @@
                             </v-btn>
                         </NuxtLink>
                     </div>
-                    
                 </v-row>
-                    
             </v-container>
         </nav>
         <hr >
