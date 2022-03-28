@@ -4,9 +4,7 @@
       <header>
           <v-row no-gutters>
             <v-col cols="2">
-              <NuxtLink to="/" style="color:black; text-decoration-line: none;">
-                <h1>Govey</h1>
-              </NuxtLink>
+              <h1>Govey</h1>
             </v-col>
             <v-col cols="7">
               <v-card>
@@ -17,40 +15,21 @@
                   fixed-tabs
                 >
                 <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
-                  <v-tab style="color:black"><NuxtLink to="/" style="color:black; text-decoration-line: none;">{{tabs[0]}}</NuxtLink></v-tab>
+                  <v-tab style="color:black">{{tabs[0]}}</v-tab>
                   <v-tab style="color:black">{{tabs[1]}}</v-tab>
                   <v-tab style="color:black">{{tabs[2]}}</v-tab>
-                  <v-tab style="color:black"><NuxtLink to="/surveymaker" style="color:black; text-decoration-line: none;">{{tabs[3]}}</NuxtLink></v-tab>
+                  <v-tab style="color:black">{{tabs[3]}}</v-tab>
                   <v-tab style="color:black">{{tabs[4]}}</v-tab>
                   <v-tab style="color:black">{{tabs[5]}}</v-tab>
                   <v-tab style="color:black">{{tabs[6]}}</v-tab>
                 </v-tabs>
               </v-card>
             </v-col>
-            <v-col cols="1">
+            <v-col cols="2">
               <v-text-field label="검색" color="black"></v-text-field>
             </v-col>
             <v-col cols="1">
-              <NuxtLink to="/meminfo">
-                <v-img src="/manicon.png" height="50px" width="50px"></v-img>
-              </NuxtLink>
-            </v-col>
-            <v-col cols="1">
-              <div>
-                <NuxtLink to="/admin">
-                  관리자페이지
-                </NuxtLink>
-              </div>
-              <div>
-                <NuxtLink to="/signin">
-                  로그인
-                </NuxtLink>
-              </div>
-              <div>
-                <NuxtLink to="/signjoin1">
-                  회원가입
-                </NuxtLink>
-              </div>
+              <v-img src="/manicon.png" height="50px" width="50px"></v-img>
             </v-col>
           </v-row>
       </header>
@@ -308,8 +287,10 @@
 import mainque from 'assets/data/main_que.js'
 import subque from 'assets/data/main_subque.js'
 import mainlist from 'assets/data/main_list.js'
+
+
 export default {
-  name: 'index',
+  name: 'MainPage',
   layout: 'DefaultLayout',
   data(){
     return{
@@ -321,6 +302,7 @@ export default {
       mainque,
       // 서브 질문
       subque,
+
       // 설문 목록
       mainlist,
     

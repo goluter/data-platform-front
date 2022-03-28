@@ -13,6 +13,6 @@
 
 <script>
 export default {
-  name: 'admin'
+  name: 'AdminLayout'
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap">
+    <div>
         <header class="pb-5">
             <NuxtLink to="/" style="color:black; text-decoration-line: none;">
                 <h1 class="pb-3">govey</h1>
@@ -33,11 +33,13 @@
         </nav>
         <hr >
         <section class="pt-3">
-            <v-container style=" width:50%;">
-                    <div >                       
+            <v-container style=" width:50%; ">
+                    <div >
+                        이메일
                         <v-text-field label="example@gamil.com"></v-text-field>
                     </div>
                     <div >
+                        비밀번호
                         <v-text-field type="password" label="password"></v-text-field>
                     </div>
                     <v-btn >
@@ -45,12 +47,6 @@
                     </v-btn>
             </v-container>
         </section>
-        <footer>
-            <hr>
-            <div class="text-md-center">
-                Copyright © goveycompany. All rights reserved.
-            </div>
-        </footer>
     </div>
 </template>
 
@@ -60,11 +56,5 @@ export default {
   name: 'signin-page',
 }
 </script>
-
-<style>
-    .wrap{
-        color:black;
-    }
-</style>
 
 

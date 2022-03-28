@@ -6,7 +6,7 @@ var QAdata = [
     question: '이거는 어떻게 하나요?1',
     date: '0000. 00. 00.',
     answer: '이렇게 합니다1',
-    url: '/QApage/QApage/0',
+    url: '/admin/qa/0',
   },
   {
     id: 1,
@@ -15,7 +15,7 @@ var QAdata = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?2',
     answer: '이렇게 합니다2',
-    url: '/QApage/QApage/1',
+    url: '/admin/qa/1',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ var QAdata = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?3',
     answer: '이렇게 합니다3',
-    url: '/QApage/QApage/2',
+    url: '/admin/qa/2',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ var QAdata = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?4',
     answer: '이렇게 합니다4',
-    url: '/QApage/QApage/3',
+    url: '/admin/qa/3',
   },
 ]
 export default QAdata
