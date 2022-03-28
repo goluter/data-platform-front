@@ -832,18 +832,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(a, i) in QAdata" :key="a">
+                  <tr v-for="(a, i) in UserData[UserNum].UserPoint" :key="a">
                     <td style="text-align: center">{{ i + 1 }}</td>
                     <td style="text-align: center">
-                      {{ UserData[UserNum].UserProduct[i][0] }}
+                      {{ UserData[UserNum].UserPoint[i][0] }}
                     </td>
-                    <td>{{ UserData[UserNum].UserProduct[i][1] }}</td>
-                    <td>{{ UserData[UserNum].UserProduct[i][2] }}</td>
+                    <td>{{ UserData[UserNum].UserPoint[i][1] }}</td>
+                    <td>{{ UserData[UserNum].UserPoint[i][2] }}</td>
                   </tr>
                 </tbody>
               </template>
             </v-simple-table>
           </div>
+          <!--상품관리탭-->
           <div v-if="ShowUserProduct == true">
             <v-simple-table>
               <template v-slot:default>
@@ -856,7 +857,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(a, i) in QAdata" :key="a">
+                  <tr v-for="(a, i) in UserData[UserNum].UserProduct" :key="a">
                     <td style="text-align: center">{{ i + 1 }}</td>
                     <td style="text-align: center">
                       {{ UserData[UserNum].UserProduct[i][0] }}
@@ -1033,27 +1034,31 @@
         >
           공지사항 등록
         </v-btn>
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="data[i].url" style="text-decoration: none">{{
-                data[i].title
-              }}</a>
-            </td>
-            <td>{{ data[i].name }}</td>
-            <td>{{ data[i].date }}</td>
-          </tr>
-        </table>
-        <footer>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="6"></v-pagination>
-          </div>
-        </footer>
+
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="data[i].url" style="text-decoration: none">{{
+                    data[i].title
+                  }}</a>
+                </td>
+                <td>{{ data[i].name }}</td>
+                <td>{{ data[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!--FAQ-->
       <div v-if="TopTab6 == true">
@@ -1065,22 +1070,30 @@
         >
           FAQ 추가
         </v-btn>
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="FAQdata[i].url" style="text-decoration: none">
-                {{ FAQdata[i].title }}
-              </a>
-            </td>
-            <td>{{ FAQdata[i].name }}</td>
-            <td>{{ FAQdata[i].date }}</td>
-          </tr>
-        </table>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="FAQdata[i].url" style="text-decoration: none">
+                    {{ FAQdata[i].title }}
+                  </a>
+                </td>
+                <td>{{ FAQdata[i].name }}</td>
+                <td>{{ FAQdata[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!--Q&A-->
       <div v-if="TopTab7 == true">
@@ -1092,43 +1105,59 @@
         >
           Q&A 추가
         </v-btn>
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="QAdata[i].url" style="text-decoration: none">
-                {{ QAdata[i].title }}
-              </a>
-            </td>
-            <td>{{ QAdata[i].name }}</td>
-            <td>{{ QAdata[i].date }}</td>
-          </tr>
-        </table>
+
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="QAdata[i].url" style="text-decoration: none">
+                    {{ QAdata[i].title }}
+                  </a>
+                </td>
+                <td>{{ QAdata[i].name }}</td>
+                <td>{{ QAdata[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!--문의게시판-->
       <div v-if="TopTab8 == true">
         <h2>문의게시판1</h2>
-
-        <table border="1px solid #323232">
-          <th style="width: 5%">번호</th>
-          <th style="width: 80%">제목</th>
-          <th style="width: 5%">이름</th>
-          <th style="width: 10%">날짜</th>
-          <tr v-for="(a, i) in data" :key="a">
-            <td style="text-align: center">{{ i + 1 }}</td>
-            <td>
-              <a :href="Inquirydata[i].url" style="text-decoration: none">
-                {{ Inquirydata[i].title }}
-              </a>
-            </td>
-            <td>{{ Inquirydata[i].name }}</td>
-            <td>{{ Inquirydata[i].date }}</td>
-          </tr>
-        </table>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in data" :key="a">
+                <td style="text-align: center">{{ i + 1 }}</td>
+                <td>
+                  <a :href="Inquirydata[i].url" style="text-decoration: none">
+                    {{ Inquirydata[i].title }}
+                  </a>
+                </td>
+                <td>{{ Inquirydata[i].name }}</td>
+                <td>{{ Inquirydata[i].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
     </div>
   </div>
