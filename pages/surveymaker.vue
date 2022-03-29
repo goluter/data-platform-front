@@ -36,9 +36,9 @@
                         </div>
                     </div>
                     <div class="pt-3">
-                        <button type="button" class="add_btn mr-3 btn">
-                            생성
-                        </button>
+                        <v-btn class="add_btn">
+                            추가
+                        </v-btn>
                         <v-btn class="delete_btn">
                             삭제
                         </v-btn>
@@ -114,12 +114,12 @@ export default {
                         </div>
                     </div>
                     <div class="pt-3">
-                        <v-btn class="add_btn mr-3" data-id="${k}">
-                            생성
-                        </v-btn>
-                        <button type="button" class="delete_btn" data-id="${k}">
+                        <button type="button" data-id="${k}" class="add_btn v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default"><span class="v-btn__content">
+                            추가
+                        </span></button>
+                        <button type="button" data-id="${k}" class="delete_btn v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default"><span class="v-btn__content">
                             삭제
-                        </button>
+                        </span></button>
                     </div>
                 </div>`            
            ).trigger("create");
