@@ -114,11 +114,11 @@ export default {
                         </div>
                     </div>
                     <div class="pt-3">
-                        <button type="button" data-id="${k}" class="add_btn v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default"><span class="v-btn__content">
+                        <button type="button" data-id="${k}" class="add_btn v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default"><span class="v-btn__content">
                             추가
                         </span></button>
-                        <button type="button" data-id="${k}" class="delete_btn v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default"><span class="v-btn__content">
-                            삭제
+                        <button type="button" data-id="${k}" class="delete_btn v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default"><span class="v-btn__content">
+                            추가
                         </span></button>
                     </div>
                 </div>`            
