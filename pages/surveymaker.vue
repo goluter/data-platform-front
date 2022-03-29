@@ -118,7 +118,7 @@ export default {
                             추가
                         </span></button>
                         <button type="button" data-id="${k}" class="delete_btn v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default"><span class="v-btn__content">
-                            추가
+                            삭제
                         </span></button>
                     </div>
                 </div>`            
