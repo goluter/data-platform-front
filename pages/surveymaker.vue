@@ -32,7 +32,7 @@
                     </select>
                     <div class="boxplus1">
                         <div class="que_list_1_1 pt-1">
-                            <input placeholder="옵션1" class="input_que_1_1" style="width:50%">
+                            <input placeholder="옵션1" class="input_que_1" style="width:50%">
                         </div>
                     </div>
                     <div class="pt-3">
@@ -42,6 +42,9 @@
                         <v-btn class="delete_btn">
                             삭제
                         </v-btn>
+                        <!-- <v-btn class="check_btn">
+                            실험버튼
+                        </v-btn> -->
                     </div>
                 </div>
            </div>
@@ -80,7 +83,7 @@ export default {
             i++;
             $(".boxplus1").append(
                 `<div class="que_list_1_${i} pt-1">
-                    <input placeholder="옵션${i}" class="input_que_1_${a}" style="width:50%">
+                    <input placeholder="옵션${i}" class="input_que_1" style="width:50%">
                 </div>`
             );
         });
@@ -97,8 +100,9 @@ export default {
         });
         
         //카드 생성
-        var k = 2;
+        var k = 1;
         $("#card_add_btn").click(function(){
+            k++;
            $("#bigboxplus").append(
                 `<div class="cardbox${k} cardboxcss mt-5">
                     <input placeholder="제목 없는 질문${k}" class="input_title${k}" style="width:70%">   사진  
@@ -110,7 +114,7 @@ export default {
                     </select>
                     <div class="boxplus${k}">
                         <div class="que_list_${k}_1 pt-1">
-                            <input placeholder="옵션1" class="input_que_${k}_1" style="width:50%">
+                            <input placeholder="옵션1" class="input_que_${k}" style="width:50%">
                         </div>
                     </div>
                     <div class="pt-3">
@@ -123,18 +127,17 @@ export default {
                     </div>
                 </div>`            
            ).trigger("create");
-           k++;
            content.trigger("create");
         });
 
         //카드 제거
         $(document).on("click","#card_delete_btn",function(){
-            var t = k - 1;
-            if(t == 1){
+            if(k == 1){
                 alert("삭제하실 수 없습니다.");
             }
             else{
-                $(".cardbox"+t+"").remove();
+                $(".cardbox"+k+"").remove();
+                option[k] = 2;
                 k--;
             }
         });
@@ -150,7 +153,7 @@ export default {
             var check = option[dataid];
             $(".boxplus"+dataid+"").append(
                 `<div class="que_list_${dataid}_${check} pt-1">
-                    <input placeholder="옵션${check}" class="input_que_${dataid}_${check}" style="width:50%">
+                    <input placeholder="옵션${check}" class="input_que_${dataid}" style="width:50%">
                 </div>`
             );
             option[dataid]++;
@@ -249,6 +252,35 @@ export default {
                 $(".date_div"+select_id+"").remove();
             }
         });
+
+
+        //실험 버튼
+        // $(".check_btn").click(function(){
+        //     var che = [];
+        //     for(var t = 0; t<100; t++){
+        //         che[t] = $(".input_que_1").eq(t).val();
+        //     }
+        //     alert(che[1]);
+        // });
+
+        //정보 담기
+        $("#send_btn").click(function(){
+            //제목, 서브 제목 정보
+            var title = $(".title").val();
+            var sub_title = $(".sub_title").val(); 
+            //input 제목 정보
+            for(var h = 1; h <= k; h++){
+                window["input_title"+h] = $(".input_title"+h+"").val();
+            }
+            //quelist+숫자 여기에 배열로 옵션 정보
+            for(var b = 1; b <= k; b++){
+                window["quelist"+b] = [];
+                for(var c = 0; c < 100; c++){
+                    window["quelist"+b][c] = $(".input_que_"+b+"").eq(c).val();
+                }
+            }
+            alert("등록되었습니다.");
+        });
     }
   
   
@@ -263,11 +295,6 @@ export default {
   .cardboxcss{
       border : 1px solid black;
       background-color : skyblue;
-  }
-
-  button{
-      border : 1px solid blue;
-      background-color : white;
   }
 
   .title:focus{
