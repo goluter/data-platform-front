@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script>
+<script type="module">
 import QAdata from 'assets/data/QAdata.js'
 export default {
   name: 'qa',

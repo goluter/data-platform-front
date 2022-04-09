@@ -1,4 +1,4 @@
-var FAQdata = [
+var FaqData = [
   {
     id: 0,
     title: 'FAQ1',
@@ -36,4 +36,4 @@ var FAQdata = [
     url: '/admin/faq/3',
   },
 ]
-export default FAQdata
+export default FaqData

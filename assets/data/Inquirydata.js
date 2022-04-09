@@ -1,4 +1,4 @@
-var Inquirydata = [
+var InquiryData = [
   {
     id: 0,
     title: '문의1',
@@ -45,4 +45,4 @@ var Inquirydata = [
     url: '/admin/inquiry/4',
   },
 ]
-export default Inquirydata
+export default InquiryData

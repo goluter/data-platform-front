@@ -10,11 +10,11 @@
   </div>
 </template>
 
-<script>
-import FAQdata from '../../assets/data/FAQdata'
+<script type="module">
+import FAQdata from '../../assets/data/FaqData'
 
 export default {
-  name: 'faq',
+  name: 'Faq',
   layout: 'Admin',
   data() {
     return {
