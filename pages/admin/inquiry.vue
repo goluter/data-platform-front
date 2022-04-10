@@ -11,7 +11,7 @@
 </template>
 
 <script type="module">
-import Inquirydata from '../../assets/data/InquiryData'
+import Inquirydata from '../../assets/data/Inquirydata'
 export default {
   name: 'inquiry',
   layout: 'Admin',

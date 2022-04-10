@@ -11,7 +11,7 @@
 </template>
 
 <script type="module">
-import FAQdata from '~/assets/data/FaqData.js'
+import FAQdata from '../../assets/data/FAQdata'
 export default {
   name: 'product',
   layout: 'Admin',

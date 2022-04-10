@@ -1158,13 +1158,12 @@
 
 <script>
 import data from '../../assets/data/NoticeData.js'
-import FaqData from '../../assets/data/FaqData'
+import FaqData from '../../assets/data/FAQdata'
 import QaData from '../../assets/data/QaData'
-import InquiryData from '../../assets/data/InquiryData'
+import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
 import { GChart } from 'vue-google-charts'
-import $ from 'jquery'
 
 export default {
   name: 'index',
