@@ -537,22 +537,7 @@
         기간설정
         <input class="date" type="date" />~<input class="date" type="date" />
         <div>
-          <div class="icondiv">
-            <img src="../../assets/free-icon-briefcase-3916670.png" />
-            <p>새로운 유저 +100</p>
-          </div>
-          <div class="icondiv">
-            <img src="../../assets/free-icon-heart-3916579.png" />
-            <p>새로운 유저 +100</p>
-          </div>
-          <div class="icondiv">
-            <img src="../../assets/free-icon-shopping-bag-add-.png" />
-            <p>새로운 유저 +100</p>
-          </div>
-          <div class="icondiv">
-            <img src="../../assets/chess-clock-6627624.png" />
-            <p>새로운 유저 +100</p>
-          </div>
+          <GChart type="LineChart" :data="chartData" :options="chartOptions" />
         </div>
       </div>
       <!-- 유저목록-->
@@ -880,10 +865,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(a, i) in QAdata" :key="a">
+                  <tr v-for="(a, i) in QaData" :key="a">
                     <td style="text-align: center">{{ i + 1 }}</td>
-                    <td>{{ QAdata[i].title }}</td>
-                    <td>{{ QAdata[i].date }}</td>
+                    <td>
+                      {{ QaData[i].title }}
+                    </td>
+                    <td>
+                      {{ QaData[i].date }}
+                    </td>
                   </tr>
                 </tbody>
               </template>
@@ -1084,12 +1073,12 @@
               <tr v-for="(a, i) in data" :key="a">
                 <td style="text-align: center">{{ i + 1 }}</td>
                 <td>
-                  <a :href="FAQdata[i].url" style="text-decoration: none">
-                    {{ FAQdata[i].title }}
+                  <a :href="FaqData[i].url" style="text-decoration: none">
+                    {{ FaqData[i].title }}
                   </a>
                 </td>
-                <td>{{ FAQdata[i].name }}</td>
-                <td>{{ FAQdata[i].date }}</td>
+                <td>{{ FaqData[i].name }}</td>
+                <td>{{ FaqData[i].date }}</td>
               </tr>
             </tbody>
           </template>
@@ -1120,12 +1109,16 @@
               <tr v-for="(a, i) in data" :key="a">
                 <td style="text-align: center">{{ i + 1 }}</td>
                 <td>
-                  <a :href="QAdata[i].url" style="text-decoration: none">
-                    {{ QAdata[i].title }}
+                  <a :href="QaData[i].url" style="text-decoration: none">
+                    {{ QaData[i].title }}
                   </a>
                 </td>
-                <td>{{ QAdata[i].name }}</td>
-                <td>{{ QAdata[i].date }}</td>
+                <td>
+                  {{ QaData[i].name }}
+                </td>
+                <td>
+                  {{ QaData[i].date }}
+                </td>
               </tr>
             </tbody>
           </template>
@@ -1148,12 +1141,12 @@
               <tr v-for="(a, i) in data" :key="a">
                 <td style="text-align: center">{{ i + 1 }}</td>
                 <td>
-                  <a :href="Inquirydata[i].url" style="text-decoration: none">
-                    {{ Inquirydata[i].title }}
+                  <a :href="InquiryData[i].url" style="text-decoration: none">
+                    {{ InquiryData[i].title }}
                   </a>
                 </td>
-                <td>{{ Inquirydata[i].name }}</td>
-                <td>{{ Inquirydata[i].date }}</td>
+                <td>{{ InquiryData[i].name }}</td>
+                <td>{{ InquiryData[i].date }}</td>
               </tr>
             </tbody>
           </template>
@@ -1165,16 +1158,20 @@
 
 <script>
 import data from '../../assets/data/NoticeData.js'
-import FAQdata from '../../assets/data/FAQdata'
-import QAdata from '../../assets/data/QAdata'
-import Inquirydata from '../../assets/data/Inquirydata'
+import FaqData from '../../assets/data/FaqData'
+import QaData from '../../assets/data/QaData'
+import InquiryData from '../../assets/data/InquiryData'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
+import { GChart } from 'vue-google-charts'
 import $ from 'jquery'
 
 export default {
   name: 'index',
   layout: 'Admin',
+  components: {
+    GChart,
+  },
 
   data() {
     return {
@@ -1186,12 +1183,25 @@ export default {
       TopTab6: false,
       TopTab7: false,
       TopTab8: false,
+      chartData: [
+        ['유저수', '신규유저', '재방문유저', '총유저'],
+        ['22.04.09', 1000, 322, 1322],
+        ['22.04.10', 1170, 460, 1170 + 460],
+        ['22.04.11', 660, 1120, 660 + 1120],
+        ['22.04.12', 1030, 540, 1030 + 540],
+      ],
+      chartOptions: {
+        chart: {
+          title: 'Company Performance',
+          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        },
+      },
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
       data,
-      FAQdata,
-      QAdata,
-      Inquirydata,
+      FaqData,
+      QaData,
+      InquiryData,
       UserData,
       SurveyData,
       value: 0, //option값 선택

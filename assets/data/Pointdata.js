@@ -1,4 +1,4 @@
-var Pointdata = [
+var PointData = [
   {
     id: 0,
     title: '설문참여1',
@@ -35,4 +35,4 @@ var Pointdata = [
     reward: '-100',
   },
 ]
-export default Pointdata
+export default PointData

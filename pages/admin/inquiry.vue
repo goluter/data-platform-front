@@ -10,8 +10,8 @@
   </div>
 </template>
 
-<script>
-import Inquirydata from '../../assets/data/Inquirydata'
+<script type="module">
+import Inquirydata from '../../assets/data/InquiryData'
 export default {
   name: 'inquiry',
   layout: 'Admin',

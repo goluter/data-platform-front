@@ -1,4 +1,4 @@
-var QAdata = [
+var QaData = [
   {
     id: 0,
     title: 'Q&A1',
@@ -36,4 +36,4 @@ var QAdata = [
     url: '/admin/qa/3',
   },
 ]
-export default QAdata
+export default QaData

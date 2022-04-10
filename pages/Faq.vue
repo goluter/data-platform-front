@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import FAQdata from 'assets/data/FAQdata.js'
+import FAQdata from '~/assets/data/FaqData.js'
 export default {
-  name: 'faqpage',
+  name: 'FaqPage',
   layout: 'admin',
   data() {
     return {

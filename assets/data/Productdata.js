@@ -1,4 +1,4 @@
-var Productdata = [
+var ProductData = [
   {
     id: 0,
     title: '설문참여1',
@@ -45,4 +45,4 @@ var Productdata = [
     img: '../QRcode/qrcode (4).png',
   },
 ]
-export default Productdata
+export default ProductData
