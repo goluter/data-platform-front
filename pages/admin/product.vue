@@ -10,8 +10,8 @@
   </div>
 </template>
 
-<script>
-import FAQdata from 'assets/data/FAQdata.js'
+<script type="module">
+import FAQdata from '~/assets/data/FaqData.js'
 export default {
   name: 'product',
   layout: 'Admin',

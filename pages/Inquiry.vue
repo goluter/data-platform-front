@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Inquirydata from '../assets/data/Inquirydata.js'
+import Inquirydata from '../assets/data/InquiryData.js'
 
 export default {
   name: 'inquirypage',
