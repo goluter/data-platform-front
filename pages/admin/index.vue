@@ -121,6 +121,7 @@
         v-if="applysuccess == true"
         class="applysuccess"
         type="success"
+        :value="overlay"
         >적용완료
         <v-btn @click="applysuccess = false" style="float: right" x-small
           >X</v-btn
@@ -133,6 +134,7 @@
         v-if="addsuccess == true"
         class="addsuccess"
         type="success"
+        :value="overlay"
         >추가완료
         <v-btn @click="addsuccess = false" style="float: right" x-small
           >X</v-btn
@@ -158,9 +160,11 @@
             @click="
               ShowModal_Filter = false
               applysuccess = true
+              overlay = !overlay
             "
             >적용</v-btn
           >
+
           <v-btn
             id="filtercancel"
             elevation="2"
@@ -210,6 +214,7 @@
             @click="
               ShowModal_UserAdd = false
               addsuccess = true
+              overlay = !overlay
             "
             >추가</v-btn
           >
@@ -263,6 +268,7 @@
               @click="
                 ShowSurveyInfo = false
                 applysuccess = true
+                overlay = !overlay
               "
               >적용</v-btn
             >
@@ -310,6 +316,7 @@
             @click="
               ShowEventAdd = false
               addsuccess = true
+              overlay = !overlay
             "
             >등록</v-btn
           >
@@ -344,6 +351,7 @@
             @click="
               ShowNoticeAdd = false
               addsuccess = true
+              overlay = !overlay
             "
             >등록</v-btn
           >
@@ -380,6 +388,7 @@
             @click="
               addsuccess = true
               ShowFAQAdd = false
+              overlay = !overlay
             "
             >등록</v-btn
           >
@@ -413,6 +422,7 @@
             elevation="2"
             @click="
               addsuccess = true
+              overlay = !overlay
               ShowQAAdd = false
             "
             >등록</v-btn
@@ -437,6 +447,7 @@
             @click="
               applysuccess = true
               ShowGradeSetting = false
+              overlay = !overlay
             "
             >적용</v-btn
           >
@@ -474,6 +485,7 @@
             @click="
               applysuccess = true
               ShowPointSetting = false
+              overlay = !overlay
             "
             >적용</v-btn
           >
@@ -520,6 +532,7 @@
             @click="
               applysuccess = true
               ShowUserModify = false
+              overlay = !overlay
             "
             >적용</v-btn
           >
@@ -534,8 +547,13 @@
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
-        기간설정
-        <input class="date" type="date" />~<input class="date" type="date" />
+        <v-date-picker
+          v-model="dates"
+          range
+          locale="ko-KR"
+          width="400"
+        ></v-date-picker>
+        model: {{ dates }}
         <div>
           <GChart type="LineChart" :data="chartData" :options="chartOptions" />
         </div>
@@ -1228,7 +1246,17 @@ export default {
       ShowPointSetting: false,
       ShowUserModify: false,
       UserNum: 0, //사용자데이터 검색변수
+      dates: [],
+      overlay: false, //적용 알림창 시간변수
     }
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
   },
 }
 </script>
@@ -1249,15 +1277,15 @@ export default {
   position: fixed;
   padding: 20px;
   text-align: center;
-  z-index: 4;
+  z-index: 1;
 }
 .modal-white {
   width: 30%;
   border-radius: 8px;
-  background: gray;
+  background: white;
   padding: 1%;
   display: inline-block;
-  z-index: 1;
+  z-index: 4;
 }
 .date {
   background-color: gray;
