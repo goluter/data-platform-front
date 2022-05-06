@@ -1177,7 +1177,7 @@
 <script>
 import data from '../../assets/data/NoticeData.js'
 import FaqData from '../../assets/data/FAQdata'
-import QaData from '../../assets/data/QaData'
+import QaData from '../../assets/data/QAdata'
 import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
