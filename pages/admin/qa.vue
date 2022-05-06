@@ -9,7 +9,7 @@
 </template>
 
 <script type="module">
-import QAdata from '../../assets/data/QaData'
+import QAdata from '../../assets/data/QAdata'
 export default {
   name: 'qa',
   layout: 'Admin',
