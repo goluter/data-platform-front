@@ -94,7 +94,7 @@ export default {
 
 .login-type {
   display: inline-block; align-items: center; text-align: center;
-  width: 100%; height: 200px;
+  width: 100%; height: 150px;
   margin: 50px auto;
 }
 
