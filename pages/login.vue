@@ -48,6 +48,9 @@
 
 <script>
 export default {
+  head: {
+    title: 'Log In'
+  },
   name: "login-page"
 }
 </script>
