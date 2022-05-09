@@ -62,24 +62,30 @@ export default {
 }
 
 .wrapper {
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   margin: 0 16px;
 }
 
 .header {
   align-items: center;
   position: fixed;
-  height: 45px; width: 100%;
-  padding-top: 5px; top: 0; left: 0;
-  border-bottom: 1px solid #ddd; background: white;
+  height: 45px;
+  width: 100%;
+  padding-top: 5px;
+  top: 0; left: 0;
+  border-bottom: 1px solid #ddd;
+  background: white;
 }
 
 .header a {
   display: table;
   margin: 0 auto;
   width: 157px;
-  text-align: center; text-decoration: none; color: dodgerblue;
-  font-weight: 500; font-size: 24px;
+  text-align: center;
+  text-decoration: none;
+  color: dodgerblue;
+  font-weight: 500;
+  font-size: 24px;
 }
 
 .welcome {
@@ -109,47 +115,66 @@ export default {
 .signup a {
   margin-top: 10px;
   padding: 10px 20px;
-  border: solid 1px; border-radius: 4px;
-  text-decoration: dodgerblue; font-weight: bold;
+  border: solid 1px;
+  border-radius: 4px;
+  text-decoration: dodgerblue;
+  font-weight: bold;
 }
 
 .login-type {
-  display: inline-block; align-items: center; text-align: center;
-  width: 100%; height: 150px;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 150px;
   margin: 45px auto 36px auto;
 }
 
 .login-type .social-login {
-  margin-bottom: 30px; padding-bottom: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
   border-bottom: 1px solid #ddd;
 }
 
 .login-type button {
   display: inline-block;
-  width: 50px; height: 50px;
-  margin: 0 5px; border-radius: 70%; overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  border-radius: 70%;
+  overflow: hidden;
 }
 
 .login-type v-img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .login {
-  display: block; position: relative;
+  display: block;
+  position: relative;
 }
 
 .login input[type=email], input[type=password] {
-  width: 100%; height: 50px;
-  margin: 0 0 10px 0; padding-left: 5px;
-  border-radius: 10px; background: #f7f7f8;
+  width: 100%;
+  height: 50px;
+  margin: 0 0 10px 0;
+  padding-left: 5px;
+  border-radius: 10px;
+  background: #f7f7f8;
 }
 
 .login input[type=submit] {
   width: 100%;
-  margin-top: 20px; margin-bottom: 20px; padding: 10px 20px;
-  border: solid 1px dodgerblue; border-radius: 10px; background: dodgerblue;
-  color: white; font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: solid 1px dodgerblue;
+  border-radius: 10px;
+  background: dodgerblue;
+  color: white;
+  font-weight: bold;
 }
 
 .login input[type=checkbox] {
@@ -157,6 +182,7 @@ export default {
 }
 
 #login-option {
-  display: flex; justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
