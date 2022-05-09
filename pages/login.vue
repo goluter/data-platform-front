@@ -53,7 +53,8 @@ export default {
 
 <style scoped>
 #ct {
-  max-width: 1200px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .wrapper {
