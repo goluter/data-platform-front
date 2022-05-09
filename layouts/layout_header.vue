@@ -1,4 +1,5 @@
 <template>
+<v-container>
     <v-toolbar dense>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-navigation-drawer 
@@ -80,6 +81,8 @@
         <img src="../assets/Notification.png"/>
       </v-btn>
     </v-toolbar>
+
+</v-container>
 </template>
 
 <script>
@@ -97,13 +100,23 @@ export default{
       group () {
         this.drawer = false
       },
-    },
+    }
+    
 }
 </script>
 <style>
 .sns_link{
   position: fixed;
     bottom: 80px;
+}
+
+#footer{
+    position: fixed;
+    bottom: 0;
+    width: 90%;
+    background-color: white;
+    max-width: 500px;
+    
 }
 
 </style>

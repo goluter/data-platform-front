@@ -87,8 +87,8 @@
                 <v-col>다양한 이벤트를 준비중이예요.</v-col>
             </v-row>
         </div>
-
-            <Footer />
+        <Footer />
+            
         
     </v-container>
 </template>
