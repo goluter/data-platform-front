@@ -57,7 +57,7 @@ export default {
 }
 
 .wrapper {
-  padding: 0 20%;
+  margin: 0 16px;
 }
 
 .header {
