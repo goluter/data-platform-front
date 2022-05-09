@@ -14,9 +14,10 @@
       </div>
       <div class="login-type">
         <div class="social-login">
-          <button class="kakao"><v-img src="/kakao.png" height="50px" width="50px"></v-img></button>
-          <button class="naver"><v-img src="/naver.png" height="50px" width="50px"></v-img></button>
-          <button class="google"><v-img src="/google.svg" height="50px" width="50px"></v-img></button>
+          <button class="kakao"><v-img src="/kakao.jpg" height="50px" width="50px"></v-img></button>
+          <button class="naver"><v-img src="/naver.jpg" height="50px" width="50px"></v-img></button>
+          <button class="google"><v-img src="/google.jpg" height="50px" width="50px"></v-img></button>
+          <button class="apple"><v-img src="/apple.jpg" height="50px" width="50px"></v-img></button>
         </div>
         <p>또는 이메일 로그인</p>
       </div>
