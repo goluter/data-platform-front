@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container fluid class="wrap">
         <Header />
         <div class="ma-5">
             <v-row justify="space-between">
@@ -106,4 +106,10 @@
         }
     }
 </script>
+
+<style>
+.wrap{
+    max-width: 500px;
+}
+</style>
 

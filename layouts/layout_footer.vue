@@ -47,5 +47,6 @@ export default{
     bottom: 0;
     width: 90%;
     background-color: white;
+    max-width: 500px;
 }
 </style>

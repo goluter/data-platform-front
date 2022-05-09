@@ -56,9 +56,14 @@
             </v-list-item-group>
           </v-list>
           <div class="sns_link" >
-            <a href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"><img src="../assets/image 4.png"/></a>
-            <a href="https://www.instagram.com/govey_official/?hl=ko"><img src="../assets/image 5.png"/></a>
-            <a href="https://www.facebook.com/고베이-104289228923939"><img src="../assets/image 6.png"/></a>
+            <v-row>
+              <v-col><a href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"><img src="../assets/image 4.png"/></a></v-col>
+              <v-col><a href="https://www.instagram.com/govey_official/?hl=ko"><img src="../assets/image 5.png"/></a></v-col>
+              <v-col><a href="https://www.facebook.com/고베이-104289228923939"><img src="../assets/image 6.png"/></a></v-col>
+            </v-row>
+            
+            
+            
           </div>
         </v-navigation-drawer>
       
@@ -98,7 +103,7 @@ export default{
 <style>
 .sns_link{
   position: fixed;
-    bottom: 150px;
+    bottom: 80px;
 }
 
 </style>
