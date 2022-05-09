@@ -1,66 +1,66 @@
 <template>
     <v-toolbar dense>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-navigation-drawer 
-      app v-model="drawer" 
-      absolute
-      temporary >
-        <v-list
-          nav
-          dense
-        >
-          <v-list-item-group
-            v-model="group"
-            active-class="deep-purple--text text--accent-4"
+        <v-navigation-drawer 
+        app v-model="drawer" 
+        absolute
+        temporary >
+          <v-list
+            nav
+            dense
           >
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">리포트</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
+            <v-list-item-group
+              v-model="group"
+              active-class="deep-purple--text text--accent-4"
+            >
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">리포트</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">공지사항</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">공지사항</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">이벤트</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">이벤트</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">명예의전당</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">명예의전당</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">고객센터</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">고객센터</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">개인정보처리방침</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <NuxtLink to="/" style="color:black; text-decoration-line: none;">이용약관</NuxtLink>
-              </v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-        <div class="sns_link" style="margin-top :110px;">
-          <a href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"><img src="../assets/image 4.png"/></a>
-          <a href="https://www.instagram.com/govey_official/?hl=ko"><img src="../assets/image 5.png"/></a>
-          <a href="https://www.facebook.com/고베이-104289228923939"><img src="../assets/image 6.png"/></a>
-        </div>
-      </v-navigation-drawer>
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">개인정보처리방침</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <NuxtLink to="/" style="color:black; text-decoration-line: none;">이용약관</NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+          <div class="sns_link" >
+            <a href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"><img src="../assets/image 4.png"/></a>
+            <a href="https://www.instagram.com/govey_official/?hl=ko"><img src="../assets/image 5.png"/></a>
+            <a href="https://www.facebook.com/고베이-104289228923939"><img src="../assets/image 6.png"/></a>
+          </div>
+        </v-navigation-drawer>
       
 
       <v-spacer></v-spacer>
@@ -74,7 +74,6 @@
       <v-btn icon>
         <img src="../assets/Notification.png"/>
       </v-btn>
-
     </v-toolbar>
 </template>
 
@@ -97,5 +96,9 @@ export default{
 }
 </script>
 <style>
+.sns_link{
+  position: fixed;
+    bottom: 150px;
+}
 
 </style>

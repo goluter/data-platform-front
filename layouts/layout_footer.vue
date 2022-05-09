@@ -1,8 +1,8 @@
 <template>
     <div>
-        
-    <v-footer class="footer">
-        
+
+    <div class="footer">
+        <hr>    
         <v-row>
             <v-col cols="3" class="text-md-center">
                 <NuxtLink to="/" style="color:black; text-decoration-line: none;">
@@ -29,7 +29,7 @@
                 </NuxtLink>
             </v-col>
         </v-row>
-    </v-footer>
+    </div>
     </div>
 </template>
 
@@ -45,6 +45,6 @@ export default{
 .footer{
     position: fixed;
     bottom: 50px;
-    width: 100%;
+    width: 90%;
 }
 </style>
