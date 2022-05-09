@@ -48,5 +48,6 @@ export default{
     width: 90%;
     background-color: white;
     max-width: 500px;
+    z-index: 3;
 }
 </style>
