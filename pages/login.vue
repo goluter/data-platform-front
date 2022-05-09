@@ -59,6 +59,7 @@ export default {
 }
 
 .wrapper {
+  font-family: Roboto;
   margin: 0 16px;
 }
 
@@ -79,12 +80,27 @@ export default {
 }
 
 .welcome {
-  padding: 80px 0 30px 0;
+  padding: 77px 0 30px 0;
+}
+
+.welcome h1 {
+  font-size: 48px;
+  letter-spacing: -2.4px;
+}
+
+.welcome span {
+  font-weight: 500;
+  letter-spacing: -0.9px;
 }
 
 .signup {
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: right;
+}
+
+.signup p {
+  white-space: nowrap;
+  font-size: 20px;
 }
 
 .signup a {
@@ -97,7 +113,7 @@ export default {
 .login-type {
   display: inline-block; align-items: center; text-align: center;
   width: 100%; height: 150px;
-  margin: 50px auto;
+  margin: 45px auto 36px auto;
 }
 
 .login-type .social-login {
