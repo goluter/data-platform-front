@@ -1,7 +1,8 @@
 <template>
   <div id="ct">
     <div class="header">
-      <a href="/">govey</a>
+      <a href="/"><img src="/govey.svg" alt="govey"></a>
+<!--      <a href="/">govey</a>-->
     </div>
     <div class="wrapper">
       <div class="welcome">
@@ -69,9 +70,8 @@ export default {
 .header {
   align-items: center;
   position: fixed;
-  height: 45px;
   width: 100%;
-  padding-top: 5px;
+  height: 45px;
   top: 0; left: 0;
   border-bottom: 1px solid #ddd;
   background: white;
@@ -79,13 +79,18 @@ export default {
 
 .header a {
   display: table;
-  margin: 0 auto;
-  width: 157px;
   text-align: center;
-  text-decoration: none;
-  color: dodgerblue;
+  margin: 0 auto;
+  padding-top: 3px;
+  width: 157px;
   font-weight: 500;
   font-size: 24px;
+  text-decoration: none;
+}
+
+.header img {
+  vertical-align: middle;
+  color: dodgerblue;
 }
 
 .welcome {
