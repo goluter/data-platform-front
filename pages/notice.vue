@@ -1,18 +1,25 @@
 <template>
   <div>
     <div class="header">
-      <img
-        style="position: absolute"
-        src="../assets/Arrow back ios.png"
-        ALIGN="left"
-      />
-      <span>공지사항</span>
+      <a href="/m_index" target="_self"
+        ><img
+          style="position: absolute"
+          src="../assets/Arrow back ios.png"
+          ALIGN="left"
+      /></a>
+
+      <a><span>공지사항</span></a>
     </div>
     <div class="banner">
       <div>브루스 배너</div>
     </div>
 
-    <div v-for="(a, i) in NoticeData" :key="a" class="contents">
+    <div
+      v-for="(a, i) in NoticeData"
+      :key="a"
+      class="contents"
+      onclick="location.href='/notice'"
+    >
       <div>{{ NoticeData[i].title }}</div>
       <div class="date">{{ NoticeData[i].date }}</div>
     </div>
@@ -69,8 +76,12 @@ export default {
   position: relative;
   overflow: hidden;
 }
+.contents a {
+  text-decoration: none;
+}
 
 .date {
   font-size: 10px;
+  color: #434343;
 }
 </style>
