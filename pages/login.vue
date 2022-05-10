@@ -2,7 +2,6 @@
   <div id="ct">
     <div class="header">
       <a href="/"><img src="/govey.svg" alt="govey"></a>
-<!--      <a href="/">govey</a>-->
     </div>
     <div class="wrapper">
       <div class="welcome">
@@ -49,10 +48,11 @@
 
 <script>
 export default {
+  name: "LoginPage",
+  layout: 'layout_login',
   head: {
     title: 'Log In'
-  },
-  name: "login-page"
+  }
 }
 </script>
 
