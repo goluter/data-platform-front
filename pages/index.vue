@@ -56,6 +56,7 @@
             </v-row>
         </div>
         <div>
+          <NuxtLink to="/" style="color:black; text-decoration-line: none;">
           <div class="rounded-xl ml-5 mr-5 " style="background-color:white; border: 1px solid black; height:110px; position:relative; z-index:2;">  
             <v-row>
               <v-col cols="3">
@@ -79,8 +80,10 @@
               <div class="rounded-xl pl-2 pr-2 ml-2" style="background-color:white; color:black;" ><img src="../assets/coin 2.png"/> 100P</div>
             </div>
           </div>
+          </NuxtLink>
         </div>
         <div>
+          <NuxtLink to="/" style="color:black; text-decoration-line: none;">
           <div class="rounded-xl ml-5 mr-5 " style="background-color:white; border: 1px solid black; height:110px; position:relative; z-index:2;">  
             <v-row>
               <v-col cols="3">
@@ -104,6 +107,7 @@
               <div class="rounded-xl pl-2 pr-2 ml-2" style="background-color:white; color:black;" ><img src="../assets/coin 2.png"/> 100P</div>
             </div>
           </div>
+          </NuxtLink>
         </div>
         <div>
             <NuxtLink to="/surveymaker/" style="color:black; text-decoration-line: none;">
@@ -130,6 +134,7 @@
                 <v-col>다양한 이벤트를 준비중이예요.</v-col>
             </v-row>
         </div>
+        <NuxtLink to="/" style="color:black; text-decoration-line: none;">
         <div class="purple rounded-xl ma-5 " style="color:white;">
           <v-row class="ml-5">
             <v-col>이벤트 1</v-col>
@@ -138,6 +143,8 @@
             <v-col>이벤트 입니다.</v-col>
           </v-row>
         </div>
+        </NuxtLink>
+        <NuxtLink to="/" style="color:black; text-decoration-line: none;">
         <div class="blue rounded-xl ma-5 " style="color:white;">
           <v-row class="ml-5">
             <v-col>이벤트 1</v-col>
@@ -146,6 +153,7 @@
             <v-col>이벤트 입니다.</v-col>
           </v-row>
         </div>
+        </NuxtLink>
         <div class="ma-5">
             <v-row justify="space-between">
                 <v-col cols="auto"><h1>공지사항</h1></v-col>
@@ -193,6 +201,7 @@
 <style>
 .wrap{
     max-width: 500px;
+    font-family: DMSans;
 }
 .gray-box{
   background-color: gray;
