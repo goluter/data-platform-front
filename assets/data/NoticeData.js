@@ -6,7 +6,7 @@ var NoticeData = [
     question: '이거는 어떻게 하나요?1',
     date: '0000. 00. 00.',
     answer: '이렇게 합니다1',
-    url: '/NoticeData/0',
+    url: '/notice_detail/0',
   },
   {
     id: 1,
@@ -15,7 +15,7 @@ var NoticeData = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?2',
     answer: '이렇게 합니다2',
-    url: '/NoticeData/1',
+    url: '/notice_detail/1',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ var NoticeData = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?3',
     answer: '이렇게 합니다3',
-    url: '/NoticeData/2',
+    url: '/notice_detail/2',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ var NoticeData = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?4',
     answer: '이렇게 합니다4',
-    url: '/NoticeData/3',
+    url: '/notice_detail/3',
   },
 ]
 export default NoticeData
