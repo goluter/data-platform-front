@@ -11,7 +11,7 @@
       <a><span>공지사항</span></a>
     </div>
     <div class="banner">
-      <div>브루스 배너</div>
+      <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
 
     <div
@@ -20,7 +20,7 @@
       class="contents"
       onclick="location.href='/notice'"
     >
-      <div>{{ NoticeData[i].title }}</div>
+      <div class="noticetitle">{{ NoticeData[i].title }}</div>
       <div class="date">{{ NoticeData[i].date }}</div>
     </div>
   </div>
@@ -40,18 +40,29 @@ export default {
 </script>
 
 <style>
+.noticetitle {
+  flex-grow: 0;
+  margin: 24px 0px 0px 18px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  text-align: left;
+  color: #000;
+}
 .container {
   padding: 0px;
 }
 .banner {
   background-color: #eee;
-  height: 5rem;
-  padding: 2%;
-  width: 100%;
+  height: 96px;
 }
 .header {
   border-bottom: 1px solid #d3d3d3;
-  padding: 3%;
+  padding: 9px 10px 12px 11px;
   width: 100%;
   background-color: white;
 }
@@ -60,7 +71,7 @@ export default {
   margin: auto;
   display: table;
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -68,20 +79,28 @@ export default {
   letter-spacing: -0.7px;
   text-align: center;
   color: #434343;
-  z-index: 1;
 }
 .contents {
   border-bottom: 1px solid #d3d3d3;
-  padding: 2%;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 .contents a {
   text-decoration: none;
 }
 
 .date {
-  font-size: 10px;
-  color: #434343;
+  flex-grow: 0;
+  margin: 13px 0px 19px 18px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.6px;
+  text-align: left;
+  color: #8f8f8f;
+  width: 50%;
 }
 </style>
