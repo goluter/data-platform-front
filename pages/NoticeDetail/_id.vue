@@ -4,7 +4,7 @@
       <a href="/m_index" target="_self"
         ><img
           style="position: absolute"
-          src="../assets/Arrow back ios.png"
+          src="../../assets/Arrow back ios.png"
           ALIGN="left"
       /></a>
 
@@ -19,13 +19,13 @@
     </div>
     <div>
       <div class="noticemain">{{ NoticeData[$route.params.id].answer }}</div>
-      <img class="noticeimg" src="../assets/2021042901003307000280711.jpg" />
+      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
 
 <script>
-import NoticeData from '../assets/data/NoticeData.js'
+import NoticeData from '../../assets/data/NoticeData'
 export default {
   name: 'notice',
   layout: 'default',
