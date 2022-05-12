@@ -8,20 +8,17 @@
           ALIGN="left"
       /></a>
 
-      <a><span>공지사항</span></a>
+      <a style="text-decoration: none" href="/notice"><span>공지사항</span></a>
     </div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
 
-    <div
-      v-for="(a, i) in NoticeData"
-      :key="a"
-      class="contents"
-      onclick="location.href='/notice'"
-    >
-      <div class="noticetitle">{{ NoticeData[i].title }}</div>
-      <div class="date">{{ NoticeData[i].date }}</div>
+    <div v-for="(a, i) in NoticeData" :key="a" class="contents">
+      <a :href="NoticeData[i].url">
+        <div class="noticetitle">{{ NoticeData[i].title }}</div>
+        <div class="date">{{ NoticeData[i].date }}</div>
+      </a>
     </div>
   </div>
 </template>
@@ -34,6 +31,7 @@ export default {
   data() {
     return {
       NoticeData,
+      num: 0,
     }
   },
 }
@@ -101,6 +99,5 @@ export default {
   letter-spacing: -0.6px;
   text-align: left;
   color: #8f8f8f;
-  width: 50%;
 }
 </style>
