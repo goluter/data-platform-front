@@ -30,6 +30,7 @@ jobs:
           script: |
             whoami
             mkdir -p ~/deploy
+            pwd | echo $USER 
             echo "${{ github.repository }}-${{ env.branch }}-${{ github.sha }}"
             cd ~/deploy/data-platform-front
             git checkout develop
