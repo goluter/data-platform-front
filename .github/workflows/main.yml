@@ -45,6 +45,8 @@ jobs:
             docker login --username $DOCKER_USERNAME --password $DOCKER_TOKEN
             docker pull swtover/govey-front:main-latest
             docker stop data-platform-front 2> /dev/null || true
+      # 쿠버
+            docker stop data-platform-front 2> /dev/null || true
       - name: Run
         uses: appleboy/ssh-action@master
         with:
