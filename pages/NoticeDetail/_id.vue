@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="header">
-      <a href="/m_index" target="_self"
+      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></a>
+      /></NuxtLink>
 
       <a><span>공지사항</span></a>
     </div>
