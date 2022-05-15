@@ -54,6 +54,7 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             source ~/.bashrc
+            docker login --username $DOCKER_USERNAME --password $DOCKER_TOKEN
             docker run -it --rm -p 7200:80 -d --name data-platform-front-stage swtover/govey-front:develop-latest
       - uses: act10ns/slack@v1
         with:
