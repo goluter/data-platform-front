@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/list/" style="color: black; text-decoration-line: none"
+      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
           src="../assets/Arrow back ios.png"
