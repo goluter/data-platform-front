@@ -1,24 +1,29 @@
 <template>
   <div>
     <div class="header">
-      <a href="/m_index" target="_self"
+      <NuxtLink to="/list/" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
           src="../assets/Arrow back ios.png"
           ALIGN="left"
-      /></a>
+      /></NuxtLink>
 
-      <a style="text-decoration: none" href="/notice"><span>공지사항</span></a>
+      <NuxtLink to="/notice" style="color: black; text-decoration-line: none"
+        ><span>공지사항</span></NuxtLink
+      >
     </div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
 
     <div v-for="(a, i) in NoticeData" :key="a" class="contents">
-      <a :href="NoticeData[i].url">
+      <NuxtLink
+        :to="NoticeData[i].url"
+        style="color: black; text-decoration-line: none"
+      >
         <div class="noticetitle">{{ NoticeData[i].title }}</div>
         <div class="date">{{ NoticeData[i].date }}</div>
-      </a>
+      </NuxtLink>
     </div>
   </div>
 </template>
