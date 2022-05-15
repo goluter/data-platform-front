@@ -42,6 +42,7 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             source ~/.bashrc
+            security -v unlock-keychain -p $KEYCHAIN_TOKEN ~/Library/Keychains/login.keychain-db
             docker login --username $DOCKER_USERNAME --password $DOCKER_TOKEN
             docker pull swtover/govey-front:develop-latest
             docker stop data-platform-front-stage 2> /dev/null || true
