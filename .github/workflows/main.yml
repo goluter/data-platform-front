@@ -41,8 +41,9 @@ jobs:
           password: ${{ secrets.REMOTE_SSH_PASSWORD }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
-            sudo docker pull swtover/govey-front:latest
-            sudo docker run -it --rm -p 7100:80 -d --name data-platform-front swtover/govey-front:latest
+            source ~/.bashrc
+            docker pull swtover/govey-front:latest
+            docker run -it --rm -p 7100:80 -d --name data-platform-front swtover/govey-front:latest
       - uses: act10ns/slack@v1
         with:
           status: ${{ job.status }}
