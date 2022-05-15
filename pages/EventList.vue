@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class="header">
-      <a href="/m_index" target="_self"
+      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
           src="../assets/Arrow back ios.png"
           ALIGN="left"
-      /></a>
+      /></NuxtLink>
 
-      <a style="text-decoration: none" href="/EventList"><span>이벤트</span></a>
+      <NuxtLink to="/EventList" style="color: black; text-decoration-line: none"
+        ><span>이벤트</span></NuxtLink
+      >
     </div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
@@ -45,10 +47,13 @@
       v-if="planned == true"
       class="contents"
     >
-      <a :href="PlannedEvent[i].url">
+      <NuxtLink
+        :to="PlannedEvent[i].url"
+        style="color: black; text-decoration-line: none"
+      >
         <div class="eventtitle">{{ PlannedEvent[i].title }}</div>
         <div class="date">{{ PlannedEvent[i].date }}</div>
-      </a>
+      </NuxtLink>
     </div>
     <div
       v-for="(a, i) in OngoingEvent"
@@ -56,10 +61,13 @@
       v-if="ongoing == true"
       class="contents"
     >
-      <a :href="OngoingEvent[i].url">
+      <NuxtLink
+        :to="OngoingEvent[i].url"
+        style="color: black; text-decoration-line: none"
+      >
         <div class="eventtitle">{{ OngoingEvent[i].title }}</div>
         <div class="date">{{ OngoingEvent[i].date }}</div>
-      </a>
+      </NuxtLink>
     </div>
     <div
       v-for="(a, i) in EndedEvent"
@@ -67,10 +75,13 @@
       v-if="ended == true"
       class="contents"
     >
-      <a :href="EndedEvent[i].url">
+      <NuxtLink
+        :to="EndedEvent[i].url"
+        style="color: black; text-decoration-line: none"
+      >
         <div class="eventtitle">{{ EndedEvent[i].title }}</div>
         <div class="date">{{ EndedEvent[i].date }}</div>
-      </a>
+      </NuxtLink>
     </div>
   </div>
 </template>

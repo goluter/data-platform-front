@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="header">
-      <a href="/eventlist" target="_self"
+      <NuxtLink to="/eventlist" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></a>
+      /></NuxtLink>
 
       <a><span>이벤트</span></a>
     </div>
