@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: swtover/govey-front:latest
+          tags: swtover/govey-front:main-latest
           build-args: |
             API_HOST=https://api.govey.app/
       - name: Pull
@@ -42,8 +42,18 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             source ~/.bashrc
-            docker pull swtover/govey-front:latest
-            docker run -it --rm -p 7100:80 -d --name data-platform-front swtover/govey-front:latest
+            docker pull swtover/govey-front:main-latest
+            docker stop data-platform-front 2> /dev/null || true
+      - name: Run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_SSH_IP }}
+          username: ${{ secrets.REMOTE_SSH_ID }}
+          password: ${{ secrets.REMOTE_SSH_PASSWORD }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script: |
+            source ~/.bashrc
+            docker run -it --rm -p 7100:80 -d --name data-platform-front swtover/govey-front:main-latest
       - uses: act10ns/slack@v1
         with:
           status: ${{ job.status }}
