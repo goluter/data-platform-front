@@ -64,32 +64,6 @@ export default {
   margin: 0 16px;
 }
 
-.header {
-  align-items: center;
-  position: fixed;
-  width: 100%;
-  height: 45px;
-  top: 0; left: 0;
-  border-bottom: 1px solid #ddd;
-  background: white;
-}
-
-.header a {
-  display: table;
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 3px;
-  width: 157px;
-  font-weight: 500;
-  font-size: 24px;
-  text-decoration: none;
-}
-
-.header img {
-  vertical-align: middle;
-  color: dodgerblue;
-}
-
 .welcome {
   padding: 77px 0 30px 0;
 }
