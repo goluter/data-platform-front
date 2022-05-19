@@ -10,11 +10,9 @@
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  data() {
-    return {
-      title: 'Govey',
-    }
-  },
+  name: "LayoutLogin"
 }
 </script>
+
+<style scoped>
+</style>

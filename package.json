@@ -21,6 +21,7 @@
     "chart.js": "^3.7.1",
     "chartjs": "^0.3.24",
     "core-js": "^3.19.3",
+    "jqeury": "^0.0.1-security",
     "jquery": "^3.6.0",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",
