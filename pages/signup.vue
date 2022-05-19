@@ -68,7 +68,7 @@ h3 {
   padding: 15px 15px;
   border-radius: 10px;
   background: #f7f7f8;
-  vertical-align: center;
+  vertical-align: top;
 }
 
 #ct {
@@ -154,7 +154,7 @@ h3 {
   width: 100%;
   height: 100%;
   margin-bottom: 21px;
-  padding-right: 30%;
+  padding-right: 150px;
 }
 
 .signup .input-email input[type=submit] {
