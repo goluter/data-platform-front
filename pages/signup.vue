@@ -188,7 +188,6 @@ h3 {
 
 .signup .input-password input[type=password] {
   width: 100%;
-  padding-left: 5px;
 }
 
 .signup input[id=signup] {
