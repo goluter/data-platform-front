@@ -157,6 +157,10 @@ h3 {
   padding-right: 150px;
 }
 
+.signup .input-email input[type=email] {
+  width: 100%;
+}
+
 .signup .input-email input[type=submit] {
   position: absolute;
   top: 0;
