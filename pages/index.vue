@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+<template></template>
+
+<script>
+export default {
+  name: 'index',
+  layout: 'DefaultLayout',
+
+  componets: {},
+}
+</script>
+
+<style></style>
+=======
 <template>
   <v-container fluid class="wrap">
     <Header />
@@ -275,3 +289,4 @@ export default {
 }
 </style>
 
+>>>>>>> c130b57436acbb273f180a477042c27b8d6bfd4d
