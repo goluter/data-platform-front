@@ -1,5 +1,8 @@
 <template>
   <div id="ct">
+    <div class="header">
+      <a href="/"><img src="/govey.svg" alt="govey"></a>
+    </div>
     <div class="wrapper">
       <div class="welcome">
         <h1>로그인</h1>
@@ -62,32 +65,6 @@ export default {
 .wrapper {
   font-family: "Roboto", sans-serif;
   margin: 0 16px;
-}
-
-.header {
-  align-items: center;
-  position: fixed;
-  width: 100%;
-  height: 45px;
-  top: 0; left: 0;
-  border-bottom: 1px solid #ddd;
-  background: white;
-}
-
-.header a {
-  display: table;
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 3px;
-  width: 157px;
-  font-weight: 500;
-  font-size: 24px;
-  text-decoration: none;
-}
-
-.header img {
-  vertical-align: middle;
-  color: dodgerblue;
 }
 
 .welcome {
