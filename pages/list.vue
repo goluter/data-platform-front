@@ -41,30 +41,46 @@
         <v-col cols="3">
           검색
         </v-col>
-        <v-col cols="3">
-          보상종류
+        <v-col cols="4">
+          <v-autocomplete
+            v-model="a"
+            filled
+            rounded
+            solo
+            dense
+            :items="b"
+            label="보상종류"
+          ></v-autocomplete>
         </v-col>
       </v-row>
     </div>
     <div class="gray-line">
     </div>
     <div v-if="tab1 == true">
-      <div style="text-align:right;">
-        최신순
+      <div class="mt-3 d-flex justify-end">
+        <div style="width:30%;">
+        <v-autocomplete
+        v-model="automodel"
+        filled
+        rounded
+        dense
+        :items="auto_models"
+        ></v-autocomplete>
+        </div>
       </div>
-      <div class="mt-3">
+      <div class="mt-3" style="position:relative;">
         <v-row>
           <v-col cols="4">
             <div class="rounded-xl gray-box"></div>
           </v-col>
-          <v-col cols="8">
+          <v-col cols="6" >
             <v-row class="mt-1">
               상명대학교 학생들에게 물어봅니다.
             </v-row>
             <v-row>
               2022.01.12~2022.04.23
             </v-row>
-            <v-row style="font-size:9px;" class="mt-15">
+            <v-row style="font-size:9px; position:absolute; bottom:25px;" >
               <div class="mr-7">
                 114,300명이 참여 중입니다.
               </div>
@@ -90,7 +106,11 @@ export default {
     return{
       tab1 : true,
       tab2 : false,
-      tab3 : false
+      tab3 : false,
+      automodel : "최신순",
+      auto_models:["최신순","참여순","포인트순"],
+      a : null,
+      b : ["포인트","기프티콘"]
     }
   },
   
