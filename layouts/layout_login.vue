@@ -2,7 +2,10 @@
   <v-app>
     <v-main>
       <v-container>
-        <Nuxt />
+        <div class="header">
+          <a href="/"><img src="/govey.svg" alt="govey"></a>
+        </div>
+          <Nuxt />
       </v-container>
     </v-main>
   </v-app>
@@ -15,4 +18,31 @@ export default {
 </script>
 
 <style scoped>
+
+.header {
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 45px;
+  top: 0; left: 0;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+
+.header a {
+  display: table;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 3px;
+  width: 157px;
+  font-weight: 500;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.header img {
+  vertical-align: middle;
+  color: dodgerblue;
+}
 </style>
