@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="wrap">
     <div>
-      <v-tabs style="width:100%" fixed-tabs >
+      <v-tabs style="width:100%;" fixed-tabs >
         <v-tab
         @click="
         tab1=true
@@ -64,7 +64,7 @@
         ></v-autocomplete>
         </div>
       </div>
-      <div v-for="(list,i) in 5" :key="list">
+      <div v-for="(list,i) in 6" :key="list">
         <div class="mt-3" style="position:relative;">
           <v-row>
             <v-col cols="4">
@@ -72,14 +72,14 @@
             </v-col>
             <v-col cols="6" >
               <v-row class="mt-1">
-                상명대학교 학생들에게 물어봅니다.
+                {{mainlist[i].que}}
               </v-row>
               <v-row>
-                2022.01.12~2022.04.23
+                {{mainlist[i].date}}
               </v-row>
               <v-row style="font-size:9px; position:absolute; bottom:25px;" >
                 <div class="mr-7">
-                  114,300명이 참여 중입니다.
+                  {{mainlist[i].num}}명이 참여 중입니다.
                 </div>
                 <div>
                   #대학생 #새학기 #축제
@@ -88,7 +88,17 @@
             </v-col>
           </v-row>
         </div>
-        <div class="blue_box mt-2"></div>
+        <div style="display: flex; justify-content: center;" class="mt-2">
+          <div class="triangle"></div>
+        </div>
+        <div class="blue_box d-flex">
+          <div class="rounded-xl pl-2 pr-2 round_gift mt-2 ml-2">
+            <img src="../assets/giftbox 2.png" /> 스타벅스
+          </div>
+          <div class="rounded-xl pl-2 pr-2 ml-2 round_gift mt-2" >
+            <img src="../assets/coin 2.png" /> 100P
+          </div>
+        </div>
       </div>
     </div>
   </v-container>
@@ -96,6 +106,7 @@
 
 
 <script>
+import mainlist from 'assets/data/Mobile_main_list'
 
 
 export default {
@@ -111,7 +122,8 @@ export default {
       gift_model : null,
       gift_models : ["포인트","기프티콘"],
       tag_model : null,
-      tag_models : ["대학생","사회생활","코딩"]
+      tag_models : ["대학생","사회생활","코딩"],
+      mainlist
     }
   },
   
@@ -146,5 +158,18 @@ export default {
   background-color: #83e0fd;
   height: 41px;
   widows: 100%;
+}
+.round_gift{
+  background-color: white; 
+  color: black;
+  height: 60%;
+}
+.triangle{
+  width: 0px;
+  height: 0px;
+  border-bottom: 10px solid #83e0fd;;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  
 }
 </style>
