@@ -76,8 +76,24 @@
       </div>
     </div>
     <div v-if="onebyone == true">
-      <v-btn style="float: right">문의하기</v-btn>
-      <div class="onetitle">준구파워</div>
+      <div align="right">
+        <v-btn
+          depressed
+          color="primary"
+          style="
+            width: 102px;
+            height: 50px;
+            border-radius: 10px;
+            margin: 9px 13px 0px 0px;
+          "
+          >문의하기</v-btn
+        >
+      </div>
+
+      <div class="onemain">
+        <div class="onetitle">하 증말 이게 뭐야?</div>
+        <div class="time">답변 전</div>
+      </div>
     </div>
   </div>
 </template>
@@ -104,6 +120,32 @@ export default {
 
 <style>
 .onetitle {
+  float: left;
+  margin: 23.9px 0px 0px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  text-align: left;
+}
+.time {
+  float: right;
+  margin: 23.9px 18px 0px 0px;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  text-align: left;
+}
+.onemain {
+  height: 65px;
+  flex-grow: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #e9e9e9;
 }
 .chevron {
   float: right;
