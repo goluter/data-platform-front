@@ -48,6 +48,7 @@ export default {
   display: block;
   margin-top: 30px;
   margin-bottom: 14px;
+  font-size: 14px;
 }
 .question {
   position: relative;
