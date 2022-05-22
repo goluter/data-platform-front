@@ -115,7 +115,6 @@ export default {
 .eventtitle {
   flex-grow: 0;
   margin: 24px 0px 0px 17px;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -142,7 +141,6 @@ export default {
   flex-grow: 0;
   margin: auto;
   display: table;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -163,7 +161,6 @@ export default {
 .date {
   flex-grow: 0;
   margin: 13px 0px 19px 17px;
-  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;

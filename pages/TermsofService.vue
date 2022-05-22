@@ -61,7 +61,6 @@ export default {
   flex-grow: 0;
   margin: auto;
   display: table;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -74,7 +73,6 @@ export default {
 .title1 {
   height: 19px;
   margin: 28px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 16px;
   font-weight: bold;
   font-stretch: normal;
@@ -85,7 +83,6 @@ export default {
   color: #000;
 }
 .title2 {
-  font-family: Roboto;
   font-size: 16px;
   font-weight: bold;
   font-stretch: normal;
@@ -97,7 +94,6 @@ export default {
 }
 .sub1 {
   margin: 12px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -110,7 +106,6 @@ export default {
 }
 .sub2 {
   margin: 12px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -122,7 +117,6 @@ export default {
 }
 .sub3 {
   margin: 12px 21px 0px 18px;
-  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -134,7 +128,6 @@ export default {
 }
 .title3 {
   margin: 20px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: bold;
   font-stretch: normal;

@@ -25,7 +25,6 @@ export default {
 
 <style scoped>
 .wrapper {
-  font-family: "Roboto", sans-serif;
   max-width: 500px;
   margin: 55px auto 16px auto;
 }
