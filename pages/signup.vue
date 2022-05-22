@@ -77,7 +77,6 @@ h3 {
 }
 
 .wrapper {
-  font-family: "Roboto", sans-serif;
   margin: 0 16px;
 }
 
