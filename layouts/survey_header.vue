@@ -8,7 +8,7 @@
         </NuxtLink>
         </v-col>
         <v-col cols="8">
-            상명대학교 학생들에게 묻습니다.
+            <b>상명대학교 학생들에게 묻습니다.</b>
         </v-col>
         <v-col cols="1">
             <img src="../assets/Ios share.png"/>
