@@ -10,7 +10,7 @@
           ALIGN="left"
       /></NuxtLink>
 
-      <a><span>공지사항</span></a>
+      <a><span>가이드</span></a>
     </div>
 
     <div style="border-bottom: 1px solid #d3d3d3">

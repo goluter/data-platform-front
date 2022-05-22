@@ -77,17 +77,23 @@
     </div>
     <div v-if="onebyone == true">
       <div align="right">
-        <v-btn
-          depressed
-          color="primary"
-          style="
-            width: 102px;
-            height: 50px;
-            border-radius: 10px;
-            margin: 9px 13px 0px 0px;
-          "
-          >문의하기</v-btn
+        <NuxtLink
+          to="/InquiryPage
+        "
+          style="color: black; text-decoration-line: none"
         >
+          <v-btn
+            depressed
+            color="primary"
+            style="
+              width: 102px;
+              height: 50px;
+              border-radius: 10px;
+              margin: 9px 13px 0px 0px;
+            "
+            >문의하기</v-btn
+          >
+        </NuxtLink>
       </div>
 
       <div class="onemain">
