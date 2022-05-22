@@ -78,8 +78,7 @@
     <div v-if="onebyone == true">
       <div align="right">
         <NuxtLink
-          to="/InquiryPage
-        "
+          to="/InquiryPage"
           style="color: black; text-decoration-line: none"
         >
           <v-btn
