@@ -1,5 +1,5 @@
 <template>
-<v-container fluid class="wrap">
+<div class="wrap">
     <Header/>
     <div>
         <v-row>
@@ -7,7 +7,7 @@
             <v-col>#대학생 #새학기 #축제</v-col>
         </v-row>
         <v-row>
-            <v-col><h1>상명대학교 학생들에게 묻습니다.</h1></v-col>
+            <v-col><h2>상명대학교 학생들에게 묻습니다.</h2></v-col>
         </v-row>
         <v-row>
             <v-col>설문기간 : 000~000</v-col>
@@ -42,13 +42,17 @@
         </div>
     </div>
     <div class="gray_box">
-        설문자 정보
+        <div class="pt-2 pl-2">
+            설문자 정보
+        </div>
     </div>
     <div style="height:80px;">
         상명대학교
     </div>
     <div class="gray_box">
-        설문 정보
+        <div class="pt-2 pl-2">
+            설문 정보
+        </div>
     </div>
     <div style="height:80px;">
         블라블라블라 
@@ -64,8 +68,8 @@
             </v-row>
         </div>
     </div>
-    
-</v-container>
+</div>
+
 
 
 
@@ -105,7 +109,7 @@ export default {
 }
 .gray_box{
     width:100%; 
-    height:30px;
+    height:40px;
     background-color: #eeeeee;
 }
 .gray_box2{

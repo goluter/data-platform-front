@@ -1,5 +1,5 @@
 <template>
-<v-container>
+
     <div class="header">
         <v-row>
         <v-col cols="1">
@@ -22,7 +22,7 @@
         </v-row>
       
     </div>
-</v-container>
+
 
 </template>
 
