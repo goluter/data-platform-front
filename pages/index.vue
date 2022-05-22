@@ -13,9 +13,9 @@ export default {
 <style></style>
 =======
 <template>
-  <v-container fluid class="wrap">
+  <v-container class="pa-0">
     <Header />
-    <div class="ma-5">
+    <div class="ma-5 content">
       <v-row justify="space-between">
         <v-col cols="auto"><h1>추천 설문</h1></v-col>
         <NuxtLink to="/list/" style="color: black; text-decoration-line: none">
@@ -268,24 +268,27 @@ import Header from '/layouts/layout_header.vue'
 import Footer from '/layouts/layout_footer.vue'
 
 export default {
-  name: 'index',
-  layout: 'DefaultLayout',
+  name: 'Index',
   components: {
     Header,
     Footer,
   },
+  layout: 'DefaultLayout',
 }
 </script>
 
 <style>
 .wrap {
   max-width: 500px;
-  font-family: DMSans;
 }
 .gray-box {
   background-color: gray;
   width: 70px;
   height: 75px;
+}
+
+.content {
+  padding-top: 40px;
 }
 </style>
 

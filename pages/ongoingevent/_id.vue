@@ -45,7 +45,6 @@ export default {
   width: 204px;
   height: 16px;
   margin: 32px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -64,7 +63,6 @@ export default {
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -94,7 +92,6 @@ export default {
   flex-grow: 0;
   margin: auto;
   display: table;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -119,7 +116,7 @@ export default {
   height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;
-  font-family: Roboto;
+  amily: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
