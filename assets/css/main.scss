@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'NanumSqure';
+  src: url(./fonts/NanumSquare_acR.ttf) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  font-family: 'Apple SD Gothic Neo', '맑은 고딕', 'NanumSqure', 'Malgun Gothic',
+    sans-serif;
+}
