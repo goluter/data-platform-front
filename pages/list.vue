@@ -1,28 +1,25 @@
 <template>
   <v-container fluid class="wrap">
     <div>
-      <v-tabs style="width:100%;" fixed-tabs color="#1cddb7" >
+      <v-tabs style="width:100%;" fixed-tabs >
         <v-tab
         @click="
         tab1=true
         tab2=false
         tab3=false
-        "
-        style="color:black; font-size:18px;"><b>예정</b></v-tab>
+        ">예정</v-tab>
         <v-tab
         @click="
         tab1=false
         tab2=true
         tab3=false
-        "
-        style="color:black; font-size:18px;"><b>진행중</b></v-tab>
+        ">진행중</v-tab>
         <v-tab
         @click="
         tab1=false
         tab2=false
         tab3=true
-        "
-        style="color:black; font-size:18px;"><b>마감</b></v-tab>
+        ">마감</v-tab>
       </v-tabs>
     </div>
     <div class="gray-line">
