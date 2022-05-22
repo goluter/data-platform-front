@@ -95,11 +95,25 @@
         <div class="time">답변 전</div>
       </div>
     </div>
+    <div
+      v-for="(a, i) in GuideData"
+      :key="a"
+      class="onemain"
+      v-if="guide == true"
+    >
+      <NuxtLink
+        :to="GuideData[i].url"
+        style="color: black; text-decoration-line: none"
+      >
+        <div class="onetitle">{{ GuideData[i].title }}</div>
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
 <script>
 import FaqData from '../assets/data/FAQdata.js'
+import GuideData from '../assets/data/GuideData.js'
 export default {
   name: 'ServiceCenter',
   layout: 'default',
@@ -113,6 +127,7 @@ export default {
       chevrondown: [true, true, true, true],
       showanswer: [false, false, false, false],
       FaqData,
+      GuideData,
     }
   },
 }
