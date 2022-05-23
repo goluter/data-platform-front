@@ -72,7 +72,7 @@
 
 <script>
 export default {
-  name: 'surveydetail-Page',
+  name: 'SurveyDetail',
   layout: 'survey',
 }
 </script>
@@ -80,8 +80,6 @@ export default {
 <style>
 .wrap {
   max-width: 500px;
-  font-family: DMSans;
-
 }
 .black_box{
   background-color: #626262;

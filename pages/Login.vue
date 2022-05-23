@@ -46,7 +46,7 @@
 <script>
 export default {
   name: "LoginPage",
-  layout: 'layout_login',
+  layout: 'login',
   head: {
     title: 'Log In'
   }

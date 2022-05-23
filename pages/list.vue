@@ -133,7 +133,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .wrap{
     max-width: 450px;
 }
@@ -157,7 +157,7 @@ export default {
 .blue_box{
   background-color: #83e0fd;
   height: 41px;
-  widows: 100%;
+  width: 100%;
 }
 .round_gift{
   background-color: white; 
