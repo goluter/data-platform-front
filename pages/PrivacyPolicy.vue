@@ -41,7 +41,6 @@
 <script>
 export default {
   name: 'PrivacyPolicy',
-  layout: 'default',
   data() {
     return {
       num: 0,
