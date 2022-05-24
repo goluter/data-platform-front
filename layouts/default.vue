@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-container style="max-width: 500px">
+      <v-container style="max-width: 500px; padding: 0">
         <div class="header_container">
           <v-toolbar class="header" dense elevation="0">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -21,63 +21,23 @@
           </v-toolbar>
           <v-navigation-drawer v-model="drawer" app temporary>
             <v-list nav dense>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <img src="../assets/premium-icon-person-2815428.png">
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>로그인</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider></v-divider>
               <v-list-item-group
                   v-model="group"
-                  active-class="deep-purple--text text--accent-4"
+                  active-class="text--accent-4"
               >
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >리포트</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >공지사항</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >이벤트</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >명예의전당</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >고객센터</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >개인정보처리방침</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >이용약관</NuxtLink
-                    >
-                  </v-list-item-title>
+                <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.page"></v-list-item-title>
+                  </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
@@ -102,33 +62,18 @@
         <Nuxt />
         <div class="footer">
           <v-row no-gutters>
-            <v-col class="text-center">
-              <NuxtLink to="/" style="color: black; text-decoration-line: none">
-                <div><img class="footer-icon" src="../assets/home.png" /></div>
-                <div>홈</div>
-              </NuxtLink>
-            </v-col>
-            <v-col class="text-center">
-              <NuxtLink to="/list/" style="color: black; text-decoration-line: none">
-                <div><img class="footer-icon" src="../assets/survey.png" /></div>
-                <div>설문</div>
-              </NuxtLink>
-            </v-col>
-            <v-col class="text-center">
-              <NuxtLink to="/" style="color: black; text-decoration-line: none">
-                <div><img class="footer-icon" src="../assets/store.png" /></div>
-                스토어
-              </NuxtLink>
-            </v-col>
-            <v-col class="text-center">
-              <NuxtLink
-                  to="/meminfo/"
-                  style="color: black; text-decoration-line: none"
-              >
-                <div><img class="footer-icon" src="../assets/Male User.png" /></div>
-                <div>마이</div>
-              </NuxtLink>
-            </v-col>
+            <v-bottom-navigation
+                grow
+                class="elevation-0"
+            >
+              <v-btn
+                  v-for="(item, i) in fitems"
+                  :key="i"
+                  :to="item.to"
+              > <span>{{ item.page }}</span>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-btn>
+            </v-bottom-navigation>
           </v-row>
         </div>
       </v-container>
@@ -137,11 +82,24 @@
 </template>
 
 <script>
-import Planneddetail from "../pages/endedevent/_id.vue";
 export default {
-  components: {Planneddetail},
   data() {
     return {
+      items: [
+        {page: '리포트', to: '/Report',},
+        {page: '공지사항', to: '/Notice',},
+        {page: '이벤트', to: '/EventList',},
+        {page: '명예의전당', to: '/Rank',},
+        {page: '고객센터', to: '/ServiceCenter',},
+        {page: '개인정보처리방침', to: '/PrivacyPolicy',},
+        {page: '이용약관', to: '/TermsofService',},
+      ],
+      fitems: [
+        {page: '홈', icon: 'mdi-home', to: '/'},
+        {page: '설문', icon: 'mdi-text-box-edit', to: '/SurveyList'},
+        {page: '스토어', icon: 'mdi-store', to: '/Store'},
+        {page: '마이', icon: 'mdi-account-circle', to: '/MyPage'},
+      ],
       drawer: false,
       group: null,
     }
@@ -180,10 +138,6 @@ export default {
   bottom: 0;
   left: 0;
   margin: auto;
-  padding-top: 11px;
-  border-style: solid none none none;
-  border-width: 1px;
-  border-color: #DBDBDB;
   background-color: white;
   font-size: 14px;
   z-index: 5;
