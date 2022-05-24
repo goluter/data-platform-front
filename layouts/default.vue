@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-container style="max-width: 500px">
+      <v-container style="max-width: 500px; padding: 0">
         <div class="header_container">
           <v-toolbar class="header" dense elevation="0">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -62,33 +62,18 @@
         <Nuxt />
         <div class="footer">
           <v-row no-gutters>
-            <v-col class="text-center">
-              <NuxtLink to="/" style="color: black; text-decoration-line: none">
-                <div><img class="footer-icon" src="../assets/home.png" /></div>
-                <div>홈</div>
-              </NuxtLink>
-            </v-col>
-            <v-col class="text-center">
-              <NuxtLink to="/SurveyList" style="color: black; text-decoration-line: none">
-                <div><img class="footer-icon" src="../assets/survey.png" /></div>
-                <div>설문</div>
-              </NuxtLink>
-            </v-col>
-            <v-col class="text-center">
-              <NuxtLink to="/" style="color: black; text-decoration-line: none">
-                <div><img class="footer-icon" src="../assets/store.png" /></div>
-                스토어
-              </NuxtLink>
-            </v-col>
-            <v-col class="text-center">
-              <NuxtLink
-                  to="/meminfo/"
-                  style="color: black; text-decoration-line: none"
-              >
-                <div><img class="footer-icon" src="../assets/Male User.png" /></div>
-                <div>마이</div>
-              </NuxtLink>
-            </v-col>
+            <v-bottom-navigation
+                grow
+                class="elevation-0"
+            >
+              <v-btn
+                  v-for="(item, i) in fitems"
+                  :key="i"
+                  :to="item.to"
+              > <span>{{ item.page }}</span>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-btn>
+            </v-bottom-navigation>
           </v-row>
         </div>
       </v-container>
@@ -97,9 +82,7 @@
 </template>
 
 <script>
-import Planneddetail from "../pages/endedevent/_id.vue";
 export default {
-  components: {Planneddetail},
   data() {
     return {
       items: [
@@ -110,6 +93,12 @@ export default {
         {page: '고객센터', to: '/ServiceCenter',},
         {page: '개인정보처리방침', to: '/PrivacyPolicy',},
         {page: '이용약관', to: '/TermsofService',},
+      ],
+      fitems: [
+        {page: '홈', icon: 'mdi-home', to: '/'},
+        {page: '설문', icon: 'mdi-text-box-edit', to: '/SurveyList'},
+        {page: '스토어', icon: 'mdi-store', to: '/Store'},
+        {page: '마이', icon: 'mdi-account-circle', to: '/MyPage'},
       ],
       drawer: false,
       group: null,
@@ -149,10 +138,6 @@ export default {
   bottom: 0;
   left: 0;
   margin: auto;
-  padding-top: 11px;
-  border-style: solid none none none;
-  border-width: 1px;
-  border-color: #DBDBDB;
   background-color: white;
   font-size: 14px;
   z-index: 5;
