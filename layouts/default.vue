@@ -21,7 +21,7 @@
           </v-toolbar>
           <v-navigation-drawer v-model="drawer" app temporary>
             <v-list nav dense>
-              <v-list-item>
+              <v-list-item to="/Login">
                 <v-list-item-avatar>
                   <img src="../assets/premium-icon-person-2815428.png">
                 </v-list-item-avatar>
@@ -98,7 +98,7 @@ export default {
         {page: '홈', icon: 'mdi-home', to: '/'},
         {page: '설문', icon: 'mdi-text-box-edit', to: '/SurveyList'},
         {page: '스토어', icon: 'mdi-store', to: '/Store'},
-        {page: '마이', icon: 'mdi-account-circle', to: '/MyPage'},
+        {page: '마이', icon: 'mdi-account-circle', to: '/Login'},
       ],
       drawer: false,
       group: null,
