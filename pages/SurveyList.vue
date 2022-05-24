@@ -134,7 +134,7 @@ export default {
 
 <style scoped>
 .wrap{
-    max-width: 450px;
+    max-width: 500px;
 }
 .gray-line{
   width:100%;   
