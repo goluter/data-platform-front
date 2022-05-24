@@ -123,7 +123,7 @@
 <script>
 import FaqData from '../assets/data/FAQdata.js'
 import GuideData from '../assets/data/GuideData.js'
-import InquiryData from '../assets/data/InquiryData.js'
+import InquiryData from '../assets/data/Inquirydata.js'
 export default {
   name: 'ServiceCenter',
   layout: 'default',
