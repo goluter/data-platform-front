@@ -95,9 +95,13 @@
         </NuxtLink>
       </div>
 
-      <div class="onemain">
-        <div class="onetitle">하 증말 이게 뭐야?</div>
-        <div class="time">답변 전</div>
+      <div v-for="(a, i) in InquiryData" :key="a" class="onemain">
+        <nuxt-link
+          style="color: black; text-decoration-line: none"
+          :to="InquiryData[i].userurl"
+          ><div class="onetitle">{{ InquiryData[i].question }}</div>
+          <div class="time">{{ InquiryData[i].check }}</div></nuxt-link
+        >
       </div>
     </div>
     <div
@@ -119,6 +123,7 @@
 <script>
 import FaqData from '../assets/data/FAQdata.js'
 import GuideData from '../assets/data/GuideData.js'
+import InquiryData from '../assets/data/Inquirydata.js'
 export default {
   name: 'ServiceCenter',
   layout: 'default',
@@ -133,6 +138,7 @@ export default {
       showanswer: [false, false, false, false],
       FaqData,
       GuideData,
+      InquiryData,
     }
   },
 }
