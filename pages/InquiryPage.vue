@@ -10,7 +10,10 @@
           ALIGN="left"
       /></NuxtLink>
 
-      <a><span>1대1 문의</span><v-btn x-small color="#30cdae">제출</v-btn></a>
+      <a
+        ><span>1대1 문의</span
+        ><v-btn class="button" x-small color="#30cdae">제출</v-btn></a
+      >
     </div>
     <div>
       <div class="titleinput">
@@ -31,7 +34,7 @@ export default {}
 </script>
 
 <style>
-.v-btn {
+.button {
   min-width: 47px;
   min-height: 30px;
   flex-grow: 0;
