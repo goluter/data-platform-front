@@ -21,63 +21,23 @@
           </v-toolbar>
           <v-navigation-drawer v-model="drawer" app temporary>
             <v-list nav dense>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <img src="../assets/premium-icon-person-2815428.png">
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>로그인</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider></v-divider>
               <v-list-item-group
                   v-model="group"
-                  active-class="deep-purple--text text--accent-4"
+                  active-class="text--accent-4"
               >
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >리포트</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >공지사항</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >이벤트</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >명예의전당</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >고객센터</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >개인정보처리방침</NuxtLink
-                    >
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-title>
-                    <NuxtLink to="/" style="color: black; text-decoration-line: none"
-                    >이용약관</NuxtLink
-                    >
-                  </v-list-item-title>
+                <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.page"></v-list-item-title>
+                  </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
@@ -109,7 +69,7 @@
               </NuxtLink>
             </v-col>
             <v-col class="text-center">
-              <NuxtLink to="/list/" style="color: black; text-decoration-line: none">
+              <NuxtLink to="/SurveyList" style="color: black; text-decoration-line: none">
                 <div><img class="footer-icon" src="../assets/survey.png" /></div>
                 <div>설문</div>
               </NuxtLink>
@@ -142,6 +102,15 @@ export default {
   components: {Planneddetail},
   data() {
     return {
+      items: [
+        {page: '리포트', to: '/Report',},
+        {page: '공지사항', to: '/Notice',},
+        {page: '이벤트', to: '/EventList',},
+        {page: '명예의전당', to: '/Rank',},
+        {page: '고객센터', to: '/ServiceCenter',},
+        {page: '개인정보처리방침', to: '/PrivacyPolicy',},
+        {page: '이용약관', to: '/TermsofService',},
+      ],
       drawer: false,
       group: null,
     }

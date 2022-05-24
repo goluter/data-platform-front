@@ -64,7 +64,7 @@
         ></v-autocomplete>
         </div>
       </div>
-      <div v-for="(list,i) in 6" :key="list">
+      <div v-for="(list,i) in 6" :key="Survey">
         <div class="mt-3" style="position:relative;">
           <v-row>
             <v-col cols="4">
@@ -110,8 +110,7 @@ import mainlist from 'assets/data/Mobile_main_list'
 
 
 export default {
-  name: 'list-Page',
-  layout: 'DefaultLayout',
+  name: 'SurveyList',
   data(){
     return{
       tab1 : true,
