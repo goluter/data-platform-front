@@ -64,7 +64,7 @@
         ></v-autocomplete>
         </div>
       </div>
-      <div v-for="(list,i) in 6" :key="list">
+      <div v-for="(list,i) in 6" :key="Survey">
         <div class="mt-3" style="position:relative;">
           <v-row>
             <v-col cols="4">
@@ -110,8 +110,7 @@ import mainlist from 'assets/data/Mobile_main_list'
 
 
 export default {
-  name: 'list-Page',
-  layout: 'DefaultLayout',
+  name: 'SurveyList',
   data(){
     return{
       tab1 : true,
@@ -133,7 +132,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .wrap{
     max-width: 450px;
 }
@@ -157,7 +156,7 @@ export default {
 .blue_box{
   background-color: #83e0fd;
   height: 41px;
-  widows: 100%;
+  width: 100%;
 }
 .round_gift{
   background-color: white; 

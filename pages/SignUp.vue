@@ -50,7 +50,7 @@
 <script>
 export default {
   name: "SignupPage",
-  layout: 'layout_login',
+  layout: 'login',
   head: {
     title: 'Sign Up'
   }

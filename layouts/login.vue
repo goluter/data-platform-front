@@ -13,7 +13,6 @@
 
 <script>
 export default {
-  name: "LayoutLogin"
 }
 </script>
 
@@ -24,7 +23,9 @@ export default {
   z-index: 1;
   width: 100%;
   height: 45px;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
+  padding: 0;
   border-bottom: 1px solid #ddd;
   background: white;
 }
