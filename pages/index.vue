@@ -14,7 +14,6 @@ export default {
 =======
 <template>
   <v-container class="pa-0">
-    <Header />
     <div class="ma-5 content">
       <v-row justify="space-between">
         <v-col cols="auto"><h1>추천 설문</h1></v-col>
@@ -259,21 +258,12 @@ export default {
     <br />
     <br />
     <br />
-    <Footer />
   </v-container>
 </template>
 
 <script>
-import Header from '/layouts/layout_header.vue'
-import Footer from '/layouts/layout_footer.vue'
-
 export default {
-  name: 'Index',
-  components: {
-    Header,
-    Footer,
-  },
-  layout: 'DefaultLayout',
+  name: 'IndexPage',
 }
 </script>
 
@@ -286,9 +276,7 @@ export default {
   width: 70px;
   height: 75px;
 }
-
 .content {
-  padding-top: 40px;
 }
 </style>
 

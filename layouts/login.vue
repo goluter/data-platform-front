@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <v-container>
-        <div class="header">
+        <div class="login-header">
           <a href="/"><img src="/govey.svg" alt="govey"></a>
         </div>
           <Nuxt />
@@ -13,24 +13,24 @@
 
 <script>
 export default {
-  name: "LayoutLogin"
+  name: 'LoginLayout'
 }
 </script>
 
 <style scoped>
-
-.header {
+.login-header {
   align-items: center;
   position: fixed;
   z-index: 1;
   width: 100%;
   height: 45px;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
+  padding: 0;
   border-bottom: 1px solid #ddd;
   background: white;
 }
-
-.header a {
+.login-header a {
   display: table;
   text-align: center;
   margin: 0 auto;
@@ -40,8 +40,7 @@ export default {
   font-size: 24px;
   text-decoration: none;
 }
-
-.header img {
+.login-header img {
   vertical-align: middle;
   color: dodgerblue;
 }

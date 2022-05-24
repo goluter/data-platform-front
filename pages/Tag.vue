@@ -16,7 +16,7 @@
 <script>
 export default {
   name: "MyTag",
-  layout: "layout_login",
+  layout: "login",
   head: {
     title: 'Tag'
   }
@@ -47,6 +47,7 @@ export default {
 .desc {
   display: block;
   margin-bottom: 14px;
+  font-size: 14px;
 }
 .box-container {
   position: relative;
@@ -60,6 +61,8 @@ export default {
   height: 85px;
   padding-top: 28px;
   text-align: center;
-  background: #1cddb7
+  background: #1cddb7;
+  font-size: 15px;
+  font-weight: 600;
 }
 </style>

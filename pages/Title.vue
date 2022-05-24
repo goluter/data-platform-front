@@ -43,7 +43,7 @@
 <script>
 export default {
   name: "TitleEarned",
-  layout: "layout_login",
+  layout: "login",
   head: {
     title: 'Tag'
   }
