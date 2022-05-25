@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-tab {
   font-size: 18px;
 }
