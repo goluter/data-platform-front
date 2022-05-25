@@ -1,49 +1,13 @@
 <template>
   <v-container class="pa-0">
-    <div class="ma-5 content">
-      <v-row justify="space-between">
-        <v-col cols="auto"><h1>추천 설문</h1></v-col>
-        <NuxtLink to="/list/" style="color: black; text-decoration-line: none">
-          <v-col cols="auto">더보기</v-col>
-        </NuxtLink>
+    <Carousels></Carousels>
+    <div class="black rounded-xl ma-5" style="color: white">
+      <v-row class="ml-4">
+        <v-col><img src="../assets/survey.png" /> 설문 등록</v-col>
       </v-row>
-      <v-row>
-        <v-col>홍길동님이 좋아하실만한 설문을 준비했어요!</v-col>
+      <v-row class="ml-4">
+        <v-col>지금 등록하시면 1000P를 바로 적립해드려요!</v-col>
       </v-row>
-    </div>
-    <div>
-      <NuxtLink to="/" style="color: black; text-decoration-line: none">
-        <div
-          class="blue rounded-xl ma-5"
-          style="color: white; height: 200px; position: relative"
-        >
-          <v-row justify="end" class="mr-4">
-            <img src="../assets/play.png" />
-          </v-row>
-          <v-row justify="end" class="mr-4 mt-8">
-            2001명이 참여중이에요!
-          </v-row>
-          <div style="position: absolute; bottom: 20px" class="ml-3">
-            <v-row class="ml-5"> 2021 대학생들에게 물어봅니다! </v-row>
-            <v-row class="ml-5"> 설문자:상명대학교 </v-row>
-          </div>
-        </div>
-      </NuxtLink>
-    </div>
-    <div>
-      <NuxtLink
-        to="/surveymaker/"
-        style="color: black; text-decoration-line: none"
-      >
-        <div class="black rounded-xl ma-5" style="color: white">
-          <v-row class="ml-4">
-            <v-col><img src="../assets/survey.png" /> 설문 등록</v-col>
-          </v-row>
-          <v-row class="ml-4">
-            <v-col>지금 등록하시면 1000P를 바로 적립해드려요!</v-col>
-          </v-row>
-        </div>
-      </NuxtLink>
     </div>
     <div class="ma-5">
       <v-row justify="space-between">
@@ -59,8 +23,8 @@
     <div>
       <NuxtLink to="/" style="color: black; text-decoration-line: none">
         <div
-          class="rounded-xl ml-5 mr-5"
-          style="
+            class="rounded-xl ml-5 mr-5"
+            style="
             background-color: white;
             border: 1px solid black;
             height: 110px;
@@ -77,7 +41,7 @@
                 <v-col><b>대학생들에게 묻습니다</b></v-col>
               </v-row>
               <v-row justify="end" class="mr-1" style="font-size: 10px"
-                >4일 남음</v-row
+              >4일 남음</v-row
               >
               <v-row style="font-size: 10px" justify="space-between">
                 <v-col cols="6">110명이 참여 중입니다.</v-col>
@@ -87,8 +51,8 @@
           </v-row>
         </div>
         <div
-          class="rounded-xl ml-5 mr-5"
-          style="
+            class="rounded-xl ml-5 mr-5"
+            style="
             background-color: #494949;
             position: relative;
             top: -50px;
@@ -97,18 +61,18 @@
           "
         >
           <div
-            style="position: absolute; bottom: 2px; color: white"
-            class="ml-5 d-flex"
+              style="position: absolute; bottom: 2px; color: white"
+              class="ml-5 d-flex"
           >
             <div
-              class="rounded-xl pl-2 pr-2"
-              style="background-color: white; color: black"
+                class="rounded-xl pl-2 pr-2"
+                style="background-color: white; color: black"
             >
               <img src="../assets/giftbox 2.png" /> 스타벅스
             </div>
             <div
-              class="rounded-xl pl-2 pr-2 ml-2"
-              style="background-color: white; color: black"
+                class="rounded-xl pl-2 pr-2 ml-2"
+                style="background-color: white; color: black"
             >
               <img src="../assets/coin 2.png" /> 100P
             </div>
@@ -119,8 +83,8 @@
     <div>
       <NuxtLink to="/" style="color: black; text-decoration-line: none">
         <div
-          class="rounded-xl ml-5 mr-5"
-          style="
+            class="rounded-xl ml-5 mr-5"
+            style="
             background-color: white;
             border: 1px solid black;
             height: 110px;
@@ -137,7 +101,7 @@
                 <v-col><b>대학생들에게 묻습니다</b></v-col>
               </v-row>
               <v-row justify="end" class="mr-1" style="font-size: 10px"
-                >4일 남음</v-row
+              >4일 남음</v-row
               >
               <v-row style="font-size: 10px" justify="space-between">
                 <v-col cols="6">110명이 참여 중입니다.</v-col>
@@ -147,8 +111,8 @@
           </v-row>
         </div>
         <div
-          class="rounded-xl ml-5 mr-5"
-          style="
+            class="rounded-xl ml-5 mr-5"
+            style="
             background-color: #494949;
             position: relative;
             top: -50px;
@@ -157,18 +121,18 @@
           "
         >
           <div
-            style="position: absolute; bottom: 2px; color: white"
-            class="ml-5 d-flex"
+              style="position: absolute; bottom: 2px; color: white"
+              class="ml-5 d-flex"
           >
             <div
-              class="rounded-xl pl-2 pr-2"
-              style="background-color: white; color: black"
+                class="rounded-xl pl-2 pr-2"
+                style="background-color: white; color: black"
             >
               <img src="../assets/giftbox 2.png" /> 스타벅스
             </div>
             <div
-              class="rounded-xl pl-2 pr-2 ml-2"
-              style="background-color: white; color: black"
+                class="rounded-xl pl-2 pr-2 ml-2"
+                style="background-color: white; color: black"
             >
               <img src="../assets/coin 2.png" /> 100P
             </div>
@@ -178,13 +142,13 @@
     </div>
     <div>
       <NuxtLink
-        to="/surveymaker/"
-        style="color: black; text-decoration-line: none"
+          to="/surveymaker/"
+          style="color: black; text-decoration-line: none"
       >
         <div class="black rounded-xl ma-5" style="color: white">
           <v-row class="ml-4">
             <v-col cols="1"
-              ><img src="../assets/Collections bookmark.png"
+            ><img src="../assets/Collections bookmark.png"
             /></v-col>
             <v-col cols="3"> 가이드</v-col>
             <v-col>#보상 #기프티콘 #개이득</v-col>
@@ -248,20 +212,17 @@
 </template>
 
 <script>
+import Carousels from "../components/Carousels.vue";
 export default {
   name: 'IndexPage',
+  components: {Carousels},
 }
 </script>
 
 <style>
-.wrap {
-  max-width: 500px;
-}
 .gray-box {
   background-color: gray;
   width: 70px;
   height: 75px;
-}
-.content {
 }
 </style>
