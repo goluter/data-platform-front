@@ -33,7 +33,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .button {
   min-width: 47px;
   min-height: 30px;
