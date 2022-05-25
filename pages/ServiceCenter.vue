@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
+      <NuxtLink to="/" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
           src="../assets/Arrow back ios.png"
@@ -144,7 +144,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .onetitle {
   float: left;
   margin: 23.9px 0px 0px 18px;

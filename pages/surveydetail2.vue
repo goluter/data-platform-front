@@ -128,7 +128,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .wrap {
   max-width: 500px;
   font-family: DMSans;

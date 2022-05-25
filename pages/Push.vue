@@ -1,78 +1,89 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink
-        to="/ServiceCenter"
-        style="color: black; text-decoration-line: none"
+      <NuxtLink to="/" style="color: black; text-decoration-line: none"
         ><img
           style="position: absolute"
-          src="../../assets/Arrow back ios.png"
+          src="../assets/Arrow back ios.png"
           ALIGN="left"
       /></NuxtLink>
 
-      <a><span>가이드</span></a>
+      <a><span>알림</span></a>
     </div>
-
-    <div style="border-bottom: 1px solid #d3d3d3">
-      <div class="noticetitle">
-        {{ GuideData[$route.params.id].title }}
+    <div v-for="(a, i) in PushData" :key="a" class="box">
+      <div class="boxtitle">{{ PushData[i].type }}알림</div>
+      <div class="boxcomment">
+        <span>{{ PushData[i].survay }}</span
+        >에 참여완료되셨어요!
       </div>
-      <div class="date">{{ GuideData[$route.params.id].date }}</div>
-    </div>
-    <div>
-      <div class="noticemain">{{ GuideData[$route.params.id].answer }}</div>
+      <div class="boxdate">{{ PushData[i].date }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import GuideData from '../../assets/data/GuideData'
+import GuideData from '../assets/data/GuideData'
+import PushData from '../assets/data/PushData'
 export default {
-  name: 'guide',
+  name: 'push',
   layout: 'default',
   data() {
     return {
       GuideData,
+      PushData,
       selectnum: 0,
     }
   },
 }
 </script>
 
-<style scoped>
-.noticemain {
-  width: 204px;
-  height: 16px;
-  margin: 32px 0px 0px 18px;
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.7px;
-  text-align: left;
-  color: #000;
-}
-.noticeimg {
-  width: 322px;
-  height: 251px;
-  margin: 67px 0 0 18px;
-  border-radius: 20px;
-}
-.noticetitle {
+<style>
+.boxdate {
   flex-grow: 0;
-  margin: 24px 0px 0px 18px;
-  font-family: Roboto;
+  padding: 8px 14px 0px 0px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.6px;
+  text-align: right;
+  color: #000;
+}
+.boxcomment {
+  flex-grow: 0;
+  padding: 9px 0px 0px 12px;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.6px;
+  text-align: left;
+  color: #000;
+}
+.boxcomment span {
+  color: #1087f4;
+}
+.boxtitle {
+  flex-grow: 0;
+  padding: 16px 0px 0px 12px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.7px;
   text-align: left;
   color: #000;
-  width: 200px;
+}
+.box {
+  height: 96px;
+  flex-grow: 0;
+  margin: 0 0 0 0;
+  border-bottom: 1px solid #dedede;
+  overflow: hidden;
 }
 .container {
   padding: 0px;
@@ -112,21 +123,5 @@ export default {
 }
 .contents a {
   text-decoration: none;
-}
-
-.date {
-  width: 100px;
-  height: 14px;
-  flex-grow: 0;
-  margin: 13px 0px 19px 18px;
-  font-family: Roboto;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.6px;
-  text-align: left;
-  color: #8f8f8f;
 }
 </style>
