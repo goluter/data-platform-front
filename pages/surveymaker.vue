@@ -6,8 +6,8 @@
 
 
 export default {
-  name: 'survey-Page',
-  layout: 'DefaultLayout',
+  name: 'SurveyMaker-Page',
+  
   
   
 }
