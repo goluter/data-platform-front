@@ -1,17 +1,16 @@
 <template>
   <div class="banner-wrapper">
     <div class="banner-box elevation-5"
-         v-for="item in bannerData"
     >
       <div class="banner-title-box">
-        <v-icon color="white">mdi-vote</v-icon>
+        <v-icon color="white">{{ bannerData['icon'] }}</v-icon>
       <span class="banner-title">
-        {{ item.title }}
+        {{ bannerData['title'] }}
       </span>
       </div>
       <div class="banner-msg-box">
         <span class="banner-msg">
-          {{ item.msg }}
+          {{ bannerData['msg'] }}
         </span>
       </div>
     </div>
@@ -22,8 +21,6 @@
 export default {
   props: {
     bannerData: {
-      type: Array,
-      // eslint-disable-next-line vue/require-valid-default-prop
       default: []
     }
   }
