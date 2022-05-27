@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; overflow: hidden">
+  <div>
     <div class="header">
       <NuxtLink to="/point" style="color: black; text-decoration-line: none"
         ><img
@@ -39,7 +39,7 @@
         <div class="time">{{ username }}</div>
       </div>
     </div>
-    <div style="height: 100vh; background-color: #f0f0f0"></div>
+    <div style="height: 50vh; background-color: #f0f0f0"></div>
   </div>
 </template>
 
@@ -134,12 +134,12 @@ export default {
 .profileimg {
   width: 24px;
   height: 24px;
-
   vertical-align: middle;
 }
 .box {
   flex-grow: 0;
   height: 272px;
+  background-color: #ffffff;
 }
 .noticemain {
   width: 204px;
@@ -184,7 +184,7 @@ export default {
 }
 .header {
   border-bottom: 1px solid #d3d3d3;
-  padding: 3%;
+
   width: 100%;
   background-color: white;
 }
