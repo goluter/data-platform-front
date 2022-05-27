@@ -15,12 +15,12 @@
           {{ item.left }}일 남음
         </span>
           <div class="banner-count-tags">
-          <span class="banner-count">
-            {{ item.count }}명이 참여 중
-          </span>
+            <span class="banner-count">
+              {{ item.count }}명이 참여 중
+            </span>
             <span class="banner-tags" v-for="tags in item.tags">
-            #{{ tags }}
-          </span>
+              <a href="">#{{ tags }}</a>
+            </span>
           </div>
         </div>
       </div>
@@ -93,7 +93,11 @@ export default {
 }
 .banner-tags {
   float: right;
+  margin: 1px;
+}
+.banner-tags a {
   color: rgba(48, 205, 174, 0.87);
+  text-decoration: none;
 }
 .survey-box-bottom {
   display: flex;

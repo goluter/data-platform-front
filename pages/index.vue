@@ -88,8 +88,8 @@ export default {
         {target: '2022 구직자들에게 물어봅니다!', surveyor: '상명대학교', count: 3456, color:'pink accent-2'}
       ],
       bannerData: [
-        { title: '설문 등록', msg: '지금 등록하시면 1000P 를 바로 적립해드려요!', icon: 'mdi-vote' },
-        { title: '가이드', msg: '더 재미있게 즐기실 수 있도록 가이드를 모아놨어요!', icon: 'mdi-bookmark-box-multiple' }
+        { title: '설문 등록', msg: '지금 등록하시면 1000P 를 바로 적립해드려요!', icon: 'mdi-vote', to: '/surveymaker' },
+        { title: '가이드', msg: '더 재미있게 즐기실 수 있도록 가이드를 모아놨어요!', icon: 'mdi-bookmark-box-multiple', to: '/' }
       ],
       surveyData: [
         { title:'대학생들에게 묻습니다', left:'4', count:'114,300', tags: ['대학생', '새내기', '축제'], rewards: [{title: '스타벅스', icon: 'mdi-gift', color: 'red'}, {title: '100P', icon: 'mdi-circle-multiple', color: 'yellow darken-3'}] },
