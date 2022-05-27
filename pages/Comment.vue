@@ -35,7 +35,7 @@ export default {
 <style>
 .boxdate {
   flex-grow: 0;
-  padding: 8px 14px 0px 233px;
+  padding: 8px 14px 0px 0px;
   font-family: Inter;
   font-size: 12px;
   font-weight: normal;
@@ -75,6 +75,7 @@ export default {
   flex-grow: 0;
   margin: 0 0 0 0;
   border-bottom: 1px solid #dedede;
+  overflow: hidden;
 }
 .container {
   padding: 0px;

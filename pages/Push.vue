@@ -10,32 +10,27 @@
 
       <a><span>알림</span></a>
     </div>
-    <div class="box">
-      <div class="boxtitle">설문 알림</div>
+    <div v-for="(a, i) in PushData" :key="a" class="box">
+      <div class="boxtitle">{{ PushData[i].type }}알림</div>
       <div class="boxcomment">
-        <span>상명대 학생 설문</span>에 참여완료되셨어요!
+        <span>{{ PushData[i].survay }}</span
+        >에 참여완료되셨어요!
       </div>
-      <div class="boxdate">1일전</div>
-    </div>
-    <div class="box">
-      <div class="boxtitle">보상 알림</div>
-      <div class="boxcomment">
-        <span>상명대 학생 설문</span>에 참여 보상으로 100포인트가
-        지급되셨습니다!
-      </div>
-      <div class="boxdate">1일전</div>
+      <div class="boxdate">{{ PushData[i].date }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import GuideData from '../assets/data/GuideData'
+import PushData from '../assets/data/PushData'
 export default {
   name: 'push',
   layout: 'default',
   data() {
     return {
       GuideData,
+      PushData,
       selectnum: 0,
     }
   },
@@ -45,7 +40,7 @@ export default {
 <style>
 .boxdate {
   flex-grow: 0;
-  padding: 8px 14px 0px 233px;
+  padding: 8px 14px 0px 0px;
   font-family: Inter;
   font-size: 12px;
   font-weight: normal;
@@ -88,6 +83,7 @@ export default {
   flex-grow: 0;
   margin: 0 0 0 0;
   border-bottom: 1px solid #dedede;
+  overflow: hidden;
 }
 .container {
   padding: 0px;

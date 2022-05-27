@@ -1177,7 +1177,7 @@
 <script>
 import data from '../../assets/data/NoticeData.js'
 import FaqData from '../../assets/data/FAQdata'
-import QaData from '../../assets/data/QAdata'
+import QnAdata from 'assets/data/QnAdata'
 import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
@@ -1217,7 +1217,7 @@ export default {
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
       data,
       FaqData,
-      QaData,
+      QaData: QnAdata,
       InquiryData,
       UserData,
       SurveyData,
@@ -1261,7 +1261,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .iconsize {
   width: 50px;
   height: 50px;

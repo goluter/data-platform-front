@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .noticemain {
   width: 204px;
   height: 16px;

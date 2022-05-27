@@ -42,7 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
