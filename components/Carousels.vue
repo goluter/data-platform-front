@@ -1,8 +1,8 @@
 <template>
   <div class="flicking-wrapper">
-    <Flicking :hideBeforeInit="true" :options="{ align: 'center', bound: false, }">
+    <Flicking :hideBeforeInit="true" :options="{ align: 'center', bound: true }">
       <div
-          v-for="(item, i) in carousel_items" :key="i"
+          v-for="(item, i) in carouselData" :key="i"
           style="height: 320px; align-items: flex-end"
       >
         <v-sheet
@@ -38,16 +38,12 @@ export default {
   components: {
     Flicking: Flicking
   },
-  data() {
-    return {
-      carousel_items: [
-        {target: '2022 대학생들에게 묻습니다!', surveyor: '상명대학교', count: 1234, color:'indigo accent-4'},
-        {target: '2022 직장인들에게 묻습니다!', surveyor: '상명대학교', count: 2345, color:'#ed2121'},
-        {target: '2022 구직자들에게 물어봅니다!', surveyor: '상명대학교', count: 3456, color:'pink accent-2'}
-      ]
+  props: {
+    carouselData: {
+      type: Array,
+      default: []
     }
-  },
-
+  }
 }
 </script>
 
@@ -56,7 +52,8 @@ export default {
 .survey-sheet {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin-top: 35px;
+  margin-right: 20px;
   padding: 15px;
   width: 320px;
   height: 280px;
