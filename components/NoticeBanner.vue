@@ -23,6 +23,6 @@ export default {
 }
 .notice-box {
   margin-bottom: 10px;
-  width: 85%;
+  width: 90%;
 }
 </style>

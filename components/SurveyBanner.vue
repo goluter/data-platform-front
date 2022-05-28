@@ -58,7 +58,7 @@ export default {
   display: flex;
   position: relative;
   margin: auto auto auto 0;
-  width: 85%;
+  width: 90%;
   height: 90px;
   background-color: white;
   z-index: 1
@@ -104,7 +104,7 @@ export default {
   position: relative;
   flex-direction: column;
   justify-content: flex-end;
-  width: 85%;
+  width: 90%;
   height: 130px;
   top: -90px;
   border: 1px solid;

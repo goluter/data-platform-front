@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="section" style="margin-top: 25px;">
         <div class="section-title-box">
-          <h1 class="section-title">추천 설문</h1> <a class="section-more" href="">더보기</a>
+          <h1 class="section-title">추천 설문</h1>
         </div>
         <p class="section-desc">홍길동님이 좋아하실만한 설문을 준비했어요!</p>
       </div>
@@ -85,7 +85,7 @@ export default {
 }
 .section {
   margin-top: 45px;
-  width: 100%;
+  width: 90%;
   height: 55px;
 }
 .section-title-box {
@@ -96,7 +96,7 @@ export default {
   font-size: 20px;
 }
 .section-more {
-  margin: 8px 8px 0 0;
+  margin: 8px 0 0 0;
   text-decoration: none;
   color: black;
   font-size: 15px;

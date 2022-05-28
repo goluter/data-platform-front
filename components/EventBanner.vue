@@ -35,7 +35,7 @@ export default {
 .banner-sheet {
   margin: 10px auto 15px 0;
   padding: 3%;
-  width: 85%;
+  width: 90%;
   height: 100px;
   color: white;
   border-radius: 15px;
