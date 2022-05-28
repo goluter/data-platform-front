@@ -49,7 +49,7 @@ export default {
 
 <style scoped>
 .banner-wrapper {
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
   height: 130px;
   z-index: 1;
@@ -116,6 +116,7 @@ export default {
 }
 .reward-item-box {
   display: inline;
+  vertical-align: center;
   margin: 0 5px 0 7px;
   padding: 3px;
   width: 70px;

@@ -19,37 +19,13 @@
       <SurveyBox :survey-data="surveyData"></SurveyBox>
       <Banner :banner-data="bannerData[1]"
       ></Banner>
-      <div class="ma-5">
-        <v-row justify="space-between">
-          <v-col cols="auto"><h1>이벤트</h1></v-col>
-          <NuxtLink to="/" style="color: black; text-decoration-line: none">
-            <v-col cols="auto">더보기</v-col>
-          </NuxtLink>
-        </v-row>
-        <v-row>
-          <v-col>다양한 이벤트를 준비중이예요.</v-col>
-        </v-row>
+      <div class="section">
+        <div class="section-title-box">
+          <h1 class="section-title">이벤트</h1> <a class="section-more" href="">더보기</a>
+        </div>
+        <p class="section-desc">다양한 이벤트를 진행중이에요</p>
       </div>
-      <NuxtLink to="/" style="color: black; text-decoration-line: none">
-        <div class="purple rounded-xl ma-5" style="color: white">
-          <v-row class="ml-5">
-            <v-col>이벤트 1</v-col>
-          </v-row>
-          <v-row class="ml-5">
-            <v-col>이벤트 입니다.</v-col>
-          </v-row>
-        </div>
-      </NuxtLink>
-      <NuxtLink to="/" style="color: black; text-decoration-line: none">
-        <div class="blue rounded-xl ma-5" style="color: white">
-          <v-row class="ml-5">
-            <v-col>이벤트 1</v-col>
-          </v-row>
-          <v-row class="ml-5">
-            <v-col>이벤트 입니다.</v-col>
-          </v-row>
-        </div>
-      </NuxtLink>
+      <EventBanner :event-data="eventData"></EventBanner>
       <div class="ma-5">
         <v-row justify="space-between">
           <v-col cols="auto"><h1>공지사항</h1></v-col>
@@ -76,10 +52,11 @@
 import Carousels from "../components/Carousels.vue";
 import Banner from "../components/Banner.vue"
 import SurveyBox from "../components/SurveyBanner.vue";
+import EventBanner from "../components/EventBanner.vue";
 
 export default {
   name: 'IndexPage',
-  components: {SurveyBox, Banner, Carousels},
+  components: {EventBanner, SurveyBox, Banner, Carousels},
   data() {
     return{
       carouselData: [
@@ -95,6 +72,10 @@ export default {
         { title:'대학생들에게 묻습니다', left:'4', count:'114,300', tags: ['대학생', '새내기', '축제'], rewards: [{title: '스타벅스', icon: 'mdi-gift', color: 'red'}, {title: '100P', icon: 'mdi-circle-multiple', color: 'yellow darken-3'}] },
         { title:'대학생들에게 묻습니다', left:'4', count:'114,300', tags: ['대학생', '새내기', '축제'], rewards: [{title: '스타벅스', icon: 'mdi-gift', color: 'red'}, {title: '100P', icon: 'mdi-circle-multiple', color: 'yellow darken-3'}] },
         { title:'대학생들에게 묻습니다', left:'4', count:'114,300', tags: ['대학생', '새내기', '축제'], rewards: [{title: '스타벅스', icon: 'mdi-gift', color: 'red'}, {title: '100P', icon: 'mdi-circle-multiple', color: 'yellow darken-3'}] },
+      ],
+      eventData: [
+        { title: '이벤트1', msg: '이벤트에요!', to: '/EventList', color: 'deep-purple accent-2' },
+        { title: '이벤트2', msg: '이벤트에요!', to: '/EventList', color: 'cyan lighten-1' },
       ]
     }
   }
@@ -118,7 +99,7 @@ export default {
   font-size: 20px;
 }
 .section-more {
-  margin-top: 8px;
+  margin: 8px 8px 0 0;
   text-decoration: none;
   color: black;
   font-size: 15px;
