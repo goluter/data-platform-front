@@ -55,7 +55,7 @@ export default {
   margin-top: 35px;
   margin-right: 20px;
   padding: 15px;
-  width: 320px;
+  width: 330px;
   height: 280px;
   border-radius: 45px;
   justify-content: space-between;

@@ -33,7 +33,7 @@ export default {
 .banner-box {
   margin: 30px auto 0 0;
   padding: 3%;
-  width: 85%;
+  width: 90%;
   height: 80px;
   background-color: black;
   color: white;
