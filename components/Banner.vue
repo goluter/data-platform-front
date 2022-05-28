@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .banner-box {
-  margin: 30px auto 45px 0;
+  margin: 30px auto 0 0;
   padding: 3%;
   width: 85%;
   height: 80px;

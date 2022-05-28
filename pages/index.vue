@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-0">
     <div class="wrapper">
-      <div class="section">
+      <div class="section" style="margin-top: 25px;">
         <div class="section-title-box">
           <h1 class="section-title">추천 설문</h1> <a class="section-more" href="">더보기</a>
         </div>
@@ -26,24 +26,13 @@
         <p class="section-desc">다양한 이벤트를 진행중이에요</p>
       </div>
       <EventBanner :event-data="eventData"></EventBanner>
-      <div class="ma-5">
-        <v-row justify="space-between">
-          <v-col cols="auto"><h1>공지사항</h1></v-col>
-          <NuxtLink to="/" style="color: black; text-decoration-line: none">
-            <v-col cols="auto">더보기</v-col>
-          </NuxtLink>
-        </v-row>
-        <v-row>
-          <v-col>각종 소식을 알려드려요!</v-col>
-        </v-row>
+      <div class="section">
+        <div class="section-title-box">
+          <h1 class="section-title">공지사항</h1> <a class="section-more" href="">더보기</a>
+        </div>
+        <p class="section-desc">새로운 소식을 알려드려요</p>
       </div>
-      <div class="ma-5">공지사항1</div>
-      <div class="ma-5">공지사항2</div>
-      <div class="ma-5">공지사항3</div>
-
-      <br />
-      <br />
-      <br />
+      <NoticeBanner :notice-data="noticeData"></NoticeBanner>
     </div>
   </v-container>
 </template>
@@ -53,10 +42,11 @@ import Carousels from "../components/Carousels.vue";
 import Banner from "../components/Banner.vue"
 import SurveyBox from "../components/SurveyBanner.vue";
 import EventBanner from "../components/EventBanner.vue";
+import NoticeBanner from "../components/NoticeBanner.vue";
 
 export default {
   name: 'IndexPage',
-  components: {EventBanner, SurveyBox, Banner, Carousels},
+  components: {NoticeBanner, EventBanner, SurveyBox, Banner, Carousels},
   data() {
     return{
       carouselData: [
@@ -66,7 +56,7 @@ export default {
       ],
       bannerData: [
         { title: '설문 등록', msg: '지금 등록하시면 1000P 를 바로 적립해드려요!', icon: 'mdi-vote', to: '/surveymaker' },
-        { title: '가이드', msg: '더 재미있게 즐기실 수 있도록 가이드를 모아놨어요!', icon: 'mdi-bookmark-box-multiple', to: '/' }
+        { title: '가이드', msg: '더 재미있게 즐기실 수 있도록 가이드를 모아봤어요!', icon: 'mdi-bookmark-box-multiple', to: '/' }
       ],
       surveyData: [
         { title:'대학생들에게 묻습니다', left:'4', count:'114,300', tags: ['대학생', '새내기', '축제'], rewards: [{title: '스타벅스', icon: 'mdi-gift', color: 'red'}, {title: '100P', icon: 'mdi-circle-multiple', color: 'yellow darken-3'}] },
@@ -76,6 +66,11 @@ export default {
       eventData: [
         { title: '이벤트1', msg: '이벤트에요!', to: '/EventList', color: 'deep-purple accent-2' },
         { title: '이벤트2', msg: '이벤트에요!', to: '/EventList', color: 'cyan lighten-1' },
+      ],
+      noticeData: [
+        { title: '공지사항1' },
+        { title: '공지사항2' },
+        { title: '공지사항3' }
       ]
     }
   }
@@ -85,9 +80,11 @@ export default {
 <style scoped>
 .wrapper {
   margin-top: 24px;
+  margin-bottom: 80px;
   padding-left: 24px;
 }
 .section {
+  margin-top: 45px;
   width: 100%;
   height: 55px;
 }
@@ -106,10 +103,5 @@ export default {
 }
 .section-desc {
   font-size: 15px;
-}
-.gray-box {
-  background-color: gray;
-  width: 70px;
-  height: 75px;
 }
 </style>

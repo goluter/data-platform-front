@@ -1,9 +1,10 @@
 <template>
   <div class="banner-wrapper">
-    <v-sheet class="banner-sheet elevation-5"
-             v-for="item in eventData"
-             :key="item"
-             :color="item.color">
+    <v-sheet
+        v-for="(item, i) in eventData"
+        :key="i"
+        class="banner-sheet elevation-5"
+        :color="item.color">
       <NuxtLink :to="item.to" style="text-decoration: none; color: white">
         <div class="banner-title-box">
         <span class="banner-title">

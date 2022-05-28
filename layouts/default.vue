@@ -142,8 +142,4 @@ export default {
   font-size: 14px;
   z-index: 5;
 }
-img.footer-icon {
-  width: 17px;
-  height: 19px;
-}
 </style>
