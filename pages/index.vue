@@ -3,7 +3,7 @@
     <div class="ma-5 content">
       <v-row justify="space-between">
         <v-col cols="auto"><h1>추천 설문</h1></v-col>
-        <NuxtLink to="/list/" style="color: black; text-decoration-line: none">
+        <NuxtLink to="/SurveyList/" style="color: black; text-decoration-line: none">
           <v-col cols="auto">더보기</v-col>
         </NuxtLink>
       </v-row>

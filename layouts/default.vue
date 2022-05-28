@@ -59,7 +59,8 @@
             </div>
           </v-navigation-drawer>
         </div>
-        <Nuxt />
+        <Nuxt v-if="!$slots.default" />
+        <slot />
         <div class="footer">
           <v-row no-gutters>
             <v-bottom-navigation
