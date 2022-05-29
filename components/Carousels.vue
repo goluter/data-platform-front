@@ -3,7 +3,7 @@
     <Flicking :hideBeforeInit="true" :options="{ align: 'center', bound: true }">
       <div
           v-for="(item, i) in carouselData" :key="i"
-          style="height: 320px; align-items: flex-end"
+          style="height: 330px; align-items: flex-end"
       >
         <v-sheet
             class="survey-sheet elevation-5"
@@ -49,6 +49,9 @@ export default {
 
 <style>
 @import url("../node_modules/@egjs/vue-flicking/dist/flicking.css");
+.flicking-wrapper {
+  height: 320px;
+}
 .survey-sheet {
   display: flex;
   flex-direction: column;

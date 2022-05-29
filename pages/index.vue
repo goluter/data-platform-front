@@ -26,7 +26,7 @@ export default {
       ></Banner>
       <div class="section">
         <div class="section-title-box">
-          <h1 class="section-title">인기 설문</h1> <a class="section-more" href="">더보기</a>
+          <h1 class="section-title">인기 설문</h1> <NuxtLink class="section-more" to="/SurveyList/">더보기</NuxtLink>
         </div>
         <p class="section-desc">지금 핫한 설문이에요. 한번 살펴보세요!</p>
       </div>
@@ -35,14 +35,14 @@ export default {
       ></Banner>
       <div class="section">
         <div class="section-title-box">
-          <h1 class="section-title">이벤트</h1> <a class="section-more" href="">더보기</a>
+          <h1 class="section-title">이벤트</h1> <NuxtLink class="section-more" to="/EventList/">더보기</NuxtLink>
         </div>
         <p class="section-desc">다양한 이벤트를 진행중이에요</p>
       </div>
       <EventBanner :event-data="eventData"></EventBanner>
       <div class="section">
         <div class="section-title-box">
-          <h1 class="section-title">공지사항</h1> <a class="section-more" href="">더보기</a>
+          <h1 class="section-title">공지사항</h1> <NuxtLink class="section-more" to="/Notice/">더보기</NuxtLink>
         </div>
         <p class="section-desc">새로운 소식을 알려드려요</p>
       </div>
