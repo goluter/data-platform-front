@@ -3,7 +3,7 @@ export const state = {
 }
 
 export const mutations = {
-    SetPageTitle (state, title) {
+    setPageTitle (state, title) {
         state.pageTitle = title
     }
 }

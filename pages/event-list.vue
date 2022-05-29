@@ -1,17 +1,5 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
-      <NuxtLink to="/EventList" style="color: black; text-decoration-line: none"
-        ><span>이벤트</span></NuxtLink
-      >
-    </div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
@@ -105,6 +93,9 @@ export default {
       PlannedEvent,
     }
   },
+  mounted () {
+    this.$store.commit('setPageTitle', '이벤트')
+  },
 }
 </script>
 
@@ -124,18 +115,9 @@ export default {
   text-align: left;
   color: #000;
 }
-.container {
-  padding: 0px;
-}
 .banner {
   background-color: #eee;
   height: 96px;
-}
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 9px 10px 12px 11px;
-  width: 100%;
-  background-color: white;
 }
 .header span {
   flex-grow: 0;

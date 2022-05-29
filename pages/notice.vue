@@ -1,21 +1,8 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
-      <NuxtLink to="/notice" style="color: black; text-decoration-line: none"
-        ><span>공지사항</span></NuxtLink
-      >
-    </div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
-
     <div v-for="(a, i) in NoticeData" :key="a" class="contents">
       <NuxtLink
         :to="NoticeData[i].url"
@@ -32,12 +19,14 @@
 import NoticeData from '../assets/data/NoticeData.js'
 export default {
   name: 'notice',
-  layout: 'default',
   data() {
     return {
       NoticeData,
       num: 0,
     }
+  },
+  mounted () {
+    this.$store.commit('setPageTitle', '공지사항')
   },
 }
 </script>

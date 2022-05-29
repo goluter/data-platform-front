@@ -22,7 +22,6 @@
 import GuideData from '../assets/data/GuideData'
 export default {
   name: 'comment',
-  layout: 'default',
   data() {
     return {
       GuideData,

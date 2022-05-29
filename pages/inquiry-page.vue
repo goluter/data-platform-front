@@ -1,20 +1,9 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink
-        to="/ServiceCenter"
-        style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
       <a
         ><span>1대1 문의</span
         ><v-btn class="button" x-small color="#30cdae">제출</v-btn></a
       >
-    </div>
     <div>
       <div class="titleinput">
         <input placeholder="제목을 입력해주세요" class="search2" />
@@ -69,13 +58,6 @@ export default {}
 }
 .container {
   padding: 0px;
-}
-
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 3%;
-  width: 100%;
-  background-color: white;
 }
 .header span {
   flex-grow: 0;

@@ -1,15 +1,6 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
       <a><span>알림</span></a>
-    </div>
     <div v-for="(a, i) in PushData" :key="a" class="box">
       <div class="boxtitle">{{ PushData[i].type }}알림</div>
       <div class="boxcomment">

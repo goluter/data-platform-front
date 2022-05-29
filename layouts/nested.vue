@@ -10,7 +10,7 @@
         <span class="title-text">{{ $store.getters.getPageTitle }}</span>
       </div>
     </div>
-    <Nuxt/>
+    <Nuxt />
   </default-layout>
 </template>
 
