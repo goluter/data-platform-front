@@ -6,7 +6,7 @@
         <span>고베이에 오신 것을 환영합니다!</span>
         <div class="signup">
           <p>아직 고베이 계정이 없으신가요?</p>
-          <a href="/signup">회원가입</a>
+          <a href="/SignUp">회원가입</a>
         </div>
       </div>
       <div class="login-type">

@@ -5,7 +5,7 @@
         <h1>회원가입</h1>
         <div class="login">
           <p>이미 고베이 계정이 있으신가요?</p>
-          <a href="/login">로그인</a>
+          <a href="/Login">로그인</a>
         </div>
       </div>
       <div class="signup-type">
