@@ -1,14 +1,16 @@
 <template>
+<v-app>
+  <v-main>
+    <Nuxt />
+  </v-main>
+</v-app>
 </template>
 
 <script>
 export default {
-  name: 'meminfo-Page',
-  layout: 'DefaultLayout',
-
-  
 }
 </script>
 
 <style scoped>
+
 </style>

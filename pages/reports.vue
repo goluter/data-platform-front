@@ -65,9 +65,6 @@
 export default {
   name: "ReportList",
   layout: 'nested',
-  mounted () {
-    this.$store.commit('SetPageTitle', '리포트')
-  },
   data() {
     return {
       sort: ['최신순', '추천순', '댓글순'],
@@ -76,7 +73,10 @@ export default {
         {title: '대학생 탐구 리포트', likes: 13211, comments: 9654, surveyor: '상명대학교', icon: 'mdi-account-circle' },
       ]
     }
-  }
+  },
+  mounted () {
+    this.$store.commit('setPageTitle', '리포트')
+  },
 }
 </script>
 

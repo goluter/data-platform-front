@@ -1,15 +1,5 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
-      <a><span>고객센터</span></a>
-    </div>
     <div>
       <div class="asd" style="">
         <img src="../assets/magnify.png" class="mag" />
@@ -140,6 +130,9 @@ export default {
       GuideData,
       InquiryData,
     }
+  },
+  mounted () {
+    this.$store.commit('setPageTitle', '고객센터')
   },
 }
 </script>
