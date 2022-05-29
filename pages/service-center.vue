@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <div class="asd" style="">
         <img src="../assets/magnify.png" class="mag" />
@@ -138,6 +138,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 500px;
+}
 .onetitle {
   float: left;
   margin: 23.9px 0px 0px 18px;

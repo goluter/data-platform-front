@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main style="margin: auto; min-width: 500px">
+    <v-main>
       <div class="nested-header">
         <div class="arrow">
           <v-btn icon @click="back">
@@ -29,7 +29,8 @@ export default {
 <style scoped>
 .nested-header {
   display: flex;
-  width: 100%;
+  margin: auto;
+  max-width: 500px;
   height: 45px;
   justify-content: center;
 }
