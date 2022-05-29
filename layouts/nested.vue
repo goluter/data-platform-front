@@ -1,11 +1,11 @@
 <template>
   <default-layout>
-    <div class="nested-header">
-      <div class="arraow">
+    <div class="nested-header elevation-1">
+      <div class="arrow">
         <v-icon>mdi-chevron-left</v-icon>
       </div>
       <div class="title">
-        <span>{{ title }}</span>
+        <span class="title-text">{{ $store.getters.getPageTitle }}</span>
       </div>
     </div>
     <Nuxt/>
@@ -25,6 +25,26 @@ export default {
 <style scoped>
 .nested-header {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  height: 45px;
+  justify-content: center;
+}
+.arrow {
+  display: inline;
+  float: left;
+  margin-left: 12px;
+  align-self: center;
+}
+.title {
+  display: inline;
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  text-align: center;
+}
+.title-text {
+  margin-left: -36px;
+  font-size: 14px;
+  font-weight: 600;
 }
 </style>
