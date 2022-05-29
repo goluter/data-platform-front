@@ -2,7 +2,9 @@
   <default-layout>
     <div class="nested-header">
       <div class="arrow">
-        <v-icon>mdi-chevron-left</v-icon>
+        <v-btn icon @click="back">
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
       </div>
       <div class="title">
         <span class="title-text">{{ $store.getters.getPageTitle }}</span>
@@ -19,6 +21,11 @@ export default {
   components: {
     DefaultLayout
   },
+  methods: {
+    back() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    }
+  }
 }
 </script>
 
