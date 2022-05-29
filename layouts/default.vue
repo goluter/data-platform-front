@@ -3,21 +3,26 @@
     <v-main>
       <v-container style="max-width: 500px; height: 100%; padding: 0;">
         <div class="header_container">
-          <v-toolbar class="header" dense elevation="0">
+          <v-toolbar class="header" dense elevation="0"
+                     style="justify-content: space-between"
+          >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-spacer></v-spacer>
-            <v-toolbar-title class="ml-12 mt-2">
+            <v-spacer></v-spacer>
+            <v-toolbar-title>
               <NuxtLink to="/" style="color: black; text-decoration-line: none"
               ><img src="../assets/govey.png"/>
               </NuxtLink>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-bell</v-icon>
-            </v-btn>
+            <div class="func">
+              <v-btn icon>
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+              <v-btn icon>
+                <v-icon>mdi-bell</v-icon>
+              </v-btn>
+            </div>
           </v-toolbar>
           <v-navigation-drawer v-model="drawer" app temporary>
             <v-list nav dense>

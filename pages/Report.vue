@@ -16,24 +16,27 @@
           > </v-text-field>
         </v-form>
       </div>
-      <div class="sort">
-        <v-select
-            :items="sort"
-            label="최신순"
-            solo
-            flat
-            style="width: 28%; height: 50px; float: right;"
-        > </v-select>
-      </div>
-      <v-divider style="width: 1px"></v-divider>
       <div class="content">
-        <v-container>
+        <v-container class="pa-0">
+          <v-row class="ma-0" justify="end" style="width: 100%; height: 60px">
+            <v-col cols="4">
+                <v-select
+                    :items="sort"
+                    label="최신순"
+                    solo
+                    flat
+                    dense
+                > </v-select>
+            </v-col>
+          </v-row>
+          <v-divider></v-divider>
           <v-row
+              class="ma-0 pt-1 pl-1"
               v-for="(item, i) in reportData"
               :key="i"
           >
             <v-col class="thumbnail" cols="2"></v-col>
-            <v-col cols="10">
+            <v-col class="pa-2" cols="10">
               <div class="report-title">
                 {{item.title}}
               </div>
@@ -93,20 +96,12 @@ export default {
   margin: 10px 0;
   background-color: white;
 }
-.sort {
-  width: 100%;
-  height: 50px;
-  background-color: white;
-}
 .content {
-  padding-left: 3px;
-  width: 100%;
+  margin-top: 10px;
   background-color: white;
 }
 .thumbnail {
-  margin-top: 5px;
   align-self: center;
-  width: 80%;
   height: 70px;
   background-color: #eeeeee;
   border-radius: 10px;

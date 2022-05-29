@@ -39,7 +39,7 @@ export default {
 .arrow {
   display: inline;
   float: left;
-  margin-left: 12px;
+  margin-left: 10px;
   align-self: center;
 }
 .title {
