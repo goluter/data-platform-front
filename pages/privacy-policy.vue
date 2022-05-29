@@ -1,15 +1,5 @@
 <template>
-  <div>
-    <div class="header">
-      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
-      <span>개인정보처리방침</span>
-    </div>
+  <div class="container">
     <div class="title1">기업사이트 개인정보처리방침</div>
     <div class="sub">
       고베이(이하 “회사)는 이용자의 ‘동의를 기반으로 개인정보를 수집·이용 및
@@ -46,19 +36,16 @@ export default {
       num: 0,
     }
   },
+  mounted () {
+    this.$store.commit('setPageTitle', '개인정보처리방침')
+  },
 }
 </script>
 
 <style scoped>
 .container {
   padding: 0px;
-}
-
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 9px 10px 12px 11px;
-  width: 100%;
-  background-color: white;
+  max-width: 500px;
 }
 .header span {
   flex-grow: 0;

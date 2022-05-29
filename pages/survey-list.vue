@@ -111,6 +111,7 @@ import mainlist from 'assets/data/Mobile_main_list'
 
 export default {
   name: 'SurveyList',
+  layout: 'base',
   data(){
     return{
       tab1 : true,
@@ -149,9 +150,6 @@ export default {
   content:"";
   display:block;
   padding-bottom:100%;
-}
-.gray-sbox{
-  background-color:lightgray;
 }
 .blue_box{
   background-color: #83e0fd;

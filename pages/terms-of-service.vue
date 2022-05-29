@@ -1,15 +1,5 @@
 <template>
-  <div>
-    <div class="header">
-      <NuxtLink to="/m_index" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
-      <span>이용약관</span>
-    </div>
+  <div class="container">
     <div class="title1">제 1 장 환영합니다</div>
     <div class="sub1">
       제 1 조 (목적)<br />
@@ -44,18 +34,16 @@ export default {
       num: 0,
     }
   },
+  mounted () {
+    this.$store.commit('setPageTitle', '이용약관')
+  },
 }
 </script>
 
 <style scoped>
 .container {
   padding: 0px;
-}
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 9px 10px 12px 11px;
-  width: 100%;
-  background-color: white;
+  max-width: 500px;
 }
 .header span {
   flex-grow: 0;
