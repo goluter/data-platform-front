@@ -1,6 +1,6 @@
 <template>
   <default-layout>
-    <div class="nested-header elevation-1">
+    <div class="nested-header">
       <div class="arrow">
         <v-icon>mdi-chevron-left</v-icon>
       </div>
