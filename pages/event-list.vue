@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
@@ -100,6 +100,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 500px;
+}
 .v-tab {
   font-size: 18px;
 }
