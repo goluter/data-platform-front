@@ -6,16 +6,20 @@
     </div>
     <span class="desc">고베이를 즐기기 위한 다양한 가이드들을 살펴보세요!</span>
     <div class="qa-container">
-      <div class="question"><a href="/" class="question-item">포인트 시스템이 뭔가요?</a></div>
-      <div class="question"><a href="/" class="question-item">칭호는 어떻게 얻을 수 있나요?</a></div>
+      <div class="question">
+        <a href="/" class="question-item">포인트 시스템이 뭔가요?</a>
+      </div>
+      <div class="question">
+        <a href="/" class="question-item">칭호는 어떻게 얻을 수 있나요?</a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SignupFinish",
-  layout: "layout_login",
+  name: 'SignupFinish',
+  layout: 'layout_login',
   head: {
     title: 'Sign Up'
   }

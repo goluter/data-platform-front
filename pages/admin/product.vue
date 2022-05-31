@@ -13,12 +13,12 @@
 <script type="module">
 import FAQdata from '../../assets/data/FAQdata'
 export default {
-  name: 'product',
+  name: 'Product',
   layout: 'Admin',
-  data() {
+  data () {
     return {
-      FAQdata,
+      FAQdata
     }
-  },
+  }
 }
 </script>

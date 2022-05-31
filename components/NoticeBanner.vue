@@ -1,7 +1,6 @@
 <template>
   <div class="banner-wrapper">
-    <div class="notice-box"
-        v-for="item in noticeData">
+    <div v-for="item in noticeData" class="notice-box">
       <h5>{{ item.title }}</h5>
     </div>
   </div>
@@ -11,7 +10,7 @@
 export default {
   props: {
     noticeData: {
-      type: Array,
+      type: Array
     }
   }
 }

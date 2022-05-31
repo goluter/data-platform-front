@@ -1,18 +1,10 @@
-<template>
-
-</template>
+<template />
 
 <script>
-
-
 export default {
-  name: 'survey-Page',
-  layout: 'DefaultLayout',
-  
-  
+  name: 'SurveyPage',
+  layout: 'DefaultLayout'
 }
 </script>
 
-<style scoped>
-  
-</style>
+<style scoped></style>

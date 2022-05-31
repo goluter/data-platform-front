@@ -4,19 +4,26 @@
       <h1>관심사 등록</h1>
       <a href="/">다음에 할게요</a>
     </div>
-    <span class="desc">관심있는 분야를 선택해주세요! 관련 설문을 우선적으로 추천해 드릴 거에요!</span>
+    <span class="desc">관심있는 분야를 선택해주세요! 관련 설문을 우선적으로 추천해 드릴
+      거에요!</span>
     <div class="box-container">
-      <div class="tag-box">대학교</div>
-      <div class="tag-box">축구</div>
-      <div class="tag-box">미드</div>
+      <div class="tag-box">
+        대학교
+      </div>
+      <div class="tag-box">
+        축구
+      </div>
+      <div class="tag-box">
+        미드
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyTag",
-  layout: "login",
+  name: 'MyTag',
+  layout: 'login',
   head: {
     title: 'Tag'
   }

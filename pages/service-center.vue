@@ -2,8 +2,8 @@
   <div class="container">
     <div>
       <div class="asd" style="">
-        <img src="../assets/magnify.png" class="mag" />
-        <input placeholder="검색어를 입력해주세요" class="search" />
+        <img src="../assets/magnify.png" class="mag">
+        <input placeholder="검색어를 입력해주세요" class="search">
       </div>
     </div>
     <div>
@@ -14,41 +14,46 @@
             onebyone = false
             guide = false
           "
-          >자주 묻는 질문</v-tab
         >
+          자주 묻는 질문
+        </v-tab>
         <v-tab
           @click="
             faq = false
             onebyone = true
             guide = false
           "
-          >1대1 문의</v-tab
         >
+          1대1 문의
+        </v-tab>
         <v-tab
           @click="
             faq = false
             onebyone = false
             guide = true
           "
-          >가이드</v-tab
         >
+          가이드
+        </v-tab>
       </v-tabs>
     </div>
-    <div v-for="(a, i) in FaqData" :key="a" v-if="faq == true">
+    <div v-for="(a, i) in FaqData" v-if="faq == true" :key="a">
       <div class="box1">
         {{ FaqData[i].title }}
-        <div style="display: none">{{ selectnum }} {{ chevrondown[i] }}</div>
+        <div style="display: none">
+          {{ selectnum }} {{ chevrondown[i] }}
+        </div>
         <img
           v-if="chevrondown[i] == true"
+          class="chevron"
+          src="../assets/chevrondown.png"
           @click="
             selectnum = i
             chevrondown[i] = false
             chevronup[i] = true
             showanswer[i] = true
           "
-          class="chevron"
-          src="../assets/chevrondown.png"
-        />
+        >
         <img
           v-if="chevronup[i] == true"
           class="chevron"
@@ -59,9 +64,9 @@
             chevronup[i] = false
             showanswer[i] = false
           "
-        />
+        >
       </div>
-      <div class="box2" v-if="showanswer[i] == true">
+      <div v-if="showanswer[i] == true" class="box2">
         {{ FaqData[i].answer }}
       </div>
     </div>
@@ -80,8 +85,9 @@
               border-radius: 10px;
               margin: 9px 13px 0px 0px;
             "
-            >문의하기</v-btn
           >
+            문의하기
+          </v-btn>
         </NuxtLink>
       </div>
 
@@ -89,22 +95,29 @@
         <nuxt-link
           style="color: black; text-decoration-line: none"
           :to="InquiryData[i].userurl"
-          ><div class="onetitle">{{ InquiryData[i].question }}</div>
-          <div class="time">{{ InquiryData[i].check }}</div></nuxt-link
         >
+          <div class="onetitle">
+            {{ InquiryData[i].question }}
+          </div>
+          <div class="time">
+            {{ InquiryData[i].check }}
+          </div>
+        </nuxt-link>
       </div>
     </div>
     <div
       v-for="(a, i) in GuideData"
+      v-if="guide == true"
       :key="a"
       class="onemain"
-      v-if="guide == true"
     >
       <NuxtLink
         :to="GuideData[i].url"
         style="color: black; text-decoration-line: none"
       >
-        <div class="onetitle">{{ GuideData[i].title }}</div>
+        <div class="onetitle">
+          {{ GuideData[i].title }}
+        </div>
       </NuxtLink>
     </div>
   </div>
@@ -117,7 +130,7 @@ import InquiryData from '../assets/data/Inquirydata.js'
 export default {
   name: 'ServiceCenter',
   layout: 'default',
-  data() {
+  data () {
     return {
       selectnum: -1,
       faq: true,
@@ -128,12 +141,12 @@ export default {
       showanswer: [false, false, false, false],
       FaqData,
       GuideData,
-      InquiryData,
+      InquiryData
     }
   },
   mounted () {
     this.$store.commit('setPageTitle', '고객센터')
-  },
+  }
 }
 </script>
 

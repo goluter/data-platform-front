@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="banner">
-      <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
+      <div style="padding: 22px 0px 0px 18px">
+        브루스 배너
+      </div>
     </div>
     <v-tabs fixed-tabs color="#1cddb7">
       <v-tab
@@ -10,65 +12,80 @@
           ongoing = false
           ended = false
         "
-        >예정</v-tab
       >
+        예정
+      </v-tab>
       <v-tab
         @click="
           planned = false
           ongoing = true
           ended = false
         "
-        >진행중</v-tab
       >
+        진행중
+      </v-tab>
       <v-tab
         @click="
           planned = false
           ongoing = false
           ended = true
         "
-        >마감</v-tab
       >
+        마감
+      </v-tab>
     </v-tabs>
     <div
       v-for="(a, i) in PlannedEvent"
-      :key="a"
       v-if="planned == true"
+      :key="a"
       class="contents"
     >
       <NuxtLink
         :to="PlannedEvent[i].url"
         style="color: black; text-decoration-line: none"
       >
-        <div class="eventtitle">{{ PlannedEvent[i].title }}</div>
-        <div class="date">{{ PlannedEvent[i].date }}</div>
+        <div class="eventtitle">
+          {{ PlannedEvent[i].title }}
+        </div>
+        <div class="date">
+          {{ PlannedEvent[i].date }}
+        </div>
       </NuxtLink>
     </div>
     <div
       v-for="(a, i) in OngoingEvent"
-      :key="a"
       v-if="ongoing == true"
+      :key="a"
       class="contents"
     >
       <NuxtLink
         :to="OngoingEvent[i].url"
         style="color: black; text-decoration-line: none"
       >
-        <div class="eventtitle">{{ OngoingEvent[i].title }}</div>
-        <div class="date">{{ OngoingEvent[i].date }}</div>
+        <div class="eventtitle">
+          {{ OngoingEvent[i].title }}
+        </div>
+        <div class="date">
+          {{ OngoingEvent[i].date }}
+        </div>
       </NuxtLink>
     </div>
     <div
       v-for="(a, i) in EndedEvent"
-      :key="a"
       v-if="ended == true"
+      :key="a"
       class="contents"
     >
       <NuxtLink
         :to="EndedEvent[i].url"
         style="color: black; text-decoration-line: none"
       >
-        <div class="eventtitle">{{ EndedEvent[i].title }}</div>
-        <div class="date">{{ EndedEvent[i].date }}</div>
+        <div class="eventtitle">
+          {{ EndedEvent[i].title }}
+        </div>
+        <div class="date">
+          {{ EndedEvent[i].date }}
+        </div>
       </NuxtLink>
     </div>
   </div>
@@ -82,7 +99,7 @@ import OngoingEvent from '../assets/data/OngoingEvent'
 export default {
   name: 'EventList',
   layout: 'default',
-  data() {
+  data () {
     return {
       num: 0,
       planned: true,
@@ -90,12 +107,12 @@ export default {
       ended: false,
       OngoingEvent,
       EndedEvent,
-      PlannedEvent,
+      PlannedEvent
     }
   },
   mounted () {
     this.$store.commit('setPageTitle', '이벤트')
-  },
+  }
 }
 </script>
 
