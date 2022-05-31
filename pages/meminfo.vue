@@ -1,14 +1,10 @@
-<template>
-</template>
+<template />
 
 <script>
 export default {
-  name: 'meminfo-Page',
-  layout: 'DefaultLayout',
-
-  
+  name: 'MeminfoPage',
+  layout: 'DefaultLayout'
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

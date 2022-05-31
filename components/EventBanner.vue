@@ -1,20 +1,21 @@
 <template>
   <div class="banner-wrapper">
     <v-sheet
-        v-for="(item, i) in eventData"
-        :key="i"
-        class="banner-sheet elevation-5"
-        :color="item.color">
+      v-for="(item, i) in eventData"
+      :key="i"
+      class="banner-sheet elevation-5"
+      :color="item.color"
+    >
       <NuxtLink :to="item.to" style="text-decoration: none; color: white">
         <div class="banner-title-box">
-        <span class="banner-title">
+          <span class="banner-title">
             {{ item.title }}
-        </span>
+          </span>
         </div>
         <div class="banner-msg-box">
-        <span class="banner-msg">
-          {{ item.msg }}
-        </span>
+          <span class="banner-msg">
+            {{ item.msg }}
+          </span>
         </div>
       </NuxtLink>
     </v-sheet>
@@ -25,7 +26,7 @@
 export default {
   props: {
     eventData: {
-      type: Array,
+      type: Array
     }
   }
 }

@@ -1,19 +1,29 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/" style="color: black; text-decoration-line: none"
-        ><img
+      <NuxtLink
+        to="/"
+        style="color: black; text-decoration-line: none"
+      >
+        <img
           style="position: absolute"
           src="../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>내 댓글 이력</span></a>
     </div>
     <div class="box">
-      <div class="boxtitle">상명대학교 학생들에게 물어봅니다.</div>
-      <div class="boxcomment">아 ㅋㅋ 설문 재밌네</div>
-      <div class="boxdate">2022.02.01 17:23:24</div>
+      <div class="boxtitle">
+        상명대학교 학생들에게 물어봅니다.
+      </div>
+      <div class="boxcomment">
+        아 ㅋㅋ 설문 재밌네
+      </div>
+      <div class="boxdate">
+        2022.02.01 17:23:24
+      </div>
     </div>
   </div>
 </template>
@@ -21,13 +31,13 @@
 <script>
 import GuideData from '../assets/data/GuideData'
 export default {
-  name: 'comment',
-  data() {
+  name: 'Comment',
+  data () {
     return {
       GuideData,
-      selectnum: 0,
+      selectnum: 0
     }
-  },
+  }
 }
 </script>
 

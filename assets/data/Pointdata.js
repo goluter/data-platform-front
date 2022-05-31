@@ -1,4 +1,4 @@
-var PointData = [
+const PointData = [
   {
     id: 0,
     title: '설문참여1',
@@ -8,7 +8,7 @@ var PointData = [
     reward: 1000,
     sign: '+',
     sum: 15911,
-    url: 'PointDetail/0',
+    url: 'PointDetail/0'
   },
   {
     id: 1,
@@ -19,7 +19,7 @@ var PointData = [
     reward: 10,
     sign: '+',
     sum: 14911,
-    url: 'PointDetail/1',
+    url: 'PointDetail/1'
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ var PointData = [
     reward: 1,
     sign: '+',
     sum: 14901,
-    url: 'PointDetail/2',
+    url: 'PointDetail/2'
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ var PointData = [
     reward: 10000,
     sign: '+',
     sum: 14900,
-    url: 'PointDetail/3',
+    url: 'PointDetail/3'
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ var PointData = [
     reward: -100,
     sign: '-',
     sum: 4900,
-    url: 'PointDetail/4',
+    url: 'PointDetail/4'
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ var PointData = [
     reward: 5000,
     sign: '+',
     sum: 5000,
-    url: 'PointDetail/5',
-  },
+    url: 'PointDetail/5'
+  }
 ]
 export default PointData

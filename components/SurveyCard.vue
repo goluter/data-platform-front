@@ -1,25 +1,18 @@
 <template>
   <div class="wrapper">
-    <div class="survey-wrapper"
-         v-for="(item, i) in surveyData"
-         :key="i"
-    >
+    <div v-for="(item, i) in surveyData" :key="i" class="survey-wrapper">
       <v-row>
         <v-col class="survey-img-box col-3">
-          <div class="survey-img"></div>
+          <div class="survey-img" />
         </v-col>
         <v-col class="survey-content col-9">
           <span class="survey-title">
             {{ item.title }}
           </span>
-          <span class="survey-left-time">
-            {{ item.left }}일 남음
-          </span>
+          <span class="survey-left-time"> {{ item.left }}일 남음 </span>
           <div class="survey-count-tags">
-            <span class="survey-count">
-              {{ item.count }}명이 참여 중
-            </span>
-            <span class="survey-tags" v-for="tags in item.tags">
+            <span class="survey-count"> {{ item.count }}명이 참여 중 </span>
+            <span v-for="tags in item.tags" class="survey-tags">
               <a href="">#{{ tags }}</a>
             </span>
           </div>
@@ -31,7 +24,7 @@
 
 <script>
 export default {
-  name: "SurveyCard",
+  name: 'SurveyCard',
   props: {
     surveyData: {
       type: Array,

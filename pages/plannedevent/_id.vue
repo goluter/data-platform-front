@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/eventlist" style="color: black; text-decoration-line: none"
-        ><img
+      <NuxtLink
+        to="/eventlist"
+        style="color: black; text-decoration-line: none"
+      >
+        <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>이벤트</span></a>
     </div>
@@ -15,13 +19,15 @@
       <div class="noticetitle">
         {{ PlannedEvent[$route.params.id].title }}
       </div>
-      <div class="date">{{ PlannedEvent[$route.params.id].date }}</div>
+      <div class="date">
+        {{ PlannedEvent[$route.params.id].date }}
+      </div>
     </div>
     <div>
       <div class="noticemain">
         {{ PlannedEvent[$route.params.id].maininfo }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
+      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
     </div>
   </div>
 </template>
@@ -31,12 +37,12 @@ import PlannedEvent from '../../assets/data/PlannedEvent'
 export default {
   name: 'Planneddetail',
   layout: 'default',
-  data() {
+  data () {
     return {
       PlannedEvent,
-      selectnum: 0,
+      selectnum: 0
     }
-  },
+  }
 }
 </script>
 

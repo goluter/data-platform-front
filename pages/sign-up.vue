@@ -11,10 +11,18 @@
       <div class="signup-type">
         <div class="social-signup">
           <p>30초 안에 가입하기</p>
-          <button class="kakao"><v-img src="/kakao.jpg" height="50px" width="50px"></v-img></button>
-          <button class="naver"><v-img src="/naver.jpg" height="50px" width="50px"></v-img></button>
-          <button class="google"><v-img src="/google.jpg" height="50px" width="50px"></v-img></button>
-          <button class="apple"><v-img src="/apple.jpg" height="50px" width="50px"></v-img></button>
+          <button class="kakao">
+            <v-img src="/kakao.jpg" height="50px" width="50px" />
+          </button>
+          <button class="naver">
+            <v-img src="/naver.jpg" height="50px" width="50px" />
+          </button>
+          <button class="google">
+            <v-img src="/google.jpg" height="50px" width="50px" />
+          </button>
+          <button class="apple">
+            <v-img src="/apple.jpg" height="50px" width="50px" />
+          </button>
         </div>
         <p>또는 이메일 회원가입</p>
       </div>
@@ -23,24 +31,37 @@
           <h3>이메일</h3>
           <div class="input-email">
             <span class="box">
-              <input type="email" id="account" placeholder="example@gmail.com" required>
+              <input
+                id="account"
+                type="email"
+                placeholder="example@gmail.com"
+                required
+              >
             </span>
-            <input type="submit" id="verify" value="인증번호 발송">
+            <input id="verify" type="submit" value="인증번호 발송">
           </div>
           <div class="input-email-verify">
             <h3>인증번호</h3>
             <span class="box">
-              <input type="text" id="verify-code" placeholder="1234" required>
+              <input id="verify-code" type="text" placeholder="1234" required>
             </span>
-            <p>이메일로 도착한 인증번호를 입력해주세요. 인증번호 발송에 최대 20초 까지 소요될 수 있습니다.</p>
+            <p>
+              이메일로 도착한 인증번호를 입력해주세요. 인증번호 발송에 최대 20초
+              까지 소요될 수 있습니다.
+            </p>
           </div>
           <div class="input-password">
             <h3>비밀번호</h3>
             <span class="box">
-              <input type="password" id="password" placeholder="비밀번호를 입력하세요." required>
+              <input
+                id="password"
+                type="password"
+                placeholder="비밀번호를 입력하세요."
+                required
+              >
             </span>
           </div>
-          <input type="submit" id="signup" value="회원가입">
+          <input id="signup" type="submit" value="회원가입">
         </form>
       </div>
     </div>
@@ -49,7 +70,7 @@
 
 <script>
 export default {
-  name: "SignupPage",
+  name: 'SignupPage',
   layout: 'login',
   head: {
     title: 'Sign Up'
@@ -156,11 +177,11 @@ h3 {
   padding-right: 150px;
 }
 
-.signup .input-email input[type=email] {
+.signup .input-email input[type='email'] {
   width: 100%;
 }
 
-.signup .input-email input[type=submit] {
+.signup .input-email input[type='submit'] {
   position: absolute;
   top: 0;
   right: 0;
@@ -180,7 +201,7 @@ h3 {
   margin-bottom: 16px;
 }
 
-.signup .input-email-verify input[id=verify-code] {
+.signup .input-email-verify input[id='verify-code'] {
   width: 100%;
 }
 
@@ -189,11 +210,11 @@ h3 {
   font-size: 14px;
 }
 
-.signup .input-password input[type=password] {
+.signup .input-password input[type='password'] {
   width: 100%;
 }
 
-.signup input[id=signup] {
+.signup input[id='signup'] {
   width: 100%;
   margin-top: 17px;
   margin-bottom: 20px;

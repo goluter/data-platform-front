@@ -1,12 +1,9 @@
 <template>
   <div>
-      <a
-        ><span>1대1 문의</span
-        ><v-btn class="button" x-small color="#30cdae">제출</v-btn></a
-      >
+    <a><span>1대1 문의</span><v-btn class="button" x-small color="#30cdae">제출</v-btn></a>
     <div>
       <div class="titleinput">
-        <input placeholder="제목을 입력해주세요" class="search2" />
+        <input placeholder="제목을 입력해주세요" class="search2">
       </div>
       <div class="maininput">
         <textarea

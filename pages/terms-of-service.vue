@@ -1,17 +1,23 @@
 <template>
   <div class="container">
-    <div class="title1">제 1 장 환영합니다</div>
-    <div class="sub1">
-      제 1 조 (목적)<br />
-      제 2 조 (약관의 효력 및 변경)<br />
-      제 3 조 (약관 외 준칙)<br />
+    <div class="title1">
+      제 1 장 환영합니다
     </div>
-    <div class="title2" style="margin: 0px 0px 0px 18px">제 2 장 계정 이용</div>
+    <div class="sub1">
+      제 1 조 (목적)<br>
+      제 2 조 (약관의 효력 및 변경)<br>
+      제 3 조 (약관 외 준칙)<br>
+    </div>
+    <div class="title2" style="margin: 0px 0px 0px 18px">
+      제 2 장 계정 이용
+    </div>
     <div class="sub2">
-      제 4 조 (계약의 성립)<br />
+      제 4 조 (계약의 성립)<br>
       제 5 조 (계정 관리)
     </div>
-    <div class="title3" style="margin: 40px 0px 0px 18px">제 1 조 (목적)</div>
+    <div class="title3" style="margin: 40px 0px 0px 18px">
+      제 1 조 (목적)
+    </div>
     <div class="sub3">
       주식회사 고베이(이하 ‘회사’)가 제공하는 서비스를 이용해 주셔서 감사합니다.
       회사는 여러분이 다양한 인터넷과 모바일 서비스(이하 ‘서비스’)를 좀 더
@@ -29,14 +35,14 @@
 export default {
   name: 'PrivacyPolicy',
   layout: 'default',
-  data() {
+  data () {
     return {
-      num: 0,
+      num: 0
     }
   },
   mounted () {
     this.$store.commit('setPageTitle', '이용약관')
-  },
+  }
 }
 </script>
 

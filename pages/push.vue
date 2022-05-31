@@ -1,13 +1,16 @@
 <template>
   <div>
-      <a><span>알림</span></a>
+    <a><span>알림</span></a>
     <div v-for="(a, i) in PushData" :key="a" class="box">
-      <div class="boxtitle">{{ PushData[i].type }}알림</div>
-      <div class="boxcomment">
-        <span>{{ PushData[i].survay }}</span
-        >에 참여완료되셨어요!
+      <div class="boxtitle">
+        {{ PushData[i].type }}알림
       </div>
-      <div class="boxdate">{{ PushData[i].date }}</div>
+      <div class="boxcomment">
+        <span>{{ PushData[i].survay }}</span>에 참여완료되셨어요!
+      </div>
+      <div class="boxdate">
+        {{ PushData[i].date }}
+      </div>
     </div>
   </div>
 </template>
@@ -16,15 +19,15 @@
 import GuideData from '../assets/data/GuideData'
 import PushData from '../assets/data/PushData'
 export default {
-  name: 'push',
+  name: 'Push',
   layout: 'default',
-  data() {
+  data () {
     return {
       GuideData,
       PushData,
-      selectnum: 0,
+      selectnum: 0
     }
-  },
+  }
 }
 </script>
 
