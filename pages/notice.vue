@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
     </div>
@@ -32,6 +32,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 500px;
+}
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
@@ -44,18 +47,9 @@ export default {
   text-align: left;
   color: #000;
 }
-.container {
-  padding: 0px;
-}
 .banner {
   background-color: #eee;
   height: 96px;
-}
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 9px 10px 12px 11px;
-  width: 100%;
-  background-color: white;
 }
 .header span {
   flex-grow: 0;

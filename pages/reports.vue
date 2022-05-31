@@ -18,7 +18,7 @@
       </div>
       <div class="content">
         <v-container class="pa-0">
-          <v-row class="ma-0" justify="end" style="width: 100%; height: 60px">
+          <v-row class="ma-0" justify="end" style="height: 60px">
             <v-col cols="4">
                 <v-select
                     :items="sort"
@@ -82,8 +82,10 @@ export default {
 
 <style scoped>
 .wrapper {
+  margin: auto;
   padding-top: 2px;
-  min-height: 80%;
+  max-width: 500px;
+  height: 94%;
   background-color: #eeeeee;
 }
 .inner-wrapper {
