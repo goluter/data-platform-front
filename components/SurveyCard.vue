@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  margin-top: 10px;
+}
 .survey-img {
   padding: 3%;
   width: 100%;
