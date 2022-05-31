@@ -1,17 +1,15 @@
 <template>
   <v-container style="align-items: center">
     <v-row style="height: 95px; background-color: #f8f8f8">
-      <v-col cols="1" align-self="center">
-        <v-icon x-large>
+      <v-col cols="12" align-self="center">
+        <v-icon x-large left>
           mdi-account-circle
         </v-icon>
-      </v-col>
-      <v-col cols="11" align-self="center">
         <span class="username">@{{ username }}</span>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" style="padding: 0 12px">
         <v-tabs v-model="tab" grow>
           <v-tabs-slider color="teal accent-3" />
           <v-tab
@@ -156,9 +154,6 @@ export default {
 </script>
 
 <style scoped>
-.username {
-  margin-left: 15px;
-}
 .achievement-text {
   margin: 25px 0;
 }
