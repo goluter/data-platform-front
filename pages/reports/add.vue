@@ -2,8 +2,8 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="8" sm="10" md="10"></v-col>
-        <v-col cols="4" sm="2" md="2">
+        <v-col class="mr-auto" cols="1"></v-col>
+        <v-col class="ml-auto" cols="auto">
           <v-btn icon><v-icon>mdi-content-save-outline</v-icon></v-btn>
           <v-btn color="teal accent-4" style="color: white; font-weight: 500">등록</v-btn>
         </v-col>
