@@ -76,15 +76,15 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {}
 
-  redirect: [
-    {
-      from: '^.*(?<!\/)$',
-      to: (from, req) => req.url + '/'
-    }
-  ],
-  router: {
-    trailingSlash: true
-  }
+  // redirect: [
+  //   {
+  //     from: '^.*(?<!\/)$',
+  //     to: (from, req) => req.url + '/'
+  //   }
+  // ],
+  // router: {
+  //   trailingSlash: true
+  // }
 }
