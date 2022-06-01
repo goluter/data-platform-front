@@ -1,15 +1,21 @@
 <template>
   <div class="container">
     <div class="banner">
-      <div style="padding: 22px 0px 0px 18px">브루스 배너</div>
+      <div style="padding: 22px 0px 0px 18px">
+        브루스 배너
+      </div>
     </div>
     <div v-for="(a, i) in NoticeData" :key="a" class="contents">
       <NuxtLink
         :to="NoticeData[i].url"
         style="color: black; text-decoration-line: none"
       >
-        <div class="noticetitle">{{ NoticeData[i].title }}</div>
-        <div class="date">{{ NoticeData[i].date }}</div>
+        <div class="noticetitle">
+          {{ NoticeData[i].title }}
+        </div>
+        <div class="date">
+          {{ NoticeData[i].date }}
+        </div>
       </NuxtLink>
     </div>
   </div>
@@ -18,16 +24,16 @@
 <script>
 import NoticeData from '../assets/data/NoticeData.js'
 export default {
-  name: 'notice',
-  data() {
+  name: 'Notice',
+  data () {
     return {
       NoticeData,
-      num: 0,
+      num: 0
     }
   },
   mounted () {
     this.$store.commit('setPageTitle', '공지사항')
-  },
+  }
 }
 </script>
 

@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/point" style="color: black; text-decoration-line: none"
-        ><img
+      <NuxtLink
+        to="/point"
+        style="color: black; text-decoration-line: none"
+      >
+        <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>상세내역</span></a>
     </div>
@@ -16,30 +20,42 @@
           class="profileimg"
           src="../../assets/Male User.png"
           align="middle"
-        />
+        >
         <span>{{ username }}</span>
       </div>
-      <div class="point1" v-if="PointData[$route.params.id].sign == '+'">
+      <div v-if="PointData[$route.params.id].sign == '+'" class="point1">
         {{ PointData[$route.params.id].sign
         }}{{ PointData[$route.params.id].reward }}
       </div>
-      <div class="point2" v-if="PointData[$route.params.id].sign == '-'">
+      <div v-if="PointData[$route.params.id].sign == '-'" class="point2">
         {{ PointData[$route.params.id].reward }}
       </div>
       <div class="onemain">
-        <div class="onetitle">거래시간</div>
-        <div class="time">{{ PointData[$route.params.id].datedetail }}</div>
+        <div class="onetitle">
+          거래시간
+        </div>
+        <div class="time">
+          {{ PointData[$route.params.id].datedetail }}
+        </div>
       </div>
       <div class="onemain">
-        <div class="onetitle">수신</div>
-        <div class="time">{{ PointData[$route.params.id].reward }}</div>
+        <div class="onetitle">
+          수신
+        </div>
+        <div class="time">
+          {{ PointData[$route.params.id].reward }}
+        </div>
       </div>
       <div class="onemain">
-        <div class="onetitle">송금</div>
-        <div class="time">{{ username }}</div>
+        <div class="onetitle">
+          송금
+        </div>
+        <div class="time">
+          {{ username }}
+        </div>
       </div>
     </div>
-    <div style="height: 50vh; background-color: #f0f0f0"></div>
+    <div style="height: 50vh; background-color: #f0f0f0" />
   </div>
 </template>
 
@@ -48,13 +64,13 @@ import PointData from '../../assets/data/Pointdata'
 export default {
   name: 'Planneddetail',
   layout: 'default',
-  data() {
+  data () {
     return {
       PointData,
       selectnum: 0,
-      username: '고베이',
+      username: '고베이'
     }
-  },
+  }
 }
 </script>
 

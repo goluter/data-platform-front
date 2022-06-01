@@ -1,24 +1,18 @@
 <template>
   <div class="banner">
-    <div class="banner-wrapper"
-         v-for="item in surveyData"
-    >
+    <div v-for="item in surveyData" class="banner-wrapper">
       <div class="survey-box rounded-xl elevation-1">
         <div class="banner-img-box">
-          <div class="banner-img"></div>
+          <div class="banner-img" />
         </div>
         <div class="banner-content">
-        <span class="banner-title">
-        {{ item.title }}
-        </span>
-          <span class="banner-left-time">
-          {{ item.left }}일 남음
-        </span>
+          <span class="banner-title">
+            {{ item.title }}
+          </span>
+          <span class="banner-left-time"> {{ item.left }}일 남음 </span>
           <div class="banner-count-tags">
-            <span class="banner-count">
-              {{ item.count }}명이 참여 중
-            </span>
-            <span class="banner-tags" v-for="tags in item.tags">
+            <span class="banner-count"> {{ item.count }}명이 참여 중 </span>
+            <span v-for="tags in item.tags" class="banner-tags">
               <a href="">#{{ tags }}</a>
             </span>
           </div>
@@ -26,8 +20,14 @@
       </div>
       <div class="survey-box-bottom rounded-xl elevation-5">
         <div class="reward-box">
-          <div class="reward-item-box rounded-x1" v-for="reward in item.rewards">
-            <v-icon small :color=reward.color> {{ reward.icon }} </v-icon> {{ reward.title }}
+          <div
+            v-for="reward in item.rewards"
+            class="reward-item-box rounded-x1"
+          >
+            <v-icon small :color="reward.color">
+              {{ reward.icon }}
+            </v-icon>
+            {{ reward.title }}
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: "SurveyBox",
+  name: 'SurveyBox',
   props: {
     surveyData: {
       type: Array,
@@ -61,7 +61,7 @@ export default {
   width: 90%;
   height: 90px;
   background-color: white;
-  z-index: 1
+  z-index: 1;
 }
 .banner-img-box {
   display: inline-block;

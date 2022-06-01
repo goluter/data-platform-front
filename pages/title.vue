@@ -13,7 +13,7 @@
         <div class="title-detail">
           <div class="title-desc">
             <span class="title-name"><h3>나는 대학생이다</h3></span>
-            <span class="title-condition">획득조건: 학교 이메일로 인증을 진행합니다.</span><br />
+            <span class="title-condition">획득조건: 학교 이메일로 인증을 진행합니다.</span><br>
           </div>
           <span class="recent-earned"><img src="/">
             <span class="counter">1234번째 획득자가 되어보세요!</span>
@@ -29,7 +29,7 @@
         <div class="title-detail">
           <div class="title-desc">
             <span class="title-name"><h3>나는 대학생이다</h3></span>
-            <span class="title-condition">획득조건: 학교 이메일로 인증을 진행합니다.</span><br />
+            <span class="title-condition">획득조건: 학교 이메일로 인증을 진행합니다.</span><br>
           </div>
           <span class="recent-earned"><img src="/">
             <span class="counter">1234번째 획득자가 되어보세요!</span>
@@ -42,8 +42,8 @@
 
 <script>
 export default {
-  name: "TitleEarned",
-  layout: "login",
+  name: 'TitleEarned',
+  layout: 'login',
   head: {
     title: 'Tag'
   }
@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   max-width: 500px;
   margin: 55px auto 16px auto;
 }
@@ -89,7 +89,7 @@ export default {
   vertical-align: top;
   float: left;
 }
-.title-box .title-icon  {
+.title-box .title-icon {
   width: 45px;
   height: 45px;
   margin: 0 5px;

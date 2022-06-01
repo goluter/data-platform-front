@@ -1,18 +1,19 @@
 <template>
   <div class="banner-wrapper">
-    <NuxtLink :to="bannerData['to']" style="text-decoration: none;">
-      <div class="banner-box elevation-5"
-      >
+    <NuxtLink :to="bannerData['to']" style="text-decoration: none">
+      <div class="banner-box elevation-5">
         <div class="banner-title-box">
-          <v-icon color="white">{{ bannerData['icon'] }}</v-icon>
+          <v-icon color="white">
+            {{ bannerData['icon'] }}
+          </v-icon>
           <span class="banner-title">
-        {{ bannerData['title'] }}
-      </span>
+            {{ bannerData['title'] }}
+          </span>
         </div>
         <div class="banner-msg-box">
-        <span class="banner-msg">
-          {{ bannerData['msg'] }}
-        </span>
+          <span class="banner-msg">
+            {{ bannerData['msg'] }}
+          </span>
         </div>
       </div>
     </NuxtLink>
