@@ -12,9 +12,6 @@
     <button @click="editor.chain().focus().setTextAlign('justify').run()" :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }">
       <v-icon>mdi-format-align-justify</v-icon>
     </button>
-    <v-row>
-      <v-col cols="12"></v-col>
-    </v-row>
     <floating-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">
       <button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
         제목1
@@ -31,7 +28,7 @@
     </floating-menu>
     <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }">
       <button @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
-        굵게
+        <B>굵게</B>
       </button>
       <button @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
         취소선
@@ -97,6 +94,7 @@ export default {
 </script>
 <style scoped>
 button {
+  background-color: white;
   border: solid 1px;
   border-radius: 3px;
   font-size: 14px;
