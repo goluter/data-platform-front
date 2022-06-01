@@ -17,12 +17,14 @@
     <v-container>
       <v-row>
         <v-col cols="12">
-          제목
+          <h4>제목<h4 style="display: inline; color: red">*</h4></h4>
           <v-text-field
+              :rules="rules"
               label="제목을 입력하세요."
               filled
               flat
               single-line
+              hide-details="auto"
               color="teal accent-4"
           >
           </v-text-field>
@@ -30,9 +32,10 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          태그
+          <h4>태그<h4 style="display: inline; color: red">*</h4></h4>
           <v-combobox
               v-model="init"
+              :rules="[tagVal]"
               :search-input.sync="search"
               :items="tags"
               label="태그를 입력하세요."
@@ -57,8 +60,8 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" style="margin-bottom: 30px">
-          분석 설문
+        <v-col cols="12" style="margin-bottom: 10px">
+          <h4>분석 설문</h4>
           <survey-card :survey-data="surveyData" />
         </v-col>
       </v-row>
@@ -84,6 +87,9 @@ export default {
   data() {
     return {
       search: null,
+      rules: [
+        value => !!value || '필수 입력 항목입니다.'
+      ],
       surveyData: [
         {
           title: '대학생들에게 묻습니다',
@@ -103,9 +109,19 @@ export default {
       init: [],
       tags: ['대학생', '직장인']
     }
+  },
+  methods: {
+    tagVal(val) {
+      if (val instanceof Array && val.length == 0) {
+        return '필수 입력 항목입니다.';
+      } return !!val || '필수 입력 항목입니다.';
+    }
   }
 }
 </script>
 
 <style scoped>
+h1 {
+  display: inline;
+}
 </style>
