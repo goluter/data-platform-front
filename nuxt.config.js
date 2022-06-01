@@ -80,12 +80,11 @@ export default {
 
   redirect: [
     {
-      // eslint-disable-next-line no-useless-escape
-      from: '^.*(?<=\\/)$',
-      to: (from, req) => req.url.replace(/\/$/, '')
+      from: '^.*(?<!\/)$',
+      to: (from, req) => req.url + '/'
     }
   ],
   router: {
-    trailingSlash: false
+    trailingSlash: true
   }
 }
