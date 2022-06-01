@@ -11,10 +11,18 @@
       </div>
       <div class="login-type">
         <div class="social-login">
-          <button class="kakao"><v-img src="/kakao.jpg" height="50px" width="50px"></v-img></button>
-          <button class="naver"><v-img src="/naver.jpg" height="50px" width="50px"></v-img></button>
-          <button class="google"><v-img src="/google.jpg" height="50px" width="50px"></v-img></button>
-          <button class="apple"><v-img src="/apple.jpg" height="50px" width="50px"></v-img></button>
+          <button class="kakao">
+            <v-img src="/kakao.jpg" height="50px" width="50px" />
+          </button>
+          <button class="naver">
+            <v-img src="/naver.jpg" height="50px" width="50px" />
+          </button>
+          <button class="google">
+            <v-img src="/google.jpg" height="50px" width="50px" />
+          </button>
+          <button class="apple">
+            <v-img src="/apple.jpg" height="50px" width="50px" />
+          </button>
         </div>
         <p>또는 이메일 로그인</p>
       </div>
@@ -22,11 +30,21 @@
         <form action="" method="post">
           <div class="input">
             <label>이메일</label>
-            <input type="email" id="account" placeholder="이메일을 입력하세요." required>
+            <input
+              id="account"
+              type="email"
+              placeholder="이메일을 입력하세요."
+              required
+            >
           </div>
           <div class="input">
             <label>비밀번호</label>
-            <input type="password" id="password" placeholder="비밀번호를 입력하세요." required>
+            <input
+              id="password"
+              type="password"
+              placeholder="비밀번호를 입력하세요."
+              required
+            >
           </div>
           <div id="login-option">
             <div class="auto-login">
@@ -45,7 +63,7 @@
 
 <script>
 export default {
-  name: "LoginPage",
+  name: 'LoginPage',
   layout: 'login',
   head: {
     title: 'Log In'
@@ -131,7 +149,8 @@ export default {
   position: relative;
 }
 
-.login input[type=email], input[type=password] {
+.login input[type='email'],
+input[type='password'] {
   width: 100%;
   height: 50px;
   margin: 0 0 10px 0;
@@ -140,7 +159,7 @@ export default {
   background: #f7f7f8;
 }
 
-.login input[type=submit] {
+.login input[type='submit'] {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -152,7 +171,7 @@ export default {
   font-weight: bold;
 }
 
-.login input[type=checkbox] {
+.login input[type='checkbox'] {
   margin-right: 5px;
 }
 

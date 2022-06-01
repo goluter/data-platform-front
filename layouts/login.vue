@@ -5,15 +5,14 @@
         <div class="login-header">
           <a href="/"><img src="/govey.svg" alt="govey"></a>
         </div>
-          <Nuxt />
+        <Nuxt />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
 <style scoped>

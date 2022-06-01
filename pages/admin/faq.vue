@@ -16,11 +16,11 @@ import FAQdata from '../../assets/data/FAQdata'
 export default {
   name: 'Faq',
   layout: 'Admin',
-  data() {
+  data () {
     return {
       FAQdata,
-      layout: 'admin',
+      layout: 'admin'
     }
-  },
+  }
 }
 </script>

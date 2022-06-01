@@ -14,7 +14,8 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >대시보드
+      >
+        대시보드
       </v-tab>
       <v-tab
         @click="
@@ -28,7 +29,8 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >회원관리
+      >
+        회원관리
       </v-tab>
       <v-tab
         @click="
@@ -42,7 +44,8 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >설문관리
+      >
+        설문관리
       </v-tab>
       <v-tab
         @click="
@@ -56,8 +59,9 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >이벤트</v-tab
       >
+        이벤트
+      </v-tab>
       <v-tab
         @click="
           TopTab1 = false
@@ -70,8 +74,9 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >공지사항</v-tab
       >
+        공지사항
+      </v-tab>
       <v-tab
         @click="
           TopTab1 = false
@@ -84,7 +89,8 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >FAQ
+      >
+        FAQ
       </v-tab>
       <v-tab
         @click="
@@ -98,8 +104,9 @@
           TopTab8 = false
           ShowUserInfo = false
         "
-        >Q&A</v-tab
       >
+        Q&A
+      </v-tab>
       <v-tab
         @click="
           TopTab1 = false
@@ -112,33 +119,36 @@
           TopTab8 = true
           ShowUserInfo = false
         "
-        >문의게시판</v-tab
       >
+        문의게시판
+      </v-tab>
     </v-tabs>
     <div style="display: flex; justify-content: center">
       <v-alert
-        style="position: absolute; z-index: 3; width: 300px"
         v-if="applysuccess == true"
+        style="position: absolute; z-index: 3; width: 300px"
         class="applysuccess"
         type="success"
         :value="overlay"
-        >적용완료
-        <v-btn @click="applysuccess = false" style="float: right" x-small
-          >X</v-btn
-        >
+      >
+        적용완료
+        <v-btn style="float: right" x-small @click="applysuccess = false">
+          X
+        </v-btn>
       </v-alert>
     </div>
     <div style="display: flex; justify-content: center">
       <v-alert
-        style="position: absolute; z-index: 3; width: 300px"
         v-if="addsuccess == true"
+        style="position: absolute; z-index: 3; width: 300px"
         class="addsuccess"
         type="success"
         :value="overlay"
-        >추가완료
-        <v-btn @click="addsuccess = false" style="float: right" x-small
-          >X</v-btn
-        >
+      >
+        추가완료
+        <v-btn style="float: right" x-small @click="addsuccess = false">
+          X
+        </v-btn>
       </v-alert>
     </div>
 
@@ -148,9 +158,9 @@
       <div class="modal-white">
         <h4>필터</h4>
         <div>
-          <input type="checkbox" name="fruits" value="orange" />인증회원
-          <input type="checkbox" name="fruits" value="orange" />공인회원
-          <input type="checkbox" name="fruits" value="orange" />정지회원
+          <input type="checkbox" name="fruits" value="orange">인증회원
+          <input type="checkbox" name="fruits" value="orange">공인회원
+          <input type="checkbox" name="fruits" value="orange">정지회원
         </div>
 
         <div>
@@ -162,15 +172,17 @@
               applysuccess = true
               overlay = !overlay
             "
-            >적용</v-btn
           >
+            적용
+          </v-btn>
 
           <v-btn
             id="filtercancel"
             elevation="2"
             @click="ShowModal_Filter = false"
-            >닫기</v-btn
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -187,7 +199,7 @@
               class="form-control"
               placeholder="Username"
               required
-            />
+            >
           </div>
           <div class="col-12">
             <input
@@ -195,7 +207,7 @@
               type="text"
               class="form-control"
               placeholder="Example@gmail.com"
-            />
+            >
           </div>
           <div class="col-12">
             <input
@@ -203,7 +215,7 @@
               type="text"
               class="form-control"
               placeholder="추가정보"
-            />
+            >
           </div>
         </div>
 
@@ -216,14 +228,16 @@
               addsuccess = true
               overlay = !overlay
             "
-            >추가</v-btn
           >
+            추가
+          </v-btn>
           <v-btn
             id="usraddcancel"
             elevation="2"
             @click="ShowModal_UserAdd = false"
-            >닫기</v-btn
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -247,19 +261,19 @@
                 label="승인"
                 value="radio-1"
                 @click="value = 0"
-              ></v-radio>
+              />
               <v-radio
                 label="거절"
                 value="radio-2"
                 @click="value = 1"
-              ></v-radio>
+              />
             </v-radio-group>
             <textarea
               v-if="value == 1"
               name="content"
               style="width: 98%; height: 10%; background: whitesmoke"
               placeholder="사유입력"
-            ></textarea>
+            />
           </form>
           <div>
             <v-btn
@@ -270,14 +284,16 @@
                 applysuccess = true
                 overlay = !overlay
               "
-              >적용</v-btn
             >
+              적용
+            </v-btn>
             <v-btn
               id="surveyinfocancel"
               elevation="2"
               @click="ShowSurveyInfo = false"
-              >닫기</v-btn
             >
+              닫기
+            </v-btn>
           </div>
         </div>
       </div>
@@ -288,26 +304,26 @@
         <h3>이벤트 등록</h3>
         <div>
           이벤트 기간
-          <input class="date" type="date" />~<input class="date" type="date" />
+          <input class="date" type="date">~<input class="date" type="date">
         </div>
         <div>
           <v-file-input
             truncate-length="15"
             prepend-icon="mdi-camera"
             placeholder="이벤트 배너사진 등록"
-          ></v-file-input>
+          />
         </div>
 
         <textarea
           name="content"
           style="width: 98%; height: 2rem; background: whitesmoke"
           placeholder="이벤트 제목"
-        ></textarea>
+        />
         <textarea
           name="content"
           style="width: 98%; height: 10rem; background: whitesmoke"
           placeholder="이벤트 내용"
-        ></textarea>
+        />
 
         <div>
           <v-btn
@@ -318,11 +334,16 @@
               addsuccess = true
               overlay = !overlay
             "
-            >등록</v-btn
           >
-          <v-btn id="eventcancel" elevation="2" @click="ShowEventAdd = false"
-            >닫기</v-btn
+            등록
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowEventAdd = false"
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -337,13 +358,13 @@
           label="공지사항 제목"
           rows="2"
           row-height="20"
-        ></v-textarea>
+        />
 
         <v-textarea
           clearable
           clear-icon="mdi-close-circle"
           label="공지사항 내용"
-        ></v-textarea>
+        />
         <div>
           <v-btn
             id="noticeadd"
@@ -353,11 +374,16 @@
               addsuccess = true
               overlay = !overlay
             "
-            >등록</v-btn
           >
-          <v-btn id="noticecancel" elevation="2" @click="ShowNoticeAdd = false"
-            >닫기</v-btn
+            등록
+          </v-btn>
+          <v-btn
+            id="noticecancel"
+            elevation="2"
+            @click="ShowNoticeAdd = false"
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -372,13 +398,13 @@
             label="FAQ 제목"
             rows="2"
             row-height="20"
-          ></v-textarea>
+          />
 
           <v-textarea
             clearable
             clear-icon="mdi-close-circle"
             label="FAQ 내용"
-          ></v-textarea>
+          />
         </div>
 
         <div>
@@ -390,11 +416,16 @@
               ShowFAQAdd = false
               overlay = !overlay
             "
-            >등록</v-btn
           >
-          <v-btn id="faqcancel" elevation="2" @click="ShowFAQAdd = false"
-            >닫기</v-btn
+            등록
+          </v-btn>
+          <v-btn
+            id="faqcancel"
+            elevation="2"
+            @click="ShowFAQAdd = false"
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -409,13 +440,13 @@
           label="Q&A 제목"
           rows="2"
           row-height="20"
-        ></v-textarea>
+        />
 
         <v-textarea
           clearable
           clear-icon="mdi-close-circle"
           label="Q&A 내용"
-        ></v-textarea>
+        />
         <div>
           <v-btn
             id="qaadd"
@@ -425,11 +456,16 @@
               overlay = !overlay
               ShowQAAdd = false
             "
-            >등록</v-btn
           >
-          <v-btn id="qacancel" elevation="2" @click="ShowQAAdd = false"
-            >닫기</v-btn
+            등록
+          </v-btn>
+          <v-btn
+            id="qacancel"
+            elevation="2"
+            @click="ShowQAAdd = false"
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -438,7 +474,7 @@
       <div class="modal-white">
         <h3>회원등급조절</h3>
 
-        <v-select :items="items" filled></v-select>
+        <v-select :items="items" filled />
 
         <div>
           <v-btn
@@ -449,14 +485,16 @@
               ShowGradeSetting = false
               overlay = !overlay
             "
-            >적용</v-btn
           >
+            적용
+          </v-btn>
           <v-btn
             id="gradecancel"
             elevation="2"
             @click="ShowGradeSetting = false"
-            >닫기</v-btn
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -471,13 +509,13 @@
           label="부여할 포인트"
           rows="2"
           row-height="20"
-        ></v-textarea>
+        />
 
         <v-textarea
           filled
           clear-icon="mdi-close-circle"
           label="부여 내용"
-        ></v-textarea>
+        />
         <div>
           <v-btn
             id="pointapply"
@@ -487,14 +525,16 @@
               ShowPointSetting = false
               overlay = !overlay
             "
-            >적용</v-btn
           >
+            적용
+          </v-btn>
           <v-btn
             id="pointcancel"
             elevation="2"
             @click="ShowPointSetting = false"
-            >닫기</v-btn
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -508,23 +548,23 @@
           outlined
           rows="1"
           row-height="15"
-        ></v-textarea>
+        />
         <v-textarea
           :label="UserData[UserNum].Email"
           auto-grow
           outlined
           rows="1"
           row-height="15"
-        ></v-textarea>
+        />
         <v-select
           solo
           :label="UserData[UserNum].UserType"
           :items="typelist"
           filled
           auto-grow
-        ></v-select>
+        />
 
-        <input class="date" type="date" />
+        <input class="date" type="date">
         <div>
           <v-btn
             id="modifyapply"
@@ -534,11 +574,16 @@
               ShowUserModify = false
               overlay = !overlay
             "
-            >적용</v-btn
           >
-          <v-btn id="modifycancel" elevation="2" @click="ShowUserModify = false"
-            >닫기</v-btn
+            적용
+          </v-btn>
+          <v-btn
+            id="modifycancel"
+            elevation="2"
+            @click="ShowUserModify = false"
           >
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -552,7 +597,7 @@
           range
           locale="ko-KR"
           width="400"
-        ></v-date-picker>
+        />
         model: {{ dates }}
         <div>
           <GChart type="LineChart" :data="chartData" :options="chartOptions" />
@@ -572,8 +617,10 @@
                 border: 1px solid gray;
                 border-radius: 4px;
               "
-            />
-            <v-btn elevation="2" x-small> 검색 </v-btn>
+            >
+            <v-btn elevation="2" x-small>
+              검색
+            </v-btn>
             <v-btn
               class="modalbtn"
               elevation="2"
@@ -600,13 +647,17 @@
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
-              <v-banner color="primary" rounded single-line
-                ><dl @click="UserNum = i">
+              <v-banner
+                color="primary"
+                rounded
+                single-line
+              >
+                <dl @click="UserNum = i">
                   <dd>{{ UserData[i].UserName }}</dd>
 
                   <dd>{{ UserData[i].Email }}</dd>
-                </dl></v-banner
-              >
+                </dl>
+              </v-banner>
             </div>
           </div>
         </v-banner>
@@ -614,11 +665,12 @@
         <div v-if="ShowUserInfo == true" style="float: left; width: 80%">
           <v-card outlined shaped style="margin: 1%; padding: 1%">
             <v-btn
-              @click="ShowUserModify = true"
               style="float: right"
               elevation="2"
               small
-              >ℹ
+              @click="ShowUserModify = true"
+            >
+              ℹ
             </v-btn>
             <!-- 이름 -->
             <div>
@@ -626,10 +678,10 @@
                 src="../../assets/premium-icon-person-2815428.png"
                 class="iconsize"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 Name
-                <br />
+                <br>
                 {{ UserData[UserNum].UserName }}
               </p>
             </div>
@@ -639,10 +691,10 @@
                 src="../../assets/premium-icon-open-mail-2468421.png"
                 class="iconsize"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 Email
-                <br />
+                <br>
                 {{ UserData[UserNum].Email }}
               </p>
             </div>
@@ -652,10 +704,10 @@
                 src="../../assets/premium-icon-login-3682245.png"
                 class="iconsize"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 Type
-                <br />
+                <br>
                 {{ UserData[UserNum].UserType }}
               </p>
             </div>
@@ -665,10 +717,10 @@
                 src="../../assets/premium-icon-calendar-4511116.png"
                 class="iconsize"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 Date
-                <br />
+                <br>
                 {{ UserData[UserNum].RegisterDate }}
               </p>
             </div>
@@ -781,17 +833,25 @@
           </div>
           <div v-if="ShowHistory == true">
             <v-simple-table>
-              <template v-slot:default>
+              <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">번호</th>
-                    <th class="text-left">참여설문</th>
-                    <th class="text-left">참여날짜</th>
+                    <th style="text-align: center">
+                      번호
+                    </th>
+                    <th class="text-left">
+                      참여설문
+                    </th>
+                    <th class="text-left">
+                      참여날짜
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
-                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
                     <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
                     <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
                   </tr>
@@ -820,23 +880,35 @@
             </v-btn>
           </div>
           <div v-if="ShowUserPoint == true">
-            <div style="font-size: larger">현재포인트 : 9999포인트</div>
+            <div style="font-size: larger">
+              현재포인트 : 9999포인트
+            </div>
             <v-btn elevation="2" x-small @click="ShowPointSetting = true">
               포인트조정
             </v-btn>
             <v-simple-table>
-              <template v-slot:default>
+              <template #default>
                 <thead>
                   <tr>
-                    <th style="width: 3%">번호</th>
-                    <th style="text-align: center">상품 획득사유</th>
-                    <th class="text-left">획득날짜</th>
-                    <th class="text-left">내역</th>
+                    <th style="width: 3%">
+                      번호
+                    </th>
+                    <th style="text-align: center">
+                      상품 획득사유
+                    </th>
+                    <th class="text-left">
+                      획득날짜
+                    </th>
+                    <th class="text-left">
+                      내역
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(a, i) in UserData[UserNum].UserPoint" :key="a">
-                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
                     <td style="text-align: center">
                       {{ UserData[UserNum].UserPoint[i][0] }}
                     </td>
@@ -850,18 +922,28 @@
           <!--상품관리탭-->
           <div v-if="ShowUserProduct == true">
             <v-simple-table>
-              <template v-slot:default>
+              <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">번호</th>
-                    <th style="text-align: center">포인트 획득사유</th>
-                    <th class="text-left">획득날짜</th>
-                    <th class="text-left">내역</th>
+                    <th style="text-align: center">
+                      번호
+                    </th>
+                    <th style="text-align: center">
+                      포인트 획득사유
+                    </th>
+                    <th class="text-left">
+                      획득날짜
+                    </th>
+                    <th class="text-left">
+                      내역
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(a, i) in UserData[UserNum].UserProduct" :key="a">
-                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
                     <td style="text-align: center">
                       {{ UserData[UserNum].UserProduct[i][0] }}
                     </td>
@@ -874,17 +956,25 @@
           </div>
           <div v-if="ShowUserTitle == true">
             <v-simple-table>
-              <template v-slot:default>
+              <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">번호</th>
-                    <th class="text-left">칭호이름</th>
-                    <th class="text-left">획득날짜</th>
+                    <th style="text-align: center">
+                      번호
+                    </th>
+                    <th class="text-left">
+                      칭호이름
+                    </th>
+                    <th class="text-left">
+                      획득날짜
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(a, i) in QaData" :key="a">
-                    <td style="text-align: center">{{ i + 1 }}</td>
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
                     <td>
                       {{ QaData[i].title }}
                     </td>
@@ -907,10 +997,10 @@
               src="../../assets/duplicate.png"
               class="iconsize"
               style="vertical-align: top"
-            />
+            >
             <p style="display: inline-block; text-align: center">
               심사를 기다리는 설문
-              <br />
+              <br>
               --개
             </p>
           </div>
@@ -919,10 +1009,10 @@
               src="../../assets/surveyor.png"
               class="iconsize"
               style="vertical-align: top"
-            />
+            >
             <p style="display: inline-block; text-align: center">
               지금까지 작성된 설문
-              <br />
+              <br>
               --개
             </p>
           </div>
@@ -931,10 +1021,10 @@
               src="../../assets/new.png"
               class="iconsize"
               style="vertical-align: top"
-            />
+            >
             <p style="display: inline-block; text-align: center">
               심사를 기다리는 설문
-              <br />
+              <br>
               --개
             </p>
           </div>
@@ -963,7 +1053,7 @@
                 src="../../assets/tag.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 {{ SurveyData[i].title }}
               </p>
@@ -973,7 +1063,7 @@
                 src="../../assets/user-avatar.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 {{ SurveyData[i].name }}
               </p>
@@ -983,7 +1073,7 @@
                 src="../../assets/calendar.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              />
+              >
               <p style="display: inline-block">
                 {{ SurveyData[i].date }}
               </p>
@@ -995,16 +1085,17 @@
       <div v-if="TopTab4 == true">
         <h2>이벤트</h2>
         <div>
-          <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
-          <input type="checkbox" name="fruits" value="orange" />지난 이벤트
+          <input type="checkbox" name="fruits" value="orange">진행중인 이벤트
+          <input type="checkbox" name="fruits" value="orange">지난 이벤트
 
           <v-btn
             depressed
             elevation="2"
             small
             href="http://localhost:3000/admin/"
-            >새로고침</v-btn
           >
+            새로고침
+          </v-btn>
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
@@ -1014,19 +1105,19 @@
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            />
+            >
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            />
+            >
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            />
+            >
           </div>
           <footer>
             <div class="text-center">
-              <v-pagination v-model="page" :length="6"></v-pagination>
+              <v-pagination v-model="page" :length="6" />
             </div>
           </footer>
         </div>
@@ -1043,18 +1134,28 @@
         </v-btn>
 
         <v-simple-table>
-          <template v-slot:default>
+          <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">번호</th>
-                <th class="text-left">제목</th>
-                <th class="text-left">이름</th>
-                <th class="text-left">날짜</th>
+                <th style="text-align: center">
+                  번호
+                </th>
+                <th class="text-left">
+                  제목
+                </th>
+                <th class="text-left">
+                  이름
+                </th>
+                <th class="text-left">
+                  날짜
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(a, i) in data" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
                 <td>
                   <a :href="data[i].url" style="text-decoration: none">{{
                     data[i].title
@@ -1078,18 +1179,28 @@
           FAQ 추가
         </v-btn>
         <v-simple-table>
-          <template v-slot:default>
+          <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">번호</th>
-                <th class="text-left">제목</th>
-                <th class="text-left">이름</th>
-                <th class="text-left">날짜</th>
+                <th style="text-align: center">
+                  번호
+                </th>
+                <th class="text-left">
+                  제목
+                </th>
+                <th class="text-left">
+                  이름
+                </th>
+                <th class="text-left">
+                  날짜
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(a, i) in data" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
                 <td>
                   <a :href="FaqData[i].url" style="text-decoration: none">
                     {{ FaqData[i].title }}
@@ -1114,18 +1225,28 @@
         </v-btn>
 
         <v-simple-table>
-          <template v-slot:default>
+          <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">번호</th>
-                <th class="text-left">제목</th>
-                <th class="text-left">이름</th>
-                <th class="text-left">날짜</th>
+                <th style="text-align: center">
+                  번호
+                </th>
+                <th class="text-left">
+                  제목
+                </th>
+                <th class="text-left">
+                  이름
+                </th>
+                <th class="text-left">
+                  날짜
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(a, i) in data" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
                 <td>
                   <a :href="QaData[i].url" style="text-decoration: none">
                     {{ QaData[i].title }}
@@ -1146,18 +1267,28 @@
       <div v-if="TopTab8 == true">
         <h2>문의게시판1</h2>
         <v-simple-table>
-          <template v-slot:default>
+          <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">번호</th>
-                <th class="text-left">제목</th>
-                <th class="text-left">이름</th>
-                <th class="text-left">날짜</th>
+                <th style="text-align: center">
+                  번호
+                </th>
+                <th class="text-left">
+                  제목
+                </th>
+                <th class="text-left">
+                  이름
+                </th>
+                <th class="text-left">
+                  날짜
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(a, i) in data" :key="a">
-                <td style="text-align: center">{{ i + 1 }}</td>
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
                 <td>
                   <a :href="InquiryData[i].url" style="text-decoration: none">
                     {{ InquiryData[i].title }}
@@ -1175,22 +1306,22 @@
 </template>
 
 <script>
+import QnAdata from 'assets/data/QnAdata'
+import { GChart } from 'vue-google-charts'
 import data from '../../assets/data/NoticeData.js'
 import FaqData from '../../assets/data/FAQdata'
-import QnAdata from 'assets/data/QnAdata'
 import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
-import { GChart } from 'vue-google-charts'
 
 export default {
-  name: 'index',
-  layout: 'Admin',
+  name: 'Index',
   components: {
-    GChart,
+    GChart
   },
+  layout: 'Admin',
 
-  data() {
+  data () {
     return {
       TopTab1: true,
       TopTab2: false,
@@ -1205,13 +1336,13 @@ export default {
         ['22.04.09', 1000, 322, 1322],
         ['22.04.10', 1170, 460, 1170 + 460],
         ['22.04.11', 660, 1120, 660 + 1120],
-        ['22.04.12', 1030, 540, 1030 + 540],
+        ['22.04.12', 1030, 540, 1030 + 540]
       ],
       chartOptions: {
         chart: {
           title: 'Company Performance',
-          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-        },
+          subtitle: 'Sales, Expenses, and Profit: 2014-2017'
+        }
       },
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
@@ -1221,8 +1352,8 @@ export default {
       InquiryData,
       UserData,
       SurveyData,
-      value: 0, //option값 선택
-      SurveyDataClick: 0, //surveydata 검색변수
+      value: 0, // option값 선택
+      SurveyDataClick: 0, // surveydata 검색변수
       applysuccess: false,
       addsuccess: false,
       ShowModal_Filter: false,
@@ -1245,19 +1376,19 @@ export default {
       ShowGradeSetting: false,
       ShowPointSetting: false,
       ShowUserModify: false,
-      UserNum: 0, //사용자데이터 검색변수
+      UserNum: 0, // 사용자데이터 검색변수
       dates: [],
-      overlay: false, //적용 알림창 시간변수
+      overlay: false // 적용 알림창 시간변수
     }
   },
   watch: {
-    overlay(val) {
+    overlay (val) {
       val &&
         setTimeout(() => {
           this.overlay = false
         }, 2000)
-    },
-  },
+    }
+  }
 }
 </script>
 

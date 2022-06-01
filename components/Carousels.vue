@@ -1,14 +1,15 @@
 <template>
   <div class="flicking-wrapper">
-    <Flicking :hideBeforeInit="true" :options="{ align: 'center', bound: true }">
+    <Flicking
+      :hide-before-init="true"
+      :options="{ align: 'center', bound: true }"
+    >
       <div
-          v-for="(item, i) in carouselData" :key="i"
-          style="height: 330px; align-items: flex-end"
+        v-for="(item, i) in carouselData"
+        :key="i"
+        style="height: 330px; align-items: flex-end"
       >
-        <v-sheet
-            class="survey-sheet elevation-5"
-            :color="item.color"
-        >
+        <v-sheet class="survey-sheet elevation-5" :color="item.color">
           <div class="play-icon-box">
             <img class="play-icon" src="../assets/play_index.png">
           </div>
@@ -18,9 +19,7 @@
             </span>
           </div>
           <div class="target-box">
-            <span class="surveyor">
-              설문자: {{ item.surveyor }}
-            </span>
+            <span class="surveyor"> 설문자: {{ item.surveyor }} </span>
             <span class="survey-target">
               {{ item.target }}
             </span>
@@ -32,11 +31,11 @@
 </template>
 
 <script>
-import {Flicking} from "@egjs/vue-flicking";
+import { Flicking } from '@egjs/vue-flicking'
 
 export default {
   components: {
-    Flicking: Flicking
+    Flicking
   },
   props: {
     carouselData: {
@@ -48,7 +47,7 @@ export default {
 </script>
 
 <style>
-@import url("../node_modules/@egjs/vue-flicking/dist/flicking.css");
+@import url('../node_modules/@egjs/vue-flicking/dist/flicking.css');
 .flicking-wrapper {
   height: 320px;
 }

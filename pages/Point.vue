@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/" style="color: black; text-decoration-line: none"
-        ><img
+      <NuxtLink
+        to="/"
+        style="color: black; text-decoration-line: none"
+      >
+        <img
           style="position: absolute"
           src="../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>포인트 이력</span></a>
     </div>
@@ -15,15 +19,19 @@
         :to="PointData[i].url"
         style="color: black; text-decoration-line: none"
       >
-        <div class="boxdate">{{ PointData[i].date }}</div>
-        <div class="boxtitle">{{ PointData[i].title }}</div>
-        <div class="boxreward1" v-if="PointData[i].sign == '+'">
+        <div class="boxdate">
+          {{ PointData[i].date }}
+        </div>
+        <div class="boxtitle">
+          {{ PointData[i].title }}
+        </div>
+        <div v-if="PointData[i].sign == '+'" class="boxreward1">
           {{ PointData[i].sign }}{{ PointData[i].reward }}
           <div class="pointsum">
             {{ PointData[i].sum }}
           </div>
         </div>
-        <div class="boxreward2" v-if="PointData[i].sign == '-'">
+        <div v-if="PointData[i].sign == '-'" class="boxreward2">
           {{ PointData[i].reward }}
           <div class="pointsum">
             {{ PointData[i].sum }}
@@ -37,14 +45,14 @@
 <script>
 import PointData from '../assets/data/Pointdata'
 export default {
-  name: 'point',
+  name: 'Point',
   layout: 'default',
-  data() {
+  data () {
     return {
       PointData,
-      sumpoint: 0,
+      sumpoint: 0
     }
-  },
+  }
 }
 </script>
 

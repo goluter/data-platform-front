@@ -1,4 +1,4 @@
-var Inquirydata = [
+const Inquirydata = [
   {
     id: 0,
     title: '문의1',
@@ -8,7 +8,7 @@ var Inquirydata = [
     main: '준구파워',
     url: '/admin/inquiry/0',
     userurl: '/Inquiry/0',
-    check: '답변 전',
+    check: '답변 전'
   },
   {
     id: 1,
@@ -20,7 +20,7 @@ var Inquirydata = [
     answer: '답변 드립니다. 그것도 몰라요?',
     url: '/admin/inquiry/1',
     check: '답변 후',
-    userurl: '/Inquiry/1',
+    userurl: '/Inquiry/1'
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ var Inquirydata = [
     main: '뭐냐고',
     url: '/admin/inquiry/2',
     check: '답변 전',
-    userurl: '/Inquiry/2',
+    userurl: '/Inquiry/2'
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ var Inquirydata = [
     url: '/admin/inquiry/3',
     check: '답변 전',
     main: '뭐냐고',
-    userurl: '/Inquiry/3',
+    userurl: '/Inquiry/3'
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ var Inquirydata = [
     url: '/admin/inquiry/4',
     check: '답변 후',
     main: '뭐냐고',
-    userurl: '/Inquiry/4',
-  },
+    userurl: '/Inquiry/4'
+  }
 ]
 export default Inquirydata

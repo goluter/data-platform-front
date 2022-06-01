@@ -4,11 +4,13 @@
       <NuxtLink
         to="/ServiceCenter"
         style="color: black; text-decoration-line: none"
-        ><img
+      >
+        <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>가이드</span></a>
     </div>
@@ -17,10 +19,14 @@
       <div class="noticetitle">
         {{ GuideData[$route.params.id].title }}
       </div>
-      <div class="date">{{ GuideData[$route.params.id].date }}</div>
+      <div class="date">
+        {{ GuideData[$route.params.id].date }}
+      </div>
     </div>
     <div>
-      <div class="noticemain">{{ GuideData[$route.params.id].answer }}</div>
+      <div class="noticemain">
+        {{ GuideData[$route.params.id].answer }}
+      </div>
     </div>
   </div>
 </template>
@@ -28,14 +34,14 @@
 <script>
 import GuideData from '../../assets/data/GuideData'
 export default {
-  name: 'guide',
+  name: 'Guide',
   layout: 'default',
-  data() {
+  data () {
     return {
       GuideData,
-      selectnum: 0,
+      selectnum: 0
     }
-  },
+  }
 }
 </script>
 
