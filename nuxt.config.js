@@ -41,7 +41,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // https://github.com/nuxt-community/redirect-module
+    '@nuxtjs/redirect-module'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -74,5 +76,16 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  redirect: [
+    {
+      // eslint-disable-next-line no-useless-escape
+      from: '^.*(?<=\\/)$',
+      to: (from, req) => req.url.replace(/\/$/, '')
+    }
+  ],
+  router: {
+    trailingSlash: false
+  }
 }
