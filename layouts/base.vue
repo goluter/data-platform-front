@@ -1,84 +1,84 @@
 <template>
   <v-app>
     <v-main>
-      <v-container style="max-width: 500px; height: 100%; padding: 0">
-        <div class="header_container">
-          <v-toolbar
-            class="header"
-            dense
-            elevation="0"
-            style="justify-content: space-between"
-          >
-            <v-app-bar-nav-icon @click="drawer = !drawer" />
-            <v-spacer />
-            <v-spacer />
-            <v-toolbar-title>
-              <NuxtLink to="/" style="color: black; text-decoration-line: none">
-                <img src="../static/govey.svg">
-              </NuxtLink>
-            </v-toolbar-title>
-            <v-spacer />
-            <div class="func">
-              <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-bell</v-icon>
-              </v-btn>
-            </div>
-          </v-toolbar>
-          <v-navigation-drawer v-model="drawer" app temporary>
-            <v-list nav dense>
-              <v-list-item to="/Login">
-                <v-list-item-avatar>
-                  <img src="../assets/premium-icon-person-2815428.png">
-                </v-list-item-avatar>
+      <div class="header-wrapper">
+        <v-app-bar
+          class="header"
+          dense
+          elevation="0"
+          color="white"
+        >
+          <v-app-bar-nav-icon @click="drawer = !drawer" />
+          <v-btn icon disabled />
+          <v-spacer />
+          <v-toolbar-title>
+            <NuxtLink to="/" style="color: black; text-decoration-line: none">
+              <img src="../static/govey.svg">
+            </NuxtLink>
+          </v-toolbar-title>
+          <v-spacer />
+          <div class="func">
+            <v-btn icon>
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-bell</v-icon>
+            </v-btn>
+          </div>
+        </v-app-bar>
+        <v-navigation-drawer v-model="drawer" app temporary>
+          <v-list nav dense>
+            <v-list-item to="/Login">
+              <v-list-item-avatar>
+                <img src="../assets/premium-icon-person-2815428.png">
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>로그인</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider />
+            <v-list-item-group v-model="group" active-class="text--accent-4">
+              <v-list-item
+                v-for="(item, i) in items"
+                :key="i"
+                :to="item.to"
+                @click="commitTitle(item.page)"
+              >
                 <v-list-item-content>
-                  <v-list-item-title>로그인</v-list-item-title>
+                  <v-list-item-title v-text="item.page" />
                 </v-list-item-content>
               </v-list-item>
-              <v-divider />
-              <v-list-item-group v-model="group" active-class="text--accent-4">
-                <v-list-item
-                  v-for="(item, i) in items"
-                  :key="i"
-                  :to="item.to"
-                  @click="commitTitle(item.page)"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title v-text="item.page" />
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-            <div class="sns_link">
-              <v-row>
-                <v-col>
-                  <a
-                    href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                  ><img
-                    class="sns-icon"
-                    src="../assets/image 4.png"
-                  ></a>
-                </v-col>
-                <v-col>
-                  <a href="https://www.instagram.com/govey_official/?hl=ko"><img
-                    class="sns-icon"
-                    src="../assets/image 5.png"
-                  ></a>
-                </v-col>
-                <v-col>
-                  <a href="https://www.facebook.com/고베이-104289228923939"><img
-                    class="sns-icon"
-                    src="../assets/image 6.png"
-                  ></a>
-                </v-col>
-              </v-row>
-            </div>
-          </v-navigation-drawer>
-        </div>
-        <Nuxt v-if="!$slots.default" />
-        <slot />
+            </v-list-item-group>
+          </v-list>
+          <div class="sns_link">
+            <v-row>
+              <v-col>
+                <a
+                  href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
+                ><img
+                  class="sns-icon"
+                  src="../assets/image 4.png"
+                ></a>
+              </v-col>
+              <v-col>
+                <a href="https://www.instagram.com/govey_official/?hl=ko"><img
+                  class="sns-icon"
+                  src="../assets/image 5.png"
+                ></a>
+              </v-col>
+              <v-col>
+                <a href="https://www.facebook.com/고베이-104289228923939"><img
+                  class="sns-icon"
+                  src="../assets/image 6.png"
+                ></a>
+              </v-col>
+            </v-row>
+          </div>
+        </v-navigation-drawer>
+      </div>
+      <Nuxt v-if="!$slots.default" />
+      <slot />
+      <v-container>
         <div class="footer">
           <v-row no-gutters>
             <v-bottom-navigation grow class="elevation-0">
@@ -130,13 +130,11 @@ export default {
 }
 </script>
 <style scoped>
-.header_container {
-  height: 53px;
+.header-wrapper {
+  height: 48px;
 }
 .header {
   position: fixed;
-  width: 100%;
-  max-width: 500px;
   padding: 0;
   z-index: 5;
 }
@@ -150,7 +148,6 @@ export default {
 }
 .footer {
   position: fixed;
-  max-width: 500px;
   height: 59px;
   right: 0;
   bottom: 0;

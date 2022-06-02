@@ -13,64 +13,79 @@ export default {
 <style></style>
 =======
 <template>
-  <v-container class="pa-0">
-    <div class="wrapper">
-      <div class="section" style="margin-top: 25px">
-        <div class="section-title-box">
-          <h1 class="section-title">
-            추천 설문
-          </h1>
-        </div>
-        <p class="section-desc">
-          홍길동님이 좋아하실만한 설문을 준비했어요!
-        </p>
-      </div>
-      <Carousels :carousel-data="carouselData" />
-      <Banner :banner-data="bannerData[0]" />
-      <div class="section">
-        <div class="section-title-box">
-          <h1 class="section-title">
-            인기 설문
-          </h1>
-          <NuxtLink class="section-more" to="/survey-list/">
-            더보기
-          </NuxtLink>
-        </div>
-        <p class="section-desc">
-          지금 핫한 설문이에요. 한번 살펴보세요!
-        </p>
-      </div>
-      <SurveyBox :survey-data="surveyData" />
-      <Banner :banner-data="bannerData[1]" />
-      <div class="section">
-        <div class="section-title-box">
-          <h1 class="section-title">
-            이벤트
-          </h1>
-          <NuxtLink class="section-more" to="/event-list/">
-            더보기
-          </NuxtLink>
-        </div>
-        <p class="section-desc">
-          다양한 이벤트를 진행중이에요
-        </p>
-      </div>
-      <EventBanner :event-data="eventData" />
-      <div class="section">
-        <div class="section-title-box">
-          <h1 class="section-title">
-            공지사항
-          </h1>
-          <NuxtLink class="section-more" to="/notice/">
-            더보기
-          </NuxtLink>
-        </div>
-        <p class="section-desc">
-          새로운 소식을 알려드려요
-        </p>
-      </div>
-      <NoticeBanner :notice-data="noticeData" />
-    </div>
+  <v-container class="ma-auto mb-10">
+    <v-row class="section" style="margin-top: 0">
+      <v-col class="section-title-box pb-0" cols="12">
+        <h1 class="section-title">
+          추천 설문
+        </h1>
+      </v-col>
+    </v-row>
+    <v-row class="section-desc">
+      <v-col class="pt-0 pb-0" cols="12">
+        홍길동님이 좋아하실만한 설문을 준비했어요!
+      </v-col>
+    </v-row>
+    <Carousels :carousel-data="carouselData" />
+    <v-row>
+      <v-col cols="12" style="height: 20px;" />
+    </v-row>
+    <Banner :banner-data="bannerData[0]" />
+    <v-row class="section">
+      <v-col class="section-title-box pb-0" cols="9">
+        <h1 class="section-title">
+          인기 설문
+        </h1>
+      </v-col>
+      <v-col class="ml-auto" cols="auto">
+        <NuxtLink class="section-more" to="/survey-list/">
+          더보기
+        </NuxtLink>
+      </v-col>
+    </v-row>
+    <v-row class="section-desc">
+      <v-col class="pt-0" cols="12">
+        지금 핫한 설문이에요. 한번 살펴보세요!
+      </v-col>
+    </v-row>
+    <SurveyBox :survey-data="surveyData" />
+    <Banner :banner-data="bannerData[1]" />
+    <v-row class="section">
+      <v-col class="section-title-box pb-0" cols="9">
+        <h1 class="section-title">
+          이벤트
+        </h1>
+      </v-col>
+      <v-col class="ml-auto" cols="auto">
+        <NuxtLink class="section-more" to="/event-list/">
+          더보기
+        </NuxtLink>
+      </v-col>
+    </v-row>
+    <v-row class="section-desc">
+      <v-col class="pt-0" cols="12">
+        다양한 이벤트를 진행중이에요!
+      </v-col>
+    </v-row>
+    <EventBanner :event-data="eventData" />
+    <v-row class="section">
+      <v-col class="section-title-box pb-0" cols="9">
+        <h1 class="section-title">
+          공지사항
+        </h1>
+      </v-col>
+      <v-col class="ml-auto" cols="auto">
+        <NuxtLink class="section-more" to="/notice/">
+          더보기
+        </NuxtLink>
+      </v-col>
+    </v-row>
+    <v-row class="section-desc">
+      <v-col class="pt-0" cols="12">
+        새로운 소식을 살펴보세요.
+      </v-col>
+    </v-row>
+    <NoticeBanner :notice-data="noticeData" />
   </v-container>
 </template>
 
@@ -190,14 +205,8 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  margin-top: 24px;
-  margin-bottom: 80px;
-  padding-left: 24px;
-}
 .section {
-  margin-top: 45px;
-  width: 90%;
+  margin-top: 30px;
   height: 55px;
 }
 .section-title-box {
