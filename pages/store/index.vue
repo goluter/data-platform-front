@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-container class="pa-0">
-      <v-row class="pt-3">
-        <v-col cols="1" />
+      <v-row>
+        <v-col />
         <v-col class="ml-auto" cols="auto">
           <span class="purchase-history">구매내역</span>
         </v-col>

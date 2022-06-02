@@ -11,7 +11,7 @@
           <v-app-bar-nav-icon @click="drawer = !drawer" />
           <v-btn icon disabled />
           <v-spacer />
-          <v-toolbar-title>
+          <v-toolbar-title style="height: 22px;">
             <NuxtLink to="/" style="color: black; text-decoration-line: none">
               <img src="../static/govey.svg">
             </NuxtLink>
