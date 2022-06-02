@@ -21,7 +21,10 @@ export default {
   css: ['~/assets/css/main.css', '~/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/gtag.js', mode: 'client' },
+    { src: '~/plugins/comma.js' }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -39,7 +42,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // https://github.com/nuxt-community/redirect-module
+    '@nuxtjs/redirect-module'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -73,4 +78,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
+
+  // redirect: [
+  //   {
+  //     from: '^.*(?<!\/)$',
+  //     to: (from, req) => req.url + '/'
+  //   }
+  // ],
+  // router: {
+  //   trailingSlash: true
+  // }
 }

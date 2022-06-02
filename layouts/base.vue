@@ -13,10 +13,7 @@
             <v-spacer />
             <v-spacer />
             <v-toolbar-title>
-              <NuxtLink
-                to="/"
-                style="color: black; text-decoration-line: none"
-              >
+              <NuxtLink to="/" style="color: black; text-decoration-line: none">
                 <img src="../static/govey.svg">
               </NuxtLink>
             </v-toolbar-title>
@@ -59,13 +56,22 @@
                 <v-col>
                   <a
                     href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                  ><img class="sns-icon" src="../assets/image 4.png"></a>
+                  ><img
+                    class="sns-icon"
+                    src="../assets/image 4.png"
+                  ></a>
                 </v-col>
                 <v-col>
-                  <a href="https://www.instagram.com/govey_official/?hl=ko"><img class="sns-icon" src="../assets/image 5.png"></a>
+                  <a href="https://www.instagram.com/govey_official/?hl=ko"><img
+                    class="sns-icon"
+                    src="../assets/image 5.png"
+                  ></a>
                 </v-col>
                 <v-col>
-                  <a href="https://www.facebook.com/고베이-104289228923939"><img class="sns-icon" src="../assets/image 6.png"></a>
+                  <a href="https://www.facebook.com/고베이-104289228923939"><img
+                    class="sns-icon"
+                    src="../assets/image 6.png"
+                  ></a>
                 </v-col>
               </v-row>
             </div>
@@ -103,9 +109,9 @@ export default {
       ],
       fitems: [
         { page: '홈', icon: 'mdi-home', to: '/' },
-        { page: '설문', icon: 'mdi-text-box-edit', to: '/survey-list' },
-        { page: '스토어', icon: 'mdi-store', to: '/store' },
-        { page: '마이', icon: 'mdi-account-circle', to: '/login' }
+        { page: '설문', icon: 'mdi-text-box-edit', to: '/survey-list/' },
+        { page: '스토어', icon: 'mdi-store', to: '/store/' },
+        { page: '마이', icon: 'mdi-account-circle', to: '/login/' }
       ],
       drawer: false,
       group: null
