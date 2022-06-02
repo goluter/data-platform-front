@@ -103,9 +103,9 @@ export default {
       ],
       fitems: [
         { page: '홈', icon: 'mdi-home', to: '/' },
-        { page: '설문', icon: 'mdi-text-box-edit', to: '/survey-list' },
-        { page: '스토어', icon: 'mdi-store', to: '/store' },
-        { page: '마이', icon: 'mdi-account-circle', to: '/login' }
+        { page: '설문', icon: 'mdi-text-box-edit', to: '/survey-list/' },
+        { page: '스토어', icon: 'mdi-store', to: '/store/' },
+        { page: '마이', icon: 'mdi-account-circle', to: '/login/' }
       ],
       drawer: false,
       group: null
