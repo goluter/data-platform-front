@@ -1,42 +1,76 @@
 <template>
   <div v-if="editor">
-    <button @click="editor.chain().focus().setTextAlign('left').run()" :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }">
+    <button
+      :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }"
+      @click="editor.chain().focus().setTextAlign('left').run()"
+    >
       <v-icon>mdi-format-align-left</v-icon>
     </button>
-    <button @click="editor.chain().focus().setTextAlign('center').run()" :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }">
+    <button
+      :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }"
+      @click="editor.chain().focus().setTextAlign('center').run()"
+    >
       <v-icon>mdi-format-align-center</v-icon>
     </button>
-    <button @click="editor.chain().focus().setTextAlign('right').run()" :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }">
+    <button
+      :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }"
+      @click="editor.chain().focus().setTextAlign('right').run()"
+    >
       <v-icon>mdi-format-align-right</v-icon>
     </button>
-    <button @click="editor.chain().focus().setTextAlign('justify').run()" :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }">
+    <button
+      :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }"
+      @click="editor.chain().focus().setTextAlign('justify').run()"
+    >
       <v-icon>mdi-format-align-justify</v-icon>
     </button>
-    <floating-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">
-      <button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
+    <floating-menu
+      v-if="editor"
+      :editor="editor"
+      :tippy-options="{ duration: 100 }"
+    >
+      <button
+        :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+        @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+      >
         제목1
       </button>
-      <button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
+      <button
+        :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+        @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+      >
         제목2
       </button>
-      <button @click="editor.chain().focus().toggleBulletList().run()" :class="{ 'is-active': editor.isActive('bulletList') }">
+      <button
+        :class="{ 'is-active': editor.isActive('bulletList') }"
+        @click="editor.chain().focus().toggleBulletList().run()"
+      >
         글머리표
       </button>
-      <button @click="editor.chain().focus().toggleOrderedList().run()" :class="{ 'is-active': editor.isActive('orderedList') }">
+      <button
+        :class="{ 'is-active': editor.isActive('orderedList') }"
+        @click="editor.chain().focus().toggleOrderedList().run()"
+      >
         문단번호
       </button>
     </floating-menu>
     <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }">
-      <button @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
+      <button
+        :class="{ 'is-active': editor.isActive('bold') }"
+        @click="editor.chain().focus().toggleBold().run()"
+      >
         <B>굵게</B>
       </button>
-      <button @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
+      <button
+        :class="{ 'is-active': editor.isActive('strike') }"
+        @click="editor.chain().focus().toggleStrike().run()"
+      >
         취소선
       </button>
     </bubble-menu>
     <editor-content :editor="editor" />
     <v-row style="background-color: #f7f7f8">
-      <v-col cols="12"></v-col>
+      <v-col cols="12" />
     </v-row>
     <v-row>
       <v-col cols="12">
@@ -62,34 +96,29 @@ export default {
     FloatingMenu
   },
 
-  data() {
+  data () {
     return {
-      editor: null,
+      editor: null
     }
   },
-  mounted() {
+  mounted () {
     this.editor = new Editor({
       content: '<p></p><p></p><p></p>',
-      extensions: [
-        StarterKit,
-        TextAlign,
-        Image,
-        Dropcursor,
-      ],
+      extensions: [StarterKit, TextAlign, Image, Dropcursor]
     })
   },
+  beforeDestroy () {
+    this.editor.destroy()
+  },
   methods: {
-    addImage() {
+    addImage () {
       const url = window.prompt('URL')
 
       if (url) {
         this.editor.chain().focus().setImage({ src: url }).run()
       }
-    },
-  },
-  beforeDestroy() {
-    this.editor.destroy()
-  },
+    }
+  }
 }
 </script>
 <style scoped>

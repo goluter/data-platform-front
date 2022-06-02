@@ -48,7 +48,8 @@
                 <div class="report-surveyor">
                   <v-icon small>
                     {{ item.icon }}
-                  </v-icon> {{ item.surveyor }}
+                  </v-icon>
+                  {{ item.surveyor }}
                 </div>
               </div>
             </v-col>
