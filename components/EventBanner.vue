@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <v-row
-      v-for="(item, i) in eventData"
-      :key="i"
-      class="banner-wrapper"
-    >
+    <v-row>
       <v-col
-        class="pl-0 pr-0"
+        v-for="(item, i) in eventData"
+        :key="i"
+        class="banner-wrapper pl-0"
         cols="12"
+        sm="4"
+        md="4"
       >
         <NuxtLink :to="item.to" style="text-decoration: none; color: white">
           <v-sheet

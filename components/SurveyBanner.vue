@@ -1,16 +1,19 @@
 <template>
   <v-container>
-    <v-row
-      v-for="(item, i) in surveyData"
-      :key="i"
-      class="banner-wrapper mb-6"
-    >
-      <v-col class="pt-0" cols="12">
+    <v-row>
+      <v-col
+        v-for="(item, i) in surveyData"
+        :key="i"
+        class="banner-wrapper ma-auto"
+        cols="12"
+        sm="5"
+        md="5"
+      >
         <v-row class="survey-box rounded-xl elevation-3">
-          <v-col cols="3" sm="2" md="1">
+          <v-col cols="auto">
             <div class="banner-img-box" />
           </v-col>
-          <v-col class="ml-auto pl-0" cols="9" sm="10" md="11">
+          <v-col class="pl-0 grow" cols="auto">
             <v-row class="banner-title">
               <v-col class="" cols="12">
                 {{ item.title }}
@@ -35,8 +38,10 @@
           </v-col>
         </v-row>
         <v-row class="survey-box-bottom rounded-xl elevation-3">
+          <v-col />
+          <v-col />
           <v-col
-            class="reward-box pb-2 d-flex"
+            class="reward-box pb-1 d-flex"
             cols="12"
             style="align-items: flex-end"
           >
@@ -44,7 +49,7 @@
               v-for="(reward, i) in item.rewards"
               :key="i"
               cols="auto"
-              class="reward-item-box pa-2 rounded-x1"
+              class="reward-item-box pa-1 rounded-x1"
             >
               <v-icon small :color="reward.color">
                 {{ reward.icon }}
@@ -72,20 +77,18 @@ export default {
 
 <style scoped>
 .banner-wrapper {
-  margin-top: 20px;
-  height: 130px;
+  height: 150px;
   z-index: 1;
 }
 .survey-box {
-  display: flex;
   position: relative;
   background-color: white;
   z-index: 1;
 }
 .banner-img-box {
   display: inline-block;
-  width: 100%;
-  height: 100%;
+  width: 60px;
+  height: 60px;
   background-color: #a7a7a7;
   border-radius: 14px;
 }
@@ -109,20 +112,17 @@ export default {
   position: relative;
   flex-direction: column;
   justify-content: flex-end;
-  height: 110%;
-  margin-top: -84px;
+  top: -45%;
   border: 1px solid;
   background-color: #494949;
   z-index: 0;
 }
 .reward-box {
-  height: 32px;
 }
 .reward-item-box {
   display: inline;
   align-items: center;
   margin: 0 7px 0 0;
-  height: 30px;
   background-color: white;
   border-radius: 24px;
   font-size: 10px;
