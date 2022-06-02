@@ -16,7 +16,10 @@
             cols="12"
             style="background-color: #d7f5ff"
         >
-          <span class="guide">적립 방법 알아보기 <v-icon>mdi-chevron-right</v-icon></span>
+          <div class="guide">
+            적립 방법 알아보기
+            <v-icon>mdi-chevron-right</v-icon>
+          </div>
         </v-col>
       </v-row>
       <StoreItems :store-data="storeData"></StoreItems>
@@ -42,6 +45,7 @@ export default {
 
 <style scoped>
 .guide {
+  display: flex;
   font-size: 16px;
   font-weight: 600;
 }
