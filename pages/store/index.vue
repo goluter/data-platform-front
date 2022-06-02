@@ -25,7 +25,7 @@ import StoreItems from '../../components/StoreItems.vue'
 
 export default {
   components: { StoreItems },
-  layout: 'empty',
+  layout: 'base',
   data () {
     return {
       storeData: [
