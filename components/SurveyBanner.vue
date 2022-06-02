@@ -26,10 +26,10 @@
               </v-col>
             </v-row>
             <v-row class="banner-count-tags">
-              <v-col class="pt-0" cols="auto">
+              <v-col class="pt-0 pb-0" cols="auto">
                 {{ item.count }}명이 참여 중
               </v-col>
-              <v-col class="ml-auto pt-0" cols="auto">
+              <v-col class="ml-auto pt-0 pb-0" cols="auto">
                 <a v-for="(tags, i) in item.tags" :key="i" class="banner-tags" href="/">
                   #{{ tags }}
                 </a>
@@ -51,10 +51,12 @@
               cols="auto"
               class="reward-item-box pa-1 rounded-x1"
             >
-              <v-icon small :color="reward.color">
-                {{ reward.icon }}
-              </v-icon>
-              {{ reward.title }}
+              <div>
+                <v-icon small :color="reward.color">
+                  {{ reward.icon }}
+                </v-icon>
+                <span>{{ reward.title }}</span>
+              </div>
             </v-col>
           </v-col>
         </v-row>
