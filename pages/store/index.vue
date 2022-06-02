@@ -7,7 +7,7 @@
         <v-col cols="1">
         </v-col>
         <v-col class="ml-auto" cols="auto">
-          구매내역
+          <span class="purchase-history">구매내역</span>
         </v-col>
       </v-row>
       <v-row>
@@ -44,6 +44,12 @@ export default {
 </script>
 
 <style scoped>
+.purchase-history {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #1087f4;
+}
 .guide {
   display: flex;
   font-size: 16px;
