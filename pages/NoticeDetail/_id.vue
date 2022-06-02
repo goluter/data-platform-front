@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <div class="header">
       <NuxtLink to="/notice" style="color: black; text-decoration-line: none">
         <img
@@ -12,6 +13,8 @@
       <a><span>공지사항</span></a>
     </div>
 
+=======
+>>>>>>> a7b8a888e464c8c9a54f4e0f051b3460c31e3700
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
         {{ NoticeData[$route.params.id].title }}
@@ -24,7 +27,7 @@
       <div class="noticemain">
         {{ NoticeData[$route.params.id].answer }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
+      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
@@ -34,12 +37,12 @@ import NoticeData from '../../assets/data/NoticeData'
 export default {
   name: 'Notice',
   layout: 'default',
-  data () {
+  data() {
     return {
       NoticeData,
-      selectnum: 0
+      selectnum: 0,
     }
-  }
+  },
 }
 </script>
 

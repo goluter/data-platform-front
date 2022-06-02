@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <div class="header">
       <NuxtLink to="/point" style="color: black; text-decoration-line: none">
         <img
@@ -11,13 +12,15 @@
 
       <a><span>상세내역</span></a>
     </div>
+=======
+>>>>>>> a7b8a888e464c8c9a54f4e0f051b3460c31e3700
     <div class="box">
       <div class="subbox">
         <img
           class="profileimg"
           src="../../assets/Male User.png"
           align="middle"
-        >
+        />
         <span>{{ username }}</span>
       </div>
       <div v-if="PointData[$route.params.id].sign == '+'" class="point1">
@@ -28,25 +31,19 @@
         {{ PointData[$route.params.id].reward }}
       </div>
       <div class="onemain">
-        <div class="onetitle">
-          거래시간
-        </div>
+        <div class="onetitle">거래시간</div>
         <div class="time">
           {{ PointData[$route.params.id].datedetail }}
         </div>
       </div>
       <div class="onemain">
-        <div class="onetitle">
-          수신
-        </div>
+        <div class="onetitle">수신</div>
         <div class="time">
           {{ PointData[$route.params.id].reward }}
         </div>
       </div>
       <div class="onemain">
-        <div class="onetitle">
-          송금
-        </div>
+        <div class="onetitle">송금</div>
         <div class="time">
           {{ username }}
         </div>
@@ -61,13 +58,13 @@ import PointData from '../../assets/data/Pointdata'
 export default {
   name: 'Planneddetail',
   layout: 'default',
-  data () {
+  data() {
     return {
       PointData,
       selectnum: 0,
-      username: '고베이'
+      username: '고베이',
     }
-  }
+  },
 }
 </script>
 
