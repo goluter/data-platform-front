@@ -14,7 +14,7 @@
             {{ item.title }}
           </span>
           <span class="item-price">
-            {{ item.price }} P
+            {{ item.price | comma }} P
           </span>
         </v-col>
       </v-row>
