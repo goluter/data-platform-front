@@ -29,13 +29,44 @@
         업적
       </v-tab>
     </v-tabs>
-    <div v-if="point == true" class="contents">asd</div>
-    <div v-if="nickname == true" class="contents">dsa</div>
-    <div v-if="achieve == true" class="contents">dasd</div>
+    <div
+      v-for="(a, i) in hofpoint"
+      :key="a"
+      v-if="point == true"
+      class="contents"
+    >
+      <img class="profileimg" src="../assets/Male User.png" align="middle" />
+      <span>{{ hofpoint[i].name }}</span>
+      <div class="point">{{ hofpoint[i].point }} P</div>
+    </div>
+    <div
+      v-for="(a, i) in hofnickname"
+      :key="a"
+      v-if="nickname == true"
+      class="contents"
+    >
+      <img class="profileimg" src="../assets/Male User.png" align="middle" />
+      <span>{{ hofnickname[i].name }}</span>
+      <div class="point2">{{ hofnickname[i].point }} 개</div>
+    </div>
+    <div
+      v-for="(a, i) in hofachieve"
+      :key="a"
+      v-if="achieve == true"
+      class="contents"
+    >
+      <img class="profileimg" src="../assets/Male User.png" align="middle" />
+      <span>{{ hofachieve[i].name }}</span>
+      <div class="point2">{{ hofachieve[i].point }} 개</div>
+    </div>
   </div>
 </template>
 
 <script>
+import hofpoint from '../assets/data/hofpoint.js'
+import hofnickname from '../assets/data/hofnickname.js'
+import hofachieve from '../assets/data/hofachieve.js'
+
 export default {
   name: 'EventList',
   layout: 'default',
@@ -45,6 +76,9 @@ export default {
       point: true,
       nickname: false,
       achieve: false,
+      hofpoint,
+      hofnickname,
+      hofachieve,
     }
   },
   mounted() {
@@ -54,59 +88,58 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 500px;
-}
-.v-tab {
-  font-size: 18px;
-}
-.eventtitle {
+.point2 {
+  float: right;
+  margin: 4px 12px 0px 0px;
   flex-grow: 0;
-  margin: 24px 0px 0px 17px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.7px;
+  letter-spacing: -0.65px;
   text-align: left;
-  color: #000;
 }
-.banner {
-  background-color: #eee;
-  height: 96px;
-}
-.header span {
+.point {
+  float: right;
+  margin: 6px 12px 0px 0px;
   flex-grow: 0;
-  margin: auto;
-  display: table;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.7px;
-  text-align: center;
-  color: #434343;
+  letter-spacing: -0.65px;
+  text-align: left;
+}
+.profileimg {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
 }
 .contents {
-  border-bottom: 1px solid #d3d3d3;
-  position: relative;
-  overflow: auto;
-}
-.contents a {
-  text-decoration: none;
-}
-.date {
+  height: 66px;
   flex-grow: 0;
-  margin: 13px 0px 19px 17px;
+
+  border: solid 1px #f0f0f0;
+  padding: 20px 0px 0px 18px;
+  background-color: #fff;
+}
+.contents span {
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.6px;
   text-align: left;
-  color: #8f8f8f;
+  color: #000;
+  margin-left: 5px;
+}
+.container {
+  max-width: 500px;
+}
+.v-tab {
+  font-size: 18px;
 }
 </style>
