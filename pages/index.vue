@@ -29,7 +29,7 @@
         </NuxtLink>
       </v-col>
     </v-row>
-    <v-row class="section-desc">
+    <v-row class="section-desc mb-1">
       <v-col class="pt-0" cols="12">
         지금 핫한 설문이에요. 한번 살펴보세요!
       </v-col>
@@ -123,6 +123,20 @@ export default {
         }
       ],
       surveyData: [
+        {
+          title: '대학생들에게 묻습니다',
+          left: '4',
+          count: '114,300',
+          tags: ['대학생', '새내기', '축제'],
+          rewards: [
+            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
+            {
+              title: '100P',
+              icon: 'mdi-circle-multiple',
+              color: 'yellow darken-3'
+            }
+          ]
+        },
         {
           title: '대학생들에게 묻습니다',
           left: '4',
