@@ -1,10 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink
-        to="/point"
-        style="color: black; text-decoration-line: none"
-      >
+      <NuxtLink to="/point" style="color: black; text-decoration-line: none">
         <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"

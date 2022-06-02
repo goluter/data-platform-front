@@ -257,16 +257,8 @@
         <div>
           <form>
             <v-radio-group v-model="row" row style="display: inline-block">
-              <v-radio
-                label="승인"
-                value="radio-1"
-                @click="value = 0"
-              />
-              <v-radio
-                label="거절"
-                value="radio-2"
-                @click="value = 1"
-              />
+              <v-radio label="승인" value="radio-1" @click="value = 0" />
+              <v-radio label="거절" value="radio-2" @click="value = 1" />
             </v-radio-group>
             <textarea
               v-if="value == 1"
@@ -337,11 +329,7 @@
           >
             등록
           </v-btn>
-          <v-btn
-            id="eventcancel"
-            elevation="2"
-            @click="ShowEventAdd = false"
-          >
+          <v-btn id="eventcancel" elevation="2" @click="ShowEventAdd = false">
             닫기
           </v-btn>
         </div>
@@ -377,11 +365,7 @@
           >
             등록
           </v-btn>
-          <v-btn
-            id="noticecancel"
-            elevation="2"
-            @click="ShowNoticeAdd = false"
-          >
+          <v-btn id="noticecancel" elevation="2" @click="ShowNoticeAdd = false">
             닫기
           </v-btn>
         </div>
@@ -419,11 +403,7 @@
           >
             등록
           </v-btn>
-          <v-btn
-            id="faqcancel"
-            elevation="2"
-            @click="ShowFAQAdd = false"
-          >
+          <v-btn id="faqcancel" elevation="2" @click="ShowFAQAdd = false">
             닫기
           </v-btn>
         </div>
@@ -442,11 +422,7 @@
           row-height="20"
         />
 
-        <v-textarea
-          clearable
-          clear-icon="mdi-close-circle"
-          label="Q&A 내용"
-        />
+        <v-textarea clearable clear-icon="mdi-close-circle" label="Q&A 내용" />
         <div>
           <v-btn
             id="qaadd"
@@ -459,11 +435,7 @@
           >
             등록
           </v-btn>
-          <v-btn
-            id="qacancel"
-            elevation="2"
-            @click="ShowQAAdd = false"
-          >
+          <v-btn id="qacancel" elevation="2" @click="ShowQAAdd = false">
             닫기
           </v-btn>
         </div>
@@ -511,11 +483,7 @@
           row-height="20"
         />
 
-        <v-textarea
-          filled
-          clear-icon="mdi-close-circle"
-          label="부여 내용"
-        />
+        <v-textarea filled clear-icon="mdi-close-circle" label="부여 내용" />
         <div>
           <v-btn
             id="pointapply"
@@ -592,12 +560,7 @@
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
-        <v-date-picker
-          v-model="dates"
-          range
-          locale="ko-KR"
-          width="400"
-        />
+        <v-date-picker v-model="dates" range locale="ko-KR" width="400" />
         model: {{ dates }}
         <div>
           <GChart type="LineChart" :data="chartData" :options="chartOptions" />
@@ -647,11 +610,7 @@
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
-              <v-banner
-                color="primary"
-                rounded
-                single-line
-              >
+              <v-banner color="primary" rounded single-line>
                 <dl @click="UserNum = i">
                   <dd>{{ UserData[i].UserName }}</dd>
 
@@ -1306,13 +1265,13 @@
 </template>
 
 <script>
-import QnAdata from 'assets/data/QnAdata'
 import { GChart } from 'vue-google-charts'
 import data from '../../assets/data/NoticeData.js'
 import FaqData from '../../assets/data/FAQdata'
 import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
+import QnAdata from 'assets/data/QnAdata'
 
 export default {
   name: 'Index',

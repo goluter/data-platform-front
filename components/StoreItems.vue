@@ -1,24 +1,27 @@
 <template>
   <div>
-    <div
-        v-for="(item, i) in storeData"
-        :key="i"
-    >
+    <div v-for="(item, i) in storeData" :key="i">
       <v-row class="pa-3">
         <v-col class="d-flex justify-center" cols="3" md="2">
-          <div class="image">
-          </div>
+          <div class="image" />
         </v-col>
-        <v-col class="pa-auto" cols="9" md="10" style="display: flex; flex-direction: column; justify-content: space-evenly">
+        <v-col
+          class="pa-auto"
+          cols="9"
+          md="10"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+          "
+        >
           <span class="item-title">
             {{ item.title }}
           </span>
-          <span class="item-price">
-            {{ item.price | comma }} P
-          </span>
+          <span class="item-price"> {{ item.price | comma }} P </span>
         </v-col>
       </v-row>
-      <v-divider></v-divider>
+      <v-divider />
     </div>
   </div>
 </template>
