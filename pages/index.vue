@@ -99,7 +99,7 @@ import NoticeBanner from '../components/NoticeBanner.vue'
 export default {
   name: 'IndexPage',
   components: { NoticeBanner, EventBanner, SurveyBox, Banner, Carousels },
-  layout: 'base',
+  layout: 'main',
   data () {
     return {
       carouselData: [
