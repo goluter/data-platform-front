@@ -64,6 +64,7 @@ import SurveyCard from '../components/SurveyCard.vue'
 export default {
   name: 'MyPage',
   components: { SurveyCard },
+  layout: 'main',
   data () {
     return {
       tab: null,
