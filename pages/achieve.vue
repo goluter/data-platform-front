@@ -6,7 +6,6 @@
       show-arrows
       center-active
       color="#1cddb7"
-      style="margin-right: 1000px"
     >
       <v-tab
         @click="
@@ -64,21 +63,21 @@
         출석
       </v-tab>
     </v-tabs>
-    <div
-      v-for="(a, i) in pointEvent"
-      v-if="point == true"
-      :key="a"
-      class="contents"
-    ></div>
-    <div class="banner2">
-      {{ username }}님은 현재 {{ participatenum }}회 참여하셨어요!
+    <div v-if="join == true">
+      <div class="banner2">
+        {{ username }}님은 현재 {{ participatenum }}회 참여하셨어요!
+      </div>
+      <div v-for="(a, i) in achievedata" :key="a" class="banner3">
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span style="padding-left: 3px">{{ achievedata[i].title }}</span>
+        <div class="point2">{{ achievedata[i].count }}회 참여</div>
+      </div>
     </div>
-    <div v-for="" class="banner3">ㅁㄴㅇ</div>
   </div>
 </template>
 
 <script>
-import userdata from '../assets/data/UserData.js'
+import achievedata from '../assets/data/achievedata.js'
 
 export default {
   name: 'EventList',
@@ -89,9 +88,11 @@ export default {
       point: true,
       join: false,
       make: false,
+      report: false,
+      attend: false,
       username: '준구파워',
       participatenum: 2,
-      userdata,
+      achievedata,
     }
   },
   mounted() {
@@ -101,6 +102,24 @@ export default {
 </script>
 
 <style scoped>
+.point2 {
+  float: right;
+  margin: 20px 12px 0px 0px;
+  flex-grow: 0;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.65px;
+  text-align: left;
+}
+.profileimg {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 20px 0px 20px 0px;
+}
 .container {
   max-width: 500px;
 }
@@ -125,7 +144,7 @@ export default {
   font-size: 12px;
   font-weight: 500;
   font-stretch: normal;
-  margin: 26px 0px 26px 0px;
+  border: 1px solid #f0f0f0;
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.6px;
