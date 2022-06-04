@@ -1,6 +1,7 @@
 <template>
   <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div class="header">
       <NuxtLink to="/notice" style="color: black; text-decoration-line: none">
         <img
@@ -15,6 +16,8 @@
 
 =======
 >>>>>>> a7b8a888e464c8c9a54f4e0f051b3460c31e3700
+=======
+>>>>>>> 154d49a695c7cd20299fa30c7e7ed77b2ba3347d
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
         {{ NoticeData[$route.params.id].title }}

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <v-tabs fixed-tabs color="#1cddb7">
+    <v-tabs center-active centered color="#1cddb7">
       <v-tab
         @click="
           point = true
@@ -17,7 +17,7 @@
           achieve = false
         "
       >
-        칭호
+        설문참여
       </v-tab>
       <v-tab
         @click="
@@ -26,47 +26,31 @@
           achieve = true
         "
       >
-        업적
+        설문등록
+      </v-tab>
+      <v-tab
+        @click="
+          point = true
+          nickname = false
+          achieve = false
+        "
+      >
+        리포트
+      </v-tab>
+      <v-tab
+        @click="
+          point = true
+          nickname = false
+          achieve = false
+        "
+      >
+        출석
       </v-tab>
     </v-tabs>
-    <div
-      v-for="(a, i) in hofpoint"
-      :key="a"
-      v-if="point == true"
-      class="contents"
-    >
-      <img class="profileimg" src="../assets/Male User.png" align="middle" />
-      <span>{{ hofpoint[i].name }}</span>
-      <div class="point">{{ hofpoint[i].point }} P</div>
-    </div>
-    <div
-      v-for="(a, i) in hofnickname"
-      :key="a"
-      v-if="nickname == true"
-      class="contents"
-    >
-      <img class="profileimg" src="../assets/Male User.png" align="middle" />
-      <span>{{ hofnickname[i].name }}</span>
-      <div class="point2">{{ hofnickname[i].point }} 개</div>
-    </div>
-    <div
-      v-for="(a, i) in hofachieve"
-      :key="a"
-      v-if="achieve == true"
-      class="contents"
-    >
-      <img class="profileimg" src="../assets/Male User.png" align="middle" />
-      <span>{{ hofachieve[i].name }}</span>
-      <div class="point2">{{ hofachieve[i].point }} 개</div>
-    </div>
   </div>
 </template>
 
 <script>
-import hofpoint from '../assets/data/hofpoint.js'
-import hofnickname from '../assets/data/hofnickname.js'
-import hofachieve from '../assets/data/hofachieve.js'
-
 export default {
   name: 'EventList',
   layout: 'default',
@@ -76,13 +60,10 @@ export default {
       point: true,
       nickname: false,
       achieve: false,
-      hofpoint,
-      hofnickname,
-      hofachieve,
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '명예의 전당')
+    this.$store.commit('setPageTitle', '업적')
   },
 }
 </script>
@@ -120,6 +101,7 @@ export default {
 .contents {
   height: 66px;
   flex-grow: 0;
+
   border: solid 1px #f0f0f0;
   padding: 20px 0px 0px 18px;
   background-color: #fff;
