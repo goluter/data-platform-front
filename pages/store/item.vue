@@ -46,7 +46,6 @@ export default {
 .title-wrapper {
   margin-top: 16px;
   align-items: center;
-  padding-left: 10px;
 }
 .item-img {
   height: 205px;
