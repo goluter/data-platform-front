@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="pa-0">
+    <v-container>
       <v-row>
         <v-col />
         <v-col class="ml-auto" cols="auto">
@@ -8,14 +8,18 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col class="pa-4 pl-7" cols="12" style="background-color: #d7f5ff">
+        <v-col class="d-flex" cols="12" style="height: 65px; background-color: #d7f5ff">
           <div class="guide">
-            적립 방법 알아보기
-            <v-icon>mdi-chevron-right</v-icon>
+            <span>적립 방법 알아보기</span>
+            <v-icon>
+              mdi-chevron-right
+            </v-icon>
           </div>
         </v-col>
       </v-row>
-      <StoreItems :store-data="storeData" />
+      <NuxtLink to="/store/item/" style="text-decoration: none; color: initial;">
+        <StoreItems :store-data="storeData" />
+      </NuxtLink>
     </v-container>
   </div>
 </template>
@@ -46,6 +50,7 @@ export default {
 }
 .guide {
   display: flex;
+  align-items: center;
   font-size: 16px;
   font-weight: 600;
 }
