@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
+      <v-col class="pa-0" cols="12">
         <div class="item-img" />
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
+      <v-col class="d-flex flex-column" cols="12">
         <div class="title-wrapper">
           <p><b>{{ item.title }}</b></p>
           <p><b>{{ item.price | comma }}</b> P</p>
@@ -17,7 +17,7 @@
       <v-col cols="12" style="background-color: #faf6f2" />
     </v-row>
     <v-row>
-      <v-col cols="12">
+      <v-col class="pl-2" cols="auto">
         <div class="item-desc">
           <br>{{ item.desc }}
         </div>
@@ -44,15 +44,15 @@ export default {
 
 <style scoped>
 .title-wrapper {
-  padding-left: 10px;
+  margin-top: 16px;
+  align-items: center;
 }
 .item-img {
   height: 205px;
   background-color: #faf6f2;
 }
 .item-desc {
-  padding-left: 10px;
-  white-space: pre;
+  white-space: pre-wrap;
   font-size: 12px;
 }
 </style>
