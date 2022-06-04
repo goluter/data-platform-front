@@ -15,7 +15,9 @@
           </div>
         </v-col>
       </v-row>
-      <StoreItems :store-data="storeData" />
+      <NuxtLink to="/store/item/" style="text-decoration: none; color: initial;">
+        <StoreItems :store-data="storeData" />
+      </NuxtLink>
     </v-container>
   </div>
 </template>
