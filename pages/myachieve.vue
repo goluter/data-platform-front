@@ -68,20 +68,14 @@
         {{ username }}님은 현재 {{ participatenum1 }}점 누적하셨어요!
       </div>
       <div v-for="(a, i) in achievepointdata" :key="a" class="banner3">
-        <NuxtLink
-          :to="achievepointdata[i].url"
-          style="color: black; text-decoration-line: none"
-        >
-          <img
-            class="profileimg"
-            src="../assets/Male User.png"
-            align="middle"
-          />
-          <span style="padding-left: 3px">{{ achievepointdata[i].title }}</span>
-          <div class="point2">
-            포인트 {{ achievepointdata[i].count }}점 누적
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span style="padding-left: 3px">{{ achievepointdata[i].title }}</span>
+        <div class="point2">
+          <div>포인트 {{ achievepointdata[i].count }}점 누적</div>
+          <div class="grayfont">
+            {{ achievepointdata[i].recent[i][1] }} 획득
           </div>
-        </NuxtLink>
+        </div>
       </div>
     </div>
     <div v-if="join == true">
@@ -89,18 +83,12 @@
         {{ username }}님은 현재 {{ participatenum2 }}회 참여하셨어요!
       </div>
       <div v-for="(a, i) in achievejoindata" :key="a" class="banner3">
-        <NuxtLink
-          :to="achievejoindata[i].url"
-          style="color: black; text-decoration-line: none"
-        >
-          <img
-            class="profileimg"
-            src="../assets/Male User.png"
-            align="middle"
-          />
-          <span style="padding-left: 3px">{{ achievejoindata[i].title }}</span>
-          <div class="point2">{{ achievejoindata[i].count }}회 참여</div>
-        </NuxtLink>
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span style="padding-left: 3px">{{ achievejoindata[i].title }}</span>
+        <div class="point2">
+          <div>{{ achievejoindata[i].count }}회 참여</div>
+          <div class="grayfont">{{ achievejoindata[i].recent[i][1] }} 획득</div>
+        </div>
       </div>
     </div>
     <div v-if="make == true">
@@ -108,18 +96,12 @@
         {{ username }}님은 현재 {{ participatenum3 }}회 등록하셨어요!
       </div>
       <div v-for="(a, i) in achievemakedata" :key="a" class="banner3">
-        <NuxtLink
-          :to="achievemakedata[i].url"
-          style="color: black; text-decoration-line: none"
-        >
-          <img
-            class="profileimg"
-            src="../assets/Male User.png"
-            align="middle"
-          />
-          <span style="padding-left: 3px">{{ achievemakedata[i].title }}</span>
-          <div class="point2">{{ achievemakedata[i].count }}회 등록</div>
-        </NuxtLink>
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span style="padding-left: 3px">{{ achievemakedata[i].title }}</span>
+        <div class="point2">
+          <div>{{ achievemakedata[i].count }}회 등록</div>
+          <div class="grayfont">{{ achievemakedata[i].recent[i][1] }} 획득</div>
+        </div>
       </div>
     </div>
     <div v-if="report == true">
@@ -127,20 +109,15 @@
         {{ username }}님은 현재 {{ participatenum4 }}회 등록하셨어요!
       </div>
       <div v-for="(a, i) in achievereportdata" :key="a" class="banner3">
-        <NuxtLink
-          :to="achievereportdata[i].url"
-          style="color: black; text-decoration-line: none"
-        >
-          <img
-            class="profileimg"
-            src="../assets/Male User.png"
-            align="middle"
-          />
-          <span style="padding-left: 3px">{{
-            achievereportdata[i].title
-          }}</span>
-          <div class="point2">{{ achievereportdata[i].count }}회 등록</div>
-        </NuxtLink>
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span style="padding-left: 3px">{{ achievereportdata[i].title }}</span>
+
+        <div class="point2">
+          <div>{{ achievereportdata[i].count }}회 등록</div>
+          <div class="grayfont">
+            {{ achievereportdata[i].recent[i][1] }} 획득
+          </div>
+        </div>
       </div>
     </div>
     <div v-if="attend == true">
@@ -148,20 +125,14 @@
         {{ username }}님은 현재 {{ participatenum5 }}회 출석하셨어요!
       </div>
       <div v-for="(a, i) in achieveattenddata" :key="a" class="banner3">
-        <NuxtLink
-          :to="achieveattenddata[i].url"
-          style="color: black; text-decoration-line: none"
-        >
-          <img
-            class="profileimg"
-            src="../assets/Male User.png"
-            align="middle"
-          />
-          <span style="padding-left: 3px">{{
-            achieveattenddata[i].title
-          }}</span>
-          <div class="point2">{{ achieveattenddata[i].count }}회 출석</div>
-        </NuxtLink>
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span style="padding-left: 3px">{{ achieveattenddata[i].title }}</span>
+        <div class="point2">
+          <div>{{ achieveattenddata[i].count }}회 출석</div>
+          <div class="grayfont">
+            {{ achieveattenddata[i].recent[i][1] }} 획득
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -199,23 +170,35 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '업적')
+    this.$store.commit('setPageTitle', '내 업적')
   },
 }
 </script>
 
 <style scoped>
-.point2 {
-  float: right;
-  margin: 20px 12px 0px 0px;
+.grayfont {
+  padding-top: 7px;
   flex-grow: 0;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.65px;
-  text-align: left;
+  letter-spacing: -0.6px;
+  text-align: right;
+  color: #696969;
+}
+.point2 {
+  float: right;
+  margin: 12px 12px 0px 0px;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.6px;
+  text-align: right;
+  color: var(--black);
 }
 .profileimg {
   width: 24px;
@@ -252,6 +235,7 @@ export default {
   line-height: normal;
   letter-spacing: -0.6px;
   color: #000;
+  height: 66px;
 }
 .banner2 {
   flex-grow: 0;

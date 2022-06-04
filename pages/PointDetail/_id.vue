@@ -8,16 +8,20 @@
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-        >
+        />
       </NuxtLink>
 
       <a><span>상세내역</span></a>
     </div>
+<<<<<<< HEAD
 =======
 >>>>>>> a7b8a888e464c8c9a54f4e0f051b3460c31e3700
 =======
 
 >>>>>>> 154d49a695c7cd20299fa30c7e7ed77b2ba3347d
+=======
+
+>>>>>>> 6cd09c849292e218dc6b41551d5459973d9c1d72
     <div class="box">
       <div class="subbox">
         <img

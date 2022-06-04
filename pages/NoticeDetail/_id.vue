@@ -8,7 +8,7 @@
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-        >
+        />
       </NuxtLink>
 
       <a><span>공지사항</span></a>
