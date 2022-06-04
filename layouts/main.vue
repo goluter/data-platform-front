@@ -78,18 +78,14 @@
       </div>
       <Nuxt v-if="!$slots.default" />
       <slot />
-      <v-container>
-        <div class="footer">
-          <v-row no-gutters>
-            <v-bottom-navigation grow class="elevation-0">
-              <v-btn v-for="(item, i) in fitems" :key="i" :to="item.to">
-                <span>{{ item.page }}</span>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-btn>
-            </v-bottom-navigation>
-          </v-row>
-        </div>
-      </v-container>
+      <div class="footer">
+        <v-bottom-navigation grow class="elevation-0">
+          <v-btn v-for="(item, i) in fitems" :key="i" :to="item.to">
+            <span>{{ item.page }}</span>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-btn>
+        </v-bottom-navigation>
+      </div>
     </v-main>
   </v-app>
 </template>
