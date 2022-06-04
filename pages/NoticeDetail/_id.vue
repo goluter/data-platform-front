@@ -6,7 +6,7 @@
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-        >
+        />
       </NuxtLink>
 
       <a><span>공지사항</span></a>
@@ -24,7 +24,7 @@
       <div class="noticemain">
         {{ NoticeData[$route.params.id].answer }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
+      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
@@ -34,12 +34,12 @@ import NoticeData from '../../assets/data/NoticeData'
 export default {
   name: 'Notice',
   layout: 'default',
-  data () {
+  data() {
     return {
       NoticeData,
-      selectnum: 0
+      selectnum: 0,
     }
-  }
+  },
 }
 </script>
 
