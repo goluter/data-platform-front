@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="header">
-      <NuxtLink to="/eventlist" style="color: black; text-decoration-line: none"
-        ><img
+      <NuxtLink
+        to="/eventlist"
+        style="color: black; text-decoration-line: none"
+      >
+        <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>이벤트</span></a>
     </div>
@@ -15,13 +19,15 @@
       <div class="noticetitle">
         {{ OngoingEvent[$route.params.id].title }}
       </div>
-      <div class="date">{{ OngoingEvent[$route.params.id].date }}</div>
+      <div class="date">
+        {{ OngoingEvent[$route.params.id].date }}
+      </div>
     </div>
     <div>
       <div class="noticemain">
         {{ OngoingEvent[$route.params.id].maininfo }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
+      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
     </div>
   </div>
 </template>
@@ -29,14 +35,14 @@
 <script>
 import OngoingEvent from '../../assets/data/OngoingEvent'
 export default {
-  name: 'planneddetail',
+  name: 'Planneddetail',
   layout: 'default',
-  data() {
+  data () {
     return {
       OngoingEvent,
-      selectnum: 0,
+      selectnum: 0
     }
-  },
+  }
 }
 </script>
 

@@ -11,7 +11,7 @@
           type="text"
           class="input_text"
           placeholder="아이디를 입력하세요."
-        />
+        >
       </p>
       <p>
         <label for="memberPasswordInput">패스워드</label>
@@ -22,11 +22,15 @@
           type="password"
           class="input_text"
           placeholder="패스워드를 입력하세요."
-        />
+        >
       </p>
       <p class="buttons">
-        <button class="button blue" @click.prevent="doLogin">로그인</button>
-        <button class="button" @click.prevent="doCancel">취소</button>
+        <button class="button blue" @click.prevent="doLogin">
+          로그인
+        </button>
+        <button class="button" @click.prevent="doCancel">
+          취소
+        </button>
       </p>
     </form>
     <p>{{ errorMessage }}</p>
@@ -37,18 +41,18 @@
 export default {
   name: 'Login',
   layout: 'AdminLayout',
-  data() {
+  data () {
     return {
       memberId: '',
       memberPassword: '',
-      errorMessage: '',
+      errorMessage: ''
     }
   },
-  mounted() {
+  mounted () {
     this.$refs.memberIdInput.focus()
   },
   methods: {
-    doLogin() {
+    doLogin () {
       if (this.memberId == '') {
         alert('아이디를 입력하세요.')
         this.$refs.memberIdInput.focus()
@@ -57,10 +61,10 @@ export default {
         this.$refs.memberPasswordInput.focus()
       }
     },
-    doCancel() {
+    doCancel () {
       this.$router.push('../')
-    },
-  },
+    }
+  }
 }
 </script>
 
