@@ -63,7 +63,6 @@
 <script>
 export default {
   name: 'ReportList',
-  layout: 'nested',
   data () {
     return {
       sort: ['최신순', '추천순', '댓글순'],
