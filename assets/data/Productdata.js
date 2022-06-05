@@ -1,4 +1,4 @@
-var ProductData = [
+const ProductData = [
   {
     id: 0,
     title: '설문참여1',
@@ -6,7 +6,7 @@ var ProductData = [
     date: '0000. 00. 00.',
     reward: '포켓몬빵1',
     url: '/Productpage/0',
-    img: '../QRcode/qrcode (0).png',
+    img: '../QRcode/qrcode (0).png'
   },
   {
     id: 1,
@@ -15,7 +15,7 @@ var ProductData = [
     date: '0000. 00. 00.',
     reward: '스타벅스기프티콘',
     url: '/Productpage/1',
-    img: '../QRcode/qrcode (1).png',
+    img: '../QRcode/qrcode (1).png'
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ var ProductData = [
     date: '0000. 00. 00.',
     reward: '빼빼로',
     url: '/Productpage/2',
-    img: '../QRcode/qrcode (2).png',
+    img: '../QRcode/qrcode (2).png'
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ var ProductData = [
     date: '0000. 00. 00.',
     reward: '초코파이',
     url: '/Productpage/3',
-    img: '../QRcode/qrcode (3).png',
+    img: '../QRcode/qrcode (3).png'
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ var ProductData = [
     date: '0000. 00. 00.',
     reward: '학식교환권',
     url: '/Productpage/4',
-    img: '../QRcode/qrcode (4).png',
-  },
+    img: '../QRcode/qrcode (4).png'
+  }
 ]
 export default ProductData

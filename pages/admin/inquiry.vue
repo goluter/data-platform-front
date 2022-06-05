@@ -13,12 +13,12 @@
 <script type="module">
 import Inquirydata from '../../assets/data/Inquirydata'
 export default {
-  name: 'inquiry',
+  name: 'Inquiry',
   layout: 'Admin',
-  data() {
+  data () {
     return {
-      Inquirydata: Inquirydata,
+      Inquirydata
     }
-  },
+  }
 }
 </script>

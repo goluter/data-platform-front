@@ -4,11 +4,13 @@
       <NuxtLink
         to="/ServiceCenter"
         style="color: black; text-decoration-line: none"
-        ><img
+      >
+        <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-      /></NuxtLink>
+        >
+      </NuxtLink>
 
       <a><span>1대1 문의</span></a>
     </div>
@@ -17,10 +19,14 @@
       <div class="Inquirytitle">
         {{ InquiryData[$route.params.id].question }}
       </div>
-      <div class="date">{{ InquiryData[$route.params.id].date }}</div>
+      <div class="date">
+        {{ InquiryData[$route.params.id].date }}
+      </div>
     </div>
     <div>
-      <div class="Inquirymain">{{ InquiryData[$route.params.id].main }}</div>
+      <div class="Inquirymain">
+        {{ InquiryData[$route.params.id].main }}
+      </div>
     </div>
     <div>
       <div
@@ -38,12 +44,12 @@ import InquiryData from '../../assets/data/Inquirydata'
 export default {
   name: 'Inquiry',
   layout: 'default',
-  data() {
+  data () {
     return {
       InquiryData,
-      selectnum: 0,
+      selectnum: 0
     }
-  },
+  }
 }
 </script>
 

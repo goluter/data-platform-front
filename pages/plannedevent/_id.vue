@@ -1,21 +1,12 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/eventlist" style="color: black; text-decoration-line: none"
-        ><img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-      /></NuxtLink>
-
-      <a><span>이벤트</span></a>
-    </div>
-
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
         {{ PlannedEvent[$route.params.id].title }}
       </div>
-      <div class="date">{{ PlannedEvent[$route.params.id].date }}</div>
+      <div class="date">
+        {{ PlannedEvent[$route.params.id].date }}
+      </div>
     </div>
     <div>
       <div class="noticemain">

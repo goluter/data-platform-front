@@ -1,4 +1,4 @@
-var FaqData = [
+const FaqData = [
   {
     id: 0,
     title: 'FAQ1',
@@ -6,7 +6,7 @@ var FaqData = [
     question: '이거는 어떻게 하나요?1',
     date: '0000. 00. 00.',
     answer: '이렇게 합니다1',
-    url: '/admin/faq/0',
+    url: '/admin/faq/0'
   },
   {
     id: 1,
@@ -15,7 +15,7 @@ var FaqData = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?2',
     answer: '이렇게 합니다2',
-    url: '/admin/faq/1',
+    url: '/admin/faq/1'
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ var FaqData = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?3',
     answer: '이렇게 합니다3',
-    url: '/admin/faq/2',
+    url: '/admin/faq/2'
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ var FaqData = [
     date: '0000. 00. 00.',
     question: '이거는 어떻게 하나요?4',
     answer: '이렇게 합니다4',
-    url: '/admin/faq/3',
-  },
+    url: '/admin/faq/3'
+  }
 ]
 export default FaqData
