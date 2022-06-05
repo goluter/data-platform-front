@@ -1,16 +1,20 @@
 <template>
   <v-app>
     <v-main>
-      <div class="nested-header">
-        <div class="arrow">
-          <v-btn icon @click="back">
-            <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
-        </div>
-        <div class="title">
-          <span class="title-text">{{ $store.getters.getPageTitle }}</span>
-        </div>
-      </div>
+      <v-container class="pa-0">
+        <v-col class="pa-0" cols="12">
+          <v-app-bar dense class="elevation-0" color="transparent">
+            <v-app-bar-nav-icon icon @click="back">
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-app-bar-nav-icon>
+            <v-spacer />
+            <v-toolbar-title class="title-text" style="margin-left: -32px;">
+              {{ $store.getters.getPageTitle }}
+            </v-toolbar-title>
+            <v-spacer />
+          </v-app-bar>
+        </v-col>
+      </v-container>
       <Nuxt />
     </v-main>
   </v-app>
@@ -27,28 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.nested-header {
-  display: flex;
-  margin: auto;
-  max-width: 500px;
-  height: 45px;
-  justify-content: center;
-}
-.arrow {
-  display: inline;
-  float: left;
-  margin-left: 10px;
-  align-self: center;
-}
-.title {
-  display: inline;
-  justify-self: center;
-  align-self: center;
-  width: 100%;
-  text-align: center;
-}
 .title-text {
-  margin-left: -46px;
   font-size: 14px;
   font-weight: 600;
 }

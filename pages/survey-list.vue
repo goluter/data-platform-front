@@ -114,7 +114,7 @@ import mainlist from 'assets/data/Mobile_main_list'
 
 export default {
   name: 'SurveyList',
-  layout: 'base',
+  layout: 'main',
   data () {
     return {
       tab1: true,
