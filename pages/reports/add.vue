@@ -127,7 +127,7 @@ export default {
   },
   methods: {
     tagVal (val) {
-      if (val instanceof Array && val.length == 0) {
+      if (val instanceof Array && val.length === 0) {
         return '필수 입력 항목입니다.'
       }
       return !!val || '필수 입력 항목입니다.'

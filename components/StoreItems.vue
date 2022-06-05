@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(item, i) in storeData" :key="i">
+    <v-container v-for="(item, i) in storeData" :key="i" class="pa-0">
       <v-row class="pa-3">
         <v-col class="d-flex justify-center" cols="3" md="2">
           <div class="image" />
@@ -21,8 +21,10 @@
           <span class="item-price"> {{ item.price | comma }} P </span>
         </v-col>
       </v-row>
-      <v-divider />
-    </div>
+      <v-row>
+        <v-divider />
+      </v-row>
+    </v-container>
   </div>
 </template>
 
