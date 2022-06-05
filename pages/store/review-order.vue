@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <v-container class="fill-height d-flex pa-0 align-content-space-between" style="background-color: #f0f0f0">
-      <v-container class="">
+      <v-container>
         <v-row style="background-color: white">
           <v-col cols="12">
             <v-row>
@@ -26,7 +26,7 @@
           <v-col cols="12">
             <b>결제 수단</b>
           </v-col>
-          <v-col class="ma-auto" cols="12" sm="6" mb="6">
+          <v-col class="ma-auto" cols="12" sm="4" mb="4">
             <div class="payment-method d-flex flex-column">
               <div class="payment-method-name">
                 <b>Govey 페이</b>
