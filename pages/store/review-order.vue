@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <v-container class="fill-height pt-0" style="align-items: initial; background-color: #f0f0f0">
-      <v-container class="pl-0 pr-0">
+    <v-container class="fill-height d-flex pa-0 align-content-space-between" style="background-color: #f0f0f0">
+      <v-container class="">
         <v-row style="background-color: white">
           <v-col cols="12">
             <v-row>
@@ -56,18 +56,12 @@
             </div>
           </v-col>
         </v-row>
-        </v-con>
-        <v-container>
-          <v-row>
-            <v-col cols="12" />
-          </v-row>
-          <v-row class="ma-auto" style="position: fixed; right: 0; bottom: 0; left: 0;">
-            <v-col cols="12" class="place-order d-flex justify-center" style="background-color: #515151; color: white;">
-              <b>{{ sum() | comma }} P 결제하기</b>
-            </v-col>
-          </v-row>
-        </v-container>
       </v-container>
+      <v-row class="ma-auto" style="">
+        <v-col cols="12" class="place-order d-flex justify-center" style="background-color: #515151; color: white;">
+          <b>{{ sum() | comma }} P 결제하기</b>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
