@@ -27,7 +27,7 @@
             <b>주문내역</b>
           </v-col>
           <v-col cols="5" class="text-center" style="background-color: white; border: #d9d9d9 solid 1px;">
-            <NuxtLink to="/">
+            <NuxtLink to="/" style="text-decoration: none; color: initial">
               <b>홈으로</b>
             </NuxtLink>
           </v-col>
