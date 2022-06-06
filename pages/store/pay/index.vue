@@ -28,13 +28,17 @@
       <v-row class="ma-auto">
         <v-col cols="12">
           <v-row>
-            <v-col cols="10" class="ma-auto d-flex justify-center" style="background-color: #515151; color: white; border-radius: 5px;">
-              <b>구매 확정</b>
+            <v-col cols="10" sm="4" md="4" class="ma-auto d-flex justify-center" style="background-color: #515151; border-radius: 5px;">
+              <NuxtLink to="/store/pay/completed/" style="text-decoration: none; color: white;">
+                <b>구매 확정</b>
+              </NuxtLink>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" class="d-flex justify-center" style="font-size: 12px;">
-              <b>취소하기</b>
+              <NuxtLink to="/store/" style="text-decoration: none; color: black;">
+                <b>취소하기</b>
+              </NuxtLink>
             </v-col>
           </v-row>
         </v-col>
