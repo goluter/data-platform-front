@@ -2,7 +2,7 @@
   <div class="wrapper">
     <v-container class="fill-height d-flex pa-0 align-content-space-between" style="background-color: #f0f0f0">
       <v-container>
-        <v-row style="height: 140px; background-color: white">
+        <v-row style="min-height: 140px; background-color: white">
           <v-col cols="12" style=" font-size: 12px;">
             <v-row>
               <v-col class="" cols="12">
