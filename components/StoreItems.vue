@@ -21,7 +21,7 @@
           <span class="item-price"> {{ item.price | comma }} P </span>
         </v-col>
       </v-row>
-      <v-divider />
+      <v-divider v-if="storeData.length > 1" />
     </div>
   </div>
 </template>
