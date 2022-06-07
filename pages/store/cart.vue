@@ -59,7 +59,9 @@
       </v-container>
       <v-row class="ma-auto">
         <v-col cols="12" class="place-order d-flex justify-center" style="background-color: #515151; color: white;">
-          <b>{{ sum() | comma }} P 결제하기</b>
+          <NuxtLink to="/store/pay/" style="text-decoration: none; color: white">
+            <b>{{ sum() | comma }} P 결제하기</b>
+          </NuxtLink>
         </v-col>
       </v-row>
     </v-container>
