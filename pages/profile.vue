@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="align-items: center">
     <v-row style="height: 95px; background-color: #f8f8f8">
       <v-col cols="12" align-self="center">
         <v-icon x-large left>
@@ -8,7 +8,7 @@
         <span class="username">@{{ username }}</span>
       </v-col>
     </v-row>
-    <v-row class="mt-0">
+    <v-row>
       <v-col class="pa-0" cols="12">
         <v-tabs v-model="tab" grow>
           <v-tabs-slider color="teal accent-3" />
