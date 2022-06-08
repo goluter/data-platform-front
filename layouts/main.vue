@@ -2,35 +2,32 @@
   <v-app>
     <v-main>
       <div class="header-wrapper">
-        <v-app-bar
-          class="header"
-          dense
-          elevation="0"
-          color="white"
-        >
+        <v-app-bar class="header" dense elevation="0" color="white">
           <v-app-bar-nav-icon @click="drawer = !drawer" />
           <v-btn icon disabled />
           <v-spacer />
-          <v-toolbar-title style="height: 22px;">
+          <v-toolbar-title style="height: 22px">
             <NuxtLink to="/" style="color: black; text-decoration-line: none">
-              <img src="../static/govey.svg">
+              <img src="../static/govey.svg" />
             </NuxtLink>
           </v-toolbar-title>
           <v-spacer />
           <div class="func">
-            <v-btn icon>
+            <v-btn icon style="visibility: hidden">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-bell</v-icon>
-            </v-btn>
+            <NuxtLink to="/notifications">
+              <v-btn icon>
+                <v-icon>mdi-bell</v-icon>
+              </v-btn>
+            </NuxtLink>
           </div>
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app temporary>
           <v-list nav dense>
             <v-list-item to="/Login">
               <v-list-item-avatar>
-                <img src="../assets/premium-icon-person-2815428.png">
+                <img src="../assets/premium-icon-person-2815428.png" />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>로그인</v-list-item-title>
@@ -54,23 +51,30 @@
             <v-row>
               <v-col>
                 <a
+                  target="_blank"
                   href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                ><img
-                  class="sns-icon"
-                  src="../static/image 4.png"
-                ></a>
+                  ><img class="sns-icon" src="../static/image 4.png"
+                /></a>
               </v-col>
               <v-col>
-                <a href="https://www.instagram.com/govey_official/?hl=ko"><img
-                  class="sns-icon"
-                  src="../static/image 5.png"
-                ></a>
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/govey_official/?hl=ko"
+                  ><img
+                    class="sns-icon"
+                    style="margin-top: 6px; width: 50px; height: 50px"
+                    src="../static/image 5.png"
+                /></a>
               </v-col>
               <v-col>
-                <a href="https://www.facebook.com/고베이-104289228923939"><img
-                  class="sns-icon"
-                  src="../static/image 6.png"
-                ></a>
+                <a
+                  target="_blank"
+                  href="https://www.facebook.com/고베이-104289228923939"
+                  ><img
+                    class="sns-icon"
+                    style="margin-top: 6px; width: 50px; height: 50px"
+                    src="../static/image 6.png"
+                /></a>
               </v-col>
             </v-row>
           </div>
@@ -92,37 +96,37 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       items: [
-        { page: '리포트', to: '/reports' },
-        { page: '공지사항', to: '/notice/' },
-        { page: '이벤트', to: '/event-list/' },
+        { page: '리포트', to: '/reports/' },
+        { page: '공지사항', to: '/notices/' },
+        { page: '이벤트', to: '/events/' },
         { page: '명예의전당', to: '/rank/' },
         { page: '고객센터', to: '/service-center/' },
         { page: '개인정보처리방침', to: '/privacy-policy/' },
-        { page: '이용약관', to: '/terms-of-service/' }
+        { page: '이용약관', to: '/terms-of-service/' },
       ],
       fitems: [
         { page: '홈', icon: 'mdi-home', to: '/' },
-        { page: '설문', icon: 'mdi-text-box-edit', to: '/survey-list/' },
+        { page: '설문', icon: 'mdi-text-box-edit', to: '/surveys/' },
         { page: '스토어', icon: 'mdi-store', to: '/store/' },
-        { page: '마이', icon: 'mdi-account-circle', to: '/login/' }
+        { page: '마이', icon: 'mdi-account-circle', to: '/login/' },
       ],
       drawer: false,
-      group: null
+      group: null,
     }
   },
   watch: {
-    group () {
+    group() {
       this.drawer = false
-    }
+    },
   },
   methods: {
-    commitTitle (title) {
+    commitTitle(title) {
       this.$store.commit('setPageTitle', title)
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>

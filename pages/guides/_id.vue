@@ -2,31 +2,33 @@
   <div>
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ NoticeData[$route.params.id].title }}
+        {{ GuideData[$route.params.id].title }}
       </div>
       <div class="date">
-        {{ NoticeData[$route.params.id].date }}
+        {{ GuideData[$route.params.id].date }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ NoticeData[$route.params.id].answer }}
+        {{ GuideData[$route.params.id].answer }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
 
 <script>
-import NoticeData from '../../assets/data/NoticeData'
+import GuideData from '../../assets/data/GuideData'
 export default {
-  name: 'Notice',
+  name: 'Guide',
   layout: 'default',
   data() {
     return {
-      NoticeData,
+      GuideData,
       selectnum: 0,
     }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '가이드')
   },
 }
 </script>
@@ -36,6 +38,7 @@ export default {
   width: 204px;
   height: 16px;
   margin: 32px 0px 0px 18px;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -54,6 +57,7 @@ export default {
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -83,6 +87,7 @@ export default {
   flex-grow: 0;
   margin: auto;
   display: table;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -108,6 +113,7 @@ export default {
   height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;
+  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;

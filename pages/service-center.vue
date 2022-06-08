@@ -2,8 +2,8 @@
   <div class="container">
     <div>
       <div class="asd" style="">
-        <img src="../assets/magnify.png" class="mag">
-        <input placeholder="검색어를 입력해주세요" class="search">
+        <img src="../assets/magnify.png" class="mag" />
+        <input placeholder="검색어를 입력해주세요" class="search" />
       </div>
     </div>
     <div>
@@ -37,12 +37,10 @@
         </v-tab>
       </v-tabs>
     </div>
-    <div v-for="(a, i) in FaqData" v-if="faq == true" :key="a">
+    <div v-for="(a, i) in FaqData" v-if="faq == true" :key="i">
       <div class="box1">
         {{ FaqData[i].title }}
-        <div style="display: none">
-          {{ selectnum }} {{ chevrondown[i] }}
-        </div>
+        <div style="display: none">{{ selectnum }} {{ chevrondown[i] }}</div>
         <img
           v-if="chevrondown[i] == true"
           class="chevron"
@@ -53,7 +51,7 @@
             chevronup[i] = true
             showanswer[i] = true
           "
-        >
+        />
         <img
           v-if="chevronup[i] == true"
           class="chevron"
@@ -64,7 +62,7 @@
             chevronup[i] = false
             showanswer[i] = false
           "
-        >
+        />
       </div>
       <div v-if="showanswer[i] == true" class="box2">
         {{ FaqData[i].answer }}
@@ -91,7 +89,7 @@
         </NuxtLink>
       </div>
 
-      <div v-for="(a, i) in InquiryData" :key="a" class="onemain">
+      <div v-for="(a, i) in InquiryData" :key="i" class="onemain">
         <nuxt-link
           style="color: black; text-decoration-line: none"
           :to="InquiryData[i].userurl"
@@ -108,7 +106,7 @@
     <div
       v-for="(a, i) in GuideData"
       v-if="guide == true"
-      :key="a"
+      :key="i"
       class="onemain"
     >
       <NuxtLink
@@ -130,7 +128,7 @@ import InquiryData from '../assets/data/Inquirydata.js'
 export default {
   name: 'ServiceCenter',
   layout: 'default',
-  data () {
+  data() {
     return {
       selectnum: -1,
       faq: true,
@@ -141,12 +139,12 @@ export default {
       showanswer: [false, false, false, false],
       FaqData,
       GuideData,
-      InquiryData
+      InquiryData,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '고객센터')
-  }
+  },
 }
 </script>
 
@@ -203,16 +201,16 @@ export default {
   height: 50px;
 }
 .box2 {
-  height: 65px;
+  min-height: 65px;
   flex-grow: 0;
-  padding: 18px 0px 0px 23.9px;
+  padding: 18px;
   background-color: #efefef;
   border-bottom: 1px solid #e9e9e9;
 }
 .box1 {
-  height: 65px;
+  min-height: 65px;
   flex-grow: 0;
-  padding: 18px 0px 0px 23.9px;
+  padding: 18px;
   border-bottom: 1px solid #e9e9e9;
 }
 .mag {

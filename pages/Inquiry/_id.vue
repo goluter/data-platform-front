@@ -1,20 +1,5 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink
-        to="/ServiceCenter"
-        style="color: black; text-decoration-line: none"
-      >
-        <img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-        >
-      </NuxtLink>
-
-      <a><span>1대1 문의</span></a>
-    </div>
-
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="Inquirytitle">
         {{ InquiryData[$route.params.id].question }}
@@ -44,12 +29,15 @@ import InquiryData from '../../assets/data/Inquirydata'
 export default {
   name: 'Inquiry',
   layout: 'default',
-  data () {
+  data() {
     return {
       InquiryData,
-      selectnum: 0
+      selectnum: 0,
     }
-  }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '1대1문의')
+  },
 }
 </script>
 
