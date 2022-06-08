@@ -2,31 +2,33 @@
   <div>
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ OngoingEvent[$route.params.id].title }}
+        {{ GuideData[$route.params.id].title }}
       </div>
       <div class="date">
-        {{ OngoingEvent[$route.params.id].date }}
+        {{ GuideData[$route.params.id].date }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ OngoingEvent[$route.params.id].maininfo }}
+        {{ GuideData[$route.params.id].answer }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
 
 <script>
-import OngoingEvent from '../../assets/data/OngoingEvent'
+import GuideData from '../../assets/data/GuideData'
 export default {
-  name: 'Planneddetail',
+  name: 'Guide',
   layout: 'default',
   data() {
     return {
-      OngoingEvent,
+      GuideData,
       selectnum: 0,
     }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '가이드')
   },
 }
 </script>
@@ -36,6 +38,7 @@ export default {
   width: 204px;
   height: 16px;
   margin: 32px 0px 0px 18px;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -48,12 +51,13 @@ export default {
 .noticeimg {
   width: 322px;
   height: 251px;
-  margin: 30px 0px 0 15px;
+  margin: 67px 0 0 18px;
   border-radius: 20px;
 }
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -83,6 +87,7 @@ export default {
   flex-grow: 0;
   margin: auto;
   display: table;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -102,12 +107,13 @@ export default {
 .contents a {
   text-decoration: none;
 }
+
 .date {
-  width: 200px;
+  width: 100px;
   height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;
-  amily: Roboto;
+  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;

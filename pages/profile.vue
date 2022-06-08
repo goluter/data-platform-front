@@ -10,14 +10,14 @@
     </v-row>
     <v-row>
       <v-col class="pa-0" cols="12">
-        <v-tabs v-model="tab" grow center-active>
+        <v-tabs v-model="tab" grow>
           <v-tabs-slider color="teal accent-3" />
           <v-tab
-            v-for="(item, i) in tabsData"
+            v-for="(tabs, i) in tabsData"
             :key="i"
-            style="color: black; font-weight: 600"
+            style="color: black; font-weight: 600;"
           >
-            {{ item.title }}
+            {{ tabs.title }}
           </v-tab>
         </v-tabs>
         <v-tabs-items v-model="tab">
@@ -36,24 +36,10 @@
             </div>
           </v-tab-item>
           <v-tab-item class="pa-2 pt-0">
-            <survey-card :survey-data="surveyData" />
+            <SurveyCard :survey-data="surveyData" />
           </v-tab-item>
           <v-tab-item class="pa-2 pt-0">
-            <survey-card :survey-data="surveyData" />
-          </v-tab-item>
-          <v-tab-item>
-            <v-list v-for="(item, i) in listData" :key="i">
-              <v-subheader>{{ item.subheader }}</v-subheader>
-              <v-list-item-group>
-                <v-list-item
-                  v-for="(link, i) in item.item"
-                  :key="i"
-                  :to="link.to"
-                >
-                  {{ link.title }}
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
+            <SurveyCard :survey-data="surveyData" />
           </v-tab-item>
         </v-tabs-items>
       </v-col>
@@ -64,20 +50,17 @@
 <script>
 import SurveyCard from '../components/SurveyCard.vue'
 export default {
-  name: 'MyPage',
   components: { SurveyCard },
-  layout: 'main',
   data () {
     return {
-      tab: null,
       username: 'jooyoung',
+      tab: null,
       tabsData: [
         { title: '타임라인' },
         { title: '등록설문' },
-        { title: '참여설문' },
-        { title: '더보기' }
+        { title: '참여설문' }
       ],
-      achievement: ['설문 참여', '대학생'],
+      achievement: ['설문참여', '메롱'],
       surveyData: [
         {
           title: '대학생들에게 묻습니다',
@@ -119,32 +102,6 @@ export default {
               icon: 'mdi-circle-multiple',
               color: 'yellow darken-3'
             }
-          ]
-        }
-      ],
-      listData: [
-        {
-          subheader: '설문',
-          item: [
-            { title: '내 설문', to: '/' },
-            { title: '내 리포트', to: '/' },
-            { title: '내 댓글', to: '/' },
-            { title: '스크랩', to: '/' },
-            { title: '다운로드 기록', to: '/' }
-          ]
-        },
-        {
-          subheader: '보상',
-          item: [
-            { title: '내 포인트', to: '/' },
-            { title: '구매내역', to: '/' }
-          ]
-        },
-        {
-          subheader: '기타',
-          item: [
-            { title: '로그아웃', to: '/' },
-            { title: '회원탈퇴', to: '/' }
           ]
         }
       ]

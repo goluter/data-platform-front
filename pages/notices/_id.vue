@@ -1,57 +1,55 @@
 <template>
   <div>
+<<<<<<< HEAD
     <div class="header">
-      <NuxtLink
-        to="/ServiceCenter"
-        style="color: black; text-decoration-line: none"
-      >
+      <NuxtLink to="/notice" style="color: black; text-decoration-line: none">
         <img
           style="position: absolute"
           src="../../assets/Arrow back ios.png"
           ALIGN="left"
-        >
+        />
       </NuxtLink>
 
-      <a><span>가이드</span></a>
+      <a><span>공지사항</span></a>
     </div>
 
+=======
+>>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ GuideData[$route.params.id].title }}
+        {{ NoticeData[$route.params.id].title }}
       </div>
       <div class="date">
-        {{ GuideData[$route.params.id].date }}
+        {{ NoticeData[$route.params.id].date }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ GuideData[$route.params.id].answer }}
+        {{ NoticeData[$route.params.id].answer }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import GuideData from '../../assets/data/GuideData'
+import NoticeData from '../../assets/data/NoticeData'
 export default {
-  name: 'Guide',
+  name: 'Notice',
   layout: 'default',
-  data () {
+  data() {
     return {
-      GuideData,
-      selectnum: 0
+      NoticeData,
+      selectnum: 0,
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
 .noticemain {
-  width: 204px;
   height: 16px;
-  margin: 32px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 14px;
+  padding: 10px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -69,7 +67,6 @@ export default {
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -99,7 +96,6 @@ export default {
   flex-grow: 0;
   margin: auto;
   display: table;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -125,7 +121,6 @@ export default {
   height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;
-  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
