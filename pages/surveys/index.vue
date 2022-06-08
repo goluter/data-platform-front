@@ -71,39 +71,42 @@
           />
         </div>
       </div>
-      <div v-for="(list, i) in 6" :key="Survey">
-        <div class="mt-3" style="position: relative">
-          <v-row>
-            <v-col cols="4">
-              <div class="rounded-xl gray-box" />
-            </v-col>
-            <v-col cols="6">
-              <v-row class="mt-1">
-                {{ mainlist[i].que }}
-              </v-row>
-              <v-row>
-                {{ mainlist[i].date }}
-              </v-row>
-              <v-row style="font-size: 9px; position: absolute; bottom: 25px">
-                <div class="mr-7">
-                  {{ mainlist[i].num }}명이 참여 중입니다.
-                </div>
-                <div>#대학생 #새학기 #축제</div>
-              </v-row>
-            </v-col>
-          </v-row>
-        </div>
-        <div style="display: flex; justify-content: center" class="mt-2">
-          <div class="triangle" />
-        </div>
-        <div class="blue_box d-flex">
-          <div class="rounded-xl pl-2 pr-2 round_gift mt-2 ml-2">
-            <img src="../assets/giftbox 2.png"> 스타벅스
+
+      <div v-for="(list, i) in 6" :key="i">
+        <NuxtLink :to="'/surveys/1' + i">
+          <div class="mt-3" style="position: relative">
+            <v-row>
+              <v-col cols="4">
+                <div class="rounded-xl gray-box" />
+              </v-col>
+              <v-col cols="6">
+                <v-row class="mt-1">
+                  {{ mainlist[i].que }}
+                </v-row>
+                <v-row>
+                  {{ mainlist[i].date }}
+                </v-row>
+                <v-row style="font-size: 9px; position: absolute; bottom: 25px">
+                  <div class="mr-7">
+                    {{ mainlist[i].num }}명이 참여 중입니다.
+                  </div>
+                  <div>#대학생 #새학기 #축제</div>
+                </v-row>
+              </v-col>
+            </v-row>
           </div>
-          <div class="rounded-xl pl-2 pr-2 ml-2 round_gift mt-2">
-            <img src="../assets/coin 2.png"> 100P
+          <div style="display: flex; justify-content: center" class="mt-2">
+            <div class="triangle" />
           </div>
-        </div>
+          <div class="blue_box d-flex">
+            <div class="rounded-xl pl-2 pr-2 round_gift mt-2 ml-2">
+              <img src="assets/giftbox 2.png" /> 스타벅스
+            </div>
+            <div class="rounded-xl pl-2 pr-2 ml-2 round_gift mt-2">
+              <img src="assets/coin 2.png" /> 100P
+            </div>
+          </div>
+        </NuxtLink>
       </div>
     </div>
   </v-container>
@@ -115,7 +118,7 @@ import mainlist from 'assets/data/Mobile_main_list'
 export default {
   name: 'SurveyList',
   layout: 'main',
-  data () {
+  data() {
     return {
       tab1: true,
       tab2: false,
@@ -126,17 +129,16 @@ export default {
       gift_models: ['포인트', '기프티콘'],
       tag_model: null,
       tag_models: ['대학생', '사회생활', '코딩'],
-      mainlist
+      mainlist,
     }
   },
 
-  componets: {}
+  componets: {},
 }
 </script>
 
 <style scoped>
 .wrap {
-  max-width: 500px;
 }
 .gray-line {
   width: 100%;
