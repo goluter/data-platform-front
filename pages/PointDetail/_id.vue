@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
     <div class="header">
       <NuxtLink to="/point" style="color: black; text-decoration-line: none">
         <img
@@ -13,9 +12,6 @@
       <a><span>상세내역</span></a>
     </div>
 
-=======
-
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
     <div class="box">
       <div class="subbox">
         <img
@@ -130,7 +126,7 @@ export default {
   height: 57px;
 }
 .subbox {
-  padding: 29px 0px 0px 13px;
+  padding: 29px 0px 1px 13px;
 }
 .box span {
   flex-grow: 0;
