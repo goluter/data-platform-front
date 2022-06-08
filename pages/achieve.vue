@@ -1,13 +1,6 @@
 <template>
   <div class="container">
-<<<<<<< HEAD
-    <v-tabs
-      next-icon="mdi-arrow-right"
-      prev-icon="mdi-arrow-left"
-      show-arrows
-      center-active
-      color="#1cddb7"
-    >
+    <v-tabs center-active color="#1cddb7">
       <v-tab
         @click="
           point = true
@@ -15,14 +8,6 @@
           make = false
           report = false
           attend = false
-=======
-    <v-tabs center-active centered color="#1cddb7">
-      <v-tab
-        @click="
-          point = true
-          nickname = false
-          achieve = false
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
         "
       >
         포인트
@@ -30,7 +15,6 @@
       <v-tab
         @click="
           point = false
-<<<<<<< HEAD
           join = true
           make = false
           report = false
@@ -38,18 +22,10 @@
         "
       >
         설문 참여
-=======
-          nickname = true
-          achieve = false
-        "
-      >
-        설문참여
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
       </v-tab>
       <v-tab
         @click="
           point = false
-<<<<<<< HEAD
           join = false
           make = true
           report = false
@@ -65,42 +41,22 @@
           make = false
           report = true
           attend = false
-=======
-          nickname = false
-          achieve = true
-        "
-      >
-        설문등록
-      </v-tab>
-      <v-tab
-        @click="
-          point = true
-          nickname = false
-          achieve = false
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
         "
       >
         리포트
       </v-tab>
       <v-tab
         @click="
-<<<<<<< HEAD
           point = false
           join = false
           make = false
           report = false
           attend = true
-=======
-          point = true
-          nickname = false
-          achieve = false
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
         "
       >
         출석
       </v-tab>
     </v-tabs>
-<<<<<<< HEAD
     <div v-if="point == true">
       <div class="banner2">
         {{ username }}님은 현재 {{ participatenum1 }}점 누적하셨어요!
@@ -202,21 +158,16 @@
         </NuxtLink>
       </div>
     </div>
-=======
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
 import achievejoindata from '../assets/data/achievejoindata.js'
 import achievepointdata from '../assets/data/achievepointdata.js'
 import achievemakedata from '../assets/data/achievemakedata.js'
 import achievereportdata from '../assets/data/achievereportdata.js'
 import achieveattenddata from '../assets/data/achieveattenddata.js'
 
-=======
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
 export default {
   name: 'EventList',
   layout: 'default',
@@ -224,7 +175,6 @@ export default {
     return {
       num: 0,
       point: true,
-<<<<<<< HEAD
       join: false,
       make: false,
       report: false,
@@ -240,10 +190,6 @@ export default {
       achievemakedata,
       achievereportdata,
       achieveattenddata,
-=======
-      nickname: false,
-      achieve: false,
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
     }
   },
   mounted() {
@@ -255,11 +201,7 @@ export default {
 <style scoped>
 .point2 {
   float: right;
-<<<<<<< HEAD
   margin: 20px 12px 0px 0px;
-=======
-  margin: 4px 12px 0px 0px;
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
   flex-grow: 0;
   font-size: 13px;
   font-weight: 500;
@@ -269,7 +211,6 @@ export default {
   letter-spacing: -0.65px;
   text-align: left;
 }
-<<<<<<< HEAD
 .profileimg {
   width: 24px;
   height: 24px;
@@ -286,18 +227,10 @@ export default {
   flex-grow: 0;
   margin: 24px 0px 0px 17px;
   font-size: 14px;
-=======
-.point {
-  float: right;
-  margin: 6px 12px 0px 0px;
-  flex-grow: 0;
-  font-size: 13px;
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-<<<<<<< HEAD
   letter-spacing: -0.7px;
   text-align: left;
   color: #000;
@@ -359,39 +292,5 @@ export default {
   letter-spacing: -0.6px;
   text-align: left;
   color: #8f8f8f;
-=======
-  letter-spacing: -0.65px;
-  text-align: left;
-}
-.profileimg {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-}
-.contents {
-  height: 66px;
-  flex-grow: 0;
-
-  border: solid 1px #f0f0f0;
-  padding: 20px 0px 0px 18px;
-  background-color: #fff;
-}
-.contents span {
-  font-size: 12px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.6px;
-  text-align: left;
-  color: #000;
-  margin-left: 5px;
-}
-.container {
-  max-width: 500px;
-}
-.v-tab {
-  font-size: 18px;
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
 }
 </style>
