@@ -33,12 +33,14 @@
                 <div>
                   <v-icon small>
                     mdi-thumb-up
-                  </v-icon>{{ reportData.likes | comma }}
+                  </v-icon>
+                  {{ reportData.likes | comma }}
                 </div>
                 <div>
                   <v-icon small>
                     mdi-comment-processing
-                  </v-icon>{{ reportData.comments | comma }}
+                  </v-icon>
+                  {{ reportData.comments | comma }}
                 </div>
               </div>
             </v-col>
