@@ -22,38 +22,43 @@
             </v-col>
           </v-row>
           <v-divider />
-          <v-row
+          <NuxtLink
             v-for="(item, i) in reportData"
             :key="i"
-            class="ma-0 pt-1 pl-1"
+            to="/reports/item"
+            style="text-decoration: none; color: initial"
           >
-            <v-col class="thumbnail" cols="2" />
-            <v-col class="pa-2" cols="10">
-              <div class="report-title">
-                {{ item.title }}
-              </div>
-              <div class="report-stat">
-                <div class="report-likes">
-                  <v-icon small>
-                    mdi-thumb-up
-                  </v-icon>
-                  {{ item.likes }}
+            <v-row
+              class="ma-0 pt-1 pl-1"
+            >
+              <v-col class="thumbnail" cols="2" />
+              <v-col class="pa-2" cols="10">
+                <div class="report-title">
+                  {{ item.title }}
                 </div>
-                <div class="report-comments">
-                  <v-icon small>
-                    mdi-comment-processing
-                  </v-icon>
-                  {{ item.comments }}
+                <div class="report-stat">
+                  <div class="report-likes">
+                    <v-icon small>
+                      mdi-thumb-up
+                    </v-icon>
+                    {{ item.likes }}
+                  </div>
+                  <div class="report-comments">
+                    <v-icon small>
+                      mdi-comment-processing
+                    </v-icon>
+                    {{ item.comments }}
+                  </div>
+                  <div class="report-surveyor">
+                    <v-icon small>
+                      {{ item.icon }}
+                    </v-icon>
+                    {{ item.surveyor }}
+                  </div>
                 </div>
-                <div class="report-surveyor">
-                  <v-icon small>
-                    {{ item.icon }}
-                  </v-icon>
-                  {{ item.surveyor }}
-                </div>
-              </div>
-            </v-col>
-          </v-row>
+              </v-col>
+            </v-row>
+          </NuxtLink>
         </v-container>
       </div>
     </div>
