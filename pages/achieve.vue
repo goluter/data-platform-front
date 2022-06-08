@@ -1,12 +1,6 @@
 <template>
   <div class="container">
-    <v-tabs
-      next-icon="mdi-arrow-right"
-      prev-icon="mdi-arrow-left"
-      show-arrows
-      center-active
-      color="#1cddb7"
-    >
+    <v-tabs center-active color="#1cddb7">
       <v-tab
         @click="
           point = true

@@ -2,6 +2,9 @@
   <div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ee8cdec4c1e5aa27edfa04aa161f768b9252bd76
     <div class="header">
       <NuxtLink to="/point" style="color: black; text-decoration-line: none">
         <img
@@ -21,7 +24,13 @@
 >>>>>>> 154d49a695c7cd20299fa30c7e7ed77b2ba3347d
 =======
 
+<<<<<<< HEAD
 >>>>>>> 6cd09c849292e218dc6b41551d5459973d9c1d72
+=======
+=======
+
+>>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
+>>>>>>> ee8cdec4c1e5aa27edfa04aa161f768b9252bd76
     <div class="box">
       <div class="subbox">
         <img

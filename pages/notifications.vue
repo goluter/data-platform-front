@@ -1,33 +1,34 @@
 <template>
-  <div>
-    <a><span>알림</span></a>
+  <v-container class="pa-0">
     <div v-for="(a, i) in PushData" :key="a" class="box">
-      <div class="boxtitle">
-        {{ PushData[i].type }}알림
-      </div>
+      <div class="boxtitle">{{ PushData[i].type }}알림</div>
       <div class="boxcomment">
-        <span>{{ PushData[i].survay }}</span>에 참여완료되셨어요!
+        <span>{{ PushData[i].survay }}</span
+        >에 참여완료되셨어요!
       </div>
       <div class="boxdate">
         {{ PushData[i].date }}
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
 import GuideData from '../assets/data/GuideData'
 import PushData from '../assets/data/PushData'
 export default {
-  name: 'Push',
+  name: 'Notifications',
   layout: 'default',
-  data () {
+  data() {
     return {
       GuideData,
       PushData,
-      selectnum: 0
+      selectnum: 0,
     }
-  }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '알림')
+  },
 }
 </script>
 
@@ -78,44 +79,5 @@ export default {
   margin: 0 0 0 0;
   border-bottom: 1px solid #dedede;
   overflow: hidden;
-}
-.container {
-  padding: 0px;
-}
-.banner {
-  background-color: #eee;
-  height: 96px;
-  padding: 2%;
-  width: 100%;
-}
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 3%;
-  width: 100%;
-  background-color: white;
-}
-.header span {
-  flex-grow: 0;
-  margin: auto;
-  display: table;
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.7px;
-  text-align: center;
-  color: #434343;
-  z-index: 1;
-}
-.contents {
-  border-bottom: 1px solid #d3d3d3;
-  position: relative;
-  overflow: hidden;
-  height: 87px;
-}
-.contents a {
-  text-decoration: none;
 }
 </style>
