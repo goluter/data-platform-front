@@ -1,20 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <div class="header">
-      <NuxtLink to="/notice" style="color: black; text-decoration-line: none">
-        <img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-        />
-      </NuxtLink>
-
-      <a><span>공지사항</span></a>
-    </div>
-
-=======
->>>>>>> f40aeaa28a17c16030528636b4fad0ca0cd1aae6
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
         {{ NoticeData[$route.params.id].title }}
