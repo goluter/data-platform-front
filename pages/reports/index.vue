@@ -93,19 +93,17 @@ export default {
 <style scoped>
 .wrapper {
   margin: auto;
-  padding-top: 2px;
+  padding-top: 10px;
   max-width: 500px;
   height: 94%;
   background-color: #eeeeee;
 }
 .inner-wrapper {
-  margin-top: 10px;
 }
 .search {
   display: flex;
   justify-content: center;
   height: 70px;
-  margin: 10px 0;
   background-color: white;
 }
 .content {
