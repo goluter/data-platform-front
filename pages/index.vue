@@ -1,17 +1,14 @@
-<<<<<<< HEAD
-<template></template>
+<template />
 
 <script>
 export default {
-  name: 'index',
+  name: 'Index',
   layout: 'DefaultLayout',
 
-  componets: {},
+  componets: {}
 }
 </script>
 
-<style></style>
-=======
 <template>
   <v-container class="ma-auto mb-10">
     <v-row class="section" style="margin-top: 0">
@@ -89,7 +86,7 @@ export default {
     <NoticeBanner :notice-data="noticeData" />
   </v-container>
 </template>
-
+=======
 <script>
 import Carousels from '../components/Carousels.vue'
 import Banner from '../components/Banner.vue'
@@ -222,6 +219,8 @@ export default {
 }
 </script>
 
+<style></style>
+
 <style scoped>
 .section {
   margin-top: 30px;
@@ -244,5 +243,3 @@ export default {
   font-size: 15px;
 }
 </style>
-
->>>>>>> c130b57436acbb273f180a477042c27b8d6bfd4d
