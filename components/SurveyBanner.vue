@@ -9,57 +9,59 @@
         sm="5"
         md="5"
       >
-        <v-row class="survey-box rounded-xl elevation-3">
-          <v-col cols="auto">
-            <div class="banner-img-box" />
-          </v-col>
-          <v-col class="pl-0 grow" cols="auto">
-            <v-row class="banner-title">
-              <v-col class="" cols="12">
-                {{ item.title }}
-              </v-col>
-            </v-row>
-            <v-row class="mt-0 pl-0">
-              <v-col cols="1" />
-              <v-col class="ml-auto pt-0 pb-0" cols="auto">
-                <span class="banner-left-time"> {{ item.left }}일 남음 </span>
-              </v-col>
-            </v-row>
-            <v-row class="banner-count-tags">
-              <v-col class="pt-0 pb-0" cols="auto">
-                {{ item.count }}명이 참여 중
-              </v-col>
-              <v-col class="ml-auto pt-0 pb-0" cols="auto">
-                <a v-for="(tags, i) in item.tags" :key="i" class="banner-tags" href="/">
-                  #{{ tags }}
-                </a>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-row class="survey-box-bottom rounded-xl elevation-3">
-          <v-col />
-          <v-col />
-          <v-col
-            class="reward-box pb-1 d-flex"
-            cols="12"
-            style="align-items: flex-end"
-          >
-            <v-col
-              v-for="(reward, i) in item.rewards"
-              :key="i"
-              cols="auto"
-              class="reward-item-box pa-1 rounded-x1"
-            >
-              <div>
-                <v-icon small :color="reward.color">
-                  {{ reward.icon }}
-                </v-icon>
-                <span>{{ reward.title }}</span>
-              </div>
+        <NuxtLink :to="'/surveys/' + item.id">
+          <v-row class="survey-box rounded-xl elevation-3">
+            <v-col cols="auto">
+              <div class="banner-img-box" />
             </v-col>
-          </v-col>
-        </v-row>
+            <v-col class="pl-0 grow" cols="auto">
+              <v-row class="banner-title">
+                <v-col class="" cols="12">
+                  {{ item.title }}
+                </v-col>
+              </v-row>
+              <v-row class="mt-0 pl-0">
+                <v-col cols="1" />
+                <v-col class="ml-auto pt-0 pb-0" cols="auto">
+                  <span class="banner-left-time"> {{ item.left }}일 남음 </span>
+                </v-col>
+              </v-row>
+              <v-row class="banner-count-tags">
+                <v-col class="pt-0 pb-0" cols="auto">
+                  {{ item.count }}명이 참여 중
+                </v-col>
+                <v-col class="ml-auto pt-0 pb-0" cols="auto">
+                  <a v-for="(tags, i) in item.tags" :key="i" class="banner-tags" href="/">
+                    #{{ tags }}
+                  </a>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row class="survey-box-bottom rounded-xl elevation-3">
+            <v-col />
+            <v-col />
+            <v-col
+              class="reward-box pb-1 d-flex"
+              cols="12"
+              style="align-items: flex-end"
+            >
+              <v-col
+                v-for="(reward, i) in item.rewards"
+                :key="i"
+                cols="auto"
+                class="reward-item-box pa-1 rounded-x1"
+              >
+                <div>
+                  <v-icon small :color="reward.color">
+                    {{ reward.icon }}
+                  </v-icon>
+                  <span>{{ reward.title }}</span>
+                </div>
+              </v-col>
+            </v-col>
+          </v-row>
+        </NuxtLink>
       </v-col>
     </v-row>
   </v-container>
@@ -70,8 +72,7 @@ export default {
   name: 'SurveyBox',
   props: {
     surveyData: {
-      type: Array,
-      default: []
+      type: Array
     }
   }
 }
