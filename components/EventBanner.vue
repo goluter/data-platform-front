@@ -9,7 +9,7 @@
         sm="4"
         md="4"
       >
-        <NuxtLink :to="item.to" style="text-decoration: none; color: white">
+        <NuxtLink :to="'/events/' + item.to" style="text-decoration: none; color: white">
           <v-sheet
             class="banner-sheet elevation-5"
             :color="item.color"
