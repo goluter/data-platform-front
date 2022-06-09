@@ -1,7 +1,17 @@
 <template>
   <div class="banner-wrapper">
-    <div v-for="item in noticeData" class="notice-box">
-      <h5>{{ item.title }}</h5>
+    <div>
+      <ul>
+        <li
+          v-for="(item, i) in noticeData"
+          :key="i"
+          class="notice-box"
+        >
+          <NuxtLink :to="item.to">
+            <h5>{{ item.title }}</h5>
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
