@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import SurveyCard from '../components/SurveyCard.vue'
+import SurveyCard from '../../components/SurveyCard.vue'
 export default {
   name: 'MyPage',
   components: { SurveyCard },
@@ -126,25 +126,25 @@ export default {
         {
           subheader: '설문',
           item: [
-            { title: '내 설문', to: '/' },
-            { title: '내 리포트', to: '/' },
-            { title: '내 댓글', to: '/' },
-            { title: '스크랩', to: '/' },
-            { title: '다운로드 기록', to: '/' }
+            { title: '내 설문', to: '' },
+            { title: '내 리포트', to: '/mypage/reports/' },
+            { title: '저장한 리포트', to: '/mypage/saved-reports/' },
+            { title: '내 댓글', to: '' },
+            { title: '다운로드 기록', to: '' }
           ]
         },
         {
           subheader: '보상',
           item: [
-            { title: '내 포인트', to: '/' },
-            { title: '구매내역', to: '/' }
+            { title: '내 포인트', to: '/point/' },
+            { title: '구매내역', to: '' }
           ]
         },
         {
           subheader: '기타',
           item: [
-            { title: '로그아웃', to: '/' },
-            { title: '회원탈퇴', to: '/' }
+            { title: '로그아웃', to: '' },
+            { title: '회원탈퇴', to: '' }
           ]
         }
       ]
