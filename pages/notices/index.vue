@@ -2,10 +2,10 @@
   <div class="container">
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">
-        브루스 배너
+        고베이 공지사항을 확인해보세요!
       </div>
     </div>
-    <div v-for="(a, i) in NoticeData" :key="a" class="contents">
+    <div v-for="(a, i) in NoticeData" :key="i" class="contents">
       <NuxtLink
         :to="NoticeData[i].url"
         style="color: black; text-decoration-line: none"
@@ -22,18 +22,18 @@
 </template>
 
 <script>
-import NoticeData from '../assets/data/NoticeData.js'
+import NoticeData from 'assets/data/NoticeData.js'
 export default {
   name: 'Notice',
-  data () {
+  data() {
     return {
       NoticeData,
-      num: 0
+      num: 0,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '공지사항')
-  }
+  },
 }
 </script>
 

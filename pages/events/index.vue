@@ -2,7 +2,7 @@
   <div class="container">
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">
-        브루스 배너
+        이벤트 참여하고 치킨 뜯고 가세요!
       </div>
     </div>
     <v-tabs fixed-tabs color="#1cddb7">
@@ -92,14 +92,14 @@
 </template>
 
 <script>
-import EndedEvent from '../assets/data/EndedEvent'
-import PlannedEvent from '../assets/data/PlannedEvent'
-import OngoingEvent from '../assets/data/OngoingEvent'
+import EndedEvent from 'assets/data/EndedEvent'
+import PlannedEvent from 'assets/data/PlannedEvent'
+import OngoingEvent from 'assets/data/OngoingEvent'
 
 export default {
   name: 'EventList',
   layout: 'default',
-  data () {
+  data() {
     return {
       num: 0,
       planned: true,
@@ -107,12 +107,12 @@ export default {
       ended: false,
       OngoingEvent,
       EndedEvent,
-      PlannedEvent
+      PlannedEvent,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '이벤트')
-  }
+  },
 }
 </script>
 

@@ -2,23 +2,16 @@ const PlannedEvent = [
   {
     id: 0,
     title: '이벤트 참여하고 쿠폰받자!',
-    date: '0000. 00. 00. ~ 0000.00.01',
-    url: '/plannedevent/0',
+    date: '2022.06.20 ~ 2022.06.30',
+    url: '/events/0',
     maininfo: '이벤트 참여하고 쿠폰받자!'
   },
   {
     id: 1,
-    title: '상띵머 축제',
-    date: '2022. 05. 30. ~ 2022.05.31',
-    url: '/plannedevent/1',
-    maininfo: '상띵머 축제'
-  },
-  {
-    id: 2,
-    title: '동건 생일',
-    date: '2022. 05. 18. ~ 2022.05.18',
-    url: '/plannedevent/2',
-    maininfo: '동건 생일'
+    title: '설문 참여하고 기프티콘 받자!',
+    date: '2022.08.01 ~ 2022.09.10',
+    url: '/events/1',
+    maininfo: '설무 참여하시면 누구나 기프티콘을 드립니다.'
   }
 ]
 export default PlannedEvent

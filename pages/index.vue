@@ -14,8 +14,9 @@
     </v-row>
     <Carousels :carousel-data="carouselData" />
     <v-row>
-      <v-col cols="12" style="height: 20px;" />
+      <v-col cols="12" style="height: 20px" />
     </v-row>
+
     <Banner :banner-data="bannerData[0]" />
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
@@ -24,7 +25,7 @@
         </h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/survey-list/">
+        <NuxtLink class="section-more" to="/surveys/">
           더보기
         </NuxtLink>
       </v-col>
@@ -34,7 +35,7 @@
         지금 핫한 설문이에요. 한번 살펴보세요!
       </v-col>
     </v-row>
-    <SurveyBox :survey-data="surveyData" />
+    <SurveyBanner :survey-data="surveyData" />
     <Banner :banner-data="bannerData[1]" />
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
@@ -43,7 +44,7 @@
         </h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/event-list/">
+        <NuxtLink class="section-more" to="/events/">
           더보기
         </NuxtLink>
       </v-col>
@@ -67,7 +68,7 @@
       </v-col>
     </v-row>
     <v-row class="section-desc">
-      <v-col class="pt-0" cols="12">
+      <v-col class="pt-0 pb-0" cols="12">
         새로운 소식을 살펴보세요.
       </v-col>
     </v-row>
@@ -78,13 +79,13 @@
 <script>
 import Carousels from '../components/Carousels.vue'
 import Banner from '../components/Banner.vue'
-import SurveyBox from '../components/SurveyBanner.vue'
+import SurveyBanner from '../components/SurveyBanner.vue'
 import EventBanner from '../components/EventBanner.vue'
 import NoticeBanner from '../components/NoticeBanner.vue'
 
 export default {
   name: 'IndexPage',
-  components: { NoticeBanner, EventBanner, SurveyBox, Banner, Carousels },
+  components: { NoticeBanner, EventBanner, SurveyBanner, Banner, Carousels },
   layout: 'main',
   data () {
     return {
@@ -119,11 +120,12 @@ export default {
           title: '가이드',
           msg: '더 재미있게 즐기실 수 있도록 가이드를 모아봤어요!',
           icon: 'mdi-bookmark-box-multiple',
-          to: '/'
+          to: '/service-center/'
         }
       ],
       surveyData: [
         {
+          id: 1,
           title: '대학생들에게 묻습니다',
           left: '4',
           count: '114,300',
@@ -138,6 +140,7 @@ export default {
           ]
         },
         {
+          id: 2,
           title: '대학생들에게 묻습니다',
           left: '4',
           count: '114,300',
@@ -152,6 +155,7 @@ export default {
           ]
         },
         {
+          id: 3,
           title: '대학생들에게 묻습니다',
           left: '4',
           count: '114,300',
@@ -166,6 +170,7 @@ export default {
           ]
         },
         {
+          id: 4,
           title: '대학생들에게 묻습니다',
           left: '4',
           count: '114,300',
@@ -182,22 +187,21 @@ export default {
       ],
       eventData: [
         {
-          title: '이벤트1',
-          msg: '이벤트에요!',
-          to: '/event-list',
+          title: '고베이 회원가입 이벤트',
+          msg: '회원가입하면 누구나 상품을 받을 수 있어요!',
+          to: '0',
           color: 'deep-purple accent-2'
         },
         {
-          title: '이벤트2',
-          msg: '이벤트에요!',
-          to: '/event-list',
+          title: '고베이 설문 참여 이벤트',
+          msg: '설문만 참여하셔도 치킨 기프티콘 얻을 수 있어요!',
+          to: '1',
           color: 'cyan lighten-1'
         }
       ],
       noticeData: [
-        { title: '공지사항1' },
-        { title: '공지사항2' },
-        { title: '공지사항3' }
+        { title: '고베이 출시!', to: '/notices/' },
+        { title: '개인정보 처리방침 의무화', to: '/notices/' }
       ]
     }
   }

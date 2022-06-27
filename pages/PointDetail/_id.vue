@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div class="header">
+      <NuxtLink to="/point" style="color: black; text-decoration-line: none">
+        <img
+          style="position: absolute"
+          src="../../assets/Arrow back ios.png"
+          ALIGN="left"
+        />
+      </NuxtLink>
+
+      <a><span>상세내역</span></a>
+    </div>
 
     <div class="box">
       <div class="subbox">
@@ -115,7 +126,7 @@ export default {
   height: 57px;
 }
 .subbox {
-  padding: 29px 0px 0px 13px;
+  padding: 29px 0px 1px 13px;
 }
 .box span {
   flex-grow: 0;

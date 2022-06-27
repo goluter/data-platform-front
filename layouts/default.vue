@@ -13,6 +13,7 @@
             </v-toolbar-title>
             <v-spacer />
           </v-app-bar>
+          <v-divider />
         </v-col>
       </v-container>
       <Nuxt />
