@@ -100,7 +100,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '업적 상세')
+    this.$store.commit('setPageTitle', '칭호 상세')
   },
 }
 </script>
