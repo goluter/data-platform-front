@@ -1,26 +1,46 @@
 <template>
   <div class="container">
     <div v-for="(a, i) in UsertitleData" :key="a">
-      <NuxtLink
-        :to="UsertitleData[i].url"
-        style="color: black; text-decoration-line: none"
-      >
-        <div class="contents">
-          <img
-            class="profileimg"
-            src="../../assets/Male User.png"
-            align="middle"
-          />
-          <span style="margin-top: 100px">{{ UsertitleData[i].title }}</span>
-          <!-- <div class="point">{{ UsertitleData[i].whether }}</div> -->
-          <div v-if="UsertitleData[i].whether == true" class="point-true">
-            획득
+      <div v-if="UsertitleData[i].whether == true">
+        <NuxtLink
+          :to="UsertitleData[i].trueurl"
+          style="color: black; text-decoration-line: none"
+        >
+          <div class="contents">
+            <img
+              class="profileimg"
+              src="../../assets/Male User.png"
+              align="middle"
+            />
+            <span style="margin-top: 100px">{{ UsertitleData[i].title }}</span>
+            <!-- <div class="point">{{ UsertitleData[i].whether }}</div> -->
+            <div v-if="UsertitleData[i].whether == true" class="point-true">
+              획득
+            </div>
           </div>
-          <div v-if="UsertitleData[i].whether == false" class="point-false">
-            미획득
+        </NuxtLink>
+      </div>
+    </div>
+    <div v-for="(a, i) in UsertitleData" :key="a">
+      <div v-if="UsertitleData[i].whether == false">
+        <NuxtLink
+          :to="UsertitleData[i].falseurl"
+          style="color: black; text-decoration-line: none"
+        >
+          <div class="contents">
+            <img
+              class="profileimg"
+              src="../../assets/Male User.png"
+              align="middle"
+            />
+            <span style="margin-top: 100px">{{ UsertitleData[i].title }}</span>
+            <!-- <div class="point">{{ UsertitleData[i].whether }}</div> -->
+            <div v-if="UsertitleData[i].whether == false" class="point-false">
+              미획득
+            </div>
           </div>
-        </div>
-      </NuxtLink>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
