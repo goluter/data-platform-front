@@ -2,6 +2,7 @@ const UsertitleData = [
   {
     id: 0,
     title: '대학생',
+    type: 'email',
     whether: true,
     recent: [
       ['상명대학교 "나는 최고의" 대학생', '2022.03.02'],
@@ -15,10 +16,31 @@ const UsertitleData = [
     ],
     trueurl: '/usertitle/true/0',
     falseurl: '/usertitle/false/0',
+    certurl: '/usertitle/certification/email/0',
   },
   {
     id: 1,
+    title: '백수',
+    type: 'self',
+    whether: false,
+    recent: [
+      ['상명대학교 "나는 종로의" 백수', '2022.03.01'],
+      ['킹갓 "나는 서대문의" 백수', '2022.02.01'],
+    ],
+    stack: [
+      ['갓띵대학교 "나는 최고의" 백수', '2022.03.02'],
+      ['킹킹킹 "나는 관악의" 백수', '2022.03.02'],
+      ['하띵대학교 "나는 종로의" 백수', '2022.03.01'],
+      ['킹갓 "나는 서대문의" 백수', '2022.02.01'],
+    ],
+    trueurl: '/usertitle/true/1',
+    falseurl: '/usertitle/false/1',
+    certurl: '/usertitle/certification/self/1',
+  },
+  {
+    id: 2,
     title: '회사원',
+    type: 'link',
     whether: false,
     recent: [
       ['상명대학교 "나는 종로의" 회사원', '2022.03.01'],
@@ -30,8 +52,47 @@ const UsertitleData = [
       ['하띵대학교 "나는 종로의" 회사원', '2022.03.01'],
       ['킹갓 "나는 서대문의" 회사원', '2022.02.01'],
     ],
-    trueurl: '/usertitle/true/1',
-    falseurl: '/usertitle/false/1',
+    trueurl: '/usertitle/true/2',
+    falseurl: '/usertitle/false/2',
+    certurl: '/usertitle/certification/link/2',
+  },
+  {
+    id: 3,
+    title: 'INFJ',
+    type: 'mbti',
+    whether: false,
+    recent: [
+      ['INFJ "나는 종로의" 회사원', '2022.03.01'],
+      ['INFJ "나는 서대문의" 회사원', '2022.02.01'],
+    ],
+    stack: [
+      ['INFJ "나는 최고의" 회사원', '2022.03.02'],
+      ['INFJ "나는 관악의" 회사원', '2022.03.02'],
+      ['INFJ "나는 종로의" 회사원', '2022.03.01'],
+      ['INFJ "나는 서대문의" 회사원', '2022.02.01'],
+    ],
+    trueurl: '/usertitle/true/3',
+    falseurl: '/usertitle/false/3',
+    certurl: '/usertitle/certification/mbti/3',
+  },
+  {
+    id: 3,
+    title: '교수',
+    type: 'email',
+    whether: false,
+    recent: [
+      ['상명대학교 "나는 최고의" 교수', '2022.03.02'],
+      ['갓갓갓 "나는 관악의" 교수', '2022.03.02'],
+    ],
+    stack: [
+      ['상명대학교 "나는 최고의" 교수', '2022.03.02'],
+      ['갓갓갓 "나는 관악의" 교수', '2022.03.02'],
+      ['상명대학교 "나는 종로의" 교수', '2022.03.01'],
+      ['킹갓 "나는 서대문의" 교수', '2022.02.01'],
+    ],
+    trueurl: '/usertitle/true/3',
+    falseurl: '/usertitle/false/3',
+    certurl: '/usertitle/certification/email/3',
   },
 ]
 export default UsertitleData

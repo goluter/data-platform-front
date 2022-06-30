@@ -13,7 +13,6 @@
               align="middle"
             />
             <span style="margin-top: 100px">{{ UsertitleData[i].title }}</span>
-            <!-- <div class="point">{{ UsertitleData[i].whether }}</div> -->
             <div v-if="UsertitleData[i].whether == true" class="point-true">
               획득
             </div>
@@ -34,7 +33,6 @@
               align="middle"
             />
             <span style="margin-top: 100px">{{ UsertitleData[i].title }}</span>
-            <!-- <div class="point">{{ UsertitleData[i].whether }}</div> -->
             <div v-if="UsertitleData[i].whether == false" class="point-false">
               미획득
             </div>

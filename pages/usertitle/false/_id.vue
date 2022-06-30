@@ -7,10 +7,8 @@
         {{ UsertitleData[$route.params.id].title }} 인증 시 획득 가능합니다
       </div>
     </div>
-
     <div class="smallgray">
       <v-btn
-        color="#1a9efe"
         style="
           margin: 19px 0px 0px 34px;
           font-size: 16px;
@@ -18,7 +16,10 @@
           width: 82%;
           height: 55px;
         "
+        nuxt
         elevation="2"
+        :to="UsertitleData[$route.params.id].certurl"
+        color="#1a9efe"
         >획득하기</v-btn
       >
       <div class="smallgrayboxtext">획득 유저</div>
@@ -105,6 +106,10 @@ export default {
 </script>
 
 <style scoped>
+.v-application a {
+  color: white !important;
+  text-decoration: none !important;
+}
 .imgspan {
   padding-left: 3px;
   font-size: 12px;
