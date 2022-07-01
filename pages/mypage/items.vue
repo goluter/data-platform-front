@@ -1,26 +1,27 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col class="mx-auto" cols="auto">
-        <span>사용 가능한 선물이 개 남았어요.</span>
+    <v-row style="height: 80px; background-color: #eee">
+      <v-col class="mx-auto my-auto" cols="auto">
+        <span class="item-remained">사용 가능한 선물이 {{ itemsData.length }}개 남았어요.</span>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
+      <v-col class="pa-0" cols="12">
         <v-tabs v-model="tab" grow center-active>
-          <v-tab
-            v-for="(item, i) in tabsData"
-            :key="i"
-          >
-            {{ item }}
+          <v-tabs-slider color="teal accent-3" />
+          <v-tab class="tab-title">
+            사용가능 {{ itemsData.length }}
+          </v-tab>
+          <v-tab class="tab-title">
+            사용완료 {{ usedItemsData.length }}
           </v-tab>
         </v-tabs>
-        <v-tabs-items v-model="tab">
+        <v-tabs-items v-model="tab" class="pa-3">
           <v-tab-item>
             <my-item :items-data="itemsData" />
           </v-tab-item>
           <v-tab-item>
-            test
+            <my-item :items-data="usedItemsData" />
           </v-tab-item>
         </v-tabs-items>
       </v-col>
@@ -34,7 +35,6 @@ export default {
   data () {
     return {
       tab: null,
-      tabsData: ['사용가능', '사용완료'],
       itemsData: [
         { name: '[스타벅스] 카페 아메리카노 T', provider: '스타벅스' },
         { name: '[스타벅스] 카페 아메리카노 T', provider: '스타벅스' },
@@ -52,5 +52,12 @@ export default {
 </script>
 
 <style scoped>
-
+.tab-title {
+  color: black;
+  font-weight: 600;
+}
+.item-remained {
+  font-size: 16px;
+  font-weight: 600;
+}
 </style>

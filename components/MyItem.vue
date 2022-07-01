@@ -13,10 +13,10 @@
           </div>
         </v-row>
         <v-row>
-          <span>{{ item.provider }}</span>
+          <span class="item-provider">{{ item.provider }}</span>
         </v-row>
         <v-row>
-          <span>{{ item.name }}</span>
+          <span class="item-name">{{ item.name }}</span>
         </v-row>
       </v-col>
     </v-row>
@@ -37,5 +37,13 @@ export default {
 .item-img {
   width: 180px;
   height: 170px;
+}
+.item-provider {
+  font-size: 12px;
+  color: #808080;
+}
+.item-name {
+  font-size: 12px;
+  font-weight: 600;
 }
 </style>
