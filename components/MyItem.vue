@@ -9,10 +9,10 @@
       >
         <v-row style="justify-content: center">
           <div class="item-img">
-            <img class="mx-auto" src="" alt="404">
+            <!--            <img class="mx-auto" src="" alt="404">-->
           </div>
         </v-row>
-        <v-row>
+        <v-row class="mt-5">
           <span class="item-provider">{{ item.provider }}</span>
         </v-row>
         <v-row>
@@ -35,8 +35,13 @@ export default {
 
 <style scoped>
 .item-img {
+  margin: 3px;
+  padding: 3px;
   width: 180px;
   height: 170px;
+  background-color: #eee;
+  border: #f0f0f0 solid 1px;
+  border-radius: 15px;
 }
 .item-provider {
   font-size: 12px;
