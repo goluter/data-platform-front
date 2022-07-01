@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="auto">
+      <v-col cols="12">
         <v-tabs v-model="tab" grow center-active>
           <v-tab
             v-for="(item, i) in tabsData"
