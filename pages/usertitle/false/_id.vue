@@ -89,7 +89,7 @@
 <script>
 import UsertitleData from '../../../assets/data/UsertitleData'
 export default {
-  name: 'Planneddetail',
+  name: 'falsecert',
   layout: 'default',
   data() {
     return {

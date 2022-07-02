@@ -8,7 +8,6 @@
 
     <div class="smallgray">
       <v-btn
-        color="#1a9efe"
         style="
           margin: 19px 0px 0px 34px;
           font-size: 16px;
@@ -16,7 +15,10 @@
           width: 82%;
           height: 55px;
         "
+        color="#1a9efe"
         elevation="2"
+        nuxt
+        to="/usertitle/complete"
         >본인인증 완료하고 획득하기</v-btn
       >
     </div>
@@ -27,7 +29,7 @@
 <script>
 import UsertitleData from '../../../../assets/data/UsertitleData'
 export default {
-  name: 'Planneddetail',
+  name: 'selfcert',
   layout: 'default',
   data() {
     return {

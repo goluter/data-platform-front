@@ -17,6 +17,8 @@
           height: 55px;
         "
         elevation="2"
+        nuxt
+        to="/usertitle/complete"
         >획득하기</v-btn
       >
     </div>
@@ -27,7 +29,7 @@
 <script>
 import UsertitleData from '../../../../assets/data/UsertitleData'
 export default {
-  name: 'Planneddetail',
+  name: 'linkcert',
   layout: 'default',
   data() {
     return {

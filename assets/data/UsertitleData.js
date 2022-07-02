@@ -76,7 +76,7 @@ const UsertitleData = [
     certurl: '/usertitle/certification/mbti/3',
   },
   {
-    id: 3,
+    id: 4,
     title: '교수',
     type: 'email',
     whether: false,
@@ -90,9 +90,9 @@ const UsertitleData = [
       ['상명대학교 "나는 종로의" 교수', '2022.03.01'],
       ['킹갓 "나는 서대문의" 교수', '2022.02.01'],
     ],
-    trueurl: '/usertitle/true/3',
-    falseurl: '/usertitle/false/3',
-    certurl: '/usertitle/certification/email/3',
+    trueurl: '/usertitle/true/4',
+    falseurl: '/usertitle/false/4',
+    certurl: '/usertitle/certification/email/4',
   },
 ]
 export default UsertitleData

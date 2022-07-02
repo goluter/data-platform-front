@@ -89,7 +89,7 @@
 <script>
 import UsertitleData from '../../../assets/data/UsertitleData'
 export default {
-  name: 'Planneddetail',
+  name: 'truecert',
   layout: 'default',
   data() {
     return {
@@ -188,7 +188,7 @@ export default {
 .mainbox {
   height: 206px;
   flex-grow: 0;
-  border: solid 1px #f0f0f0;
+
   background-color: #fff;
 }
 </style>

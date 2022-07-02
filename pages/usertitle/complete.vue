@@ -1,51 +1,58 @@
 <template>
   <div class="mainbox">
     <div style="text-align: center">
-      <img class="img" src="../../../../assets/Male User.png" />
-      <div class="title">MBTI</div>
-      <div class="count">MBTI를 입력해주세요</div>
+      <img class="img" src="../../assets/ant-design_check-circle-twotone.png" />
+
+      <div class="count">칭호 획득을 완료했습니다.</div>
     </div>
 
-    <div class="smallgray">
-      <v-text-field
-        label="답변"
-        filled
-        style="padding: 18px 0px 0 16px; width: 357px"
-      ></v-text-field>
-      <v-btn
-        color="#1a9efe"
-        style="
-          margin: 19px 0px 16px 16px;
-          font-size: 16px;
-          color: white;
-          width: 357px;
-          height: 55px;
-        "
-        elevation="2"
-        nuxt
-        to="/usertitle/complete"
-        >획득하기</v-btn
-      >
+    <div style="overflow: hidden; height: 500px">
+      <div class="gray">
+        <v-btn
+          style="
+            font-size: 14px;
+            color: black;
+            width: 47.5%;
+            height: 44px;
+            margin: 9px 7.2px 0 6px;
+          "
+          nuxt
+          elevation="2"
+          to="/usertitle/mytitle"
+          color="#ffffff"
+          >내 칭호 내역</v-btn
+        ><v-btn
+          style="
+            font-size: 14px;
+            color: black;
+            width: 47.5%;
+            height: 44px;
+            margin: 9px 0 0 0px;
+          "
+          nuxt
+          to="/"
+          elevation="2"
+          color="#ffffff"
+          >홈으로</v-btn
+        >
+      </div>
     </div>
-    <div style="overflow: hidden; height: 200%"><div class="gray"></div></div>
   </div>
 </template>
 
 <script>
-import UsertitleData from '../../../../assets/data/UsertitleData'
 export default {
-  name: 'mbticert',
+  name: 'truecert',
   layout: 'default',
   data() {
     return {
-      UsertitleData,
       selectnum: 0,
       recent: true,
       stack: false,
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '칭호 획득')
+    this.$store.commit('setPageTitle', '칭호 상세')
   },
 }
 </script>
@@ -54,6 +61,10 @@ export default {
 .imgspan {
   padding-left: 3px;
   font-size: 12px;
+}
+.gray {
+  background-color: #f0f0f0;
+  height: 100%;
 }
 .point2 {
   float: right;
@@ -77,6 +88,7 @@ export default {
 .list {
   height: 66px;
   flex-grow: 0;
+
   border: solid 1px #f0f0f0;
   background-color: #fff;
 }
@@ -85,7 +97,7 @@ export default {
 }
 .smallgray {
   height: 115px;
-
+  background-color: #f0f0f0;
   font-size: 12px;
   font-weight: 500;
   font-stretch: normal;
@@ -97,16 +109,17 @@ export default {
 }
 .count {
   flex-grow: 0;
-  font-size: 12px;
-  font-weight: 500;
+  padding-top: 18px;
+  padding-bottom: 31px;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.6px;
+  letter-spacing: -1px;
   text-align: center;
   color: var(--black);
-  padding-top: 23px;
-  padding-bottom: 24px;
 }
 .title {
   flex-grow: 0;
@@ -120,15 +133,15 @@ export default {
   padding-top: 5px;
 }
 .img {
-  width: 74px;
-  height: 74px;
+  width: 100px;
+  height: 100px;
   flex-grow: 0;
   margin: 29px 0 0px 0px;
 }
 .mainbox {
   height: 206px;
   flex-grow: 0;
-  border: solid 1px #f0f0f0;
+
   background-color: #fff;
 }
 </style>
