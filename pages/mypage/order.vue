@@ -1,6 +1,6 @@
 <template>
   <v-container class="container" style=" background-color: #eee">
-    <v-row class="pa-2">
+    <v-row class="pa-2 pt-5">
       <v-col
         v-for="(item, i) in orderData"
         :key="i"
@@ -16,17 +16,23 @@
             <v-row>
               <v-col cols="1" />
               <v-col class="ml-auto py-0 pr-0" cols="auto">
-                <span
-                  class="item-more"
-                >
-                  상세보기
+                <div>
+                  <span
+                    class="item-more"
+                  >
+                    상세보기
+                  </span>
                   <v-btn
                     icon
                     x-small
                   >
-                    <v-icon>mdi-chevron-right</v-icon>
+                    <v-icon
+                      color="gray"
+                    >
+                      mdi-chevron-right
+                    </v-icon>
                   </v-btn>
-                </span>
+                </div>
               </v-col>
             </v-row>
             <v-row>
@@ -35,24 +41,25 @@
               </v-col>
             </v-row>
             <v-row style="background-color: white">
-              <v-col cols="1">
-                <img src="" alt="404">
+              <v-col cols="3" sm="2" md="1">
+                <div class="item-img mx-auto" />
+                <!--                <img src="" alt="404">-->
               </v-col>
-              <v-col cols="11">
+              <v-col cols="9" sm="10" md="11">
                 <v-row>
-                  <v-col class="py-0" cols="12">
+                  <v-col class="px-1 pt-2 pb-0" cols="12">
                     <span class="item-provider">{{ item.provider }}</span>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col class="py-0" cols="12">
+                  <v-col class="px-1 py-0" cols="12">
                     <span class="item-name">{{ item.name }}</span>
                   </v-col>
                 </v-row>
                 <v-row>
                   <v-col cols="1" />
                   <v-col class="py-0 ml-auto" cols="auto">
-                    <span class="item-count">수량: {{ item.count }}개</span>
+                    <span class="item-count">수량 {{ item.count }}개</span>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -88,6 +95,11 @@ export default {
 <style scoped>
 .container {
   height: calc(100% - 48px);
+}
+.item-img {
+  width: 70px;
+  height: 70px;
+  background-color: gray;
 }
 .item-date {
   font-size: 12px;
