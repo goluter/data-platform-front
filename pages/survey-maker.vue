@@ -181,54 +181,106 @@
     <div class="gray-box">
     </div>
     <div v-if="tab1 == true">
-      <div>
-        <div class="d-flex">
-          <div class="ma-3">
-            <input placeholder="  항목 제목" class="que-box pr-5 pl-2">
-          </div>
-          <div>
-            <v-select
-            :items="select_itmes"
-            placeholder="객관식">
-            </v-select>
-          </div>
-        </div>
+      <div class="div_check">
         <div>
-          <table style="width:100%">
-            <tr v-for="(row,i) in rows" :key="i">
-              <td style="width:90%" class="pl-2">
-                <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
-              </td>
-              <td style="width:10%"><a @click="removeRow(i)">
-                <img src="../assets/carbon_close.png"></a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
-          <a @click="addRow">
-            <img src="../assets/carbon_add.png">
-          </a>
-        </div>
-        <div class="d-flex justify-end">
-          <div class="pt-5 pr-4">
-            <img src="../assets/akar-icons_copy.png">
-          </div>
-          <div class="pt-5 pr-4">
-            <img src="../assets/fa-regular_trash-alt.png">
-          </div>
-          <div class="d-flex" >
-            <div class="pr-3 pt-5"> 
-              Required 
+          <div class="d-flex">
+            <div class="ma-3">
+              <input placeholder="  항목 제목" class="que-box pr-5 pl-2">
             </div>
             <div>
-              <v-switch
-              v-model="que_switch1"
-              ></v-switch>
+              <v-select
+              :items="select_items"
+              v-model="select_box"
+              placeholder="객관식">
+              </v-select>
+              
             </div>
           </div>
-          <div class="pt-5 pr-3">
-            <img src="../assets/More vert.png">
+          
+          <div v-if=" select_box===null">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div v-if=" select_box==='객관식'">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div v-else-if="select_box ==='주관식'">
+            <div>
+              
+            </div>
+          </div>
+          <div v-else-if="select_box ==='체크박스'">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div class="d-flex justify-end">
+            <div class="pt-5 pr-4">
+              <a @click="addDiv">
+                <img src="../assets/akar-icons_copy.png">
+              </a>
+            </div>
+            <div class="pt-5 pr-4">
+              <img src="../assets/fa-regular_trash-alt.png">
+            </div>
+            <div class="d-flex" >
+              <div class="pr-3 pt-5"> 
+                Required 
+              </div>
+              <div>
+                <v-switch
+                v-model="que_switch1"
+                ></v-switch>
+              </div>
+            </div>
+            <div class="pt-5 pr-3">
+              <img src="../assets/More vert.png">
+            </div>
           </div>
         </div>
       </div>
@@ -586,7 +638,8 @@ export default {
       show1:true,
       show2:true,
       rows:[null,,],
-      select_itmes:['객관식','주간식','체크박스']
+      select_items:['객관식','주관식','체크박스'],
+      select_box:null
     }),
 
     computed: {
@@ -614,12 +667,22 @@ export default {
         const [month, day, year] = date.split('/')
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
       },
+      
+      addDiv:function(){
+        let element = document.querySelector(".div_check");
+        let template = `
+        <div data-v-8c00a6ec=""><div data-v-8c00a6ec="" class="d-flex"><div data-v-8c00a6ec="" class="ma-3"><input data-v-8c00a6ec="" placeholder="  항목 제목" class="que-box pr-5 pl-2"></div> <div data-v-8c00a6ec=""><div data-v-8c00a6ec="" class="v-input theme--light v-text-field v-text-field--is-booted v-text-field--placeholder v-select"><div class="v-input__control"><div role="button" aria-haspopup="listbox" aria-expanded="false" aria-owns="list-301" class="v-input__slot"><div class="v-select__slot"><div class="v-select__selections"><input id="input-301" placeholder="객관식" readonly="readonly" type="text" aria-readonly="false" autocomplete="off"></div><div class="v-input__append-inner"><div class="v-input__icon v-input__icon--append"><i aria-hidden="true" class="v-icon notranslate mdi mdi-menu-down theme--light"></i></div></div><input type="hidden"></div><div class="v-menu"><!----></div></div><div class="v-text-field__details"><div class="v-messages theme--light"><div class="v-messages__wrapper"></div></div></div></div></div></div></div> <div data-v-8c00a6ec=""><table data-v-8c00a6ec="" style="width: 100%;"><tr data-v-8c00a6ec=""><td data-v-8c00a6ec="" class="pl-2" style="width: 90%;"><i data-v-8c00a6ec="" aria-hidden="true" class="v-icon notranslate mdi mdi-checkbox-blank-circle-outline theme--light"></i><input data-v-8c00a6ec="" placeholder="option" class="pl-2" style="width: 90%;"></td> <td data-v-8c00a6ec="" style="width: 10%;"><a data-v-8c00a6ec=""><img data-v-8c00a6ec="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURUdwTAAAAAAAAAAAAAAAANOsCP8AAAAEdFJOUwCgYF/0whw4AAAAQklEQVQY02NgoCNgFgCRjAZQLqMjiBQRgEmDWBAxuDRCEsRGkgRJI0sCpR0ZcHPRFKMahWYRqjPQHMkE8YICPYMNADjDBR6ZXW7VAAAAAElFTkSuQmCC"></a></td></tr><tr data-v-8c00a6ec=""><td data-v-8c00a6ec="" class="pl-2" style="width: 90%;"><i data-v-8c00a6ec="" aria-hidden="true" class="v-icon notranslate mdi mdi-checkbox-blank-circle-outline theme--light"></i><input data-v-8c00a6ec="" placeholder="option" class="pl-2" style="width: 90%;"></td> <td data-v-8c00a6ec="" style="width: 10%;"><a data-v-8c00a6ec=""><img data-v-8c00a6ec="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURUdwTAAAAAAAAAAAAAAAANOsCP8AAAAEdFJOUwCgYF/0whw4AAAAQklEQVQY02NgoCNgFgCRjAZQLqMjiBQRgEmDWBAxuDRCEsRGkgRJI0sCpR0ZcHPRFKMahWYRqjPQHMkE8YICPYMNADjDBR6ZXW7VAAAAAElFTkSuQmCC"></a></td></tr></table></div> <div data-v-8c00a6ec="" class="pl-1" style="border-bottom: 1px solid rgb(211, 211, 211);"><a data-v-8c00a6ec=""><img data-v-8c00a6ec="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURUdwTBCH9E0eH6gAAAABdFJOUwBA5thmAAAAGElEQVQI12NgIBYwNhAk/v+HEUQoJg4AAHB0Cwtegb04AAAAAElFTkSuQmCC"></a></div> <div data-v-8c00a6ec="" class="d-flex justify-end"><div data-v-8c00a6ec="" class="pt-5 pr-4"><a data-v-8c00a6ec=""><img data-v-8c00a6ec="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVBAMAAABbObilAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURUREREdwTERERENDQ0FBQUNDQ0RERENDQ1BQUENDQ0JCQkNDQ0JCQkBAQENDQwVyyNUAAAAOdFJOU4EAQL8g38+nEDDvcFgQ+iIsLgAAAH5JREFUCNdjEBQUlJikpAmkBBiAhOu7d+8qoOy8ZGPTZ40Q9jtBQZG4DDhb0PUZiC1kCmKLxB0Esr3egdiCfIxANl8JEpuRWux1m5SUlOo2gtl8QHe+e+oIZssYG9s9LhEEs4Gq5R6C3a/32NjYOC8RzBaAqIb4ywloylyQfwEryzK+KSdRPgAAAABJRU5ErkJggg=="></a></div> <div data-v-8c00a6ec="" class="pt-5 pr-4"><img data-v-8c00a6ec="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAATBAMAAABvvEDBAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAnUExURUdwTENDQ0JCQkFBQUJCQkNDQ0NDQ1BQUENDQ0NDQ0VFRUJCQkNDQ/peuhwAAAAMdFJOUwDfoCDvjb8Qz0gwcK82Y5MAAABRSURBVAjXY2BAAsyJgkIFYBbTibScACDNbjxH2NjipHEBA8sZCHBgYHVRAgEXBQYGQbBiQTAOBUIICwIpZSkBoSADsh0iYHs9gKw9YKccZQAAxGQWqOqVNPMAAAAASUVORK5CYII="></div> <div data-v-8c00a6ec="" class="d-flex"><div data-v-8c00a6ec="" class="pr-3 pt-5"> 
+              Required 
+            </div> <div data-v-8c00a6ec=""><div data-v-8c00a6ec="" class="v-input theme--light v-input--selection-controls v-input--switch"><div class="v-input__control"><div class="v-input__slot"><div class="v-input--selection-controls__input"><input aria-checked="false" id="input-308" role="switch" type="checkbox" aria-disabled="false" value=""><div class="v-input--selection-controls__ripple"></div><div class="v-input--switch__track theme--light"></div><div class="v-input--switch__thumb theme--light"><!----></div></div></div><div class="v-messages theme--light"><div class="v-messages__wrapper"></div></div></div></div></div></div> <div data-v-8c00a6ec="" class="pt-5 pr-3"><img data-v-8c00a6ec="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURUdwTENDQ0NDQ0NDQ0JCQkNDQ++uikQAAAAFdFJOUwDv319gujMFEQAAAB5JREFUGNNjYCAXGCojcVQDkTiiQUgcJ5Ehbxo2AADMjgSWAlau5gAAAABJRU5ErkJggg=="></div></div></div>`;
+        element.insertAdjacentHTML('beforeend',template);
+        
+      },
       addRow:function(){
         this.rows.push(null);
       },
       removeRow: function(row){
         this.rows.splice(row, 1);
-      }
+      },
     },
     
 }
