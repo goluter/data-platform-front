@@ -51,6 +51,10 @@ export default {
 </script>
 
 <style scoped>
+.v-application a {
+  color: white !important;
+  text-decoration: none !important;
+}
 .imgspan {
   padding-left: 3px;
   font-size: 12px;

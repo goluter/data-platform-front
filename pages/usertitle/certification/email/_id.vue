@@ -60,6 +60,10 @@ export default {
 </script>
 
 <style scoped>
+.v-application a {
+  color: white !important;
+  text-decoration: none !important;
+}
 h3 {
   font-size: 16px;
 }
