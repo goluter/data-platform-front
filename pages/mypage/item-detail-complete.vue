@@ -18,10 +18,68 @@
               <span class="item-name"> {{ itemData.name }} </span>
             </v-col>
           </v-row>
+          <v-row v-if="auth && activated">
+            <v-col cols="12" />
+          </v-row>
+          <v-row>
+            <v-col v-if="auth && activated" class="mx-auto" cols="auto">
+              <vue-barcode value="9467 9930 7618">
+                404
+              </vue-barcode>
+            </v-col>
+          </v-row>
+          <v-row v-if="!auth">
+            <v-col cols="12" />
+          </v-row>
+          <v-row v-if="!auth">
+            <v-col cols="12" />
+          </v-row>
+          <v-row v-if="!auth">
+            <v-col cols="12" />
+          </v-row>
+          <v-row v-if="!auth">
+            <v-col cols="12">
+              <v-card
+                class="pa-3"
+                elevation="0"
+              >
+                <p class="text-body-2">
+                  아이템은 본인 인증을 통해 사용하실 수 있습니다.
+                </p>
+                <p class="text-caption">
+                  탈취 및 분실에 대해서 책임지지 않습니다. 보안에 유의 부탁드립니다.
+                </p>
+                <div class="item-auth-form">
+                  <form>
+                    <input class="input-pw" name="password" type="password" placeholder="비밀번호를 입력해주세요.">
+                    <div class="item-auth-checkbox d-flex justify-center align-items-center">
+                      <input v-model="confirmAuth" type="checkbox">
+                      <label class="ml-2" for="confirmItemActivate"><a class="term-link" href="#">아이템 사용 약관</a>에 동의하고 사용을 확정하겠습니다.</label><br>
+                    </div>
+                  </form>
+                </div>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
-    <v-container>
+    <v-container v-if="!auth">
+      <v-row>
+        <v-col class="pa-0" cols="12">
+          <v-btn
+            :disabled="!confirmAuth"
+            tile
+            color="#1a9efe"
+            style="height: 55px; width: 100%;"
+            to="/mypage/item-detail"
+          >
+            <span class="item-activate-btn-text">잠금 해제</span>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container v-if="auth && !activated">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -47,7 +105,6 @@
                     #activator="{ on, attrs }"
                   >
                     <v-btn
-                      v-if="!used"
                       tile
                       color="#1a9efe"
                       v-bind="attrs"
@@ -56,17 +113,6 @@
                       v-on="on"
                     >
                       <span class="item-activate-btn-text">아이템 사용</span>
-                    </v-btn>
-                    <v-btn
-                      v-if="used"
-                      tile
-                      color="#1a9efe"
-                      v-bind="attrs"
-                      disabled
-                      style="height: 55px; width: 100%;"
-                      v-on="on"
-                    >
-                      <span class="item-activate-btn-text">이미 사용하셨습니다.</span>
                     </v-btn>
                   </template>
                   <v-card class="pa-3">
@@ -112,13 +158,17 @@
 </template>
 
 <script>
+import VueBarcode from 'vue-barcode'
+
 export default {
+  components: { VueBarcode },
   data () {
     return {
+      auth: true,
+      confirmAuth: false,
       dialog: false,
       confirmItemActivate: false,
-      activated: false,
-      used: true,
+      activated: true,
       itemData: { name: '[스타벅스] 카페 아메리카노 T', provider: '스타벅스' }
     }
   },
@@ -151,6 +201,18 @@ export default {
 .item-name {
   font-size: 14px;
   font-weight: 600;
+}
+.input-pw {
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+  background-color: #f7f7f8;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.item-auth-checkbox {
+  margin-top: 35px;
+  font-size: 12px;
 }
 .item-activate {
   justify-content: center;
