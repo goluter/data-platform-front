@@ -9,10 +9,16 @@
       <v-col class="pa-0" cols="12">
         <v-tabs v-model="tab" grow center-active>
           <v-tabs-slider color="teal accent-3" />
-          <v-tab class="tab-title">
+          <v-tab
+            class="tab-title"
+            style="color: black; font-weight: 600"
+          >
             사용가능 {{ itemsData.length }}
           </v-tab>
-          <v-tab class="tab-title">
+          <v-tab
+            class="tab-title"
+            style="color: black; font-weight: 600"
+          >
             사용완료 {{ usedItemsData.length }}
           </v-tab>
         </v-tabs>
