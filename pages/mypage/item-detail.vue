@@ -21,7 +21,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-container>
+    <v-container v-if="auth">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -47,6 +47,7 @@
                     #activator="{ on, attrs }"
                   >
                     <v-btn
+                      tile
                       color="#1a9efe"
                       v-bind="attrs"
                       :disabled="activated"
@@ -102,6 +103,7 @@
 export default {
   data () {
     return {
+      auth: true,
       dialog: false,
       confirmItemActivate: false,
       activated: false,
