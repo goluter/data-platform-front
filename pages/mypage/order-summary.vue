@@ -1,16 +1,16 @@
 <template>
   <v-container>
-    <order-item :order-data="orderData" />
+    <order-payment-info-item :order-data="orderData" />
     <order-payment-info :payment-data="paymentData" />
     <order-refund-info />
   </v-container>
 </template>
 
 <script>
-import OrderItem from '../../components/OrderItem.vue'
 import OrderPaymentInfo from '../../components/OrderPaymentInfo.vue'
+import OrderPaymentInfoItem from '../../components/OrderPaymentInfoItem.vue'
 export default {
-  components: { OrderPaymentInfo, OrderItem },
+  components: { OrderPaymentInfoItem, OrderPaymentInfo },
   data () {
     return {
       orderData: [

@@ -13,27 +13,6 @@
       <v-row style="background-color: white">
         <v-col class="elevation-1" cols="12">
           <v-row>
-            <v-col cols="1" />
-            <v-col class="ml-auto py-0 pr-0" cols="auto">
-              <NuxtLink to="/mypage/order-summary">
-                <span
-                  class="item-more"
-                > 상세보기
-                </span>
-                <v-btn
-                  icon
-                  x-small
-                >
-                  <v-icon
-                    color="gray"
-                  >
-                    mdi-chevron-right
-                  </v-icon>
-                </v-btn>
-              </NuxtLink>
-            </v-col>
-          </v-row>
-          <v-row>
             <v-col class="pa-0" cols="12">
               <v-divider />
             </v-col>
@@ -41,7 +20,7 @@
           <v-row style="background-color: white">
             <v-col cols="3" sm="2" md="1">
               <div class="item-img mx-auto" />
-            <!--                <img src="" alt="404">-->
+              <!--                <img src="" alt="404">-->
             </v-col>
             <v-col cols="9" sm="10" md="11">
               <v-row>
