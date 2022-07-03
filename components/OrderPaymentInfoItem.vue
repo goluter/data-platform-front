@@ -90,6 +90,7 @@ export default {
   color: #808080;
 }
 .item-price {
+  font-size: 12px;
   font-weight: 600;
 }
 </style>
