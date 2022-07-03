@@ -62,7 +62,7 @@
             tile
             color="#1a9efe"
             style="height: 55px; width: 100%;"
-            to="/mypage/item-detail"
+            to="/mypage/item-detail-complete"
           >
             <span class="item-activate-btn-text">잠금 해제</span>
           </v-btn>

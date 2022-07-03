@@ -24,7 +24,7 @@
         </v-tabs>
         <v-tabs-items v-model="tab" class="pa-3">
           <v-tab-item>
-            <NuxtLink to="/mypage/item-detail-auth">
+            <NuxtLink to="/mypage/item-detail">
               <my-item :items-data="itemsData" />
             </NuxtLink>
           </v-tab-item>
