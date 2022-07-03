@@ -1,5 +1,5 @@
 <template>
-  <v-container class="container" style=" background-color: #eee">
+  <v-container>
     <order-item :order-data="orderData" />
   </v-container>
 </template>
@@ -22,5 +22,6 @@ export default {
 <style scoped>
 .container {
   height: calc(100% - 48px);
+  background-color: #eee;
 }
 </style>

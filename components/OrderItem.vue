@@ -1,5 +1,5 @@
 <template>
-  <v-row class="pa-2">
+  <v-row class="mb-3 pa-2">
     <v-col
       v-for="(item, i) in orderData"
       :key="i"
