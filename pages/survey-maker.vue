@@ -283,6 +283,107 @@
             </div>
           </div>
         </div>
+        <div>
+          <div class="d-flex">
+            <div class="ma-3">
+              <input placeholder="  항목 제목" class="que-box pr-5 pl-2">
+            </div>
+            <div>
+              <v-select
+              :items="select_items"
+              v-model="select_box"
+              placeholder="객관식">
+              </v-select>
+              
+            </div>
+          </div>
+          
+          <div v-if=" select_box===null">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div v-if=" select_box==='객관식'">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div v-else-if="select_box ==='주관식'">
+            <div>
+              
+            </div>
+          </div>
+          <div v-else-if="select_box ==='체크박스'">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div class="d-flex justify-end">
+            <div class="pt-5 pr-4">
+              <a @click="addDiv">
+                <img src="../assets/akar-icons_copy.png">
+              </a>
+            </div>
+            <div class="pt-5 pr-4">
+              <img src="../assets/fa-regular_trash-alt.png">
+            </div>
+            <div class="d-flex" >
+              <div class="pr-3 pt-5"> 
+                Required 
+              </div>
+              <div>
+                <v-switch
+                v-model="que_switch1"
+                ></v-switch>
+              </div>
+            </div>
+            <div class="pt-5 pr-3">
+              <img src="../assets/More vert.png">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div v-if="tab2 == true">
