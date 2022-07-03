@@ -53,11 +53,9 @@ export default {
   },
   methods:{
     changecolor: function(i){
-        alert(this.list[i].download);
         if(this.list[i].download === false){
             this.list[i].download = true;
             this.list[i].backcolor = false;
-            
         }
         
     }
