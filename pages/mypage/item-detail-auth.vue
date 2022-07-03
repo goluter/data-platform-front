@@ -44,7 +44,7 @@
                     <input class="input-pw" name="password" type="password" placeholder="비밀번호를 입력해주세요.">
                     <div class="item-auth-checkbox d-flex justify-center align-items-center">
                       <input v-model="confirmAuth" type="checkbox">
-                      <label class="ml-2" for="confirmItemActivate"><a class="term-link" href="#">아이템 사용 약관</a>에 동의하고 사용을 확정하겠습니다.</label><br>
+                      <label class="ml-2" for="confirmItemActivate"><a class="term-link" href="#">아이템 사용 약관</a>에 동의하고 아이템을 사용하겠습니다.</label><br>
                     </div>
                   </form>
                 </div>
