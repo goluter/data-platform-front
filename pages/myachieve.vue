@@ -3,7 +3,6 @@
     <v-tabs
       next-icon="mdi-arrow-right"
       prev-icon="mdi-arrow-left"
-      show-arrows
       center-active
       color="#1cddb7"
     >
