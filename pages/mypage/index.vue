@@ -130,7 +130,7 @@ export default {
             { title: '내 리포트', to: '/mypage/reports/' },
             { title: '저장한 리포트', to: '/mypage/saved-reports/' },
             { title: '내 댓글', to: '' },
-            { title: '다운로드 기록', to: '' }
+            { title: '다운로드 기록', to: '/mypage/download/' }
           ]
         },
         {
