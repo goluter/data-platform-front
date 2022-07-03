@@ -181,54 +181,88 @@
     <div class="gray-box">
     </div>
     <div v-if="tab1 == true">
-      <div>
-        <div class="d-flex">
-          <div class="ma-3">
-            <input placeholder="  항목 제목" class="que-box pr-5 pl-2">
-          </div>
-          <div>
-            <v-select
-            :items="select_itmes"
-            placeholder="객관식">
-            </v-select>
-          </div>
-        </div>
-        <div>
-          <table style="width:100%">
-            <tr v-for="(row,i) in rows" :key="i">
-              <td style="width:90%" class="pl-2">
-                <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="rows[i]" placeholder="option"  style="width:90%" class="pl-2">
-              </td>
-              <td style="width:10%"><a @click="removeRow(i)">
-                <img src="../assets/carbon_close.png"></a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
-          <a @click="addRow">
-            <img src="../assets/carbon_add.png">
-          </a>
-        </div>
-        <div class="d-flex justify-end">
-          <div class="pt-5 pr-4">
-            <img src="../assets/akar-icons_copy.png">
-          </div>
-          <div class="pt-5 pr-4">
-            <img src="../assets/fa-regular_trash-alt.png">
-          </div>
+      <div class="div_check">
+        <div v-for="(item,k) in lists" :key="k">
           <div class="d-flex" >
-            <div class="pr-3 pt-5"> 
-              Required 
+            <div class="ma-3">
+              <input placeholder=" 항목 제목" class="que-box pr-5 pl-2">
             </div>
             <div>
-              <v-switch
-              v-model="que_switch1"
-              ></v-switch>
+              <v-select
+              :items="select_items"
+              v-model="item.select_box"
+              placeholder="객관식">
+              </v-select> 
             </div>
           </div>
-          <div class="pt-5 pr-3">
-            <img src="../assets/More vert.png">
+          
+          <div v-if="item.select_box==='객관식'">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in item.rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-circle-outline</v-icon><input v-model="item.rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(k,i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow(k)">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div v-else-if="item.select_box ==='주관식'">
+            <div class="pl-3">
+              <textarea placeholder="주관식 질문" class="que-box2 pr-5 pl-2"></textarea>
+            </div>
+          </div>
+          <div v-else-if="item.select_box ==='체크박스'">
+            <div>
+              <table style="width:100%">
+                <tr v-for="(row,i) in item.rows" :key="i">
+                  <td style="width:90%" class="pl-2">
+                    <v-icon>mdi-checkbox-blank-outline</v-icon><input v-model="item.rows[i]" placeholder="option"  style="width:90%" class="pl-2">
+                  </td>
+                  <td style="width:10%"><a @click="removeRow(k,i)">
+                    <img src="../assets/carbon_close.png"></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pl-1" style="border-bottom: 1px solid #d3d3d3;">
+              <a @click="addRow(k)">
+                <img src="../assets/carbon_add.png">
+              </a>
+            </div>
+          </div>
+          <div class="d-flex justify-end">
+            <div class="pt-5 pr-4">
+              <a @click="addDiv">
+                <img src="../assets/akar-icons_copy.png">
+              </a>
+            </div>
+            <div class="pt-5 pr-4">
+              <a @click="minusDiv(k)">
+                <img src="../assets/fa-regular_trash-alt.png">
+              </a>
+            </div>
+            <div class="d-flex" >
+              <div class="pr-3 pt-5"> 
+                Required 
+              </div>
+              <div>
+                <v-switch
+                v-model="que_switch1"
+                ></v-switch>
+              </div>
+            </div>
+            <div class="pt-5 pr-3">
+              <img src="../assets/More vert.png">
+            </div>
           </div>
         </div>
       </div>
@@ -585,8 +619,13 @@ export default {
       switch4:false,
       show1:true,
       show2:true,
-      rows:[null,,],
-      select_itmes:['객관식','주간식','체크박스']
+      
+      select_items:['객관식','주관식','체크박스'],
+      select_box:null,
+      lists:[
+        {rows:[,,],select_box:'객관식',},
+        {rows:[,,],select_box:'객관식',}
+        ]
     }),
 
     computed: {
@@ -614,12 +653,19 @@ export default {
         const [month, day, year] = date.split('/')
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
       },
-      addRow:function(){
-        this.rows.push(null);
+      
+      addDiv:function(){
+        this.lists.push({rows:[,,],select_box:'객관식'});
       },
-      removeRow: function(row){
-        this.rows.splice(row, 1);
-      }
+      minusDiv:function(i){
+        this.lists.splice(i,1);
+      },
+      addRow:function(k){
+        this.lists[k].rows.push(null);
+      },
+      removeRow: function(k,row){
+        this.lists[k].rows.splice(row, 1);
+      },
     },
     
 }
@@ -661,6 +707,11 @@ export default {
   height: 40px;
   border-radius: 10px;
   background: #f7f7f8;
+}
+.que-box2{
+  border-radius: 10px;
+  background: #f7f7f8;
+  width: 100%;
 }
 
 </style>
