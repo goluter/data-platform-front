@@ -24,10 +24,14 @@
         </v-tabs>
         <v-tabs-items v-model="tab" class="pa-3">
           <v-tab-item>
-            <my-item :items-data="itemsData" />
+            <NuxtLink to="/mypage/item-detail-auth">
+              <my-item :items-data="itemsData" />
+            </NuxtLink>
           </v-tab-item>
           <v-tab-item>
-            <my-item :items-data="usedItemsData" />
+            <NuxtLink to="/mypage/item-detail-used">
+              <my-item :items-data="usedItemsData" />
+            </NuxtLink>
           </v-tab-item>
         </v-tabs-items>
       </v-col>
