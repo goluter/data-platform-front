@@ -2,6 +2,7 @@
   <v-container>
     <order-item :order-data="orderData" />
     <order-payment-info :payment-data="paymentData" />
+    <order-refund-info />
   </v-container>
 </template>
 

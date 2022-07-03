@@ -3,7 +3,7 @@
     <v-col cols="12">
       <v-row>
         <v-col cols="12">
-          <span class="payment-info">결제 정보</span>
+          <span class="payment-info-title">결제 정보</span>
         </v-col>
       </v-row>
       <v-row class="price-sum">
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.payment-info {
+.payment-info-title {
   font-size: 14px;
   font-weight: 600;
 }
