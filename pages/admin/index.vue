@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tabs>
+    <v-tabs fixed-tabs style="padding-top: 50px">
       <!-- 상단 탭-->
       <v-tab
         @click="
@@ -158,9 +158,9 @@
       <div class="modal-white">
         <h4>필터</h4>
         <div>
-          <input type="checkbox" name="fruits" value="orange">인증회원
-          <input type="checkbox" name="fruits" value="orange">공인회원
-          <input type="checkbox" name="fruits" value="orange">정지회원
+          <input type="checkbox" name="fruits" value="orange" />인증회원
+          <input type="checkbox" name="fruits" value="orange" />공인회원
+          <input type="checkbox" name="fruits" value="orange" />정지회원
         </div>
 
         <div>
@@ -199,7 +199,7 @@
               class="form-control"
               placeholder="Username"
               required
-            >
+            />
           </div>
           <div class="col-12">
             <input
@@ -207,7 +207,7 @@
               type="text"
               class="form-control"
               placeholder="Example@gmail.com"
-            >
+            />
           </div>
           <div class="col-12">
             <input
@@ -215,7 +215,7 @@
               type="text"
               class="form-control"
               placeholder="추가정보"
-            >
+            />
           </div>
         </div>
 
@@ -296,7 +296,7 @@
         <h3>이벤트 등록</h3>
         <div>
           이벤트 기간
-          <input class="date" type="date">~<input class="date" type="date">
+          <input class="date" type="date" />~<input class="date" type="date" />
         </div>
         <div>
           <v-file-input
@@ -532,7 +532,7 @@
           auto-grow
         />
 
-        <input class="date" type="date">
+        <input class="date" type="date" />
         <div>
           <v-btn
             id="modifyapply"
@@ -560,9 +560,10 @@
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
-        <v-date-picker v-model="dates" range locale="ko-KR" width="400" />
-        model: {{ dates }}
+
         <div>
+          <v-date-picker v-model="dates" range locale="ko-KR" width="400" />
+          <a style="visibility: hidden">model: {{ dates }}</a>
           <GChart type="LineChart" :data="chartData" :options="chartOptions" />
         </div>
       </div>
@@ -580,10 +581,8 @@
                 border: 1px solid gray;
                 border-radius: 4px;
               "
-            >
-            <v-btn elevation="2" x-small>
-              검색
-            </v-btn>
+            />
+            <v-btn elevation="2" x-small> 검색 </v-btn>
             <v-btn
               class="modalbtn"
               elevation="2"
@@ -637,10 +636,10 @@
                 src="../../assets/premium-icon-person-2815428.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Name
-                <br>
+                <br />
                 {{ UserData[UserNum].UserName }}
               </p>
             </div>
@@ -650,10 +649,10 @@
                 src="../../assets/premium-icon-open-mail-2468421.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Email
-                <br>
+                <br />
                 {{ UserData[UserNum].Email }}
               </p>
             </div>
@@ -663,10 +662,10 @@
                 src="../../assets/premium-icon-login-3682245.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Type
-                <br>
+                <br />
                 {{ UserData[UserNum].UserType }}
               </p>
             </div>
@@ -676,10 +675,10 @@
                 src="../../assets/premium-icon-calendar-4511116.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Date
-                <br>
+                <br />
                 {{ UserData[UserNum].RegisterDate }}
               </p>
             </div>
@@ -795,15 +794,9 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">
-                      번호
-                    </th>
-                    <th class="text-left">
-                      참여설문
-                    </th>
-                    <th class="text-left">
-                      참여날짜
-                    </th>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">참여설문</th>
+                    <th class="text-left">참여날짜</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -839,9 +832,7 @@
             </v-btn>
           </div>
           <div v-if="ShowUserPoint == true">
-            <div style="font-size: larger">
-              현재포인트 : 9999포인트
-            </div>
+            <div style="font-size: larger">현재포인트 : 9999포인트</div>
             <v-btn elevation="2" x-small @click="ShowPointSetting = true">
               포인트조정
             </v-btn>
@@ -849,18 +840,10 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="width: 3%">
-                      번호
-                    </th>
-                    <th style="text-align: center">
-                      상품 획득사유
-                    </th>
-                    <th class="text-left">
-                      획득날짜
-                    </th>
-                    <th class="text-left">
-                      내역
-                    </th>
+                    <th style="width: 3%">번호</th>
+                    <th style="text-align: center">상품 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -884,18 +867,10 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">
-                      번호
-                    </th>
-                    <th style="text-align: center">
-                      포인트 획득사유
-                    </th>
-                    <th class="text-left">
-                      획득날짜
-                    </th>
-                    <th class="text-left">
-                      내역
-                    </th>
+                    <th style="text-align: center">번호</th>
+                    <th style="text-align: center">포인트 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -918,15 +893,9 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">
-                      번호
-                    </th>
-                    <th class="text-left">
-                      칭호이름
-                    </th>
-                    <th class="text-left">
-                      획득날짜
-                    </th>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">칭호이름</th>
+                    <th class="text-left">획득날짜</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -956,10 +925,10 @@
               src="../../assets/duplicate.png"
               class="iconsize"
               style="vertical-align: top"
-            >
+            />
             <p style="display: inline-block; text-align: center">
               심사를 기다리는 설문
-              <br>
+              <br />
               --개
             </p>
           </div>
@@ -968,10 +937,10 @@
               src="../../assets/surveyor.png"
               class="iconsize"
               style="vertical-align: top"
-            >
+            />
             <p style="display: inline-block; text-align: center">
               지금까지 작성된 설문
-              <br>
+              <br />
               --개
             </p>
           </div>
@@ -980,10 +949,10 @@
               src="../../assets/new.png"
               class="iconsize"
               style="vertical-align: top"
-            >
+            />
             <p style="display: inline-block; text-align: center">
               심사를 기다리는 설문
-              <br>
+              <br />
               --개
             </p>
           </div>
@@ -1012,7 +981,7 @@
                 src="../../assets/tag.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 {{ SurveyData[i].title }}
               </p>
@@ -1022,7 +991,7 @@
                 src="../../assets/user-avatar.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 {{ SurveyData[i].name }}
               </p>
@@ -1032,7 +1001,7 @@
                 src="../../assets/calendar.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 {{ SurveyData[i].date }}
               </p>
@@ -1044,8 +1013,8 @@
       <div v-if="TopTab4 == true">
         <h2>이벤트</h2>
         <div>
-          <input type="checkbox" name="fruits" value="orange">진행중인 이벤트
-          <input type="checkbox" name="fruits" value="orange">지난 이벤트
+          <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
+          <input type="checkbox" name="fruits" value="orange" />지난 이벤트
 
           <v-btn
             depressed
@@ -1064,15 +1033,15 @@
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            >
+            />
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            >
+            />
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            >
+            />
           </div>
           <footer>
             <div class="text-center">
@@ -1096,18 +1065,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1141,18 +1102,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1187,18 +1140,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1229,18 +1174,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1276,11 +1213,11 @@ import QnAdata from 'assets/data/QnAdata'
 export default {
   name: 'Index',
   components: {
-    GChart
+    GChart,
   },
-  layout: 'Admin',
+  layout: 'admin',
 
-  data () {
+  data() {
     return {
       TopTab1: true,
       TopTab2: false,
@@ -1295,13 +1232,13 @@ export default {
         ['22.04.09', 1000, 322, 1322],
         ['22.04.10', 1170, 460, 1170 + 460],
         ['22.04.11', 660, 1120, 660 + 1120],
-        ['22.04.12', 1030, 540, 1030 + 540]
+        ['22.04.12', 1030, 540, 1030 + 540],
       ],
       chartOptions: {
         chart: {
           title: 'Company Performance',
-          subtitle: 'Sales, Expenses, and Profit: 2014-2017'
-        }
+          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        },
       },
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
@@ -1337,17 +1274,17 @@ export default {
       ShowUserModify: false,
       UserNum: 0, // 사용자데이터 검색변수
       dates: [],
-      overlay: false // 적용 알림창 시간변수
+      overlay: false, // 적용 알림창 시간변수
     }
   },
   watch: {
-    overlay (val) {
+    overlay(val) {
       val &&
         setTimeout(() => {
           this.overlay = false
         }, 2000)
-    }
-  }
+    },
+  },
 }
 </script>
 
