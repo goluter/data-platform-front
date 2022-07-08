@@ -561,9 +561,17 @@
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
 
-        <div>
-          <v-date-picker v-model="dates" range locale="ko-KR" width="400" />
+        <div style="float: left">
+          <v-date-picker
+            v-model="dates"
+            color="#1087f4"
+            range
+            locale="ko-KR"
+            width="400"
+          />
           <a style="visibility: hidden">model: {{ dates }}</a>
+        </div>
+        <div style="float: left; width: 70%">
           <GChart type="LineChart" :data="chartData" :options="chartOptions" />
         </div>
       </div>
@@ -609,13 +617,12 @@
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
-              <v-banner color="primary" rounded single-line>
+              <v-btn style="text-align: left" color="#1087f4" block large>
                 <dl @click="UserNum = i">
                   <dd>{{ UserData[i].UserName }}</dd>
-
                   <dd>{{ UserData[i].Email }}</dd>
                 </dl>
-              </v-banner>
+              </v-btn>
             </div>
           </div>
         </v-banner>
@@ -684,7 +691,7 @@
             </div>
           </v-card>
           <div>
-            <v-tabs fixed-tabs dark>
+            <v-tabs color="#1087f4" fixed-tabs>
               <v-tab
                 @click="
                   ShowUnivCertify = true
@@ -965,7 +972,7 @@
             height: 40em;
           "
         >
-          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo">
+          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo2">
             <v-btn
               elevation="2"
               x-small
@@ -1043,11 +1050,9 @@
               style="width: 100%; height: 11rem; padding: 1%"
             />
           </div>
-          <footer>
-            <div class="text-center">
-              <v-pagination v-model="page" :length="6" />
-            </div>
-          </footer>
+          <div class="text-center">
+            <v-pagination v-model="page" :length="6"></v-pagination>
+          </div>
         </div>
       </div>
       <!-- 공지사항-->
@@ -1219,6 +1224,7 @@ export default {
 
   data() {
     return {
+      page: 1,
       TopTab1: true,
       TopTab2: false,
       TopTab3: false,
@@ -1335,6 +1341,9 @@ export default {
   width: 20rem;
 }
 .UserInfo {
+  margin: 2%;
+}
+.UserInfo2 {
   border: 1px solid #323232;
   margin: 1%;
   border-radius: 5px;
