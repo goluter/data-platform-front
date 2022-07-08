@@ -964,14 +964,7 @@
             </p>
           </div>
         </div>
-        <div
-          style="
-            border: 1px solid #323232;
-            margin-top: 1%;
-            overflow: auto;
-            height: 40em;
-          "
-        >
+        <div style="margin-top: 1%; overflow: auto; height: 40em">
           <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo2">
             <v-btn
               elevation="2"
@@ -1344,7 +1337,7 @@ export default {
   margin: 2%;
 }
 .UserInfo2 {
-  border: 1px solid #323232;
+  border: 1px solid #e1e1e1;
   margin: 1%;
   border-radius: 5px;
 }
