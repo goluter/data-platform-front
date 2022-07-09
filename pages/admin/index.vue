@@ -1,192 +1,5 @@
 <template>
   <div>
-    <v-tabs fixed-tabs style="padding-top: 50px">
-      <!-- 상단 탭-->
-      <v-tab
-        @click="
-          TopTab1 = true
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        대시보드
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = true
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        회원관리
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = true
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        설문관리
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = true
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        이벤트
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = true
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        공지사항
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = true
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        FAQ
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = true
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        Q&A
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = true
-          ShowUserInfo = false
-        "
-      >
-        문의게시판
-      </v-tab>
-    </v-tabs>
-    <div style="display: flex; justify-content: center">
-      <v-alert
-        v-if="applysuccess == true"
-        style="position: absolute; z-index: 3; width: 300px"
-        class="applysuccess"
-        type="success"
-        :value="overlay"
-      >
-        적용완료
-        <v-btn style="float: right" x-small @click="applysuccess = false">
-          X
-        </v-btn>
-      </v-alert>
-    </div>
-    <div style="display: flex; justify-content: center">
-      <v-alert
-        v-if="addsuccess == true"
-        style="position: absolute; z-index: 3; width: 300px"
-        class="addsuccess"
-        type="success"
-        :value="overlay"
-      >
-        추가완료
-        <v-btn style="float: right" x-small @click="addsuccess = false">
-          X
-        </v-btn>
-      </v-alert>
-    </div>
-
-    <!--필터 모달창-->
-
-    <div v-if="ShowModal_Filter == true" class="modal-black">
-      <div class="modal-white">
-        <h4>필터</h4>
-        <div>
-          <input type="checkbox" name="fruits" value="orange" />인증회원
-          <input type="checkbox" name="fruits" value="orange" />공인회원
-          <input type="checkbox" name="fruits" value="orange" />정지회원
-        </div>
-
-        <div>
-          <v-btn
-            class="filterapply"
-            elevation="2"
-            @click="
-              ShowModal_Filter = false
-              applysuccess = true
-              overlay = !overlay
-            "
-          >
-            적용
-          </v-btn>
-
-          <v-btn
-            id="filtercancel"
-            elevation="2"
-            @click="ShowModal_Filter = false"
-          >
-            닫기
-          </v-btn>
-        </div>
-      </div>
-    </div>
-
     <!--유저추가 모달창-->
     <div v-if="ShowModal_UserAdd == true" class="modal-black">
       <div class="modal-white">
@@ -554,6 +367,192 @@
           </v-btn>
         </div>
       </div>
+    </div>
+    <!--필터 모달창-->
+
+    <div v-if="ShowModal_Filter == true" class="modal-black">
+      <div class="modal-white">
+        <h4>필터</h4>
+        <div>
+          <input type="checkbox" name="fruits" value="orange" />인증회원
+          <input type="checkbox" name="fruits" value="orange" />공인회원
+          <input type="checkbox" name="fruits" value="orange" />정지회원
+        </div>
+
+        <div>
+          <v-btn
+            class="filterapply"
+            elevation="2"
+            @click="
+              ShowModal_Filter = false
+              applysuccess = true
+              overlay = !overlay
+            "
+          >
+            적용
+          </v-btn>
+
+          <v-btn
+            id="filtercancel"
+            elevation="2"
+            @click="ShowModal_Filter = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+
+    <v-tabs fixed-tabs style="padding-top: 50px">
+      <!-- 상단 탭-->
+      <v-tab
+        @click="
+          TopTab1 = true
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        대시보드
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = true
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        회원관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = true
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        설문관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = true
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        이벤트
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = true
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        공지사항
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = true
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        FAQ
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = true
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        Q&A
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = true
+          ShowUserInfo = false
+        "
+      >
+        문의게시판
+      </v-tab>
+    </v-tabs>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        v-if="applysuccess == true"
+        style="position: absolute; z-index: 3; width: 300px"
+        class="applysuccess"
+        type="success"
+        :value="overlay"
+      >
+        적용완료
+        <v-btn style="float: right" x-small @click="applysuccess = false">
+          X
+        </v-btn>
+      </v-alert>
+    </div>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        v-if="addsuccess == true"
+        style="position: absolute; z-index: 3; width: 300px"
+        class="addsuccess"
+        type="success"
+        :value="overlay"
+      >
+        추가완료
+        <v-btn style="float: right" x-small @click="addsuccess = false">
+          X
+        </v-btn>
+      </v-alert>
     </div>
 
     <!-- 대시보드-->
@@ -1299,19 +1298,22 @@ export default {
 .modal-black {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
+
+  position: absolute;
+
   padding: 20px;
   text-align: center;
   z-index: 1;
 }
 .modal-white {
+  margin-top: 6%;
   width: 30%;
   border-radius: 8px;
-  background: white;
+  background: #b8d2ea;
   padding: 1%;
   display: inline-block;
-  z-index: 4;
+  z-index: 1;
+  box-shadow: 10px 10px gray;
 }
 .date {
   background-color: gray;
