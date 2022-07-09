@@ -1,192 +1,5 @@
 <template>
   <div>
-    <v-tabs>
-      <!-- 상단 탭-->
-      <v-tab
-        @click="
-          TopTab1 = true
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        대시보드
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = true
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        회원관리
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = true
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        설문관리
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = true
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        이벤트
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = true
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        공지사항
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = true
-          TopTab7 = false
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        FAQ
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = true
-          TopTab8 = false
-          ShowUserInfo = false
-        "
-      >
-        Q&A
-      </v-tab>
-      <v-tab
-        @click="
-          TopTab1 = false
-          TopTab2 = false
-          TopTab3 = false
-          TopTab4 = false
-          TopTab5 = false
-          TopTab6 = false
-          TopTab7 = false
-          TopTab8 = true
-          ShowUserInfo = false
-        "
-      >
-        문의게시판
-      </v-tab>
-    </v-tabs>
-    <div style="display: flex; justify-content: center">
-      <v-alert
-        v-if="applysuccess == true"
-        style="position: absolute; z-index: 3; width: 300px"
-        class="applysuccess"
-        type="success"
-        :value="overlay"
-      >
-        적용완료
-        <v-btn style="float: right" x-small @click="applysuccess = false">
-          X
-        </v-btn>
-      </v-alert>
-    </div>
-    <div style="display: flex; justify-content: center">
-      <v-alert
-        v-if="addsuccess == true"
-        style="position: absolute; z-index: 3; width: 300px"
-        class="addsuccess"
-        type="success"
-        :value="overlay"
-      >
-        추가완료
-        <v-btn style="float: right" x-small @click="addsuccess = false">
-          X
-        </v-btn>
-      </v-alert>
-    </div>
-
-    <!--필터 모달창-->
-
-    <div v-if="ShowModal_Filter == true" class="modal-black">
-      <div class="modal-white">
-        <h4>필터</h4>
-        <div>
-          <input type="checkbox" name="fruits" value="orange">인증회원
-          <input type="checkbox" name="fruits" value="orange">공인회원
-          <input type="checkbox" name="fruits" value="orange">정지회원
-        </div>
-
-        <div>
-          <v-btn
-            class="filterapply"
-            elevation="2"
-            @click="
-              ShowModal_Filter = false
-              applysuccess = true
-              overlay = !overlay
-            "
-          >
-            적용
-          </v-btn>
-
-          <v-btn
-            id="filtercancel"
-            elevation="2"
-            @click="ShowModal_Filter = false"
-          >
-            닫기
-          </v-btn>
-        </div>
-      </div>
-    </div>
-
     <!--유저추가 모달창-->
     <div v-if="ShowModal_UserAdd == true" class="modal-black">
       <div class="modal-white">
@@ -199,7 +12,7 @@
               class="form-control"
               placeholder="Username"
               required
-            >
+            />
           </div>
           <div class="col-12">
             <input
@@ -207,7 +20,7 @@
               type="text"
               class="form-control"
               placeholder="Example@gmail.com"
-            >
+            />
           </div>
           <div class="col-12">
             <input
@@ -215,7 +28,7 @@
               type="text"
               class="form-control"
               placeholder="추가정보"
-            >
+            />
           </div>
         </div>
 
@@ -296,7 +109,7 @@
         <h3>이벤트 등록</h3>
         <div>
           이벤트 기간
-          <input class="date" type="date">~<input class="date" type="date">
+          <input class="date" type="date" />~<input class="date" type="date" />
         </div>
         <div>
           <v-file-input
@@ -532,7 +345,7 @@
           auto-grow
         />
 
-        <input class="date" type="date">
+        <input class="date" type="date" />
         <div>
           <v-btn
             id="modifyapply"
@@ -555,14 +368,209 @@
         </div>
       </div>
     </div>
+    <!--필터 모달창-->
+
+    <div v-if="ShowModal_Filter == true" class="modal-black">
+      <div class="modal-white">
+        <h4>필터</h4>
+        <div>
+          <input type="checkbox" name="fruits" value="orange" />인증회원
+          <input type="checkbox" name="fruits" value="orange" />공인회원
+          <input type="checkbox" name="fruits" value="orange" />정지회원
+        </div>
+
+        <div>
+          <v-btn
+            class="filterapply"
+            elevation="2"
+            @click="
+              ShowModal_Filter = false
+              applysuccess = true
+              overlay = !overlay
+            "
+          >
+            적용
+          </v-btn>
+
+          <v-btn
+            id="filtercancel"
+            elevation="2"
+            @click="ShowModal_Filter = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+
+    <v-tabs fixed-tabs style="padding-top: 50px">
+      <!-- 상단 탭-->
+      <v-tab
+        @click="
+          TopTab1 = true
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        대시보드
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = true
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        회원관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = true
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        설문관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = true
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        이벤트
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = true
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        공지사항
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = true
+          TopTab7 = false
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        FAQ
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = true
+          TopTab8 = false
+          ShowUserInfo = false
+        "
+      >
+        Q&A
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = true
+          ShowUserInfo = false
+        "
+      >
+        문의게시판
+      </v-tab>
+    </v-tabs>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        v-if="applysuccess == true"
+        style="position: absolute; z-index: 3; width: 300px"
+        class="applysuccess"
+        type="success"
+        :value="overlay"
+      >
+        적용완료
+        <v-btn style="float: right" x-small @click="applysuccess = false">
+          X
+        </v-btn>
+      </v-alert>
+    </div>
+    <div style="display: flex; justify-content: center">
+      <v-alert
+        v-if="addsuccess == true"
+        style="position: absolute; z-index: 3; width: 300px"
+        class="addsuccess"
+        type="success"
+        :value="overlay"
+      >
+        추가완료
+        <v-btn style="float: right" x-small @click="addsuccess = false">
+          X
+        </v-btn>
+      </v-alert>
+    </div>
 
     <!-- 대시보드-->
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
-        <v-date-picker v-model="dates" range locale="ko-KR" width="400" />
-        model: {{ dates }}
-        <div>
+
+        <div style="float: left">
+          <v-date-picker
+            v-model="dates"
+            color="#1087f4"
+            range
+            locale="ko-KR"
+            width="400"
+          />
+          <a style="visibility: hidden">model: {{ dates }}</a>
+        </div>
+        <div style="float: left; width: 70%">
           <GChart type="LineChart" :data="chartData" :options="chartOptions" />
         </div>
       </div>
@@ -580,10 +588,8 @@
                 border: 1px solid gray;
                 border-radius: 4px;
               "
-            >
-            <v-btn elevation="2" x-small>
-              검색
-            </v-btn>
+            />
+            <v-btn elevation="2" x-small> 검색 </v-btn>
             <v-btn
               class="modalbtn"
               elevation="2"
@@ -610,13 +616,12 @@
               class="UserInfo"
               @click="ShowUserInfo = true"
             >
-              <v-banner color="primary" rounded single-line>
+              <v-btn style="text-align: left" color="#1087f4" block large>
                 <dl @click="UserNum = i">
                   <dd>{{ UserData[i].UserName }}</dd>
-
                   <dd>{{ UserData[i].Email }}</dd>
                 </dl>
-              </v-banner>
+              </v-btn>
             </div>
           </div>
         </v-banner>
@@ -637,10 +642,10 @@
                 src="../../assets/premium-icon-person-2815428.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Name
-                <br>
+                <br />
                 {{ UserData[UserNum].UserName }}
               </p>
             </div>
@@ -650,10 +655,10 @@
                 src="../../assets/premium-icon-open-mail-2468421.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Email
-                <br>
+                <br />
                 {{ UserData[UserNum].Email }}
               </p>
             </div>
@@ -663,10 +668,10 @@
                 src="../../assets/premium-icon-login-3682245.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Type
-                <br>
+                <br />
                 {{ UserData[UserNum].UserType }}
               </p>
             </div>
@@ -676,16 +681,16 @@
                 src="../../assets/premium-icon-calendar-4511116.png"
                 class="iconsize"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 Date
-                <br>
+                <br />
                 {{ UserData[UserNum].RegisterDate }}
               </p>
             </div>
           </v-card>
           <div>
-            <v-tabs fixed-tabs dark>
+            <v-tabs color="#1087f4" fixed-tabs>
               <v-tab
                 @click="
                   ShowUnivCertify = true
@@ -795,15 +800,9 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">
-                      번호
-                    </th>
-                    <th class="text-left">
-                      참여설문
-                    </th>
-                    <th class="text-left">
-                      참여날짜
-                    </th>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">참여설문</th>
+                    <th class="text-left">참여날짜</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -839,9 +838,7 @@
             </v-btn>
           </div>
           <div v-if="ShowUserPoint == true">
-            <div style="font-size: larger">
-              현재포인트 : 9999포인트
-            </div>
+            <div style="font-size: larger">현재포인트 : 9999포인트</div>
             <v-btn elevation="2" x-small @click="ShowPointSetting = true">
               포인트조정
             </v-btn>
@@ -849,18 +846,10 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="width: 3%">
-                      번호
-                    </th>
-                    <th style="text-align: center">
-                      상품 획득사유
-                    </th>
-                    <th class="text-left">
-                      획득날짜
-                    </th>
-                    <th class="text-left">
-                      내역
-                    </th>
+                    <th style="width: 3%">번호</th>
+                    <th style="text-align: center">상품 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -884,18 +873,10 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">
-                      번호
-                    </th>
-                    <th style="text-align: center">
-                      포인트 획득사유
-                    </th>
-                    <th class="text-left">
-                      획득날짜
-                    </th>
-                    <th class="text-left">
-                      내역
-                    </th>
+                    <th style="text-align: center">번호</th>
+                    <th style="text-align: center">포인트 획득사유</th>
+                    <th class="text-left">획득날짜</th>
+                    <th class="text-left">내역</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -918,15 +899,9 @@
               <template #default>
                 <thead>
                   <tr>
-                    <th style="text-align: center">
-                      번호
-                    </th>
-                    <th class="text-left">
-                      칭호이름
-                    </th>
-                    <th class="text-left">
-                      획득날짜
-                    </th>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">칭호이름</th>
+                    <th class="text-left">획득날짜</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -956,10 +931,10 @@
               src="../../assets/duplicate.png"
               class="iconsize"
               style="vertical-align: top"
-            >
+            />
             <p style="display: inline-block; text-align: center">
               심사를 기다리는 설문
-              <br>
+              <br />
               --개
             </p>
           </div>
@@ -968,10 +943,10 @@
               src="../../assets/surveyor.png"
               class="iconsize"
               style="vertical-align: top"
-            >
+            />
             <p style="display: inline-block; text-align: center">
               지금까지 작성된 설문
-              <br>
+              <br />
               --개
             </p>
           </div>
@@ -980,23 +955,16 @@
               src="../../assets/new.png"
               class="iconsize"
               style="vertical-align: top"
-            >
+            />
             <p style="display: inline-block; text-align: center">
               심사를 기다리는 설문
-              <br>
+              <br />
               --개
             </p>
           </div>
         </div>
-        <div
-          style="
-            border: 1px solid #323232;
-            margin-top: 1%;
-            overflow: auto;
-            height: 40em;
-          "
-        >
-          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo">
+        <div style="margin-top: 1%; overflow: auto; height: 40em">
+          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo2">
             <v-btn
               elevation="2"
               x-small
@@ -1012,7 +980,7 @@
                 src="../../assets/tag.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 {{ SurveyData[i].title }}
               </p>
@@ -1022,7 +990,7 @@
                 src="../../assets/user-avatar.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 {{ SurveyData[i].name }}
               </p>
@@ -1032,7 +1000,7 @@
                 src="../../assets/calendar.png"
                 class="iconsize2"
                 style="vertical-align: top"
-              >
+              />
               <p style="display: inline-block">
                 {{ SurveyData[i].date }}
               </p>
@@ -1044,8 +1012,8 @@
       <div v-if="TopTab4 == true">
         <h2>이벤트</h2>
         <div>
-          <input type="checkbox" name="fruits" value="orange">진행중인 이벤트
-          <input type="checkbox" name="fruits" value="orange">지난 이벤트
+          <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
+          <input type="checkbox" name="fruits" value="orange" />지난 이벤트
 
           <v-btn
             depressed
@@ -1064,21 +1032,19 @@
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            >
+            />
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            >
+            />
             <img
               src="../../assets/99A04B475BC982642A.jpg"
               style="width: 100%; height: 11rem; padding: 1%"
-            >
+            />
           </div>
-          <footer>
-            <div class="text-center">
-              <v-pagination v-model="page" :length="6" />
-            </div>
-          </footer>
+          <div class="text-center">
+            <v-pagination v-model="page" :length="6"></v-pagination>
+          </div>
         </div>
       </div>
       <!-- 공지사항-->
@@ -1096,18 +1062,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1141,18 +1099,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1187,18 +1137,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1229,18 +1171,10 @@
           <template #default>
             <thead>
               <tr>
-                <th style="text-align: center">
-                  번호
-                </th>
-                <th class="text-left">
-                  제목
-                </th>
-                <th class="text-left">
-                  이름
-                </th>
-                <th class="text-left">
-                  날짜
-                </th>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -1276,12 +1210,13 @@ import QnAdata from 'assets/data/QnAdata'
 export default {
   name: 'Index',
   components: {
-    GChart
+    GChart,
   },
-  layout: 'Admin',
+  layout: 'admin',
 
-  data () {
+  data() {
     return {
+      page: 1,
       TopTab1: true,
       TopTab2: false,
       TopTab3: false,
@@ -1295,13 +1230,13 @@ export default {
         ['22.04.09', 1000, 322, 1322],
         ['22.04.10', 1170, 460, 1170 + 460],
         ['22.04.11', 660, 1120, 660 + 1120],
-        ['22.04.12', 1030, 540, 1030 + 540]
+        ['22.04.12', 1030, 540, 1030 + 540],
       ],
       chartOptions: {
         chart: {
           title: 'Company Performance',
-          subtitle: 'Sales, Expenses, and Profit: 2014-2017'
-        }
+          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        },
       },
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
@@ -1337,17 +1272,17 @@ export default {
       ShowUserModify: false,
       UserNum: 0, // 사용자데이터 검색변수
       dates: [],
-      overlay: false // 적용 알림창 시간변수
+      overlay: false, // 적용 알림창 시간변수
     }
   },
   watch: {
-    overlay (val) {
+    overlay(val) {
       val &&
         setTimeout(() => {
           this.overlay = false
         }, 2000)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -1363,19 +1298,22 @@ export default {
 .modal-black {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
+
+  position: absolute;
+
   padding: 20px;
   text-align: center;
   z-index: 1;
 }
 .modal-white {
+  margin-top: 6%;
   width: 30%;
   border-radius: 8px;
-  background: white;
+  background: #b8d2ea;
   padding: 1%;
   display: inline-block;
-  z-index: 4;
+  z-index: 1;
+  box-shadow: 10px 10px gray;
 }
 .date {
   background-color: gray;
@@ -1398,7 +1336,10 @@ export default {
   width: 20rem;
 }
 .UserInfo {
-  border: 1px solid #323232;
+  margin: 2%;
+}
+.UserInfo2 {
+  border: 1px solid #e1e1e1;
   margin: 1%;
   border-radius: 5px;
 }
