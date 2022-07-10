@@ -102,7 +102,7 @@ export default {
         { page: '리포트', to: '/reports/' },
         { page: '공지사항', to: '/notices/' },
         { page: '이벤트', to: '/events/' },
-        { page: '명예의전당', to: '/rank/' },
+        { page: '명예의전당', to: '/hall-of-fame/' },
         { page: '고객센터', to: '/service-center/' },
         { page: '개인정보처리방침', to: '/privacy-policy/' },
         { page: '이용약관', to: '/terms-of-service/' },
