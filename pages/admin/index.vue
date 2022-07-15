@@ -1012,38 +1012,148 @@
       <div v-if="TopTab4 == true">
         <h2>이벤트</h2>
         <div>
-          <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
-          <input type="checkbox" name="fruits" value="orange" />지난 이벤트
-
           <v-btn
-            depressed
-            elevation="2"
+            style="margin: 5px"
             small
-            href="http://localhost:3000/admin/"
+            elevation="2"
+            @click="
+              ShowOngoingEvent = true
+              ShowPlannedEvent = false
+              ShowEndedEvent = false
+            "
           >
-            새로고침
+            진행 중인 이벤트
+          </v-btn>
+          <v-btn
+            style="margin: 5px"
+            small
+            elevation="2"
+            @click="
+              ShowOngoingEvent = false
+              ShowPlannedEvent = true
+              ShowEndedEvent = false
+            "
+          >
+            진행 예정 이벤트
+          </v-btn>
+          <v-btn
+            style="margin: 5px"
+            small
+            elevation="2"
+            @click="
+              ShowOngoingEvent = false
+              ShowPlannedEvent = false
+              ShowEndedEvent = true
+            "
+          >
+            지난 이벤트
           </v-btn>
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
             이벤트 등록
           </v-btn>
-          <div style="height: 10%">
-            <img
-              src="../../assets/99A04B475BC982642A.jpg"
-              style="width: 100%; height: 11rem; padding: 1%"
-            />
-            <img
-              src="../../assets/99A04B475BC982642A.jpg"
-              style="width: 100%; height: 11rem; padding: 1%"
-            />
-            <img
-              src="../../assets/99A04B475BC982642A.jpg"
-              style="width: 100%; height: 11rem; padding: 1%"
-            />
+          <!-- 진행 이벤트-->
+          <div v-if="ShowOngoingEvent == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">제목</th>
+                    <th class="text-left">작성자</th>
+                    <th class="text-left">날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in OngoingEvent" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      <a
+                        :href="OngoingEvent[i].url"
+                        style="text-decoration: none"
+                        >{{ OngoingEvent[i].title }}</a
+                      >
+                    </td>
+                    <td>{{ OngoingEvent[i].name }}</td>
+                    <td>{{ OngoingEvent[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
           </div>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="6"></v-pagination>
+          <!-- 예정 이벤트-->
+          <div v-if="ShowPlannedEvent == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">제목</th>
+                    <th class="text-left">작성자</th>
+                    <th class="text-left">날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in PlannedEvent" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      <a
+                        :href="PlannedEvent[i].url"
+                        style="text-decoration: none"
+                        >{{ PlannedEvent[i].title }}</a
+                      >
+                    </td>
+                    <td>{{ PlannedEvent[i].name }}</td>
+                    <td>{{ PlannedEvent[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
+          </div>
+          <!-- 지난 이벤트-->
+          <div v-if="ShowEndedEvent == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">제목</th>
+                    <th class="text-left">이름</th>
+                    <th class="text-left">날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in EndedEvent" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      <a
+                        :href="EndedEvent[i].url"
+                        style="text-decoration: none"
+                        >{{ EndedEvent[i].title }}</a
+                      >
+                    </td>
+                    <td>{{ EndedEvent[i].name }}</td>
+                    <td>{{ EndedEvent[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
           </div>
         </div>
       </div>
@@ -1206,6 +1316,9 @@ import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
 import QnAdata from 'assets/data/QnAdata'
+import EndedEvent from '../../assets/data/EndedEvent'
+import OngoingEvent from '../../assets/data/OngoingEvent'
+import PlannedEvent from '../../assets/data/PlannedEvent'
 
 export default {
   name: 'Index',
@@ -1216,7 +1329,13 @@ export default {
 
   data() {
     return {
+      EndedEvent,
+      OngoingEvent,
+      PlannedEvent,
       page: 1,
+      ShowOngoingEvent: false,
+      ShowEndedEvent: false,
+      ShowPlannedEvent: false,
       TopTab1: true,
       TopTab2: false,
       TopTab3: false,
