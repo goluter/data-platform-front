@@ -559,6 +559,88 @@
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
+        <v-btn
+          @click="
+            showchart1 = true
+            showchart2 = false
+            showchart3 = false
+            showchart4 = false
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          :key="a"
+        >
+          유저<br />
+          all: {{ UserchartData[4][3] }}<br />
+          new:
+          {{
+            UserchartData[1][1] +
+            UserchartData[2][1] +
+            UserchartData[3][1] +
+            UserchartData[4][1]
+          }}</v-btn
+        >
+        <v-btn
+          @click="
+            showchart1 = false
+            showchart2 = true
+            showchart3 = false
+            showchart4 = false
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          >설문등록<br />
+          all: {{ SurvayregData[4][3] }}<br />
+          new:
+          {{
+            SurvayregData[1][1] +
+            SurvayregData[2][1] +
+            SurvayregData[3][1] +
+            SurvayregData[4][1]
+          }}</v-btn
+        >
+        <v-btn
+          @click="
+            showchart1 = false
+            showchart2 = false
+            showchart3 = true
+            showchart4 = false
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          >설문참여<br />
+          all: {{ SurvaypartData[4][3] }}<br />
+          new:
+          {{
+            SurvaypartData[1][1] +
+            SurvaypartData[2][1] +
+            SurvaypartData[3][1] +
+            SurvaypartData[4][1]
+          }}</v-btn
+        >
+        <v-btn
+          @click="
+            showchart1 = false
+            showchart2 = false
+            showchart3 = false
+            showchart4 = true
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          >방문자수<br />
+
+          new:
+          {{
+            UserComeData[1][1] +
+            UserComeData[2][1] +
+            UserComeData[3][1] +
+            UserComeData[4][1]
+          }}</v-btn
+        >
 
         <div style="float: left">
           <v-date-picker
@@ -568,10 +650,34 @@
             locale="ko-KR"
             width="400"
           />
-          <a style="visibility: hidden">model: {{ dates }}</a>
         </div>
-        <div style="float: left; width: 70%">
-          <GChart type="LineChart" :data="chartData" :options="chartOptions" />
+        <div v-if="showchart1 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="UserchartData"
+            :options="chartOptions"
+          />
+        </div>
+        <div v-if="showchart2 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="SurvayregData"
+            :options="chartOptions"
+          />
+        </div>
+        <div v-if="showchart3 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="SurvaypartData"
+            :options="chartOptions"
+          />
+        </div>
+        <div v-if="showchart4 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="UserComeData"
+            :options="chartOptions"
+          />
         </div>
       </div>
       <!-- 유저목록-->
@@ -1225,12 +1331,38 @@ export default {
       TopTab6: false,
       TopTab7: false,
       TopTab8: false,
-      chartData: [
-        ['유저수', '신규유저', '재방문유저', '총유저'],
-        ['22.04.09', 1000, 322, 1322],
-        ['22.04.10', 1170, 460, 1170 + 460],
-        ['22.04.11', 660, 1120, 660 + 1120],
-        ['22.04.12', 1030, 540, 1030 + 540],
+      UserchartData: [
+        ['유저가입날짜', '신규가입 유저', '기존유저', '총 유저'],
+        ['22.04.09', 1000, 322, 1000 + 322],
+        ['22.04.10', 150, 1000 + 322, 1000 + 322 + 150],
+        ['22.04.11', 660, 1000 + 322 + 150, 1000 + 322 + 150 + 660],
+        [
+          '22.04.12',
+          1030,
+          1000 + 322 + 150 + 660,
+          1030 + 1000 + 322 + 150 + 660,
+        ],
+      ],
+      SurvayregData: [
+        ['설문등록날짜', '기존설문', '신규등록설문', '총 설문'],
+        ['22.04.09', 0, 12, 0 + 12],
+        ['22.04.10', 12, 5, 12 + 5],
+        ['22.04.11', 17, 15, 17 + 15],
+        ['22.04.12', 32, 9, 32 + 9],
+      ],
+      SurvaypartData: [
+        ['설문등록날짜', '기존참여유저', '신규참여유저', '총 참여유저'],
+        ['22.04.09', 0, 22, 0 + 22],
+        ['22.04.10', 22, 21, 22 + 21],
+        ['22.04.11', 43, 10, 43 + 10],
+        ['22.04.12', 53, 25, 53 + 25],
+      ],
+      UserComeData: [
+        ['방문날짜', '기존 유저', '재방문유저'],
+        ['22.04.09', 1000 + 322, 322],
+        ['22.04.10', 1000 + 322 + 150, 460],
+        ['22.04.11', 1000 + 322 + 150 + 660, 1120],
+        ['22.04.12', 1030 + 1000 + 322 + 150 + 660, 540],
       ],
       chartOptions: {
         chart: {
@@ -1270,6 +1402,10 @@ export default {
       ShowGradeSetting: false,
       ShowPointSetting: false,
       ShowUserModify: false,
+      showchart1: false,
+      showchart2: false,
+      showchart3: false,
+      showchart4: false,
       UserNum: 0, // 사용자데이터 검색변수
       dates: [],
       overlay: false, // 적용 알림창 시간변수
@@ -1287,6 +1423,10 @@ export default {
 </script>
 
 <style scoped>
+.dashbtn {
+  margin: 20px;
+  color: white;
+}
 .iconsize {
   width: 50px;
   height: 50px;
