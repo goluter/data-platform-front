@@ -1,5 +1,86 @@
 <template>
   <div>
+    <!--문의 상세 내용 모달창-->
+    <div v-if="ShowModal_Inquiry == true" class="modal-black">
+      <div class="modal-white">
+        <h4>문의게시판 상세</h4>
+        <v-simple-table style="background: #b8d2ea; margin: 10px">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th style="text-align: center">제목</th>
+                <th class="text-left">글쓴이</th>
+                <th class="text-left">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center">
+                  {{ InquiryData[inquirynum].id + 1 }}
+                </td>
+                <td style="text-align: center">
+                  {{ InquiryData[inquirynum].question }}
+                </td>
+                <td>{{ InquiryData[inquirynum].name }}</td>
+                <td>{{ InquiryData[inquirynum].date }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-textarea
+            :value="InquiryData[inquirynum].question"
+            label="제목"
+            auto-grow
+            outlined
+            disabled
+          />
+          <v-textarea
+            :value="InquiryData[inquirynum].main"
+            label="본문"
+            auto-grow
+            outlined
+            disabled
+          />
+          <v-textarea
+            :value="InquiryData[inquirynum].answer"
+            label="답변"
+            auto-grow
+            outlined
+            v-if="InquiryData[inquirynum].check == '답변 후'"
+          />
+          <v-textarea
+            :value="InquiryData[inquirynum].answer"
+            label="답변"
+            auto-grow
+            outlined
+            v-if="InquiryData[inquirynum].check == '답변 전'"
+          />
+        </div>
+
+        <div>
+          <v-btn
+            id="usraddapply"
+            elevation="2"
+            @click="
+              ShowModal_Inquiry = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            확인
+          </v-btn>
+          <v-btn
+            id="usraddcancel"
+            elevation="2"
+            @click="ShowModal_Inquiry = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
     <!--유저추가 모달창-->
     <div v-if="ShowModal_UserAdd == true" class="modal-black">
       <div class="modal-white">
@@ -1166,7 +1247,7 @@
       </div>
       <!--문의게시판-->
       <div v-if="TopTab8 == true">
-        <h2>문의게시판1</h2>
+        <h2>문의게시판</h2>
         <v-simple-table>
           <template #default>
             <thead>
@@ -1175,20 +1256,27 @@
                 <th class="text-left">제목</th>
                 <th class="text-left">이름</th>
                 <th class="text-left">날짜</th>
+                <th class="text-left">답변여부</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(a, i) in data" :key="a">
+              <tr
+                v-for="(a, i) in data"
+                :key="a"
+                @click="
+                  ShowModal_Inquiry = true
+                  inquirynum = i
+                "
+              >
                 <td style="text-align: center">
                   {{ i + 1 }}
                 </td>
                 <td>
-                  <a :href="InquiryData[i].url" style="text-decoration: none">
-                    {{ InquiryData[i].title }}
-                  </a>
+                  {{ InquiryData[i].question }}
                 </td>
                 <td>{{ InquiryData[i].name }}</td>
                 <td>{{ InquiryData[i].date }}</td>
+                <td>{{ InquiryData[i].check }}</td>
               </tr>
             </tbody>
           </template>
@@ -1216,6 +1304,7 @@ export default {
 
   data() {
     return {
+      ShowModal_Inquiry: false,
       page: 1,
       TopTab1: true,
       TopTab2: false,
@@ -1271,6 +1360,7 @@ export default {
       ShowPointSetting: false,
       ShowUserModify: false,
       UserNum: 0, // 사용자데이터 검색변수
+      inquirynum: 0, //문의게시판 검색변수
       dates: [],
       overlay: false, // 적용 알림창 시간변수
     }
