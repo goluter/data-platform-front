@@ -415,6 +415,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -430,6 +433,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -445,6 +451,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -460,6 +469,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -475,6 +487,63 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
+          ShowUserInfo = false
+        "
+      >
+        스토어
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = true
+          TopTab7 = false
+          TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
+          ShowUserInfo = false
+        "
+      >
+        보상관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = true
+          TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
+          ShowUserInfo = false
+        "
+      >
+        리포트
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = true
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -487,9 +556,12 @@
           TopTab3 = false
           TopTab4 = false
           TopTab5 = false
-          TopTab6 = true
+          TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = true
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -503,8 +575,11 @@
           TopTab4 = false
           TopTab5 = false
           TopTab6 = false
-          TopTab7 = true
+          TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = true
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -519,7 +594,10 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = false
-          TopTab8 = true
+          TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = true
           ShowUserInfo = false
         "
       >
@@ -1047,8 +1125,39 @@
           </div>
         </div>
       </div>
+      <!-- 스토어-->
+      <div v-if="TobTab5 == true"></div>
+      <!-- 보상관리-->
+      <div v-if="TobTab6 == true"></div>
+      <!-- 리포트-->
+      <div v-if="TobTab7 == true"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- 공지사항-->
-      <div v-if="TopTab5 == true">
+      <div v-if="TopTab8 == true">
         <h2>공지사항</h2>
         <v-btn
           elevation="2"
@@ -1086,7 +1195,7 @@
         </v-simple-table>
       </div>
       <!--FAQ-->
-      <div v-if="TopTab6 == true">
+      <div v-if="TopTab9 == true">
         <h2>FAQ</h2>
         <v-btn
           elevation="2"
@@ -1123,7 +1232,7 @@
         </v-simple-table>
       </div>
       <!--Q&A-->
-      <div v-if="TopTab7 == true">
+      <div v-if="TopTab10 == true">
         <h2>Q&A</h2>
         <v-btn
           elevation="2"
@@ -1165,7 +1274,7 @@
         </v-simple-table>
       </div>
       <!--문의게시판-->
-      <div v-if="TopTab8 == true">
+      <div v-if="TopTab11 == true">
         <h2>문의게시판1</h2>
         <v-simple-table>
           <template #default>
@@ -1225,6 +1334,9 @@ export default {
       TopTab6: false,
       TopTab7: false,
       TopTab8: false,
+      TopTab9: false,
+      TopTab10: false,
+      TopTab11: false,
       chartData: [
         ['유저수', '신규유저', '재방문유저', '총유저'],
         ['22.04.09', 1000, 322, 1322],
