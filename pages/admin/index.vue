@@ -1337,6 +1337,7 @@ export default {
       TopTab9: false,
       TopTab10: false,
       TopTab11: false,
+      
       chartData: [
         ['유저수', '신규유저', '재방문유저', '총유저'],
         ['22.04.09', 1000, 322, 1322],
