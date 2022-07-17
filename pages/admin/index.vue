@@ -1334,9 +1334,6 @@ export default {
       TopTab6: false,
       TopTab7: false,
       TopTab8: false,
-      TopTab9: false,
-      TopTab10: false,
-      TopTab11: false,
       
       chartData: [
         ['유저수', '신규유저', '재방문유저', '총유저'],
@@ -1351,6 +1348,9 @@ export default {
           subtitle: 'Sales, Expenses, and Profit: 2014-2017',
         },
       },
+      TopTab9: false,
+      TopTab10: false,
+      TopTab11: false,
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
       data,
