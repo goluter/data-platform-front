@@ -8,7 +8,7 @@ const Inquirydata = [
     main: '업적 내역 어떻게 볼 수 있나요?',
     url: '/admin/inquiry/0',
     userurl: '/inquiry/0',
-    check: '답변 전'
+    check: '답변 전',
   },
   {
     id: 1,
@@ -20,7 +20,7 @@ const Inquirydata = [
     answer: '마이페이지 > 포인트 내역에서 확인 가능합니다.',
     url: '/admin/inquiry/1',
     check: '답변 후',
-    userurl: '/inquiry/1'
-  }
+    userurl: '/inquiry/1',
+  },
 ]
 export default Inquirydata
