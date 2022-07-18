@@ -1,3 +1,14 @@
+<template />
+
+<script>
+export default {
+  name: 'Index',
+  layout: 'DefaultLayout',
+
+  componets: {}
+}
+</script>
+
 <template>
   <v-container class="ma-auto mb-10">
     <v-row class="section" style="margin-top: 0">
@@ -75,7 +86,7 @@
     <NoticeBanner :notice-data="noticeData" />
   </v-container>
 </template>
-
+=======
 <script>
 import Carousels from '../components/Carousels.vue'
 import Banner from '../components/Banner.vue'
@@ -207,6 +218,8 @@ export default {
   }
 }
 </script>
+
+<style></style>
 
 <style scoped>
 .section {

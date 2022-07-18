@@ -11,7 +11,6 @@
 
       <a><span>상세내역</span></a>
     </div>
-
     <div class="box">
       <div class="subbox">
         <img
