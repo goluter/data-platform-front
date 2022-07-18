@@ -496,6 +496,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -511,6 +514,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -526,6 +532,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -541,6 +550,9 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -556,6 +568,63 @@
           TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
+          ShowUserInfo = false
+        "
+      >
+        스토어
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = true
+          TopTab7 = false
+          TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
+          ShowUserInfo = false
+        "
+      >
+        보상관리
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = true
+          TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
+          ShowUserInfo = false
+        "
+      >
+        리포트
+      </v-tab>
+      <v-tab
+        @click="
+          TopTab1 = false
+          TopTab2 = false
+          TopTab3 = false
+          TopTab4 = false
+          TopTab5 = false
+          TopTab6 = false
+          TopTab7 = false
+          TopTab8 = true
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -568,9 +637,12 @@
           TopTab3 = false
           TopTab4 = false
           TopTab5 = false
-          TopTab6 = true
+          TopTab6 = false
           TopTab7 = false
           TopTab8 = false
+          TopTab9 = true
+          TopTab10 = false
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -584,8 +656,11 @@
           TopTab4 = false
           TopTab5 = false
           TopTab6 = false
-          TopTab7 = true
+          TopTab7 = false
           TopTab8 = false
+          TopTab9 = false
+          TopTab10 = true
+          TopTab11 = false
           ShowUserInfo = false
         "
       >
@@ -600,7 +675,10 @@
           TopTab5 = false
           TopTab6 = false
           TopTab7 = false
-          TopTab8 = true
+          TopTab8 = false
+          TopTab9 = false
+          TopTab10 = false
+          TopTab11 = true
           ShowUserInfo = false
         "
       >
@@ -640,6 +718,88 @@
     <div style="z-index: 3">
       <div v-if="TopTab1 == true">
         <h2>대시보드</h2>
+        <v-btn
+          @click="
+            showchart1 = true
+            showchart2 = false
+            showchart3 = false
+            showchart4 = false
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          :key="a"
+        >
+          유저<br />
+          all: {{ UserchartData[4][3] }}<br />
+          new:
+          {{
+            UserchartData[1][1] +
+            UserchartData[2][1] +
+            UserchartData[3][1] +
+            UserchartData[4][1]
+          }}</v-btn
+        >
+        <v-btn
+          @click="
+            showchart1 = false
+            showchart2 = true
+            showchart3 = false
+            showchart4 = false
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          >설문등록<br />
+          all: {{ SurvayregData[4][3] }}<br />
+          new:
+          {{
+            SurvayregData[1][1] +
+            SurvayregData[2][1] +
+            SurvayregData[3][1] +
+            SurvayregData[4][1]
+          }}</v-btn
+        >
+        <v-btn
+          @click="
+            showchart1 = false
+            showchart2 = false
+            showchart3 = true
+            showchart4 = false
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          >설문참여<br />
+          all: {{ SurvaypartData[4][3] }}<br />
+          new:
+          {{
+            SurvaypartData[1][1] +
+            SurvaypartData[2][1] +
+            SurvaypartData[3][1] +
+            SurvaypartData[4][1]
+          }}</v-btn
+        >
+        <v-btn
+          @click="
+            showchart1 = false
+            showchart2 = false
+            showchart3 = false
+            showchart4 = true
+          "
+          class="dashbtn"
+          color="#1087f4"
+          x-large
+          >방문자수<br />
+
+          new:
+          {{
+            UserComeData[1][1] +
+            UserComeData[2][1] +
+            UserComeData[3][1] +
+            UserComeData[4][1]
+          }}</v-btn
+        >
 
         <div style="float: left">
           <v-date-picker
@@ -649,10 +809,34 @@
             locale="ko-KR"
             width="400"
           />
-          <a style="visibility: hidden">model: {{ dates }}</a>
         </div>
-        <div style="float: left; width: 70%">
-          <GChart type="LineChart" :data="chartData" :options="chartOptions" />
+        <div v-if="showchart1 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="UserchartData"
+            :options="chartOptions"
+          />
+        </div>
+        <div v-if="showchart2 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="SurvayregData"
+            :options="chartOptions"
+          />
+        </div>
+        <div v-if="showchart3 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="SurvaypartData"
+            :options="chartOptions"
+          />
+        </div>
+        <div v-if="showchart4 == true" style="float: left; width: 70%">
+          <GChart
+            type="LineChart"
+            :data="UserComeData"
+            :options="chartOptions"
+          />
         </div>
       </div>
       <!-- 유저목록-->
@@ -1093,43 +1277,184 @@
       <div v-if="TopTab4 == true">
         <h2>이벤트</h2>
         <div>
-          <input type="checkbox" name="fruits" value="orange" />진행중인 이벤트
-          <input type="checkbox" name="fruits" value="orange" />지난 이벤트
-
           <v-btn
-            depressed
-            elevation="2"
+            style="margin: 5px"
             small
-            href="http://localhost:3000/admin/"
+            elevation="2"
+            @click="
+              ShowOngoingEvent = true
+              ShowPlannedEvent = false
+              ShowEndedEvent = false
+            "
           >
-            새로고침
+            진행 중인 이벤트
+          </v-btn>
+          <v-btn
+            style="margin: 5px"
+            small
+            elevation="2"
+            @click="
+              ShowOngoingEvent = false
+              ShowPlannedEvent = true
+              ShowEndedEvent = false
+            "
+          >
+            진행 예정 이벤트
+          </v-btn>
+          <v-btn
+            style="margin: 5px"
+            small
+            elevation="2"
+            @click="
+              ShowOngoingEvent = false
+              ShowPlannedEvent = false
+              ShowEndedEvent = true
+            "
+          >
+            지난 이벤트
           </v-btn>
         </div>
         <div>
           <v-btn elevation="2" @click="ShowEventAdd = true">
             이벤트 등록
           </v-btn>
-          <div style="height: 10%">
-            <img
-              src="../../assets/99A04B475BC982642A.jpg"
-              style="width: 100%; height: 11rem; padding: 1%"
-            />
-            <img
-              src="../../assets/99A04B475BC982642A.jpg"
-              style="width: 100%; height: 11rem; padding: 1%"
-            />
-            <img
-              src="../../assets/99A04B475BC982642A.jpg"
-              style="width: 100%; height: 11rem; padding: 1%"
-            />
+          <!-- 진행 이벤트-->
+          <div v-if="ShowOngoingEvent == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">제목</th>
+                    <th class="text-left">작성자</th>
+                    <th class="text-left">날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in OngoingEvent" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      <a
+                        :href="OngoingEvent[i].url"
+                        style="text-decoration: none"
+                        >{{ OngoingEvent[i].title }}</a
+                      >
+                    </td>
+                    <td>{{ OngoingEvent[i].name }}</td>
+                    <td>{{ OngoingEvent[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
           </div>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="6"></v-pagination>
+          <!-- 예정 이벤트-->
+          <div v-if="ShowPlannedEvent == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">제목</th>
+                    <th class="text-left">작성자</th>
+                    <th class="text-left">날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in PlannedEvent" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      <a
+                        :href="PlannedEvent[i].url"
+                        style="text-decoration: none"
+                        >{{ PlannedEvent[i].title }}</a
+                      >
+                    </td>
+                    <td>{{ PlannedEvent[i].name }}</td>
+                    <td>{{ PlannedEvent[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
+          </div>
+          <!-- 지난 이벤트-->
+          <div v-if="ShowEndedEvent == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">제목</th>
+                    <th class="text-left">이름</th>
+                    <th class="text-left">날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in EndedEvent" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      <a
+                        :href="EndedEvent[i].url"
+                        style="text-decoration: none"
+                        >{{ EndedEvent[i].title }}</a
+                      >
+                    </td>
+                    <td>{{ EndedEvent[i].name }}</td>
+                    <td>{{ EndedEvent[i].date }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <div class="text-center">
+              <v-pagination v-model="page" :length="6"></v-pagination>
+            </div>
           </div>
         </div>
       </div>
+      <!-- 스토어-->
+      <div v-if="TobTab5 == true"></div>
+      <!-- 보상관리-->
+      <div v-if="TobTab6 == true"></div>
+      <!-- 리포트-->
+      <div v-if="TobTab7 == true"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- 공지사항-->
-      <div v-if="TopTab5 == true">
+      <div v-if="TopTab8 == true">
         <h2>공지사항</h2>
         <v-btn
           elevation="2"
@@ -1167,7 +1492,7 @@
         </v-simple-table>
       </div>
       <!--FAQ-->
-      <div v-if="TopTab6 == true">
+      <div v-if="TopTab9 == true">
         <h2>FAQ</h2>
         <v-btn
           elevation="2"
@@ -1204,7 +1529,7 @@
         </v-simple-table>
       </div>
       <!--Q&A-->
-      <div v-if="TopTab7 == true">
+      <div v-if="TopTab10 == true">
         <h2>Q&A</h2>
         <v-btn
           elevation="2"
@@ -1246,8 +1571,8 @@
         </v-simple-table>
       </div>
       <!--문의게시판-->
-      <div v-if="TopTab8 == true">
-        <h2>문의게시판</h2>
+      <div v-if="TopTab11 == true">
+        <h2>문의게시판1</h2>
         <v-simple-table>
           <template #default>
             <thead>
@@ -1294,6 +1619,9 @@ import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
 import SurveyData from '../../assets/data/SurveyData'
 import QnAdata from 'assets/data/QnAdata'
+import EndedEvent from '../../assets/data/EndedEvent'
+import OngoingEvent from '../../assets/data/OngoingEvent'
+import PlannedEvent from '../../assets/data/PlannedEvent'
 
 export default {
   name: 'Index',
@@ -1305,7 +1633,13 @@ export default {
   data() {
     return {
       ShowModal_Inquiry: false,
+      EndedEvent,
+      OngoingEvent,
+      PlannedEvent,
       page: 1,
+      ShowOngoingEvent: false,
+      ShowEndedEvent: false,
+      ShowPlannedEvent: false,
       TopTab1: true,
       TopTab2: false,
       TopTab3: false,
@@ -1314,12 +1648,38 @@ export default {
       TopTab6: false,
       TopTab7: false,
       TopTab8: false,
-      chartData: [
-        ['유저수', '신규유저', '재방문유저', '총유저'],
-        ['22.04.09', 1000, 322, 1322],
-        ['22.04.10', 1170, 460, 1170 + 460],
-        ['22.04.11', 660, 1120, 660 + 1120],
-        ['22.04.12', 1030, 540, 1030 + 540],
+      UserchartData: [
+        ['유저가입날짜', '신규가입 유저', '기존유저', '총 유저'],
+        ['22.04.09', 1000, 322, 1000 + 322],
+        ['22.04.10', 150, 1000 + 322, 1000 + 322 + 150],
+        ['22.04.11', 660, 1000 + 322 + 150, 1000 + 322 + 150 + 660],
+        [
+          '22.04.12',
+          1030,
+          1000 + 322 + 150 + 660,
+          1030 + 1000 + 322 + 150 + 660,
+        ],
+      ],
+      SurvayregData: [
+        ['설문등록날짜', '기존설문', '신규등록설문', '총 설문'],
+        ['22.04.09', 0, 12, 0 + 12],
+        ['22.04.10', 12, 5, 12 + 5],
+        ['22.04.11', 17, 15, 17 + 15],
+        ['22.04.12', 32, 9, 32 + 9],
+      ],
+      SurvaypartData: [
+        ['설문등록날짜', '기존참여유저', '신규참여유저', '총 참여유저'],
+        ['22.04.09', 0, 22, 0 + 22],
+        ['22.04.10', 22, 21, 22 + 21],
+        ['22.04.11', 43, 10, 43 + 10],
+        ['22.04.12', 53, 25, 53 + 25],
+      ],
+      UserComeData: [
+        ['방문날짜', '기존 유저', '재방문유저'],
+        ['22.04.09', 1000 + 322, 322],
+        ['22.04.10', 1000 + 322 + 150, 460],
+        ['22.04.11', 1000 + 322 + 150 + 660, 1120],
+        ['22.04.12', 1030 + 1000 + 322 + 150 + 660, 540],
       ],
       chartOptions: {
         chart: {
@@ -1327,6 +1687,9 @@ export default {
           subtitle: 'Sales, Expenses, and Profit: 2014-2017',
         },
       },
+      TopTab9: false,
+      TopTab10: false,
+      TopTab11: false,
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
       data,
@@ -1359,6 +1722,10 @@ export default {
       ShowGradeSetting: false,
       ShowPointSetting: false,
       ShowUserModify: false,
+      showchart1: false,
+      showchart2: false,
+      showchart3: false,
+      showchart4: false,
       UserNum: 0, // 사용자데이터 검색변수
       inquirynum: 0, //문의게시판 검색변수
       dates: [],
@@ -1377,6 +1744,10 @@ export default {
 </script>
 
 <style scoped>
+.dashbtn {
+  margin: 20px;
+  color: white;
+}
 .iconsize {
   width: 50px;
   height: 50px;

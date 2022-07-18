@@ -10,23 +10,23 @@
       <v-text-field
         label="답변"
         filled
-        style="padding: 18px 0px 0 16px; width: 357px"
+        style="padding: 18px 16px 0 16px; width: 91%"
       ></v-text-field>
-      <v-btn
-        color="#1a9efe"
-        style="
-          margin: 19px 0px 16px 16px;
-          font-size: 16px;
-          color: white;
-          width: 357px;
-          height: 55px;
-        "
-        elevation="2"
-        nuxt
-        to="/usertitle/complete"
-        >획득하기</v-btn
-      >
     </div>
+    <v-btn
+      color="#1a9efe"
+      style="
+        margin: 0px 16px 0px 16px;
+        font-size: 16px;
+        color: white;
+        width: 91%;
+        height: 55px;
+      "
+      elevation="2"
+      nuxt
+      to="/usertitle/complete"
+      >획득하기</v-btn
+    >
     <div style="overflow: hidden; height: 200%"><div class="gray"></div></div>
   </div>
 </template>
@@ -88,8 +88,8 @@ export default {
   padding: 19px 0px 8px 9px;
 }
 .smallgray {
-  height: 115px;
-
+  display: flex;
+  justify-content: center;
   font-size: 12px;
   font-weight: 500;
   font-stretch: normal;
