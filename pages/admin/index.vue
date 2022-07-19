@@ -1190,88 +1190,215 @@
       <!-- 설문관리-->
       <div v-if="TopTab3 == true">
         <h2>설문관리</h2>
-        <div style="padding: 1%">
-          <div style="float: left">
-            <img
-              src="../../assets/duplicate.png"
-              class="iconsize"
-              style="vertical-align: top"
-            />
-            <p style="display: inline-block; text-align: center">
-              심사를 기다리는 설문
-              <br />
-              --개
-            </p>
-          </div>
-          <div style="float: left">
-            <img
-              src="../../assets/surveyor.png"
-              class="iconsize"
-              style="vertical-align: top"
-            />
-            <p style="display: inline-block; text-align: center">
-              지금까지 작성된 설문
-              <br />
-              --개
-            </p>
-          </div>
-          <div>
-            <img
-              src="../../assets/new.png"
-              class="iconsize"
-              style="vertical-align: top"
-            />
-            <p style="display: inline-block; text-align: center">
-              심사를 기다리는 설문
-              <br />
-              --개
-            </p>
-          </div>
-        </div>
-        <div style="margin-top: 1%; overflow: auto; height: 40em">
-          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo2">
-            <v-btn
-              elevation="2"
-              x-small
-              @click="
-                ShowSurveyInfo = true
-                SurveyDataClick = i
-              "
-            >
-              승인설정
-            </v-btn>
-            <div>
-              <img
-                src="../../assets/tag.png"
-                class="iconsize2"
-                style="vertical-align: top"
-              />
-              <p style="display: inline-block">
-                {{ SurveyData[i].title }}
-              </p>
-            </div>
-            <div>
-              <img
-                src="../../assets/user-avatar.png"
-                class="iconsize2"
-                style="vertical-align: top"
-              />
-              <p style="display: inline-block">
-                {{ SurveyData[i].name }}
-              </p>
-            </div>
-            <div>
-              <img
-                src="../../assets/calendar.png"
-                class="iconsize2"
-                style="vertical-align: top"
-              />
-              <p style="display: inline-block">
-                {{ SurveyData[i].date }}
-              </p>
-            </div>
-          </div>
-        </div>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = false
+            ShowReviewSurvay = true
+            ShowEndedSurvay = false
+            ShowAllSurvay = false
+          "
+        >
+          심사 중인 설문
+        </v-btn>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = true
+            ShowReviewSurvay = false
+            ShowEndedSurvay = false
+            ShowAllSurvay = false
+          "
+        >
+          설문 중인 설문
+        </v-btn>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = false
+            ShowReviewSurvay = false
+            ShowEndedSurvay = true
+            ShowAllSurvay = false
+          "
+        >
+          종료된 설문
+        </v-btn>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = false
+            ShowReviewSurvay = false
+            ShowEndedSurvay = false
+            ShowAllSurvay = true
+          "
+        >
+          모든 설문
+        </v-btn>
+        <!--모든 설문-->
+        <v-simple-table v-if="ShowAllSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData" :key="a">
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td>{{ SurveyData[i].name }}</td>
+                <td>{{ SurveyData[i].date }}</td>
+                <td>{{ SurveyData[i].period }}</td>
+                <td>{{ SurveyData[i].type }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <!--심사 중인 설문-->
+        <v-simple-table v-if="ShowReviewSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData" :key="a">
+                <td
+                  v-if="SurveyData[i].type == '심사중'"
+                  style="text-align: center"
+                >
+                  {{ i + 1 }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].name }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].date }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].period }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].type }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <!--설문 중인 설문-->
+        <v-simple-table v-if="ShowOngoingSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData" :key="a">
+                <td
+                  v-if="SurveyData[i].type == '설문중'"
+                  style="text-align: center"
+                >
+                  {{ i + 1 }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].name }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].date }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].period }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].type }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <!--종료된 설문-->
+        <v-simple-table v-if="ShowEndedSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData" :key="a">
+                <td
+                  v-if="SurveyData[i].type == '종료'"
+                  style="text-align: center"
+                >
+                  {{ i + 1 }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].name }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].date }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].period }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].type }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!-- 이벤트-->
       <div v-if="TopTab4 == true">
@@ -1428,30 +1555,6 @@
       <div v-if="TobTab6 == true"></div>
       <!-- 리포트-->
       <div v-if="TobTab7 == true"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- 공지사항-->
       <div v-if="TopTab8 == true">
@@ -1632,6 +1735,10 @@ export default {
 
   data() {
     return {
+      ShowAllSurvay: true,
+      ShowOngoingSurvay: false,
+      ShowReviewSurvay: false,
+      ShowEndedSurvay: false,
       ShowModal_Inquiry: false,
       EndedEvent,
       OngoingEvent,

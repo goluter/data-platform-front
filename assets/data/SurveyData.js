@@ -4,35 +4,45 @@ const SurveyData = [
     title: ' MBTI별 음식 성향1',
     name: '뭐먹냐',
     date: '2022. 03. 20.',
-    url: '/admin/qa/0'
+    period: '2022.01.13~2022.01.15',
+    url: '/admin/qa/0',
+    type: '종료',
   },
   {
     id: 1,
     title: ' MBTI별 음식 성향2',
     name: '안먹는데?',
     date: '2022. 01. 01.',
-    url: '/admin/qa/1'
+    period: '2022.07.13~2022.08.15',
+    url: '/admin/qa/1',
+    type: '심사중',
   },
   {
     id: 2,
     title: ' MBTI별 음식 성향3',
     name: '안물안궁',
     date: '2018. 07. 31.',
-    url: '/admin/qa/2'
+    period: '2022.08.13~2022.10.11',
+    url: '/admin/qa/2',
+    type: '설문중',
   },
   {
     id: 3,
     title: ' MBTI별 음식 성향4',
     name: '배불러',
     date: '0000. 00. 04.',
-    url: '/admin/qa/3'
+    period: '2022.04.13~2022.08.15',
+    url: '/admin/qa/3',
+    type: '설문중',
   },
   {
     id: 4,
     title: ' MBTI별 학식 성향',
     name: '넌이미먹고있다',
     date: '0000. 00. 11.',
-    url: '/admin/qa/4'
-  }
+    period: '2022.01.13~2022.01.15',
+    url: '/admin/qa/4',
+    type: '심사중',
+  },
 ]
 export default SurveyData
