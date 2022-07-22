@@ -172,7 +172,7 @@
                     #{{ SurveyData[SurveyDataClick].tag[i][0] }}
                   </a>
                 </td>
-                <td><v-btn small>수정</v-btn></td>
+                <td><v-btn @click="ShowTagEdit = true" small>수정</v-btn></td>
               </tr>
               <tr>
                 <td>보상</td>
@@ -189,12 +189,16 @@
               <tr>
                 <td>댓글</td>
                 <td>{{ SurveyData[SurveyDataClick].commentnum }}개</td>
-                <td><v-btn small>자세히</v-btn></td>
+                <td>
+                  <v-btn @click="ShowCommentModal = true" small>자세히</v-btn>
+                </td>
               </tr>
               <tr>
                 <td>리포트</td>
                 <td>{{ SurveyData[SurveyDataClick].reportnum }}개</td>
-                <td><v-btn small>자세히</v-btn></td>
+                <td>
+                  <v-btn @click="ShowReportModal = true" small>자세히</v-btn>
+                </td>
               </tr>
               <tr>
                 <td>좋아요</td>
@@ -206,27 +210,29 @@
                 <td>{{ SurveyData[SurveyDataClick].downloadnum }}회</td>
                 <td></td>
               </tr>
-              <tr>
+              <tr v-if="SurveyData[SurveyDataClick].type == '심사중'">
                 <td>승인상태</td>
                 <td>{{ SurveyData[SurveyDataClick].type }}</td>
-                <td><v-btn small>수정</v-btn></td>
+                <td><v-btn @click="ShowTypeModal = true" small>수정</v-btn></td>
+              </tr>
+              <tr
+                v-if="
+                  SurveyData[SurveyDataClick].type == '종료' ||
+                  SurveyData[SurveyDataClick].type == '설문중'
+                "
+              >
+                <td>승인상태</td>
+                <td>{{ SurveyData[SurveyDataClick].type }}</td>
+                <td>
+                  <v-btn disabled @click="ShowTypeModal = true" small
+                    >수정</v-btn
+                  >
+                </td>
               </tr>
             </tbody>
           </template>
         </v-simple-table>
         <div>
-          <!-- <form>
-            <v-radio-group v-model="row" row style="display: inline-block">
-              <v-radio label="승인" value="radio-1" @click="value = 0" />
-              <v-radio label="거절" value="radio-2" @click="value = 1" />
-            </v-radio-group>
-            <textarea
-              v-if="value == 1"
-              name="content"
-              style="width: 98%; height: 10%; background: whitesmoke"
-              placeholder="사유입력"
-            />
-          </form> -->
           <div style="margin: 10px">
             <v-btn
               id="surveyinfoapply"
@@ -250,7 +256,7 @@
         </div>
       </div>
     </div>
-    <!--설문관리 조사기관 모달창-->
+    <!--설문관리 조사기간 모달창-->
     <div v-if="ShowPeriodEdit == true" class="modal-black">
       <div class="modal-white">
         <h3>조사 기간 수정</h3>
@@ -271,6 +277,176 @@
             수정
           </v-btn>
           <v-btn id="eventcancel" elevation="2" @click="ShowPeriodEdit = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 태그 수정 모달창-->
+    <div v-if="ShowTagEdit == true" class="modal-black">
+      <div class="modal-white">
+        <h3>태그 수정</h3>
+
+        <v-chip
+          v-for="(a, i) in SurveyData[SurveyDataClick].tag"
+          :key="a"
+          v-if="SurveyData[SurveyDataClick].tag[i][1] == true"
+          class="ma-2"
+          close
+          @click:close="SurveyData[SurveyDataClick].tag[i][1] = false"
+        >
+          {{ SurveyData[SurveyDataClick].tag[i][0] }}
+        </v-chip>
+        <v-textarea
+          class="mx-2"
+          label="태그추가"
+          rows="1"
+          prepend-icon="mdi-comment"
+        ></v-textarea>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowTagEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowTagEdit = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 승인상태 수정 모달창-->
+    <div v-if="ShowTypeModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>승인상태 수정</h3>
+
+        <form>
+          <v-radio-group v-model="row" row style="display: inline-block">
+            <v-radio label="승인" value="radio-1" @click="value = 0" />
+            <v-radio label="거절" value="radio-2" @click="value = 1" />
+          </v-radio-group>
+          <textarea
+            v-if="value == 1"
+            name="content"
+            style="width: 98%; height: 10%; background: whitesmoke"
+            placeholder="사유입력"
+          />
+        </form>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowTypeModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowTypeModal = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 댓글상세 모달창-->
+    <div v-if="ShowCommentModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>댓글</h3>
+
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">댓글내용</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성시간</th>
+                <th class="text-left">좋아요</th>
+                <th class="text-left">싫어요</th>
+                <th class="text-left">삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in SurveyData[SurveyDataClick].comment"
+                :key="a"
+              >
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][0] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][1] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][2] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][3] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][4] }}</td>
+                <td><v-btn small>삭제</v-btn></td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowCommentModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowCommentModal = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 리포트 모달창-->
+    <div v-if="ShowReportModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>리포트</h3>
+
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">리포트제목</th>
+                <th class="text-left">등록시간</th>
+                <th class="text-left">작성자</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData[SurveyDataClick].report" :key="a">
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>{{ SurveyData[SurveyDataClick].report[i][0] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].report[i][1] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].report[i][2] }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowReportModal = false"
+          >
             닫기
           </v-btn>
         </div>
@@ -1853,6 +2029,11 @@ export default {
 
   data() {
     return {
+      ShowTypeModal: false,
+      ShowReportModal: false,
+      ShowCommentModal: false,
+      chip: [true, true, true, true, true, true],
+      ShowTagEdit: false,
       ShowPeriodEdit: false,
       ShowAllSurvay: true,
       ShowOngoingSurvay: false,
