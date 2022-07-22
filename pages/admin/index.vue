@@ -184,7 +184,9 @@
               <tr>
                 <td>설정</td>
                 <td></td>
-                <td><v-btn small>자세히</v-btn></td>
+                <td>
+                  <v-btn @click="ShowSettingModal = true" small>자세히</v-btn>
+                </td>
               </tr>
               <tr>
                 <td>댓글</td>
@@ -446,6 +448,47 @@
             id="eventcancel"
             elevation="2"
             @click="ShowReportModal = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 설정 모달창-->
+    <div v-if="ShowSettingModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>설문 설정</h3>
+        <div>
+          <v-sheet class="pa-5">
+            <v-switch v-model="switch1" label="응답 수정 가능" inset></v-switch>
+            <v-switch
+              v-model="switch2"
+              label="인증 유저만 참여 가능"
+              inset
+            ></v-switch>
+            <v-switch
+              v-model="switch3"
+              label="칭호 가진 유저만 참여 가능"
+              inset
+            ></v-switch>
+          </v-sheet>
+        </div>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowSettingModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowSettingModal = false"
           >
             닫기
           </v-btn>
@@ -2029,6 +2072,7 @@ export default {
 
   data() {
     return {
+      ShowSettingModal: false,
       ShowTypeModal: false,
       ShowReportModal: false,
       ShowCommentModal: false,
