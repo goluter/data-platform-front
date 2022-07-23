@@ -176,10 +176,16 @@
               </tr>
               <tr>
                 <td>보상</td>
+                포인트
+                {{
+                  SurveyData[SurveyDataClick].point
+                }},
                 <a v-for="(a, i) in SurveyData[SurveyDataClick].price" :key="a">
                   {{ SurveyData[SurveyDataClick].price[i][0] }},
                 </a>
-                <td><v-btn small>수정</v-btn></td>
+                <td>
+                  <v-btn @click="ShowPriceModal = true" small>수정</v-btn>
+                </td>
               </tr>
               <tr>
                 <td>설정</td>
@@ -490,6 +496,168 @@
             elevation="2"
             @click="ShowSettingModal = false"
           >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 보상 모달창-->
+    <div v-if="ShowPriceModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>보상 수정</h3>
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">보상</th>
+                <th class="text-left">수량</th>
+                <th class="text-left">남은 수량</th>
+                <th class="text-left">선택</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData[SurveyDataClick].price" :key="a">
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>{{ SurveyData[SurveyDataClick].price[i][0] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].price[i][1] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].price[i][2] }}</td>
+                <td>
+                  <v-btn
+                    @click="
+                      ShowPriceEdit = true
+                      PriceEdit = i
+                    "
+                  >
+                    선택
+                  </v-btn>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <v-simple-table style="margin-top: 10px; margin-bottom: 10px">
+          <template #default>
+            <tbody>
+              <tr>
+                <td style="text-align: center">포인트</td>
+                <td>{{ SurveyData[SurveyDataClick].point }}P</td>
+                <td><v-btn @click="ShowPointEdit = true" small>수정</v-btn></td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPriceModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPriceModal = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 보상 수정 모달창-->
+    <div v-if="ShowPriceEdit == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th class="text-left">보상</th>
+                <th class="text-left">수량</th>
+                <th class="text-left">남은 수량</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].price[PriceEdit][0]"
+                    auto-grow
+                    outlined
+                    rows="1"
+                  ></v-textarea>
+                </td>
+                <td class="text-left">
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].price[PriceEdit][1]"
+                    auto-grow
+                    outlined
+                    rows="1"
+                  ></v-textarea>
+                </td>
+                <td class="text-left">
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].price[PriceEdit][2]"
+                    auto-grow
+                    outlined
+                    rows="1"
+                  ></v-textarea>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPriceEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPriceEdit = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 포인트 수정 모달창-->
+    <div v-if="ShowPointEdit == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <tbody>
+              <tr>
+                <td>포인트</td>
+                <td>
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].point"
+                    rows="1"
+                  ></v-textarea>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPointEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPointEdit = false">
             닫기
           </v-btn>
         </div>
@@ -2072,6 +2240,9 @@ export default {
 
   data() {
     return {
+      ShowPointEdit: false,
+      ShowPriceEdit: false,
+      ShowPriceModal: false,
       ShowSettingModal: false,
       ShowTypeModal: false,
       ShowReportModal: false,
@@ -2181,6 +2352,7 @@ export default {
       inquirynum: 0, //문의게시판 검색변수
       dates: [],
       overlay: false, // 적용 알림창 시간변수
+      PriceEdit: 0, // 보상수정 검색변수
     }
   },
   watch: {

@@ -12,7 +12,11 @@ const SurveyData = [
       ['대학생', true],
       ['일반인', true],
     ],
-    price: [['포인트 3000'], ['치킨 기프티콘']],
+    point: 2000,
+    price: [
+      ['카페라떼 키프티콘', 50, 10],
+      ['치킨 기프티콘', 5, 2],
+    ],
     commentnum: 10,
     comment: [
       ['치냐', '판다', '2022 - 04 - 04', 3, 6],
@@ -27,6 +31,9 @@ const SurveyData = [
     ],
     thumbnum: 10,
     downloadnum: 5,
+    switch1: false,
+    switch2: false,
+    switch3: false,
   },
   {
     id: 1,
@@ -41,7 +48,8 @@ const SurveyData = [
       ['중학생', true],
       ['직장인', true],
     ],
-    price: [['포인트 3000'], ['아아 기프티콘']],
+    point: 3000,
+    price: [['아아 기프티콘', 100, 24]],
     commentnum: 11,
     comment: [
       ['치냐', '판다', '2022 - 04 - 04', 3, 6],
@@ -68,7 +76,11 @@ const SurveyData = [
       ['고등학생', true],
       ['학생', true],
     ],
-    price: [['포인트 3000'], ['아아 기프티콘']],
+    point: 5000,
+    price: [
+      ['스무디 기프티콘', 20, 20],
+      ['아아 기프티콘', 30, 29],
+    ],
     commentnum: 11,
     comment: [
       ['헷', '판다', '2022 - 04 - 04', 33, 6],
@@ -78,6 +90,9 @@ const SurveyData = [
     report: [['호불호 음식들', '판다', '2022 - 04 - 04']],
     thumbnum: 100,
     downloadnum: 50,
+    switch1: false,
+    switch2: false,
+    switch3: false,
   },
   {
     id: 3,
@@ -89,7 +104,11 @@ const SurveyData = [
     type: '설문중',
     count: 14,
     tag: [['초등학생', true]],
-    price: [['포인트 3000'], ['아아 기프티콘']],
+    point: 30000,
+    price: [
+      ['바닐라 라떼 기프티콘', 10, 9],
+      ['아아 기프티콘', 10, 5],
+    ],
     commentnum: 11,
     comment: [
       ['냐', '판다', '2022 - 04 - 04', 378, 6],
@@ -103,6 +122,9 @@ const SurveyData = [
     ],
     thumbnum: 14120,
     downloadnum: 59,
+    switch1: false,
+    switch2: false,
+    switch3: false,
   },
   {
     id: 4,
@@ -117,7 +139,11 @@ const SurveyData = [
       ['공무원', true],
       ['직장인', true],
     ],
-    price: [['포인트 3000'], ['아아 기프티콘']],
+    point: 1000,
+    price: [
+      ['케익 기프티콘', 30, 10],
+      ['아아 기프티콘', 20, 3],
+    ],
     commentnum: 11,
     comment: [
       ['ㅋㅋㅋㅋㅋㅋㅋ', '판다', '2022 - 04 - 04', 34, 65],
@@ -130,6 +156,9 @@ const SurveyData = [
     ],
     thumbnum: 510,
     downloadnum: 53,
+    switch1: false,
+    switch2: false,
+    switch3: false,
   },
 ]
 export default SurveyData
