@@ -34,6 +34,7 @@ const SurveyData = [
     switch1: false,
     switch2: false,
     switch3: false,
+    url: '/admin/SurvayDetail/0',
   },
   {
     id: 1,
@@ -62,6 +63,7 @@ const SurveyData = [
     ],
     thumbnum: 110,
     downloadnum: 7,
+    url: '/admin/SurvayDetail/1',
   },
   {
     id: 2,
@@ -93,6 +95,7 @@ const SurveyData = [
     switch1: false,
     switch2: false,
     switch3: false,
+    url: '/admin/SurvayDetail/2',
   },
   {
     id: 3,
@@ -125,6 +128,7 @@ const SurveyData = [
     switch1: false,
     switch2: false,
     switch3: false,
+    url: '/admin/SurvayDetail/3',
   },
   {
     id: 4,
@@ -159,6 +163,7 @@ const SurveyData = [
     switch1: false,
     switch2: false,
     switch3: false,
+    url: '/admin/SurvayDetail/4',
   },
 ]
 export default SurveyData

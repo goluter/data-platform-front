@@ -163,7 +163,11 @@
               <tr>
                 <td>설문 내역</td>
                 <td>{{ SurveyData[SurveyDataClick].count }}개</td>
-                <td><v-btn small>자세히</v-btn></td>
+                <td>
+                  <v-btn :to="SurveyData[SurveyDataClick].url" small
+                    >자세히</v-btn
+                  >
+                </td>
               </tr>
               <tr>
                 <td>태그</td>
