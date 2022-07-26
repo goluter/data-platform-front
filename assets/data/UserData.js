@@ -18,6 +18,11 @@ const userdata = [
       ['설문참여2', '0000.00.01', '-100'],
       ['포인트사용', '1524.02.00', '-1000']
     ],
+    UserPointSum: 200,
+    UserNic: '노력형',
+    SurveyMakeSum:5,
+    SurveyAttendSum:10,
+    Visit:31,
     UserProduct: [
       ['설문참여1', '0000.00.00', '벗겨먹는 고오스'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -44,6 +49,11 @@ const userdata = [
       ['설문참여2', '0000.00.01', '-100'],
       ['포인트사용', '1524.02.00', '-1000']
     ],
+    UserPointSum: 300,
+    UserNic: '완성형',
+    SurveyMakeSum:22,
+    SurveyAttendSum:12,
+    Visit:21,
     UserProduct: [
       ['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -70,6 +80,11 @@ const userdata = [
       ['설문참여2', '0000.00.01', '-100'],
       ['포인트사용', '1524.02.00', '-1000']
     ],
+    UserPointSum: 400,
+    UserNic: '완성형',
+    SurveyMakeSum:15,
+    SurveyAttendSum:12,
+    Visit:18,
     UserProduct: [
       ['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -97,6 +112,11 @@ const userdata = [
       ['설문참여1', '0000.00.00', '+100'],
       ['설문참여2', '0000.00.01', '-100']
     ],
+    UserPointSum: 250,
+    UserNic: '완성형',
+    SurveyMakeSum:4,
+    SurveyAttendSum:1,
+    Visit:30,
     UserProduct: [
       ['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -132,6 +152,11 @@ const userdata = [
       ['설문참여2', '0000.00.01', '-1000'],
       ['설문참여3', '0000.00.11', '-5000']
     ],
+    UserPointSum: 20,
+    UserNic: '노력형',
+    SurveyMakeSum:1,
+    SurveyAttendSum:13,
+    Visit:55,
     UserProduct: [['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개']]
   }
 ]

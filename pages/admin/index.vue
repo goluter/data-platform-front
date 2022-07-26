@@ -843,39 +843,11 @@
       <div v-if="TopTab2 == true">
         <div style="width: 20rem">
           <h2>회원관리</h2>
-          <div>
-            <input
-              type="text"
-              placeholder="검색어 입력"
-              style="
-                background: #001111;
-                width: 10rem;
-                border: 1px solid gray;
-                border-radius: 4px;
-              "
-            />
-            <v-btn elevation="2" x-small> 검색 </v-btn>
-            <v-btn
-              class="modalbtn"
-              elevation="2"
-              x-small
-              @click="ShowModal_Filter = true"
-            >
-              필터
-            </v-btn>
-            <v-btn
-              class="modalbtn"
-              elevation="2"
-              x-small
-              @click="ShowModal_UserAdd = true"
-            >
-              +
-            </v-btn>
-          </div>
+          
         </div>
         <v-banner outlined class="Tab2_Sidebar">
           <div>
-            <div
+            <!-- <div
               v-for="(a, i) in UserData"
               :key="a"
               class="UserInfo"
@@ -887,7 +859,26 @@
                   <dd>{{ UserData[i].Email }}</dd>
                 </dl>
               </v-btn>
-            </div>
+            </div> -->
+            <v-card>
+              <v-card-title>
+                <b>회원관리</b>
+                <v-spacer></v-spacer>
+                <v-text-field
+                  v-model="usersearch"
+                  append-icon="mdi-magnify"
+                  label="찾기"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-card-title>
+            <v-data-table
+              :headers="userheaders"
+              :items="UserData"
+              :search="usersearch"
+              @click:row="ClickRow"
+            ></v-data-table>
+            </v-card>
           </div>
         </v-banner>
         <!-- 유저상세정보-->
@@ -938,6 +929,58 @@
                 Type
                 <br />
                 {{ UserData[UserNum].UserType }}
+              </p>
+            </div>
+            <!-- 포인트 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-calendar-4511116.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Point
+                <br />
+                {{ UserData[UserNum].UserPointSum }}
+              </p>
+            </div>
+            <!-- 방문수 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-calendar-4511116.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Visit(방문수)
+                <br />
+                {{ UserData[UserNum].Visit }}
+              </p>
+            </div>
+            <!-- 설문생성수 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-calendar-4511116.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                설문생성수
+                <br />
+                {{ UserData[UserNum].SurveyMakeSum }}
+              </p>
+            </div>
+            <!-- 설문참여수 -->
+            <div>
+              <img
+                src="../../assets/premium-icon-calendar-4511116.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                설문참여수
+                <br />
+                {{ UserData[UserNum].SurveyAttendSum }}
               </p>
             </div>
             <!-- 가입날짜 -->
@@ -1730,6 +1773,19 @@ export default {
       inquirynum: 0, //문의게시판 검색변수
       dates: [],
       overlay: false, // 적용 알림창 시간변수
+
+      //유저조희
+      userheaders:[
+        {text: '이름', sortable: false, value:'UserName'},
+        {text:'이메일', sortable: false, value:'Email'},
+        {text:'등급', value:'UserGrade'},
+        {text:'칭호', value:'UserNic'},
+        {text:'포인트', value:'UserPointSum'},
+        {text:'설문생성수', value:'SurveyMakeSum'},
+        {text:'설문참여수', value:'SurveyAttendSum'},
+        {text:'가입일', value:'RegisterDate'},
+      ],
+      usersearch:'',
     }
   },
   watch: {
@@ -1739,6 +1795,13 @@ export default {
           this.overlay = false
         }, 2000)
     },
+  },
+  methods:{
+    ClickRow(item){
+      this.UserNum = item.id-1;
+      this.ShowUserInfo = true;
+    }
+    
   },
 }
 </script>
@@ -1792,9 +1855,10 @@ export default {
 }
 .Tab2_Sidebar {
   float: left;
-  height: 25rem;
+  height: 30rem;
   overflow: auto;
-  width: 20rem;
+  width: 100%;
+  
 }
 .UserInfo {
   margin: 2%;
