@@ -2059,11 +2059,11 @@
         </div>
       </div>
       <!-- 스토어-->
-      <div v-if="TobTab5 == true"></div>
+      <div v-if="TopTab5 == true"></div>
       <!-- 보상관리-->
-      <div v-if="TobTab6 == true"></div>
+      <div v-if="TopTab6 == true"></div>
       <!-- 리포트-->
-      <div v-if="TobTab7 == true"></div>
+      <div v-if="TopTab7 == true"></div>
 
       <!-- 공지사항-->
       <div v-if="TopTab8 == true">
