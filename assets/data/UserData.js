@@ -23,6 +23,7 @@ const userdata = [
     SurveyMakeSum:5,
     SurveyAttendSum:10,
     Visit:31,
+    Hobby:['축구','여행'],
     UserProduct: [
       ['설문참여1', '0000.00.00', '벗겨먹는 고오스'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -54,6 +55,7 @@ const userdata = [
     SurveyMakeSum:22,
     SurveyAttendSum:12,
     Visit:21,
+    Hobby:['축구','여행','요리'],
     UserProduct: [
       ['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -85,6 +87,7 @@ const userdata = [
     SurveyMakeSum:15,
     SurveyAttendSum:12,
     Visit:18,
+    Hobby:['축구','요리'],
     UserProduct: [
       ['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -117,6 +120,7 @@ const userdata = [
     SurveyMakeSum:4,
     SurveyAttendSum:1,
     Visit:30,
+    Hobby:['요리'],
     UserProduct: [
       ['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개'],
       ['관리자뽀찌', '0000.00.01', '상명대학교 인수권'],
@@ -157,6 +161,7 @@ const userdata = [
     SurveyMakeSum:1,
     SurveyAttendSum:13,
     Visit:55,
+    Hobby:['축구','여행'],
     UserProduct: [['설문참여2', '0000.00.00', '벗겨먹는 고오스 1개']]
   }
 ]
