@@ -1326,39 +1326,10 @@
       <div v-if="TopTab2 == true">
         <div style="width: 20rem">
           <h2>회원관리</h2>
-          <div>
-            <input
-              type="text"
-              placeholder="검색어 입력"
-              style="
-                background: #001111;
-                width: 10rem;
-                border: 1px solid gray;
-                border-radius: 4px;
-              "
-            />
-            <v-btn elevation="2" x-small> 검색 </v-btn>
-            <v-btn
-              class="modalbtn"
-              elevation="2"
-              x-small
-              @click="ShowModal_Filter = true"
-            >
-              필터
-            </v-btn>
-            <v-btn
-              class="modalbtn"
-              elevation="2"
-              x-small
-              @click="ShowModal_UserAdd = true"
-            >
-              +
-            </v-btn>
-          </div>
         </div>
         <v-banner outlined class="Tab2_Sidebar">
           <div>
-            <div
+            <!-- <div
               v-for="(a, i) in UserData"
               :key="a"
               class="UserInfo"
@@ -1370,11 +1341,30 @@
                   <dd>{{ UserData[i].Email }}</dd>
                 </dl>
               </v-btn>
-            </div>
+            </div> -->
+            <v-card>
+              <v-card-title>
+                <b>회원관리</b>
+                <v-spacer></v-spacer>
+                <v-text-field
+                  v-model="usersearch"
+                  append-icon="mdi-magnify"
+                  label="찾기"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-card-title>
+              <v-data-table
+                :headers="userheaders"
+                :items="UserData"
+                :search="usersearch"
+                @click:row="ClickRow"
+              ></v-data-table>
+            </v-card>
           </div>
         </v-banner>
         <!-- 유저상세정보-->
-        <div v-if="ShowUserInfo == true" style="float: left; width: 80%">
+        <div v-if="ShowUserInfo == true" style="float: left; width: 100%">
           <v-card outlined shaped style="margin: 1%; padding: 1%">
             <v-btn
               style="float: right"
@@ -1423,6 +1413,58 @@
                 {{ UserData[UserNum].UserType }}
               </p>
             </div>
+            <!-- 포인트 -->
+            <div>
+              <img
+                src="../../assets/iconmonstr-coin-thin-240.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Point
+                <br />
+                {{ UserData[UserNum].UserPointSum }}
+              </p>
+            </div>
+            <!-- 방문수 -->
+            <div>
+              <img
+                src="../../assets/iconmonstr-airport-3-240.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                Visit(방문수)
+                <br />
+                {{ UserData[UserNum].Visit }}
+              </p>
+            </div>
+            <!-- 설문생성수 -->
+            <div>
+              <img
+                src="../../assets/iconmonstr-check-mark-square-filled-240.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                설문생성수
+                <br />
+                {{ UserData[UserNum].SurveyMakeSum }}
+              </p>
+            </div>
+            <!-- 설문참여수 -->
+            <div>
+              <img
+                src="../../assets/iconmonstr-check-mark-square-lined-240.png"
+                class="iconsize"
+                style="vertical-align: top"
+              />
+              <p style="display: inline-block">
+                설문참여수
+                <br />
+                {{ UserData[UserNum].SurveyAttendSum }}
+              </p>
+            </div>
             <!-- 가입날짜 -->
             <div>
               <img
@@ -1448,6 +1490,9 @@
                   ShowUserGrade = false
                   ShowUserPoint = false
                   ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 인증정보
@@ -1461,9 +1506,44 @@
                   ShowUserGrade = false
                   ShowUserPoint = false
                   ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 설문 참여이력
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
+                  ShowSurveyMake = true
+                  ShowHobby = false
+                  ShowBuy = false
+                "
+              >
+                설문 생성이력
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = true
+                  ShowBuy = false
+                "
+              >
+                관심사
               </v-tab>
               <v-tab
                 @click="
@@ -1474,6 +1554,9 @@
                   ShowUserGrade = false
                   ShowUserPoint = false
                   ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 동의 여부
@@ -1487,6 +1570,9 @@
                   ShowUserGrade = false
                   ShowUserPoint = false
                   ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 칭호관리
@@ -1500,6 +1586,9 @@
                   ShowUserGrade = true
                   ShowUserPoint = false
                   ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 등급관리
@@ -1513,6 +1602,9 @@
                   ShowUserGrade = false
                   ShowUserPoint = true
                   ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 포인트관리
@@ -1526,9 +1618,28 @@
                   ShowUserGrade = false
                   ShowUserPoint = false
                   ShowUserProduct = true
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = false
                 "
               >
                 상품관리
+              </v-tab>
+              <v-tab
+                @click="
+                  ShowUnivCertify = false
+                  ShowHistory = false
+                  ShowAgreeOrNot = false
+                  ShowUserTitle = false
+                  ShowUserGrade = false
+                  ShowUserPoint = false
+                  ShowUserProduct = false
+                  ShowSurveyMake = false
+                  ShowHobby = false
+                  ShowBuy = true
+                "
+              >
+                구매이력
               </v-tab>
             </v-tabs>
           </div>
@@ -1565,6 +1676,72 @@
               </template>
             </v-simple-table>
           </div>
+          <!-- 추가 -->
+          <div v-if="ShowSurveyMake == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">생성설문</th>
+                    <th class="text-left">생성날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
+                    <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
+          <div v-if="ShowHobby == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">관심사</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].Hobby" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>{{ UserData[UserNum].Hobby[i] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
+          <div v-if="ShowBuy == true">
+            <v-simple-table>
+              <template #default>
+                <thead>
+                  <tr>
+                    <th style="text-align: center">번호</th>
+                    <th class="text-left">구매이력</th>
+                    <th class="text-left">구매날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(a, i) in UserData[UserNum].SurveyRecord" :key="a">
+                    <td style="text-align: center">
+                      {{ i + 1 }}
+                    </td>
+                    <td>{{ UserData[UserNum].SurveyRecord[i] }}</td>
+                    <td>{{ UserData[UserNum].SurveyRecordDate[i] }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
+          <!-- 추가 끝 -->
           <div v-if="ShowAgreeOrNot == true">
             <h2>동의 여부</h2>
             <div>
@@ -2356,7 +2533,22 @@ export default {
       inquirynum: 0, //문의게시판 검색변수
       dates: [],
       overlay: false, // 적용 알림창 시간변수
-      PriceEdit: 0, // 보상수정 검색변수
+
+      //유저조희
+      userheaders: [
+        { text: '이름', sortable: false, value: 'UserName' },
+        { text: '이메일', sortable: false, value: 'Email' },
+        { text: '등급', value: 'UserGrade' },
+        { text: '칭호', value: 'UserNic' },
+        { text: '포인트', value: 'UserPointSum' },
+        { text: '설문생성수', value: 'SurveyMakeSum' },
+        { text: '설문참여수', value: 'SurveyAttendSum' },
+        { text: '가입일', value: 'RegisterDate' },
+      ],
+      usersearch: '',
+      ShowSurveyMake: false,
+      ShowHobby: false,
+      ShowBuy: false,
     }
   },
   watch: {
@@ -2365,6 +2557,12 @@ export default {
         setTimeout(() => {
           this.overlay = false
         }, 2000)
+    },
+  },
+  methods: {
+    ClickRow(item) {
+      this.UserNum = item.id - 1
+      this.ShowUserInfo = true
     },
   },
 }
@@ -2419,9 +2617,9 @@ export default {
 }
 .Tab2_Sidebar {
   float: left;
-  height: 25rem;
+  height: 30rem;
   overflow: auto;
-  width: 20rem;
+  width: 100%;
 }
 .UserInfo {
   margin: 2%;
