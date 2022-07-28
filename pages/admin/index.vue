@@ -140,28 +140,112 @@
       <div class="modal-white">
         <h3>설문상세</h3>
 
-        <div style="border: 1px solid #323232; text-align: left">
-          <p>제목 : {{ SurveyData[SurveyDataClick].title }}</p>
-          <p>날짜 : {{ SurveyData[SurveyDataClick].date }}</p>
-          <p>작성자 : {{ SurveyData[SurveyDataClick].name }}</p>
-        </div>
+        <v-simple-table>
+          <template #default>
+            <tbody>
+              <tr>
+                <td>작성자</td>
+                <td>{{ SurveyData[SurveyDataClick].name }}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>작성일</td>
+                <td>{{ SurveyData[SurveyDataClick].date }}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>조사 기간</td>
+                <td>{{ SurveyData[SurveyDataClick].period }}</td>
+                <td>
+                  <v-btn @click="ShowPeriodEdit = true" small>수정</v-btn>
+                </td>
+              </tr>
+              <tr>
+                <td>설문 내역</td>
+                <td>{{ SurveyData[SurveyDataClick].count }}개</td>
+                <td>
+                  <v-btn :to="SurveyData[SurveyDataClick].url" small
+                    >자세히</v-btn
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>태그</td>
+                <td>
+                  <a v-for="(a, i) in SurveyData[SurveyDataClick].tag" :key="a">
+                    #{{ SurveyData[SurveyDataClick].tag[i][0] }}
+                  </a>
+                </td>
+                <td><v-btn @click="ShowTagEdit = true" small>수정</v-btn></td>
+              </tr>
+              <tr>
+                <td>보상</td>
+                포인트
+                {{
+                  SurveyData[SurveyDataClick].point
+                }},
+                <a v-for="(a, i) in SurveyData[SurveyDataClick].price" :key="a">
+                  {{ SurveyData[SurveyDataClick].price[i][0] }},
+                </a>
+                <td>
+                  <v-btn @click="ShowPriceModal = true" small>수정</v-btn>
+                </td>
+              </tr>
+              <tr>
+                <td>설정</td>
+                <td></td>
+                <td>
+                  <v-btn @click="ShowSettingModal = true" small>자세히</v-btn>
+                </td>
+              </tr>
+              <tr>
+                <td>댓글</td>
+                <td>{{ SurveyData[SurveyDataClick].commentnum }}개</td>
+                <td>
+                  <v-btn @click="ShowCommentModal = true" small>자세히</v-btn>
+                </td>
+              </tr>
+              <tr>
+                <td>리포트</td>
+                <td>{{ SurveyData[SurveyDataClick].reportnum }}개</td>
+                <td>
+                  <v-btn @click="ShowReportModal = true" small>자세히</v-btn>
+                </td>
+              </tr>
+              <tr>
+                <td>좋아요</td>
+                <td>{{ SurveyData[SurveyDataClick].thumbnum }}개</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>다운로드</td>
+                <td>{{ SurveyData[SurveyDataClick].downloadnum }}회</td>
+                <td></td>
+              </tr>
+              <tr v-if="SurveyData[SurveyDataClick].type == '심사중'">
+                <td>승인상태</td>
+                <td>{{ SurveyData[SurveyDataClick].type }}</td>
+                <td><v-btn @click="ShowTypeModal = true" small>수정</v-btn></td>
+              </tr>
+              <tr
+                v-if="
+                  SurveyData[SurveyDataClick].type == '종료' ||
+                  SurveyData[SurveyDataClick].type == '설문중'
+                "
+              >
+                <td>승인상태</td>
+                <td>{{ SurveyData[SurveyDataClick].type }}</td>
+                <td>
+                  <v-btn disabled @click="ShowTypeModal = true" small
+                    >수정</v-btn
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
         <div>
-          <a :href="SurveyData[SurveyDataClick].url">설문 링크</a>
-        </div>
-        <div>
-          <form>
-            <v-radio-group v-model="row" row style="display: inline-block">
-              <v-radio label="승인" value="radio-1" @click="value = 0" />
-              <v-radio label="거절" value="radio-2" @click="value = 1" />
-            </v-radio-group>
-            <textarea
-              v-if="value == 1"
-              name="content"
-              style="width: 98%; height: 10%; background: whitesmoke"
-              placeholder="사유입력"
-            />
-          </form>
-          <div>
+          <div style="margin: 10px">
             <v-btn
               id="surveyinfoapply"
               elevation="2"
@@ -181,6 +265,405 @@
               닫기
             </v-btn>
           </div>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 조사기간 모달창-->
+    <div v-if="ShowPeriodEdit == true" class="modal-black">
+      <div class="modal-white">
+        <h3>조사 기간 수정</h3>
+        <div>
+          <input class="date" type="date" />~<input class="date" type="date" />
+        </div>
+
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPeriodEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPeriodEdit = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 태그 수정 모달창-->
+    <div v-if="ShowTagEdit == true" class="modal-black">
+      <div class="modal-white">
+        <h3>태그 수정</h3>
+
+        <v-chip
+          v-for="(a, i) in SurveyData[SurveyDataClick].tag"
+          :key="a"
+          v-if="SurveyData[SurveyDataClick].tag[i][1] == true"
+          class="ma-2"
+          close
+          @click:close="SurveyData[SurveyDataClick].tag[i][1] = false"
+        >
+          {{ SurveyData[SurveyDataClick].tag[i][0] }}
+        </v-chip>
+        <v-textarea
+          class="mx-2"
+          label="태그추가"
+          rows="1"
+          prepend-icon="mdi-comment"
+        ></v-textarea>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowTagEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowTagEdit = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 승인상태 수정 모달창-->
+    <div v-if="ShowTypeModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>승인상태 수정</h3>
+
+        <form>
+          <v-radio-group v-model="row" row style="display: inline-block">
+            <v-radio label="승인" value="radio-1" @click="value = 0" />
+            <v-radio label="거절" value="radio-2" @click="value = 1" />
+          </v-radio-group>
+          <textarea
+            v-if="value == 1"
+            name="content"
+            style="width: 98%; height: 10%; background: whitesmoke"
+            placeholder="사유입력"
+          />
+        </form>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowTypeModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowTypeModal = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 댓글상세 모달창-->
+    <div v-if="ShowCommentModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>댓글</h3>
+
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">댓글내용</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성시간</th>
+                <th class="text-left">좋아요</th>
+                <th class="text-left">싫어요</th>
+                <th class="text-left">삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in SurveyData[SurveyDataClick].comment"
+                :key="a"
+              >
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][0] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][1] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][2] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][3] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].comment[i][4] }}</td>
+                <td><v-btn small>삭제</v-btn></td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowCommentModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowCommentModal = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 리포트 모달창-->
+    <div v-if="ShowReportModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>리포트</h3>
+
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">리포트제목</th>
+                <th class="text-left">등록시간</th>
+                <th class="text-left">작성자</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData[SurveyDataClick].report" :key="a">
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>{{ SurveyData[SurveyDataClick].report[i][0] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].report[i][1] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].report[i][2] }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowReportModal = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 설정 모달창-->
+    <div v-if="ShowSettingModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>설문 설정</h3>
+        <div>
+          <v-sheet class="pa-5">
+            <v-switch v-model="switch1" label="응답 수정 가능" inset></v-switch>
+            <v-switch
+              v-model="switch2"
+              label="인증 유저만 참여 가능"
+              inset
+            ></v-switch>
+            <v-switch
+              v-model="switch3"
+              label="칭호 가진 유저만 참여 가능"
+              inset
+            ></v-switch>
+          </v-sheet>
+        </div>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowSettingModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowSettingModal = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 보상 모달창-->
+    <div v-if="ShowPriceModal == true" class="modal-black">
+      <div class="modal-white">
+        <h3>보상 수정</h3>
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">보상</th>
+                <th class="text-left">수량</th>
+                <th class="text-left">남은 수량</th>
+                <th class="text-left">선택</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(a, i) in SurveyData[SurveyDataClick].price" :key="a">
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>{{ SurveyData[SurveyDataClick].price[i][0] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].price[i][1] }}</td>
+                <td>{{ SurveyData[SurveyDataClick].price[i][2] }}</td>
+                <td>
+                  <v-btn
+                    @click="
+                      ShowPriceEdit = true
+                      PriceEdit = i
+                    "
+                  >
+                    선택
+                  </v-btn>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <v-simple-table style="margin-top: 10px; margin-bottom: 10px">
+          <template #default>
+            <tbody>
+              <tr>
+                <td style="text-align: center">포인트</td>
+                <td>{{ SurveyData[SurveyDataClick].point }}P</td>
+                <td><v-btn @click="ShowPointEdit = true" small>수정</v-btn></td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPriceModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPriceModal = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 보상 수정 모달창-->
+    <div v-if="ShowPriceEdit == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th class="text-left">보상</th>
+                <th class="text-left">수량</th>
+                <th class="text-left">남은 수량</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].price[PriceEdit][0]"
+                    auto-grow
+                    outlined
+                    rows="1"
+                  ></v-textarea>
+                </td>
+                <td class="text-left">
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].price[PriceEdit][1]"
+                    auto-grow
+                    outlined
+                    rows="1"
+                  ></v-textarea>
+                </td>
+                <td class="text-left">
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].price[PriceEdit][2]"
+                    auto-grow
+                    outlined
+                    rows="1"
+                  ></v-textarea>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPriceEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPriceEdit = false">
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--설문관리 포인트 수정 모달창-->
+    <div v-if="ShowPointEdit == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <tbody>
+              <tr>
+                <td>포인트</td>
+                <td>
+                  <v-textarea
+                    :label="SurveyData[SurveyDataClick].point"
+                    rows="1"
+                  ></v-textarea>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowPointEdit = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn id="eventcancel" elevation="2" @click="ShowPointEdit = false">
+            닫기
+          </v-btn>
         </div>
       </div>
     </div>
@@ -843,7 +1326,6 @@
       <div v-if="TopTab2 == true">
         <div style="width: 20rem">
           <h2>회원관리</h2>
-          
         </div>
         <v-banner outlined class="Tab2_Sidebar">
           <div>
@@ -872,12 +1354,12 @@
                   hide-details
                 ></v-text-field>
               </v-card-title>
-            <v-data-table
-              :headers="userheaders"
-              :items="UserData"
-              :search="usersearch"
-              @click:row="ClickRow"
-            ></v-data-table>
+              <v-data-table
+                :headers="userheaders"
+                :items="UserData"
+                :search="usersearch"
+                @click:row="ClickRow"
+              ></v-data-table>
             </v-card>
           </div>
         </v-banner>
@@ -1368,88 +1850,241 @@
       <!-- 설문관리-->
       <div v-if="TopTab3 == true">
         <h2>설문관리</h2>
-        <div style="padding: 1%">
-          <div style="float: left">
-            <img
-              src="../../assets/duplicate.png"
-              class="iconsize"
-              style="vertical-align: top"
-            />
-            <p style="display: inline-block; text-align: center">
-              심사를 기다리는 설문
-              <br />
-              --개
-            </p>
-          </div>
-          <div style="float: left">
-            <img
-              src="../../assets/surveyor.png"
-              class="iconsize"
-              style="vertical-align: top"
-            />
-            <p style="display: inline-block; text-align: center">
-              지금까지 작성된 설문
-              <br />
-              --개
-            </p>
-          </div>
-          <div>
-            <img
-              src="../../assets/new.png"
-              class="iconsize"
-              style="vertical-align: top"
-            />
-            <p style="display: inline-block; text-align: center">
-              심사를 기다리는 설문
-              <br />
-              --개
-            </p>
-          </div>
-        </div>
-        <div style="margin-top: 1%; overflow: auto; height: 40em">
-          <div v-for="(a, i) in SurveyData" :key="a" class="UserInfo2">
-            <v-btn
-              elevation="2"
-              x-small
-              @click="
-                ShowSurveyInfo = true
-                SurveyDataClick = i
-              "
-            >
-              승인설정
-            </v-btn>
-            <div>
-              <img
-                src="../../assets/tag.png"
-                class="iconsize2"
-                style="vertical-align: top"
-              />
-              <p style="display: inline-block">
-                {{ SurveyData[i].title }}
-              </p>
-            </div>
-            <div>
-              <img
-                src="../../assets/user-avatar.png"
-                class="iconsize2"
-                style="vertical-align: top"
-              />
-              <p style="display: inline-block">
-                {{ SurveyData[i].name }}
-              </p>
-            </div>
-            <div>
-              <img
-                src="../../assets/calendar.png"
-                class="iconsize2"
-                style="vertical-align: top"
-              />
-              <p style="display: inline-block">
-                {{ SurveyData[i].date }}
-              </p>
-            </div>
-          </div>
-        </div>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = false
+            ShowReviewSurvay = true
+            ShowEndedSurvay = false
+            ShowAllSurvay = false
+          "
+        >
+          심사 중인 설문
+        </v-btn>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = true
+            ShowReviewSurvay = false
+            ShowEndedSurvay = false
+            ShowAllSurvay = false
+          "
+        >
+          설문 중인 설문
+        </v-btn>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = false
+            ShowReviewSurvay = false
+            ShowEndedSurvay = true
+            ShowAllSurvay = false
+          "
+        >
+          종료된 설문
+        </v-btn>
+        <v-btn
+          style="margin: 5px"
+          small
+          elevation="2"
+          @click="
+            ShowOngoingSurvay = false
+            ShowReviewSurvay = false
+            ShowEndedSurvay = false
+            ShowAllSurvay = true
+          "
+        >
+          모든 설문
+        </v-btn>
+        <!--모든 설문-->
+        <v-simple-table v-if="ShowAllSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in SurveyData"
+                :key="a"
+                @click="
+                  SurveyDataClick = i
+                  ShowSurveyInfo = true
+                "
+              >
+                <td style="text-align: center">
+                  {{ i + 1 }}
+                </td>
+                <td>
+                  {{ SurveyData[i].title }}
+                </td>
+                <td>{{ SurveyData[i].name }}</td>
+                <td>{{ SurveyData[i].date }}</td>
+                <td>{{ SurveyData[i].period }}</td>
+                <td>{{ SurveyData[i].type }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <!--심사 중인 설문-->
+        <v-simple-table v-if="ShowReviewSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in SurveyData"
+                :key="a"
+                @click="
+                  SurveyDataClick = i
+                  ShowSurveyInfo = true
+                "
+              >
+                <td
+                  v-if="SurveyData[i].type == '심사중'"
+                  style="text-align: center"
+                >
+                  {{ i + 1 }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].name }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].date }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].period }}
+                </td>
+                <td v-if="SurveyData[i].type == '심사중'">
+                  {{ SurveyData[i].type }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <!--설문 중인 설문-->
+        <v-simple-table v-if="ShowOngoingSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in SurveyData"
+                :key="a"
+                @click="
+                  SurveyDataClick = i
+                  ShowSurveyInfo = true
+                "
+              >
+                <td
+                  v-if="SurveyData[i].type == '설문중'"
+                  style="text-align: center"
+                >
+                  {{ i + 1 }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].name }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].date }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].period }}
+                </td>
+                <td v-if="SurveyData[i].type == '설문중'">
+                  {{ SurveyData[i].type }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <!--종료된 설문-->
+        <v-simple-table v-if="ShowEndedSurvay == true">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th class="text-left">제목</th>
+                <th class="text-left">작성자</th>
+                <th class="text-left">작성일</th>
+                <th class="text-left">설문조사기간</th>
+                <th class="text-left">현재 상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in SurveyData"
+                :key="a"
+                @click="
+                  SurveyDataClick = i
+                  ShowSurveyInfo = true
+                "
+              >
+                <td
+                  v-if="SurveyData[i].type == '종료'"
+                  style="text-align: center"
+                >
+                  {{ i + 1 }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  <a :href="SurveyData[i].url" style="text-decoration: none">{{
+                    SurveyData[i].title
+                  }}</a>
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].name }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].date }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].period }}
+                </td>
+                <td v-if="SurveyData[i].type == '종료'">
+                  {{ SurveyData[i].type }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </div>
       <!-- 이벤트-->
       <div v-if="TopTab4 == true">
@@ -1798,6 +2433,34 @@
         <div v-if="ShowModal_AwardList == true" class="modal-black">
           <div class="modal-white">
             <v-simple-table>
+                <template #default>
+                  <thead>
+                    <tr>
+                      <th style="text-align: center">번호</th>
+                      <th class="text-left">설문</th>
+                      <th class="text-left">등록된 수량</th>
+                      <th class="text-left">남은 수량</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="text-align: center">
+                        {{ AwardList + 1 }}
+                      </td>
+                      <td>
+                        {{Award[AwardList].title}}
+                      </td>
+                      <td>{{ Award[AwardList].num }}</td>
+                      <td>{{ Award[AwardList].remain }}</td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            <br>
+            <div>
+              <h4>등록된 설문</h4>
+              <br>
+              <v-simple-table>
               <template #default>
                 <thead>
                   <tr>
@@ -1808,22 +2471,26 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-for="(a, i) in SurveyData" :key="a"
+                   @click="
+                  ShowModal_AwardList_Show = true
+                  AwardList_Show = i">
                     <td style="text-align: center">
-                      {{ AwardList + 1 }}
+                      {{ i + 1 }}
                     </td>
                     <td>
-                      {{Award[AwardList].title}}
+                      {{SurveyData[i].title}}
                     </td>
-                    <td>{{ Award[AwardList].num }}</td>
-                    <td>{{ Award[AwardList].remain }}</td>
+                    <td>10</td>
+                    <td>5</td>
                   </tr>
                 </tbody>
               </template>
             </v-simple-table>
-            <div>
-              <h4>등록된 설문</h4>
+              
             </div>
+           <br>
+
             <v-btn
               id="usraddapply"
               elevation="2"
@@ -1833,7 +2500,7 @@
                 overlay = !overlay
               "
             >
-              수정
+              확인
             </v-btn>
             <v-btn
               id="usraddcancel"
@@ -1844,33 +2511,10 @@
             </v-btn>
           </div>
         </div>
+       
       
       <!-- 리포트-->
       <div v-if="TopTab7 == true"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- 공지사항-->
       <div v-if="TopTab8 == true">
@@ -2053,6 +2697,20 @@ export default {
 
   data() {
     return {
+      ShowPointEdit: false,
+      ShowPriceEdit: false,
+      ShowPriceModal: false,
+      ShowSettingModal: false,
+      ShowTypeModal: false,
+      ShowReportModal: false,
+      ShowCommentModal: false,
+      chip: [true, true, true, true, true, true],
+      ShowTagEdit: false,
+      ShowPeriodEdit: false,
+      ShowAllSurvay: true,
+      ShowOngoingSurvay: false,
+      ShowReviewSurvay: false,
+      ShowEndedSurvay: false,
       ShowModal_Inquiry: false,
       EndedEvent,
       OngoingEvent,
@@ -2153,15 +2811,15 @@ export default {
       overlay: false, // 적용 알림창 시간변수
 
       //유저조희
-      userheaders:[
-        {text: '이름', sortable: false, value:'UserName'},
-        {text:'이메일', sortable: false, value:'Email'},
-        {text:'등급', value:'UserGrade'},
-        {text:'칭호', value:'UserNic'},
-        {text:'포인트', value:'UserPointSum'},
-        {text:'설문생성수', value:'SurveyMakeSum'},
-        {text:'설문참여수', value:'SurveyAttendSum'},
-        {text:'가입일', value:'RegisterDate'},
+      userheaders: [
+        { text: '이름', sortable: false, value: 'UserName' },
+        { text: '이메일', sortable: false, value: 'Email' },
+        { text: '등급', value: 'UserGrade' },
+        { text: '칭호', value: 'UserNic' },
+        { text: '포인트', value: 'UserPointSum' },
+        { text: '설문생성수', value: 'SurveyMakeSum' },
+        { text: '설문참여수', value: 'SurveyAttendSum' },
+        { text: '가입일', value: 'RegisterDate' },
       ],
       usersearch:'',
       ShowSurveyMake :false,
@@ -2177,6 +2835,12 @@ export default {
       ShowModal_Award : false,
       ShowModal_AwardList : false,
       AwardList : '',
+      usersearch: '',
+      ShowSurveyMake: false,
+      ShowHobby: false,
+      ShowBuy: false,
+      ShowModal_AwardList_Show: false,
+      AwardList_Show :'',
     }
   },
   watch: {
@@ -2187,12 +2851,11 @@ export default {
         }, 2000)
     },
   },
-  methods:{
-    ClickRow(item){
-      this.UserNum = item.id-1;
-      this.ShowUserInfo = true;
-    }
-    
+  methods: {
+    ClickRow(item) {
+      this.UserNum = item.id - 1
+      this.ShowUserInfo = true
+    },
   },
 }
 </script>
@@ -2249,7 +2912,6 @@ export default {
   height: 30rem;
   overflow: auto;
   width: 100%;
-  
 }
 .UserInfo {
   margin: 2%;
