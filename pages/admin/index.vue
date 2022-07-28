@@ -966,7 +966,139 @@
         </div>
       </div>
     </div>
+    <!--리포트 자세히 모달-->
+    <div v-if="ShowReportDetailModal == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">설문 제목</th>
+                <th style="text-align: center">리포트 제목</th>
+                <th style="text-align: center">리포트 생성자</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center">
+                  {{ ReportData[reportnum].surveytitle }}
+                </td>
+                <td>{{ ReportData[reportnum].reporttitle }}</td>
+                <td>{{ ReportData[reportnum].name }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div>
+          <v-textarea
+            filled
+            name="input-7-4"
+            label="리포트 내용"
+            disabled
+            background-color="#ffffff"
+            style="color: black; margin-top: 10px; margin-bottom: 10px"
+            :value="ReportData[reportnum].contents"
+          ></v-textarea>
+        </div>
+        <v-btn
+          small
+          @click="showreportcommentmodal = true"
+          style="margin-bottom: 10px"
+          >댓글관리</v-btn
+        >
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowReportDetailModal = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            승인
+          </v-btn>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              ShowReportDetailModal = false
+              applysuccess = true
+              overlay = !overlay
+            "
+          >
+            삭제
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="ShowReportDetailModal = false"
+            style="margin-left: 70px"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--리포트 댓글 모달-->
+    <div v-if="showreportcommentmodal == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">번호</th>
+                <th style="text-align: center">댓글 내용</th>
+                <th style="text-align: center">작성자</th>
+                <th style="text-align: center">등록일</th>
+                <th style="text-align: center">좋아요 수</th>
+                <th style="text-align: center">싫어요 수</th>
+                <th style="text-align: center">삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(a, i) in ReportData[reportnum].comment"
+                :key="a"
+                style="text-align: center"
+              >
+                <td>{{ i + 1 }}</td>
+                <td>
+                  {{ ReportData[reportnum].comment[i][0] }}
+                </td>
+                <td>{{ ReportData[reportnum].comment[i][1] }}</td>
+                <td>{{ ReportData[reportnum].comment[i][2] }}</td>
+                <td>{{ ReportData[reportnum].comment[i][3] }}</td>
+                <td>{{ ReportData[reportnum].comment[i][4] }}</td>
+                <td><v-btn small>삭제</v-btn></td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
 
+        <div>
+          <v-btn
+            id="eventadd"
+            elevation="2"
+            @click="
+              showreportcommentmodal = false
+              applysuccess = true
+              overlay = !overlay
+            "
+          >
+            수정
+          </v-btn>
+          <v-btn
+            id="eventcancel"
+            elevation="2"
+            @click="showreportcommentmodal = false"
+            style="margin-left: 70px"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
     <v-tabs fixed-tabs style="padding-top: 50px">
       <!-- 상단 탭-->
       <v-tab
@@ -2411,6 +2543,7 @@ import QnAdata from 'assets/data/QnAdata'
 import EndedEvent from '../../assets/data/EndedEvent'
 import OngoingEvent from '../../assets/data/OngoingEvent'
 import PlannedEvent from '../../assets/data/PlannedEvent'
+import ReportData from '../../assets/data/ReportData'
 
 export default {
   name: 'Index',
@@ -2422,6 +2555,7 @@ export default {
   data() {
     return {
       ShowPointEdit: false,
+      ReportData,
       ShowPriceEdit: false,
       ShowPriceModal: false,
       ShowSettingModal: false,
@@ -2549,6 +2683,9 @@ export default {
       ShowSurveyMake: false,
       ShowHobby: false,
       ShowBuy: false,
+      reportnum: 0, //리포트 관리 검색변수
+      ShowReportDetailModal: false,
+      showreportcommentmodal: false,
     }
   },
   watch: {
