@@ -15,16 +15,18 @@
       </v-alert>
     </div>
 
-    <!--설문관리 포인트 수정 모달창-->
     <div v-if="showdetailmodal == true" class="modal-black">
       <div class="modal-white">
-        <div>
+        <div
+          style="background-color: white; font-size: larger; font-weight: bold"
+        >
           {{ SurvayData[$route.params.id].question[selectnum][0] }}
         </div>
         <!--체크박스-->
         <div
           v-if="
-            SurvayData[$route.params.id].question[selectnum][1] == '체크박스'
+            SurvayData[$route.params.id].question[selectnum][1] == '체크박스' ||
+            SurvayData[$route.params.id].question[selectnum][1] == '객관식'
           "
         >
           <v-simple-table>
@@ -33,26 +35,37 @@
                 <tr>
                   <th style="text-align: center">번호</th>
                   <th style="text-align: center">목록</th>
-                  <th style="text-align: center">투표</th>
+                  <th style="text-align: center">투표수</th>
                   <th style="text-align: center">자세히</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="(a, s) in SurvayData[$route.params.id].question[selectnum][2]"
+                  v-for="(a, s) in SurvayData[$route.params.id].question[
+                    selectnum
+                  ][2]"
                   :key="a"
                 >
                   <td style="text-align: center">
                     {{ s + 1 }}
                   </td>
+                  <!--목록-->
                   <td style="text-align: center">
-                  {{ SurvayData[$route.params.id].question[selectnum][2][s] }}
+                    {{ SurvayData[$route.params.id].question[selectnum][2][s] }}
+                  </td>
+                  <!--투표수-->
+                  <td style="text-align: center">
+                    {{ SurvayData[$route.params.id].question[selectnum][3][s] }}
                   </td>
                   <td style="text-align: center">
-                  {{ SurvayData[$route.params.id].question[selectnum][3][s] }}
-                  </td>
-                  <td style="text-align: center">
-                  <v-btn small>자세히</v-btn>
+                    <v-btn
+                      @click="
+                        showquestiondetail = true
+                        selectquestiondetail = s
+                      "
+                      small
+                      >자세히</v-btn
+                    >
                   </td>
                 </tr>
               </tbody>
@@ -61,27 +74,44 @@
         </div>
         <!--주관식-->
         <div
-          v-if="
-            SurvayData[$route.params.id].question[selectnum][1] == '주관식'
-          "
+          v-if="SurvayData[$route.params.id].question[selectnum][1] == '주관식'"
         >
           <v-simple-table>
             <template #default>
               <thead>
                 <tr>
                   <th style="text-align: center">번호</th>
-                  <th style="text-align: center">목록</th>
+                  <th style="text-align: center">닉네임</th>
+                  <th style="text-align: center">답변</th>
+                  <th style="text-align: center">자세히</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="(a, s) in SurvayData[$route.params.id].question[selectnum][2]"
+                  v-for="(a, s) in SurvayData[$route.params.id].question[
+                    selectnum
+                  ][2]"
                   :key="a"
                 >
                   <td style="text-align: center">
                     {{ s + 1 }}
-                  </td style="text-align: center">
-                  {{ SurvayData[$route.params.id].question[selectnum][2][s] }}
+                  </td>
+                  <td style="text-align: center">
+                    {{ SurvayData[$route.params.id].question[selectnum][2][s] }}
+                  </td>
+                  <td style="text-align: center">
+                    {{ SurvayData[$route.params.id].question[selectnum][3][s] }}
+                  </td>
+                  <td style="text-align: center">
+                    <v-btn
+                      @click="
+                        showtextquestiondetail = true
+                        selectquestiondetail = s
+                      "
+                      small
+                      >자세히</v-btn
+                    >
+                  </td>
                 </tr>
               </tbody>
             </template>
@@ -98,6 +128,167 @@
         </div>
       </div>
     </div>
+    <!--체크박스, 객관식 자세히 모달창-->
+    <div v-if="showquestiondetail == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">보기</th>
+                <th style="text-align: center">투표수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center">
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][2][
+                      selectquestiondetail
+                    ]
+                  }}
+                </td>
+                <td style="text-align: center">
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][3][
+                      selectquestiondetail
+                    ]
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <v-simple-table style="margin-top: 10px; margin-bottom: 10px">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][2][
+                      selectquestiondetail
+                    ]
+                  }}를 고른 사람들
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(rr, po) in SurvayData[$route.params.id].question[
+                  selectnum
+                ][4][selectquestiondetail]"
+                :key="rr"
+              >
+                <td style="text-align: center">
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][4][
+                      selectquestiondetail
+                    ][po]
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+
+        <div>
+          <v-btn
+            id="noticecancel"
+            elevation="2"
+            @click="showquestiondetail = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <!--주관식 자세히 모달창-->
+    <div v-if="showtextquestiondetail == true" class="modal-black">
+      <div class="modal-white">
+        <v-simple-table>
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">질문</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center">
+                  {{ SurvayData[$route.params.id].question[selectnum][0] }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <v-simple-table style="margin-top: 10px; margin-bottom: 10px">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">답변</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(rr, po) in SurvayData[$route.params.id].question[
+                  selectnum
+                ][4][selectquestiondetail]"
+                :key="rr"
+              >
+                <td style="text-align: center">
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][2][
+                      selectquestiondetail
+                    ]
+                  }},
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][3][
+                      selectquestiondetail
+                    ]
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <v-simple-table style="margin-top: 10px; margin-bottom: 10px">
+          <template #default>
+            <thead>
+              <tr>
+                <th style="text-align: center">답변을 쓴 사람</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(rr, po) in SurvayData[$route.params.id].question[
+                  selectnum
+                ][4][selectquestiondetail]"
+                :key="rr"
+              >
+                <td style="text-align: center">
+                  {{
+                    SurvayData[$route.params.id].question[selectnum][4][
+                      selectquestiondetail
+                    ][po]
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+
+        <div>
+          <v-btn
+            id="noticecancel"
+            elevation="2"
+            @click="showtextquestiondetail = false"
+          >
+            닫기
+          </v-btn>
+        </div>
+      </div>
+    </div>
+
     <!--본문-->
     <v-simple-table style="margin-top: 50px">
       <template #default>
@@ -168,10 +359,13 @@ export default {
       SurvayData,
       selectnum: 0,
       selectquestion: 0,
+      selectquestiondetail: 0,
       showdetailmodal: false,
+      showtextquestiondetail: false,
       applysuccess: false,
       addsuccess: false,
       overlay: false,
+      showquestiondetail: false,
     }
   },
   watch: {
