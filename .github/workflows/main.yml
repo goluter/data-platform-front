@@ -59,6 +59,7 @@ jobs:
           password: ${{ secrets.REMOTE_SSH_PASSWORD }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
+            source ~/.bashrc
             docker image prune -f
       - uses: act10ns/slack@v1
         with:
