@@ -43,9 +43,24 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
     // https://github.com/nuxt-community/redirect-module
     '@nuxtjs/redirect-module'
   ],
+
+  auth: {
+    strategies: {
+      google: {
+        clientId: 'CLIENT-ID',
+        codeChallengeMethod: '',
+        responseType: 'code',
+        endpoints: {
+          token: 'http://localhost:8080/login/',
+          userInfo: 'http://localhost:3000/mypage'
+        }
+      }
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

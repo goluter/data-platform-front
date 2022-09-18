@@ -25,7 +25,7 @@
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app temporary>
           <v-list nav dense>
-            <v-list-item to="/Login">
+            <v-list-item to="/login">
               <v-list-item-avatar>
                 <img src="../assets/premium-icon-person-2815428.png" />
               </v-list-item-avatar>
