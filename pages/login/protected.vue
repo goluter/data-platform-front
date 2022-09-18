@@ -1,5 +1,7 @@
 <template>
-  {{ $auth.user.email }}
+  <section class="tmp">
+    {{ $auth.user.email }}
+  </section>
 </template>
 
 <script>

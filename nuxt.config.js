@@ -51,7 +51,7 @@ export default {
   auth: {
     strategies: {
       google: {
-        clientId: 'CLIENT-ID',
+        clientId: '354470131799-rshmkrc8forsb5q1s6b2hpj7pq2k03ma.apps.googleusercontent.com',
         codeChallengeMethod: '',
         responseType: 'code',
         endpoints: {
@@ -59,6 +59,9 @@ export default {
           userInfo: 'http://localhost:3000/mypage'
         }
       }
+    },
+    redirect: {
+      callback: '/protected'
     }
   },
 
