@@ -51,6 +51,15 @@ jobs:
             source ~/.bashrc
             docker login --username $DOCKER_USERNAME --password $DOCKER_TOKEN
             docker run -it --rm -p 7100:80 -d --name data-platform-front swtover/govey-front:main-latest
+      - name: clean
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_SSH_IP }}
+          username: ${{ secrets.REMOTE_SSH_ID }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script: |
+            docker image prune -f
       - uses: act10ns/slack@v1
         with:
           status: ${{ job.status }}
