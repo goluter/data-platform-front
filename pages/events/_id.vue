@@ -33,6 +33,9 @@ export default {
       EndedEvent,
       selectnum: 0
     }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '이벤트')
   }
 }
 </script>

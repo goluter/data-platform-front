@@ -1,30 +1,23 @@
 <template>
-  <div>
-    <div class="header">
-      <NuxtLink to="/notice" style="color: black; text-decoration-line: none">
-        <img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-        >
-      </NuxtLink>
-
-      <a><span>공지사항</span></a>
-    </div>
-    <div style="border-bottom: 1px solid #d3d3d3">
-      <div class="noticetitle">
-        {{ NoticeData[$route.params.id].title }}
-      </div>
-      <div class="date">
-        {{ NoticeData[$route.params.id].date }}
-      </div>
-    </div>
-    <div>
-      <div class="noticemain">
-        {{ NoticeData[$route.params.id].answer }}
-      </div>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <div style="border-bottom: 1px solid #d3d3d3">
+          <div class="noticetitle">
+            {{ NoticeData[$route.params.id].title }}
+          </div>
+          <div class="date">
+            {{ NoticeData[$route.params.id].date }}
+          </div>
+        </div>
+        <div>
+          <div class="noticemain">
+            {{ NoticeData[$route.params.id].answer }}
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -37,6 +30,9 @@ export default {
       NoticeData,
       selectnum: 0
     }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '공지사항')
   }
 }
 </script>
