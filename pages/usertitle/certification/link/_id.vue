@@ -12,7 +12,7 @@
         style="
           margin: 19px 0px 0px 34px;
           font-size: 16px;
-          color: white;
+          color: white !important;
           width: 82%;
           height: 55px;
         "

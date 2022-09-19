@@ -8,7 +8,7 @@ const PointData = [
     reward: 1000,
     sign: '+',
     sum: 15911,
-    url: 'PointDetail/0'
+    url: '/point/PointDetail/0'
   },
   {
     id: 1,
@@ -19,7 +19,7 @@ const PointData = [
     reward: 10,
     sign: '+',
     sum: 14911,
-    url: 'PointDetail/1'
+    url: '/point/PointDetail/1'
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const PointData = [
     reward: 1,
     sign: '+',
     sum: 14901,
-    url: 'PointDetail/2'
+    url: '/point/PointDetail/2'
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const PointData = [
     reward: 10000,
     sign: '+',
     sum: 14900,
-    url: 'PointDetail/3'
+    url: '/point/PointDetail/3'
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const PointData = [
     reward: -100,
     sign: '-',
     sum: 4900,
-    url: 'PointDetail/4'
+    url: '/point/PointDetail/4'
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const PointData = [
     reward: 5000,
     sign: '+',
     sum: 5000,
-    url: 'PointDetail/5'
+    url: '/point/PointDetail/5'
   }
 ]
 export default PointData
