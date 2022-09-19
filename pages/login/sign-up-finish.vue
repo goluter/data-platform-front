@@ -2,15 +2,15 @@
   <div class="wrapper">
     <div class="welcome">
       <h1>가입완료</h1>
-      <a href="/">홈으로</a>
+      <a href="/static">홈으로</a>
     </div>
     <span class="desc">고베이를 즐기기 위한 다양한 가이드들을 살펴보세요!</span>
     <div class="qa-container">
       <div class="question">
-        <a href="/" class="question-item">포인트 시스템이 뭔가요?</a>
+        <a href="/static" class="question-item">포인트 시스템이 뭔가요?</a>
       </div>
       <div class="question">
-        <a href="/" class="question-item">칭호는 어떻게 얻을 수 있나요?</a>
+        <a href="/static" class="question-item">칭호는 어떻게 얻을 수 있나요?</a>
       </div>
     </div>
   </div>

@@ -5,89 +5,94 @@
         이벤트 참여하고 치킨 뜯고 가세요!
       </div>
     </div>
-    <v-tabs fixed-tabs color="#1cddb7">
-      <v-tab
-        @click="
+    <v-row>
+      <v-col cols="12">
+        <v-tabs fixed-tabs color="#1cddb7">
+          <v-tab
+              @click="
           planned = true
           ongoing = false
           ended = false
         "
-      >
-        예정
-      </v-tab>
-      <v-tab
-        @click="
+          >
+            예정
+          </v-tab>
+          <v-tab
+              @click="
           planned = false
           ongoing = true
           ended = false
         "
-      >
-        진행중
-      </v-tab>
-      <v-tab
-        @click="
+          >
+            진행중
+          </v-tab>
+          <v-tab
+              @click="
           planned = false
           ongoing = false
           ended = true
         "
-      >
-        마감
-      </v-tab>
-    </v-tabs>
-    <div
-      v-for="(a, i) in PlannedEvent"
-      v-if="planned == true"
-      :key="a"
-      class="contents"
-    >
-      <NuxtLink
-        :to="PlannedEvent[i].url"
-        style="color: black; text-decoration-line: none"
-      >
-        <div class="eventtitle">
-          {{ PlannedEvent[i].title }}
+          >
+            마감
+          </v-tab>
+        </v-tabs>
+        <div
+            v-for="(a, i) in PlannedEvent"
+            v-if="planned == true"
+            :key="a"
+            class="contents"
+        >
+          <NuxtLink
+              :to="PlannedEvent[i].url"
+              style="color: black; text-decoration-line: none"
+          >
+            <div class="eventtitle">
+              {{ PlannedEvent[i].title }}
+            </div>
+            <div class="date">
+              {{ PlannedEvent[i].date }}
+            </div>
+          </NuxtLink>
         </div>
-        <div class="date">
-          {{ PlannedEvent[i].date }}
+        <div
+            v-for="(a, i) in OngoingEvent"
+            v-if="ongoing == true"
+            :key="a"
+            class="contents"
+        >
+          <NuxtLink
+              :to="OngoingEvent[i].url"
+              style="color: black; text-decoration-line: none"
+          >
+            <div class="eventtitle">
+              {{ OngoingEvent[i].title }}
+            </div>
+            <div class="date">
+              {{ OngoingEvent[i].date }}
+            </div>
+          </NuxtLink>
         </div>
-      </NuxtLink>
-    </div>
-    <div
-      v-for="(a, i) in OngoingEvent"
-      v-if="ongoing == true"
-      :key="a"
-      class="contents"
-    >
-      <NuxtLink
-        :to="OngoingEvent[i].url"
-        style="color: black; text-decoration-line: none"
-      >
-        <div class="eventtitle">
-          {{ OngoingEvent[i].title }}
+        <div
+            v-for="(a, i) in EndedEvent"
+            v-if="ended == true"
+            :key="a"
+            class="contents"
+        >
+          <NuxtLink
+              :to="EndedEvent[i].url"
+              style="color: black; text-decoration-line: none"
+          >
+            <div class="eventtitle">
+              {{ EndedEvent[i].title }}
+            </div>
+            <div class="date">
+              {{ EndedEvent[i].date }}
+            </div>
+          </NuxtLink>
         </div>
-        <div class="date">
-          {{ OngoingEvent[i].date }}
-        </div>
-      </NuxtLink>
-    </div>
-    <div
-      v-for="(a, i) in EndedEvent"
-      v-if="ended == true"
-      :key="a"
-      class="contents"
-    >
-      <NuxtLink
-        :to="EndedEvent[i].url"
-        style="color: black; text-decoration-line: none"
-      >
-        <div class="eventtitle">
-          {{ EndedEvent[i].title }}
-        </div>
-        <div class="date">
-          {{ EndedEvent[i].date }}
-        </div>
-      </NuxtLink>
-    </div>
+      </v-col>
+    </v-row>
+
   </div>
 </template>
 
@@ -117,9 +122,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 500px;
-}
 .v-tab {
   font-size: 18px;
 }

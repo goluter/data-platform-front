@@ -19,7 +19,7 @@
           <button class="naver">
             <v-img src="/naver.jpg" height="50px" width="50px" />
           </button>
-          <button class="google">
+          <button class="google" @click="loginWithGoogle()">
             <v-img src="/google.jpg" height="50px" width="50px" />
           </button>
           <button class="apple">
@@ -53,7 +53,7 @@
               <input type="checkbox"><label>자동로그인</label>
             </div>
             <div id="forgot">
-              <a href="/">비밀번호 찾기</a>
+              <a href="/static">비밀번호 찾기</a>
             </div>
           </div>
           <input type="submit" value="로그인">
@@ -69,6 +69,11 @@ export default {
   layout: 'login',
   head: {
     title: 'Log In'
+  },
+  methods: {
+    loginWithGoogle() {
+      this.$auth.loginWith('google')
+    }
   }
 }
 </script>

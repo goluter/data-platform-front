@@ -1,35 +1,26 @@
 <template>
-  <div>
-    <div class="header">
-      <NuxtLink
-        to="/eventlist"
-        style="color: black; text-decoration-line: none"
-      >
-        <img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-        >
-      </NuxtLink>
-
-      <a><span>이벤트</span></a>
-    </div>
-
-    <div style="border-bottom: 1px solid #d3d3d3">
-      <div class="noticetitle">
-        {{ EndedEvent[$route.params.id].title }}
-      </div>
-      <div class="date">
-        {{ EndedEvent[$route.params.id].date }}
-      </div>
-    </div>
-    <div>
-      <div class="noticemain">
-        {{ EndedEvent[$route.params.id].maininfo }}
-      </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <div>
+          <div style="border-bottom: 1px solid #d3d3d3">
+            <div class="noticetitle">
+              {{ EndedEvent[$route.params.id].title }}
+            </div>
+            <div class="date">
+              {{ EndedEvent[$route.params.id].date }}
+            </div>
+          </div>
+          <div>
+            <div class="noticemain">
+              {{ EndedEvent[$route.params.id].maininfo }}
+            </div>
+            <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -78,21 +69,6 @@ export default {
   text-align: left;
   color: #000;
   width: 200px;
-}
-.container {
-  padding: 0px;
-}
-.banner {
-  background-color: #eee;
-  height: 96px;
-  padding: 2%;
-  width: 100%;
-}
-.header {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 3%;
-  width: 100%;
-  background-color: white;
 }
 .header span {
   flex-grow: 0;
