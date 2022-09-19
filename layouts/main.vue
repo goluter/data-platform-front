@@ -2,7 +2,27 @@
   <v-app>
     <v-main>
       <div class="header-wrapper">
-        <v-app-bar class="header" dense elevation="0" color="white">
+        <v-container v-if="!$vuetify.breakpoint.mobile"
+                     fluid
+                     class="pa-3 pl-8"
+                     style="max-width: 1290px;">
+          <v-row style="height: 100px;">
+            <v-col cols="12">
+              <v-tabs hide-slider style="font-size: 20px;">
+                <v-tab class="pa-0">
+                  <img src="../static/govey.svg" width="120" height="38" />
+                </v-tab>
+                <v-tab v-for="menu in menu"
+                       :key="menu"
+                       class="pa-0"
+                       style="font-size: 18px; font-weight: 600;">
+                  {{ menu }}
+                </v-tab>
+              </v-tabs>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-app-bar v-if="$vuetify.breakpoint.mobile" class="header" dense elevation="0" color="white">
           <v-app-bar-nav-icon @click="drawer = !drawer" />
           <v-btn icon disabled />
           <v-spacer />
@@ -36,10 +56,10 @@
             <v-divider />
             <v-list-item-group v-model="group" active-class="text--accent-4">
               <v-list-item
-                v-for="(item, i) in items"
-                :key="i"
-                :to="item.to"
-                @click="commitTitle(item.page)"
+                  v-for="(item, i) in items"
+                  :key="i"
+                  :to="item.to"
+                  @click="commitTitle(item.page)"
               >
                 <v-list-item-content>
                   <v-list-item-title v-text="item.page" />
@@ -51,16 +71,16 @@
             <v-row>
               <v-col>
                 <a
-                  target="_blank"
-                  href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                  ><img class="sns-icon" src="../static/image 4.png"
+                    target="_blank"
+                    href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
+                ><img class="sns-icon" src="../static/image 4.png"
                 /></a>
               </v-col>
               <v-col>
                 <a
-                  target="_blank"
-                  href="https://www.instagram.com/govey_official/?hl=ko"
-                  ><img
+                    target="_blank"
+                    href="https://www.instagram.com/govey_official/?hl=ko"
+                ><img
                     class="sns-icon"
                     style="margin-top: 6px; width: 50px; height: 50px"
                     src="../static/image 5.png"
@@ -68,9 +88,9 @@
               </v-col>
               <v-col>
                 <a
-                  target="_blank"
-                  href="https://www.facebook.com/고베이-104289228923939"
-                  ><img
+                    target="_blank"
+                    href="https://www.facebook.com/고베이-104289228923939"
+                ><img
                     class="sns-icon"
                     style="margin-top: 6px; width: 50px; height: 50px"
                     src="../static/image 6.png"
@@ -82,7 +102,7 @@
       </div>
       <Nuxt v-if="!$slots.default" />
       <slot />
-      <div class="footer">
+      <div class="footer" v-if="$vuetify.breakpoint.mobile">
         <v-bottom-navigation grow class="elevation-0">
           <v-btn v-for="(item, i) in fitems" :key="i" :to="item.to">
             <span>{{ item.page }}</span>
@@ -98,6 +118,7 @@
 export default {
   data() {
     return {
+      menu: ['설문', '스토어', '마이'],
       items: [
         { page: '리포트', to: '/reports/' },
         { page: '공지사항', to: '/notices/' },
