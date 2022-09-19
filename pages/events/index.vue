@@ -117,14 +117,11 @@ export default {
   },
   mounted() {
     this.$store.commit('setPageTitle', '이벤트')
-  },
+  }
 }
 </script>
 
 <style scoped>
-.v-tab {
-  font-size: 18px;
-}
 .eventtitle {
   flex-grow: 0;
   margin: 24px 0px 0px 17px;

@@ -1,20 +1,23 @@
 <template>
-  <div>
-    
-    <div style="border-bottom: 1px solid #d3d3d3">
-      <div class="noticetitle">
-        {{ NoticeData[$route.params.id].title }}
-      </div>
-      <div class="date">
-        {{ NoticeData[$route.params.id].date }}
-      </div>
-    </div>
-    <div>
-      <div class="noticemain">
-        {{ NoticeData[$route.params.id].answer }}
-      </div>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <div style="border-bottom: 1px solid #d3d3d3">
+          <div class="noticetitle">
+            {{ NoticeData[$route.params.id].title }}
+          </div>
+          <div class="date">
+            {{ NoticeData[$route.params.id].date }}
+          </div>
+        </div>
+        <div>
+          <div class="noticemain">
+            {{ NoticeData[$route.params.id].answer }}
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -30,7 +33,11 @@ export default {
   },
   mounted() {
     this.$store.commit('setPageTitle', '공지사항')
+<<<<<<< HEAD
   },
+=======
+  }
+>>>>>>> 210b1e074ce5d873129abaf2ff58bfdc0968ad7e
 }
 </script>
 

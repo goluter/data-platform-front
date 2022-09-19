@@ -1,24 +1,28 @@
 <template>
-  <div>
-    <div class="banner">
-      <div style="padding: 22px 0px 0px 18px">
-        고베이 공지사항을 확인해보세요!
-      </div>
-    </div>
-    <div v-for="(a, i) in NoticeData" :key="i" class="contents">
-      <NuxtLink
-        :to="NoticeData[i].url"
-        style="color: black; text-decoration-line: none"
-      >
-        <div class="noticetitle">
-          {{ NoticeData[i].title }}
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <div class="banner">
+          <div style="padding: 22px 0px 0px 18px">
+            고베이 공지사항을 확인해보세요!
+          </div>
         </div>
-        <div class="date">
-          {{ NoticeData[i].date }}
+        <div v-for="(a, i) in NoticeData" :key="i" class="contents">
+          <NuxtLink
+            :to="NoticeData[i].url"
+            style="color: black; text-decoration-line: none"
+          >
+            <div class="noticetitle">
+              {{ NoticeData[i].title }}
+            </div>
+            <div class="date">
+              {{ NoticeData[i].date }}
+            </div>
+          </NuxtLink>
         </div>
-      </NuxtLink>
-    </div>
-  </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -38,9 +42,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 500px;
-}
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
