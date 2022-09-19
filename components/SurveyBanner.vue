@@ -11,10 +11,10 @@
       >
         <NuxtLink :to="'/surveys/' + item.id">
           <v-row class="survey-box rounded-xl elevation-3">
-            <v-col cols="auto">
+            <v-col class="pl-2" cols="auto">
               <div class="banner-img-box" />
             </v-col>
-            <v-col class="pl-0 grow" cols="auto">
+            <v-col class="pl-0 pr-1 grow" cols="auto">
               <v-row class="banner-title">
                 <v-col class="" cols="12">
                   {{ item.title }}
@@ -42,7 +42,7 @@
             <v-col />
             <v-col />
             <v-col
-              class="reward-box pb-1 d-flex"
+              class="reward-box pl-2 pb-1 d-flex"
               cols="12"
               style="align-items: flex-end"
             >
