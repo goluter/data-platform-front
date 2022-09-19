@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <v-tabs fixed-tabs color="#1cddb7">
       <v-tab
         @click="

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">
         이벤트 참여하고 치킨 뜯고 가세요!

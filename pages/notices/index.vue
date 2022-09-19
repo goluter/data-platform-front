@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="banner">
       <div style="padding: 22px 0px 0px 18px">
         고베이 공지사항을 확인해보세요!

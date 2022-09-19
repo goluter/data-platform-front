@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <v-tabs
       next-icon="mdi-arrow-right"
       prev-icon="mdi-arrow-left"
