@@ -37,7 +37,7 @@ export default {
   },
   mounted() {
     this.$store.commit('setPageTitle', '공지사항')
-  },
+  }
 }
 </script>
 

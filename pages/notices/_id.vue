@@ -30,6 +30,9 @@ export default {
       NoticeData,
       selectnum: 0
     }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '공지사항')
   }
 }
 </script>
