@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper">
-    <v-container class="fill-height d-flex pa-0 align-content-space-between" style="background-color: #f0f0f0">
+    <v-container
+      class="fill-height d-flex pa-0 align-content-space-between"
+      style="background-color: #f0f0f0"
+    >
       <v-container>
         <v-row style="background-color: white">
           <v-col cols="12">
@@ -34,9 +37,7 @@
               <div class="balance-box">
                 <div class="balance">
                   <v-row>
-                    <v-col class="pb-0" cols="auto">
-                      소유 포인트:
-                    </v-col>
+                    <v-col class="pb-0" cols="auto"> 소유 포인트: </v-col>
                     <v-col class="ml-auto pb-0" cols="auto">
                       {{ balanceData | comma }} P
                     </v-col>
@@ -44,11 +45,9 @@
                 </div>
                 <div class="balance-after">
                   <v-row>
-                    <v-col cols="auto">
-                      결제 후 잔액:
-                    </v-col>
-                    <v-col class="ml-auto" cols="auto" style="color: white;">
-                      {{ balanceData - sum() | comma }} P
+                    <v-col cols="auto"> 결제 후 잔액: </v-col>
+                    <v-col class="ml-auto" cols="auto" style="color: white">
+                      {{ (balanceData - sum()) | comma }} P
                     </v-col>
                   </v-row>
                 </div>
@@ -58,9 +57,16 @@
         </v-row>
       </v-container>
       <v-row class="ma-auto">
-        <v-col cols="12" class="place-order d-flex justify-center" style="background-color: #515151; color: white;">
-          <NuxtLink to="/store/pay/" style="text-decoration: none; color: white">
-            <b>{{ sum() | comma }} P 결제하기</b>
+        <v-col
+          cols="12"
+          class="place-order d-flex justify-center"
+          style="background-color: #515151; color: white"
+        >
+          <NuxtLink
+            to="/store/pay/"
+            style="text-decoration: none; color: white"
+          >
+            <b style="color: white">{{ sum() | comma }} P 결제하기</b>
           </NuxtLink>
         </v-col>
       </v-row>
@@ -73,15 +79,13 @@ import StoreItems from '../../components/StoreItems.vue'
 
 export default {
   components: { StoreItems },
-  data () {
+  data() {
     return {
-      storeData: [
-        { title: '[스타벅스] 카페 아메리카노 T', price: 4000 }
-      ],
-      balanceData: 324324
+      storeData: [{ title: '[스타벅스] 카페 아메리카노 T', price: 4000 }],
+      balanceData: 324324,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '구매 확인')
   },
   methods: {
@@ -91,8 +95,8 @@ export default {
         total += this.storeData[i].price
       }
       return total
-    }
-  }
+    },
+  },
 }
 </script>
 
