@@ -25,19 +25,15 @@ import NoticeData from '../../assets/data/NoticeData'
 export default {
   name: 'Notice',
   layout: 'default',
-  data () {
+  data() {
     return {
       NoticeData,
-      selectnum: 0
+      selectnum: 0,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '공지사항')
-<<<<<<< HEAD
   },
-=======
-  }
->>>>>>> 210b1e074ce5d873129abaf2ff58bfdc0968ad7e
 }
 </script>
 
