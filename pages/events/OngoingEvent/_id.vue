@@ -1,48 +1,37 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink
-        to="/eventlist"
-        style="color: black; text-decoration-line: none"
-      >
-        <img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-        >
-      </NuxtLink>
-
-      <a><span>이벤트</span></a>
-    </div>
 
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ EndedEvent[$route.params.id].title }}
+        {{ OngoingEvent[$route.params.id].title }}
       </div>
       <div class="date">
-        {{ EndedEvent[$route.params.id].date }}
+        {{ OngoingEvent[$route.params.id].date }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ EndedEvent[$route.params.id].maininfo }}
+        {{ OngoingEvent[$route.params.id].maininfo }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
+      <img class="noticeimg" src="../../../assets/2021042901003307000280711.jpg">
     </div>
   </div>
 </template>
 
 <script>
-import EndedEvent from '../../assets/data/EndedEvent'
+import OngoingEvent from '../../../assets/data/OngoingEvent'
 export default {
   name: 'Planneddetail',
   layout: 'default',
   data () {
     return {
-      EndedEvent,
+      OngoingEvent,
       selectnum: 0
     }
-  }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '이벤트')
+  },
 }
 </script>
 

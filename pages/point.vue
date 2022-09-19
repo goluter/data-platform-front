@@ -1,16 +1,6 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/" style="color: black; text-decoration-line: none">
-        <img
-          style="position: absolute"
-          src="../assets/Arrow back ios.png"
-          ALIGN="left"
-        >
-      </NuxtLink>
-
-      <a><span>포인트 이력</span></a>
-    </div>
+    
     <div v-for="(a, i) in PointData" :key="a" class="pointbox">
       <NuxtLink
         :to="PointData[i].url"
@@ -49,7 +39,10 @@ export default {
       PointData,
       sumpoint: 0
     }
-  }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '포인트 이력')
+  },
 }
 </script>
 
