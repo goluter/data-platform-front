@@ -15,7 +15,7 @@
             <div class="noticemain">
               {{ EndedEvent[$route.params.id].maininfo }}
             </div>
-            <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg">
+            <img class="noticeimg" src="../../../assets/2021042901003307000280711.jpg">
           </div>
         </div>
       </v-col>
