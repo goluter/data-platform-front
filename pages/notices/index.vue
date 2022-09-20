@@ -79,7 +79,6 @@ export default {
 .contents a {
   text-decoration: none;
 }
-
 .date {
   flex-grow: 0;
   margin: 13px 0px 19px 18px;

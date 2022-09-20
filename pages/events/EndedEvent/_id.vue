@@ -1,23 +1,26 @@
 <template>
-  <div>
-    <div style="border-bottom: 1px solid #d3d3d3">
-      <div class="noticetitle">
-        {{ EndedEvent[$route.params.id].title }}
-      </div>
-      <div class="date">
-        {{ EndedEvent[$route.params.id].date }}
-      </div>
-    </div>
-    <div>
-      <div class="noticemain">
-        {{ EndedEvent[$route.params.id].maininfo }}
-      </div>
-      <img
-        class="noticeimg"
-        src="../../../assets/2021042901003307000280711.jpg"
-      />
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <div>
+          <div style="border-bottom: 1px solid #d3d3d3">
+            <div class="noticetitle">
+              {{ EndedEvent[$route.params.id].title }}
+            </div>
+            <div class="date">
+              {{ EndedEvent[$route.params.id].date }}
+            </div>
+          </div>
+          <div>
+            <div class="noticemain">
+              {{ EndedEvent[$route.params.id].maininfo }}
+            </div>
+            <img class="noticeimg" src="../../../assets/2021042901003307000280711.jpg">
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
