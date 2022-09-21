@@ -7,16 +7,21 @@
             고베이 공지사항을 확인해보세요!
           </div>
         </div>
-        <div v-for="(a, i) in NoticeData" :key="i" class="contents">
+        <div
+          v-if="users"
+          v-for="(a, i) in NoticeData"
+          :key="i"
+          class="contents"
+        >
           <NuxtLink
             :to="NoticeData[i].url"
             style="color: black; text-decoration-line: none"
           >
             <div class="noticetitle">
-              {{ NoticeData[i].title }}
+              {{ users[i].subject }}
             </div>
             <div class="date">
-              {{ NoticeData[i].date }}
+              {{ users[i].createdAt }}
             </div>
           </NuxtLink>
         </div>
@@ -27,16 +32,43 @@
 
 <script>
 import NoticeData from 'assets/data/NoticeData.js'
+import axios from 'axios'
 export default {
   name: 'Notice',
   data() {
     return {
       NoticeData,
       num: 0,
+      category: '공지',
+      page: 0,
+      limit: 10,
+      users: null,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '공지사항')
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
   },
 }
 </script>

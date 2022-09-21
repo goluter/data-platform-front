@@ -1,18 +1,18 @@
 <template>
-  <v-container>
+  <v-container v-if="users">
     <v-row>
       <v-col cols="12">
         <div style="border-bottom: 1px solid #d3d3d3">
           <div class="noticetitle">
-            {{ NoticeData[$route.params.id].title }}
+            {{ users[$route.params.id].subject }}
           </div>
           <div class="date">
-            {{ NoticeData[$route.params.id].date }}
+            {{ users[$route.params.id].createdAt }}
           </div>
         </div>
         <div>
           <div class="noticemain">
-            {{ NoticeData[$route.params.id].answer }}
+            {{ users[$route.params.id].content }}
           </div>
         </div>
       </v-col>
@@ -22,6 +22,7 @@
 
 <script>
 import NoticeData from '../../assets/data/NoticeData'
+import axios from 'axios'
 export default {
   name: 'Notice',
   layout: 'default',
@@ -29,10 +30,36 @@ export default {
     return {
       NoticeData,
       selectnum: 0,
+      category: '공지',
+      page: 0,
+      limit: 10,
+      users: null,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '공지사항')
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
   },
 }
 </script>
