@@ -1,5 +1,5 @@
 <template>
-  <v-container class="container ml-auto mb-10">
+  <v-container class="container ml-auto mb-15">
     <v-row class="section" style="margin-top: 0">
       <v-col class="section-title-box pb-0" cols="12">
         <h1 class="section-title">
@@ -208,13 +208,7 @@ export default {
 }
 </script>
 
-<style></style>
-
 <style scoped>
-.container {
-  max-width: 960px;
-}
-
 .section {
   margin-top: 30px;
   height: 55px;
