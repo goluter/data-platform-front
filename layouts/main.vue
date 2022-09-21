@@ -2,21 +2,28 @@
   <v-app>
     <v-main>
       <div class="header-wrapper">
-        <v-container v-if="!$vuetify.breakpoint.mobile"
-                     fluid
-                     class="pa-3 pl-8"
-                     style="max-width: 1290px;">
+        <v-container
+          v-if="!$vuetify.breakpoint.mobile"
+          fluid
+          class="pa-3 pl-8"
+          style="max-width: 1290px;"
+        >
           <v-row style="height: 100px;">
             <v-col cols="12">
               <v-tabs hide-slider style="font-size: 20px;">
                 <v-tab class="pa-0">
-                  <img src="../static/govey.svg" width="120" height="38" />
+                  <NuxtLink to="/">
+                    <img src="../static/govey.svg" width="120" height="38">
+                  </NuxtLink>
                 </v-tab>
-                <v-tab v-for="menu in menu"
-                       :key="menu"
-                       class="pa-0"
-                       style="font-size: 18px; font-weight: 600;">
-                  {{ menu }}
+                <v-tab
+                  v-for="menu in menu"
+                  :key="menu"
+                  :href="menu.to"
+                  class="pa-0"
+                  style="font-size: 18px; font-weight: 600;"
+                >
+                  {{ menu.page }}
                 </v-tab>
               </v-tabs>
             </v-col>
@@ -28,7 +35,7 @@
           <v-spacer />
           <v-toolbar-title style="height: 22px">
             <NuxtLink to="/" style="color: black; text-decoration-line: none">
-              <img src="../static/govey.svg" />
+              <img src="../static/govey.svg">
             </NuxtLink>
           </v-toolbar-title>
           <v-spacer />
@@ -47,7 +54,7 @@
           <v-list nav dense>
             <v-list-item to="/login">
               <v-list-item-avatar>
-                <img src="../assets/premium-icon-person-2815428.png" />
+                <img src="../assets/premium-icon-person-2815428.png">
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>로그인</v-list-item-title>
@@ -56,10 +63,10 @@
             <v-divider />
             <v-list-item-group v-model="group" active-class="text--accent-4">
               <v-list-item
-                  v-for="(item, i) in items"
-                  :key="i"
-                  :to="item.to"
-                  @click="commitTitle(item.page)"
+                v-for="(item, i) in items"
+                :key="i"
+                :to="item.to"
+                @click="commitTitle(item.page)"
               >
                 <v-list-item-content>
                   <v-list-item-title v-text="item.page" />
@@ -71,30 +78,32 @@
             <v-row>
               <v-col>
                 <a
-                    target="_blank"
-                    href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                ><img class="sns-icon" src="../static/image 4.png"
-                /></a>
+                  target="_blank"
+                  href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
+                ><img
+                  class="sns-icon"
+                  src="../static/image 4.png"
+                ></a>
               </v-col>
               <v-col>
                 <a
-                    target="_blank"
-                    href="https://www.instagram.com/govey_official/?hl=ko"
+                  target="_blank"
+                  href="https://www.instagram.com/govey_official/?hl=ko"
                 ><img
-                    class="sns-icon"
-                    style="margin-top: 6px; width: 50px; height: 50px"
-                    src="../static/image 5.png"
-                /></a>
+                  class="sns-icon"
+                  style="margin-top: 6px; width: 50px; height: 50px"
+                  src="../static/image 5.png"
+                ></a>
               </v-col>
               <v-col>
                 <a
-                    target="_blank"
-                    href="https://www.facebook.com/고베이-104289228923939"
+                  target="_blank"
+                  href="https://www.facebook.com/고베이-104289228923939"
                 ><img
-                    class="sns-icon"
-                    style="margin-top: 6px; width: 50px; height: 50px"
-                    src="../static/image 6.png"
-                /></a>
+                  class="sns-icon"
+                  style="margin-top: 6px; width: 50px; height: 50px"
+                  src="../static/image 6.png"
+                ></a>
               </v-col>
             </v-row>
           </div>
@@ -102,7 +111,7 @@
       </div>
       <Nuxt v-if="!$slots.default" />
       <slot />
-      <div class="footer" v-if="$vuetify.breakpoint.mobile">
+      <div v-if="$vuetify.breakpoint.mobile" class="footer">
         <v-bottom-navigation grow class="elevation-0">
           <v-btn v-for="(item, i) in fitems" :key="i" :to="item.to">
             <span>{{ item.page }}</span>
@@ -116,9 +125,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      menu: ['설문', '스토어', '마이'],
+      menu: [
+        { page: '설문', to: '/surveys/' },
+        { page: '스토어', to: '/store/' },
+        { page: '마이', to: '/mypage/' }
+      ],
       items: [
         { page: '리포트', to: '/reports/' },
         { page: '공지사항', to: '/notices/' },
@@ -126,28 +139,28 @@ export default {
         { page: '명예의전당', to: '/hall-of-fame/' },
         { page: '고객센터', to: '/service-center/' },
         { page: '개인정보처리방침', to: '/privacy-policy/' },
-        { page: '이용약관', to: '/terms-of-service/' },
+        { page: '이용약관', to: '/terms-of-service/' }
       ],
       fitems: [
         { page: '홈', icon: 'mdi-home', to: '/' },
         { page: '설문', icon: 'mdi-text-box-edit', to: '/surveys/' },
         { page: '스토어', icon: 'mdi-store', to: '/store/' },
-        { page: '마이', icon: 'mdi-account-circle', to: '/login/' },
+        { page: '마이', icon: 'mdi-account-circle', to: '/login/' }
       ],
       drawer: false,
-      group: null,
+      group: null
     }
   },
   watch: {
-    group() {
+    group () {
       this.drawer = false
-    },
+    }
   },
   methods: {
-    commitTitle(title) {
+    commitTitle (title) {
       this.$store.commit('setPageTitle', title)
-    },
-  },
+    }
+  }
 }
 </script>
 <style scoped>
