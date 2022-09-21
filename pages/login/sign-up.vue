@@ -5,7 +5,7 @@
         <h1>회원가입</h1>
         <div class="login">
           <p>이미 고베이 계정이 있으신가요?</p>
-          <a href="/Login">로그인</a>
+          <a href="/login/"><span style="font-weight: bold; color: dodgerblue;">로그인</span></a>
         </div>
       </div>
       <div class="signup-type">
@@ -128,10 +128,8 @@ h3 {
 .login a {
   margin-top: 10px;
   padding: 10px 20px;
-  border: solid 1px;
+  border: solid 1px dodgerblue;
   border-radius: 4px;
-  text-decoration: dodgerblue;
-  font-weight: bold;
 }
 
 .signup-type {
