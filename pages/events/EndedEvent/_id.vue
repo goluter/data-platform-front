@@ -2,23 +2,21 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <div class="banner">
-          <div style="padding: 22px 0px 0px 18px">
-            고베이 공지사항을 확인해보세요!
-          </div>
-        </div>
-        <div v-for="(a, i) in NoticeData" :key="i" class="contents">
-          <NuxtLink
-              :to="NoticeData[i].url"
-              style="color: black; text-decoration-line: none"
-          >
+        <div>
+          <div style="border-bottom: 1px solid #d3d3d3">
             <div class="noticetitle">
-              {{ NoticeData[i].title }}
+              {{ EndedEvent[$route.params.id].title }}
             </div>
             <div class="date">
-              {{ NoticeData[i].date }}
+              {{ EndedEvent[$route.params.id].date }}
             </div>
-          </NuxtLink>
+          </div>
+          <div>
+            <div class="noticemain">
+              {{ EndedEvent[$route.params.id].maininfo }}
+            </div>
+            <img class="noticeimg" src="../../../assets/2021042901003307000280711.jpg">
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -26,22 +24,42 @@
 </template>
 
 <script>
-import NoticeData from 'assets/data/NoticeData.js'
+import EndedEvent from '../../../assets/data/EndedEvent'
 export default {
-  name: 'Notice',
-  data() {
+  name: 'Planneddetail',
+  layout: 'default',
+  data () {
     return {
-      NoticeData,
-      num: 0,
+      EndedEvent,
+      selectnum: 0
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '공지사항')
-  }
+    this.$store.commit('setPageTitle', '이벤트')
+  },
 }
 </script>
 
 <style scoped>
+.noticemain {
+  width: 204px;
+  height: 16px;
+  margin: 32px 0px 0px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  text-align: left;
+  color: #000;
+}
+.noticeimg {
+  width: 322px;
+  height: 251px;
+  margin: 30px 0px 0 15px;
+  border-radius: 20px;
+}
 .noticetitle {
   flex-grow: 0;
   margin: 24px 0px 0px 18px;
@@ -53,10 +71,7 @@ export default {
   letter-spacing: -0.7px;
   text-align: left;
   color: #000;
-}
-.banner {
-  background-color: #eee;
-  height: 96px;
+  width: 200px;
 }
 .header span {
   flex-grow: 0;
@@ -70,16 +85,20 @@ export default {
   letter-spacing: -0.7px;
   text-align: center;
   color: #434343;
+  z-index: 1;
 }
 .contents {
   border-bottom: 1px solid #d3d3d3;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
+  height: 87px;
 }
 .contents a {
   text-decoration: none;
 }
 .date {
+  width: 200px;
+  height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;
   font-size: 12px;

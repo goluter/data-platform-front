@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <v-tabs fixed-tabs color="#1cddb7">
       <v-tab
         @click="
@@ -120,7 +120,7 @@ export default {
 .contents {
   height: 66px;
   flex-grow: 0;
-  border: solid 1px #f0f0f0;
+  border-bottom: solid 1px #f0f0f0;
   padding: 20px 0px 0px 18px;
   background-color: #fff;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div>
       <div class="asd" style="">
         <img src="../assets/magnify.png" class="mag" />
@@ -71,7 +71,7 @@
     <div v-if="onebyone == true">
       <div align="right">
         <NuxtLink
-          to="/InquiryPage"
+          to="/Inquiry-Page"
           style="color: black; text-decoration-line: none"
         >
           <v-btn

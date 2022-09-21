@@ -1,21 +1,11 @@
 <template>
   <div>
-    <div class="header">
-      <NuxtLink to="/point" style="color: black; text-decoration-line: none">
-        <img
-          style="position: absolute"
-          src="../../assets/Arrow back ios.png"
-          ALIGN="left"
-        />
-      </NuxtLink>
-
-      <a><span>상세내역</span></a>
-    </div>
+      
     <div class="box">
       <div class="subbox">
         <img
           class="profileimg"
-          src="../../assets/Male User.png"
+          src="../../../assets/Male User.png"
           align="middle"
         />
         <span>{{ username }}</span>
@@ -51,7 +41,7 @@
 </template>
 
 <script>
-import PointData from '../../assets/data/Pointdata'
+import PointData from '../../../assets/data/Pointdata'
 export default {
   name: 'Planneddetail',
   layout: 'default',
@@ -61,6 +51,9 @@ export default {
       selectnum: 0,
       username: '고베이',
     }
+  },
+  mounted() {
+    this.$store.commit('setPageTitle', '상세내역')
   },
 }
 </script>
