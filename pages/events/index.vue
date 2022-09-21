@@ -9,60 +9,60 @@
       <v-col cols="12">
         <v-tabs fixed-tabs color="#1cddb7">
           <v-tab
-              @click="
-          planned = true
-          ongoing = false
-          ended = false
-        "
+            @click="
+              planned = true
+              ongoing = false
+              ended = false
+            "
           >
             예정
           </v-tab>
           <v-tab
-              @click="
-          planned = false
-          ongoing = true
-          ended = false
-        "
+            @click="
+              planned = false
+              ongoing = true
+              ended = false
+            "
           >
             진행중
           </v-tab>
           <v-tab
-              @click="
-          planned = false
-          ongoing = false
-          ended = true
-        "
+            @click="
+              planned = false
+              ongoing = false
+              ended = true
+            "
           >
             마감
           </v-tab>
         </v-tabs>
         <div
-            v-for="(a, i) in PlannedEvent"
-            v-if="planned == true"
-            :key="a"
-            class="contents"
+          v-for="(a, i) in users"
+          v-if="planned == true"
+          :key="a"
+          class="contents"
         >
           <NuxtLink
-              :to="PlannedEvent[i].url"
-              style="color: black; text-decoration-line: none"
+            :to="PlannedEvent[i].url"
+            style="color: black; text-decoration-line: none"
           >
             <div class="eventtitle">
-              {{ PlannedEvent[i].title }}
+              {{ users[i].subject }}
             </div>
             <div class="date">
-              {{ PlannedEvent[i].date }}
+              {{ users[i].createdAt }}
             </div>
           </NuxtLink>
         </div>
         <div
-            v-for="(a, i) in OngoingEvent"
-            v-if="ongoing == true"
-            :key="a"
-            class="contents"
+          v-for="(a, i) in OngoingEvent"
+          v-if="ongoing == true"
+          :key="a"
+          class="contents"
         >
           <NuxtLink
-              :to="OngoingEvent[i].url"
-              style="color: black; text-decoration-line: none"
+            :to="OngoingEvent[i].url"
+            style="color: black; text-decoration-line: none"
           >
             <div class="eventtitle">
               {{ OngoingEvent[i].title }}
@@ -73,14 +73,14 @@
           </NuxtLink>
         </div>
         <div
-            v-for="(a, i) in EndedEvent"
-            v-if="ended == true"
-            :key="a"
-            class="contents"
+          v-for="(a, i) in EndedEvent"
+          v-if="ended == true"
+          :key="a"
+          class="contents"
         >
           <NuxtLink
-              :to="EndedEvent[i].url"
-              style="color: black; text-decoration-line: none"
+            :to="EndedEvent[i].url"
+            style="color: black; text-decoration-line: none"
           >
             <div class="eventtitle">
               {{ EndedEvent[i].title }}
@@ -92,7 +92,6 @@
         </div>
       </v-col>
     </v-row>
-
   </div>
 </template>
 
@@ -100,6 +99,7 @@
 import EndedEvent from 'assets/data/EndedEvent'
 import PlannedEvent from 'assets/data/PlannedEvent'
 import OngoingEvent from 'assets/data/OngoingEvent'
+import axios from 'axios'
 
 export default {
   name: 'EventList',
@@ -113,11 +113,38 @@ export default {
       OngoingEvent,
       EndedEvent,
       PlannedEvent,
+      users: null,
+      totalpage: null,
+      category: '이벤트',
+      page: 0,
+      limit: 10,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '이벤트')
-  }
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
+  },
 }
 </script>
 
