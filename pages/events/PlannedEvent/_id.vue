@@ -1,36 +1,66 @@
 <template>
-  <div>
-
+  <div v-if="users">
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ PlannedEvent[$route.params.id].title }}
+        {{ users[$route.params.id].subject }}
       </div>
       <div class="date">
-        {{ PlannedEvent[$route.params.id].date }}
+        {{ users[$route.params.id].createdAt }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ PlannedEvent[$route.params.id].maininfo }}
+        {{ users[$route.params.id].content }}
       </div>
-      <img class="noticeimg" src="../../../assets/2021042901003307000280711.jpg">
+      <img
+        class="noticeimg"
+        src="../../../assets/2021042901003307000280711.jpg"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import PlannedEvent from '../../../assets/data/PlannedEvent'
+import axios from 'axios'
+
 export default {
   name: 'Planneddetail',
   layout: 'default',
-  data () {
+  data() {
     return {
       PlannedEvent,
-      selectnum: 0
+      selectnum: 0,
+      users: null,
+      category: '이벤트',
+      page: 0,
+      limit: 10,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '이벤트')
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
   },
 }
 </script>
