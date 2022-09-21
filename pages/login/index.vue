@@ -6,7 +6,15 @@
         <span>고베이에 오신 것을 환영합니다!</span>
         <div class="signup">
           <p>아직 고베이 계정이 없으신가요?</p>
-          <NuxtLink to="/login/sign-up/"> 회원가입 </NuxtLink>
+          <NuxtLink
+            to="/login/sign-up/"
+            style="margin-top: 10px;
+                   padding: 10px 20px;
+                   border: solid 1px dodgerblue;
+                   border-radius: 4px;"
+          >
+            <span style="font-weight: bold; color: dodgerblue">회원가입</span>
+          </NuxtLink>
         </div>
       </div>
       <div class="login-type">
@@ -35,7 +43,7 @@
               type="email"
               placeholder="이메일을 입력하세요."
               required
-            />
+            >
           </div>
           <div class="input">
             <label>비밀번호</label>
@@ -44,17 +52,17 @@
               type="password"
               placeholder="비밀번호를 입력하세요."
               required
-            />
+            >
           </div>
           <div id="login-option">
             <div class="auto-login">
-              <input type="checkbox" /><label>자동로그인</label>
+              <input type="checkbox"><label>자동로그인</label>
             </div>
             <div id="forgot">
               <a href="/static">비밀번호 찾기</a>
             </div>
           </div>
-          <input type="submit" value="로그인" />
+          <input type="submit" value="로그인">
         </form>
       </div>
     </div>
@@ -66,13 +74,13 @@ export default {
   name: 'LoginPage',
   layout: 'login',
   head: {
-    title: 'Log In',
+    title: 'Log In'
   },
   methods: {
-    loginWithGoogle() {
+    loginWithGoogle () {
       this.$auth.loginWith('google')
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -108,15 +116,6 @@ export default {
 .signup p {
   white-space: nowrap;
   font-size: 20px;
-}
-
-.signup a {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border: solid 1px;
-  border-radius: 4px;
-  text-decoration: dodgerblue;
-  font-weight: bold;
 }
 
 .login-type {
