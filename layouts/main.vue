@@ -4,14 +4,13 @@
       <div class="header-wrapper">
         <v-container
           v-if="!$vuetify.breakpoint.mobile"
-          fluid
-          class="pa-3 pl-8"
-          style="max-width: 1290px;"
+          class="pa-3"
+          style="max-width: 1250px"
         >
-          <v-row style="height: 100px;">
+          <v-row style="">
             <v-col cols="12">
               <v-tabs hide-slider style="font-size: 20px;">
-                <v-tab class="pa-0">
+                <v-tab class="pa-0 pt-1">
                   <NuxtLink to="/">
                     <img src="../static/govey.svg" width="120" height="38">
                   </NuxtLink>
@@ -21,7 +20,7 @@
                   :key="menu"
                   :href="menu.to"
                   class="pa-0"
-                  style="font-size: 18px; font-weight: 600;"
+                  style="font-size: 20px; font-weight: 600;"
                 >
                   {{ menu.page }}
                 </v-tab>
@@ -109,7 +108,7 @@
           </div>
         </v-navigation-drawer>
       </div>
-      <Nuxt v-if="!$slots.default" />
+      <Nuxt v-if="!$slots.default" class="ma-auto" style="max-width: 960px;" />
       <slot />
       <div v-if="$vuetify.breakpoint.mobile" class="footer">
         <v-bottom-navigation grow class="elevation-0">
@@ -130,7 +129,7 @@ export default {
       menu: [
         { page: '설문', to: '/surveys/' },
         { page: '스토어', to: '/store/' },
-        { page: '마이', to: '/mypage/' }
+        { page: '마이', to: '/login/' }
       ],
       items: [
         { page: '리포트', to: '/reports/' },
