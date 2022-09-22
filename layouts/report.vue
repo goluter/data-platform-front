@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-0">
+  <v-container class="pa-0" style="max-width: 960px">
     <v-col class="pa-0" cols="12">
       <v-app-bar dense class="elevation-0" color="transparent">
         <v-app-bar-nav-icon icon @click="back">
