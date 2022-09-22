@@ -1,174 +1,268 @@
 <template>
-  <v-container fluid class="wrap">
-    <div>
-      <v-tabs style="width: 100%" fixed-tabs>
-        <v-tab
-          @click="
-            tab1 = true
-            tab2 = false
-            tab3 = false
-          "
-        >
-          예정
-        </v-tab>
-        <v-tab
-          @click="
-            tab1 = false
-            tab2 = true
-            tab3 = false
-          "
-        >
-          진행중
-        </v-tab>
-        <v-tab
-          @click="
-            tab1 = false
-            tab2 = false
-            tab3 = true
-          "
-        >
-          마감
-        </v-tab>
-      </v-tabs>
-    </div>
-    <div class="gray-line" />
-    <div class="ma-2">
-      <v-row class="mt-5">
-        <v-col cols="5">
-          <v-autocomplete
-            v-model="tag_model"
-            filled
-            rounded
-            solo
-            dense
-            :items="tag_models"
-            label="태그"
-          />
-        </v-col>
-        <v-col cols="5">
-          <v-autocomplete
-            v-model="gift_model"
-            filled
-            rounded
-            solo
-            dense
-            :items="gift_models"
-            label="보상종류"
-          />
+  <div class="wrapper">
+    <v-container>
+      <v-row>
+        <v-col class="pa-0" cols="12">
+          <template>
+            <v-tabs v-model="tab" slider-color="teal accent-3" grow>
+              <v-tab
+                v-for="(item, i) in surveyTab"
+                :key="i"
+                style="color: black; font-weight: 600;"
+              >
+                {{ item }}
+              </v-tab>
+            </v-tabs>
+          </template>
+          <v-tabs-items v-model="tab">
+            <v-tab-item
+              v-for="(item, i) in surveyTab"
+              :key="i"
+            >
+              <v-row
+                class="my-0 py-2 px-1"
+                style="background-color: #eeeeee"
+              >
+                <v-col class="" cols="12" style="display: flex; align-items: center">
+                  <v-row style="background-color: white">
+                    <v-col class="" cols="4" md="2">
+                      <v-form style="height: 40px">
+                        <v-text-field
+                          label="검색"
+                          single-line
+                          clearable
+                          outlined
+                          dense
+                          append-icon="mdi-magnify"
+                          style="height: 40px; border-radius: 45px"
+                        />
+                      </v-form>
+                    </v-col>
+                    <v-col cols="4" md="2">
+                      <v-select
+                        :items="rewardsFilter"
+                        label="보상 종류"
+                        single-line
+                        clearable
+                        outlined
+                        dense
+                        style="height: 40px; border-radius: 45px"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+              <v-container class="pa-0">
+                <v-row class="ma-0" justify="end" style="height: 60px">
+                  <v-col cols="4">
+                    <v-select
+                      :items="sort"
+                      label="최신순"
+                      solo
+                      flat
+                      dense
+                    />
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-container>
+                <NuxtLink
+                  v-for="(item, i) in surveyData"
+                  :key="i"
+                  to="/surveys/1"
+                  style="text-decoration: none; color: initial"
+                >
+                  <v-row>
+                    <v-col class="pb-0" cols="12">
+                      <v-row>
+                        <v-col cols="auto">
+                          <div class="thumbnail" />
+                        </v-col>
+                        <v-col class="grow" cols="auto">
+                          <v-row>
+                            <v-col cols="12">
+                              <v-row>
+                                <v-col class="survey-title pb-0" cols="12">
+                                  {{ item.title }}
+                                </v-col>
+                              </v-row>
+                              <v-row>
+                                <v-col class="survey-period py-0" cols="12">
+                                  {{ item.period[0] }} ~ {{ item.period[1] }}
+                                </v-col>
+                              </v-row>
+                              <v-row>
+                                <v-col class="survey-stat d-flex" cols="12">
+                                  <div class="report-likes mr-2">
+                                    {{ item.count }} 명 참여 중!
+                                  </div>
+                                  <div class="survey-tag ml-auto">
+                                    <span
+                                      v-for="(tag, i) in item.tags"
+                                      :key="i"
+                                      style="color: dodgerblue"
+                                    >
+                                      #{{ tag }}
+                                    </span>
+                                  </div>
+                                </v-col>
+                              </v-row>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col class="pt-0 pb-5" cols="12">
+                      <div class="reward-box-triangle ma-auto" />
+                      <div class="reward-box">
+                        <v-container>
+                          <v-row>
+                            <v-col
+                              v-for="(reward, i) in item.rewards"
+                              :key="i"
+                              cols="auto"
+                              class="reward-item-box pa-1 rounded-x1"
+                            >
+                              <div>
+                                <v-icon small :color="reward.color">
+                                  {{ reward.icon }}
+                                </v-icon>
+                                <span>{{ reward.title }}</span>
+                              </div>
+                            </v-col>
+                          </v-row>
+                        </v-container>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </nuxtlink>
+              </v-container>
+            </v-tab-item>
+          </v-tabs-items>
         </v-col>
       </v-row>
-    </div>
-    <div class="gray-line" />
-    <div v-if="tab1 == true">
-      <div class="mt-3 d-flex justify-end">
-        <div style="width: 35%">
-          <v-autocomplete
-            v-model="auto_model"
-            filled
-            rounded
-            dense
-            :items="auto_models"
-          />
-        </div>
-      </div>
-
-      <div v-for="(list, i) in 6" :key="i">
-        <NuxtLink :to="'/surveys/1' + i">
-          <div class="mt-3" style="position: relative">
-            <v-row>
-              <v-col cols="4">
-                <div class="rounded-xl gray-box" />
-              </v-col>
-              <v-col cols="6">
-                <v-row class="mt-1">
-                  {{ mainlist[i].que }}
-                </v-row>
-                <v-row>
-                  {{ mainlist[i].date }}
-                </v-row>
-                <v-row style="font-size: 9px; position: absolute; bottom: 25px">
-                  <div class="mr-7">
-                    {{ mainlist[i].num }}명이 참여 중입니다.
-                  </div>
-                  <div>#대학생 #새학기 #축제</div>
-                </v-row>
-              </v-col>
-            </v-row>
-          </div>
-          <div style="display: flex; justify-content: center" class="mt-2">
-            <div class="triangle" />
-          </div>
-          <div class="blue_box d-flex">
-            <div class="rounded-xl pl-2 pr-2 round_gift mt-2 ml-2">
-              <img src="assets/giftbox 2.png" /> 스타벅스
-            </div>
-            <div class="rounded-xl pl-2 pr-2 ml-2 round_gift mt-2">
-              <img src="assets/coin 2.png" /> 100P
-            </div>
-          </div>
-        </NuxtLink>
-      </div>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import mainlist from 'assets/data/Mobile_main_list'
-
 export default {
-  name: 'SurveyList',
-  layout: 'main',
-  data() {
+  data () {
     return {
-      tab1: true,
-      tab2: false,
-      tab3: false,
-      auto_model: '최신순',
-      auto_models: ['최신순', '참여순', '포인트순'],
-      gift_model: null,
-      gift_models: ['포인트', '기프티콘'],
-      tag_model: null,
-      tag_models: ['대학생', '사회생활', '코딩'],
-      mainlist,
+      tab: null,
+      surveyTab: ['진행중', '마감'],
+      rewardsFilter: ['기프티콘', '포인트'],
+      sort: ['최신순', '추천순', '댓글순'],
+      surveyData: [
+        {
+          id: 1,
+          title: '대학생들에게 묻습니다',
+          period: ['2022.09.22', '2022.09.27'],
+          count: '114,300',
+          tags: ['대학생', '새내기', '축제'],
+          rewards: [
+            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
+            {
+              title: '100P',
+              icon: 'mdi-circle-multiple',
+              color: 'yellow darken-3'
+            }
+          ]
+        },
+        {
+          id: 2,
+          title: '대학생들에게 묻습니다',
+          period: ['2022.09.22', '2022.09.27'],
+          count: '114,300',
+          tags: ['대학생', '새내기', '축제'],
+          rewards: [
+            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
+            {
+              title: '100P',
+              icon: 'mdi-circle-multiple',
+              color: 'yellow darken-3'
+            }
+          ]
+        },
+        {
+          id: 3,
+          title: '대학생들에게 묻습니다',
+          period: ['2022.09.22', '2022.09.27'],
+          count: '114,300',
+          tags: ['대학생', '새내기', '축제'],
+          rewards: [
+            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
+            {
+              title: '100P',
+              icon: 'mdi-circle-multiple',
+              color: 'yellow darken-3'
+            }
+          ]
+        },
+        {
+          id: 4,
+          title: '대학생들에게 묻습니다',
+          period: ['2022.09.22', '2022.09.27'],
+          count: '114,300',
+          tags: ['대학생', '새내기', '축제'],
+          rewards: [
+            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
+            {
+              title: '100P',
+              icon: 'mdi-circle-multiple',
+              color: 'yellow darken-3'
+            }
+          ]
+        }
+      ]
     }
   },
-
-  componets: {},
+  mounted () {
+    this.$store.commit('setPageTitle', '설문')
+  }
 }
 </script>
 
 <style scoped>
-.wrap {
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  background-color: #eeeeee;
+  border-radius: 10px;
 }
-.gray-line {
-  width: 100%;
-  height: 20px;
-  background-color: lightgray;
+.survey-title {
+  font-size: 14px;
+  font-weight: bold;
 }
-.gray-box {
-  background-color: gray;
-  width: 100%;
+.survey-period {
+  font-size: 14px;
 }
-.gray-box:after {
-  content: '';
-  display: block;
-  padding-bottom: 100%;
+.survey-stat {
+  font-size: 12px;
 }
-.blue_box {
-  background-color: #83e0fd;
-  height: 41px;
-  width: 100%;
-}
-.round_gift {
-  background-color: white;
-  color: black;
-  height: 60%;
-}
-.triangle {
-  width: 0px;
-  height: 0px;
-  border-bottom: 10px solid #83e0fd;
-  border-left: 5px solid transparent;
+.reward-box-triangle {
+  height: 0;
+  width: 0;
+  border-top: 5px solid transparent;
   border-right: 5px solid transparent;
+  border-bottom: 10px solid #1de9b6;
+  border-left: 5px solid transparent;
+}
+.reward-box {
+  padding: 10px;
+  width: 100%;
+  height: 45px;
+  background-color: #1de9b6;
+  border-radius: 10px;
+}
+.reward-item-box {
+  display: inline;
+  align-items: center;
+  margin: 0 7px 0 0;
+  background-color: white;
+  border-radius: 24px;
+  font-size: 10px;
 }
 </style>
