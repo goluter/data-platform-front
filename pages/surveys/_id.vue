@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="ma-auto" style="max-width: 960px;">
     <report :report-data="surveyData" />
     <v-container>
       <v-row>
-        <v-col cols="12" style="font-size: 13px;">
+        <v-col class="my-2" cols="12" style="font-size: 13px;">
           <v-row>
             <v-col class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
               진행중인 설문
