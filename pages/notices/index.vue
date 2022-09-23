@@ -8,13 +8,14 @@
           </div>
         </div>
         <div
+          
+          v-for="(a, i) in users"
           v-if="users"
-          v-for="(a, i) in NoticeData"
           :key="i"
           class="contents"
         >
           <NuxtLink
-            :to="NoticeData[i].url"
+            :to="{name: 'notices-id', params: { id: i } }"
             style="color: black; text-decoration-line: none"
           >
             <div class="noticetitle">
@@ -43,6 +44,7 @@ export default {
       page: 0,
       limit: 10,
       users: null,
+      linknum: 0,
     }
   },
   mounted() {
