@@ -2,13 +2,9 @@
   <div class="banner-wrapper">
     <div>
       <ul>
-        <li
-          v-for="(item, i) in noticeData"
-          :key="i"
-          class="notice-box"
-        >
-          <NuxtLink :to="item.to">
-            <h5>{{ item.title }}</h5>
+        <li v-for="(item, i) in users" v-if="users" :key="i" class="notice-box">
+          <NuxtLink :to="{ name: 'notices-id', params: { id: i } }">
+            <h5>{{ users[i].subject }}</h5>
           </NuxtLink>
         </li>
       </ul>
@@ -17,12 +13,40 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  props: {
-    noticeData: {
-      type: Array
+  data() {
+    return {
+      users: null,
+      totalpage: null,
+      category: '공지',
+      page: 0,
+      limit: 10,
     }
-  }
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
+  },
 }
 </script>
 
