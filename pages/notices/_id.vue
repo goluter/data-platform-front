@@ -21,14 +21,12 @@
 </template>
 
 <script>
-import NoticeData from '../../assets/data/NoticeData'
 import axios from 'axios'
 export default {
   name: 'Notice',
   layout: 'default',
   data() {
     return {
-      NoticeData,
       selectnum: 0,
       category: '공지',
       page: 0,

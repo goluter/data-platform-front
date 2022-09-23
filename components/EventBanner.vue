@@ -2,23 +2,26 @@
   <v-container>
     <v-row>
       <v-col
-        v-for="(item, i) in eventData"
+        v-for="(item, i) in users"
         :key="i"
         class="banner-wrapper pl-0"
         cols="12"
         sm="4"
         md="4"
       >
-        <NuxtLink :to="'/events/' + item.to" style="text-decoration: none; color: white">
+        <NuxtLink
+          :to="{ name: 'events-id', params: { id: i } }"
+          style="text-decoration: none; color: white"
+        >
           <v-sheet
             class="banner-sheet elevation-5"
-            :color="item.color"
+            color="deep-purple accent-2"
           >
             <v-col class="banner-title" cols="12">
-              {{ item.title }}
+              {{ users[i].subject }}
             </v-col>
             <v-col class="banner-msg" cols="12">
-              {{ item.msg }}
+              {{ users[i].content }}
             </v-col>
           </v-sheet>
         </NuxtLink>
@@ -28,12 +31,45 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  data() {
+    return {
+      users: null,
+      totalpage: null,
+      category: '이벤트',
+      page: 0,
+      limit: 10,
+    }
+  },
   props: {
     eventData: {
-      type: Array
-    }
-  }
+      type: Array,
+    },
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
+  },
 }
 </script>
 
