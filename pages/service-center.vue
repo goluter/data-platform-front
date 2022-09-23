@@ -104,17 +104,17 @@
       </div>
     </div>
     <div
-      v-for="(a, i) in GuideData"
-      v-if="guide == true"
+      v-for="(a, i) in users"
+      v-if="guide == true && users"
       :key="i"
       class="onemain"
     >
       <NuxtLink
-        :to="GuideData[i].url"
+        :to="{ name: 'guides-id', params: { id: i } }"
         style="color: black; text-decoration-line: none"
       >
         <div class="onetitle">
-          {{ GuideData[i].title }}
+          {{ users[i].subject }}
         </div>
       </NuxtLink>
     </div>
@@ -125,6 +125,8 @@
 import FaqData from '../assets/data/FAQdata.js'
 import GuideData from '../assets/data/GuideData.js'
 import InquiryData from '../assets/data/Inquirydata.js'
+import axios from 'axios'
+
 export default {
   name: 'ServiceCenter',
   layout: 'default',
@@ -140,10 +142,37 @@ export default {
       FaqData,
       GuideData,
       InquiryData,
+      users: null,
+      totalpage: null,
+      category: '가이드',
+      page: 0,
+      limit: 10,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '고객센터')
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
   },
 }
 </script>
