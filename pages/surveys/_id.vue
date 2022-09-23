@@ -79,7 +79,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
+        <v-col class="pa-4" cols="12">
           {{ surveyData.content }}
           <v-row>
             <v-col class="pa-2 pb-1" cols="12">
@@ -96,7 +96,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" style="background-color: #eeeeee" />
+        <v-col class="pa-4" cols="12" style="background-color: #eeeeee" />
       </v-row>
     </v-container>
     <div class="mb-8">
@@ -105,7 +105,7 @@
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
         </v-row>
         <v-row>
-          <v-col class="pa-0" cols="12">
+          <v-col class="pa-1" cols="12">
             <template>
               <v-tabs v-model="tab" slider-color="teal accent-3" grow>
                 <v-tab v-for="(item, i) in tabs" :key="i" style="color: black; font-weight: 600;">
@@ -116,7 +116,7 @@
             <v-tabs-items v-model="tab">
               <v-tab-item class="pa-2 py-5">
                 <v-row style="padding: 5px;">
-                  <v-col class="pa-2 pb-3" cols="12">
+                  <v-col class="pa-2 pb-5" cols="12">
                     <div v-for="(item, i) in surveyStats" :key="i" class="survey-stat-box">
                       <span class="survey-stat-box-title">항목</span>
                       <span class="survey-stat-box-desc">{{ item.questions }}개</span>
@@ -215,7 +215,7 @@ export default {
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       surveyStats: [{ questions: 34 }],
-      surveyQs: ['대면 전환 후 가장 기대되는 활동은?', '학교 행정 서비스 만족도는?'],
+      surveyQs: ['대면 전환 후 가장 기대되는 활동은?', '학교 행정 편의 만족도는?', '현재 학식 가격에 대한 만족도는?', '가장 필요하다고 생각하는 개선점은?'],
       bannerData: [{ icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' }]
     }
   }
