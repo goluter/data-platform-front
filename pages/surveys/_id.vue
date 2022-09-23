@@ -1,251 +1,179 @@
 <template>
-  <div class="wrap">
-    <div>
-      <div class="d-flex pt-4">
-        <div class="pl-3" style="color: #30cdae">진행중인 설문</div>
-        <div
-          style="
-            margin-left: auto;
-            font-size: 12px;
-            color: rgba(37, 144, 222, 0.87);
-          "
-        >
-          #대학생 #새학기 #축제
-        </div>
-      </div>
-      <div class="pl-2 pt-3">
-        <h2>상명대학교 학생들에게 묻습니다.</h2>
-      </div>
-      <div class="pl-2 pt-3">설문기간 : 000~000</div>
-      <div class="d-flex pt-2">
-        <div class="pl-2">
-          <img src="../../assets/Thumbs Up.png" /><span style="font-size: 10px"
-            >14,423</span
+  <div class="ma-auto" style="max-width: 960px;">
+    <report :report-data="surveyData" />
+    <v-container>
+      <v-row>
+        <v-col class="my-2" cols="12" style="font-size: 13px;">
+          <v-row>
+            <v-col class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
+              진행중인 설문
+            </v-col>
+            <v-col class="ml-auto" cols="auto" style="font-size: 10px;">
+              <NuxtLink
+                v-for="(item, i) in surveyData.tags"
+                :key="i"
+                to=""
+                style="text-decoration: none;"
+              >
+                #{{ item }}
+              </NuxtLink>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col class="pt-0 pb-0" cols="12">
+              <p class="report-title">
+                <b>{{ surveyData.title }}</b>
+              </p>
+              <span class="report-created">설문기간: {{ surveyData.period[0] }} ~ {{ surveyData.period[1] }}</span>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <div class="likes-comments d-flex">
+                <div>
+                  <v-icon small>
+                    mdi-thumb-up
+                  </v-icon>
+                  {{ surveyData.likes | comma }}
+                </div>
+                <div>
+                  <v-icon small>
+                    mdi-comment-processing
+                  </v-icon>
+                  {{ surveyData.participants | comma }}
+                </div>
+                <div>
+                  <v-icon small>
+                    mdi-comment-processing
+                  </v-icon>
+                  {{ surveyData.downloads | comma }}
+                </div>
+                <div>
+                  <v-icon small>
+                    mdi-comment-processing
+                  </v-icon>
+                  {{ surveyData.comments | comma }}
+                </div>
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container>
+      <v-row>
+        <v-col class="pt-4 pb-1" cols="12" style="background-color: #eeeeee">
+          <span class="section-title">설문자</span>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="py-5" cols="12" style="font-size: 12px;">
+          <v-icon left>
+            mdi-account-circle
+          </v-icon>{{ surveyData.surveyor }}
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="pt-4 pb-1" cols="12" style="background-color: #eeeeee">
+          <span class="section-title">설문 정보</span>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          {{ surveyData.content }}
+          <v-row>
+            <v-col cols="12">
+              <div class="survey-more">
+                <div class="survey-more-text">
+                  <span style="font-size: 11px; font-weight: 600;">자세히 보기</span>
+                </div>
+                <div class="survey-more-btn ml-auto">
+                  <v-icon>mdi-chevron-right</v-icon>
+                </div>
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" style="background-color: #eeeeee" />
+      </v-row>
+    </v-container>
+    <v-container>
+      <v-row>
+        <v-col cols="12" style="background-color: #eeeeee" />
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-btn
+            icon
+            small
           >
-        </div>
-        <div class="pl-4">
-          <img src="../../assets/Inspection.png" />
-          <span style="font-size: 10px">14,423</span>
-        </div>
-        <div class="pl-4">
-          <img src="../../assets/File download.png" />
-          <span style="font-size: 10px">14,423</span>
-        </div>
-        <div class="pl-4">
-          <img src="../../assets/Chat Bubble.png" /><span
-            style="font-size: 10px"
-            >14,423</span
+            <v-icon>
+              mdi-thumb-up-outline
+            </v-icon>
+          </v-btn>
+          <v-btn
+            icon
+            small
           >
-        </div>
-      </div>
-    </div>
-    <div class="black_box mt-3">
-      <div class="d-flex">
-        <div class="white rounded mt-5 ml-5 white_box">
-          <b>보상</b>
-          <br />
-          <span style="font-size: 10px">110,430포인트 + 1</span>
-        </div>
-        <div class="white rounded mt-5 ml-3 white_box">
-          <b>자격요건</b>
-          <br />
-          <span style="font-size: 10px">모든 회원</span>
-        </div>
-      </div>
-    </div>
-    <div class="gray_box">
-      <div class="pt-2 pl-2">설문자 정보</div>
-    </div>
-    <div style="height: 80px">상명대학교</div>
-    <div class="gray_box">
-      <div class="pt-2 pl-2">설문 정보</div>
-    </div>
-    <div style="height: 80px">
-      블라블라블라
-      <div class="rounded ma-5 gray_box2">
-        <v-row>
-          <v-col cols="10"> 서베이 정보 자세히 보기 </v-col>
-          <v-spacer />
-          <v-col cols="2">
-            <img src="../../assets/right Arrow.png" />
-          </v-col>
-        </v-row>
-      </div>
-    </div>
-    <div class="gray_box" />
-    <v-tabs style="width: 100%; color: black" fixed-tabs color="#1cddb7">
-      <v-tab
-        style="color: black; font-size: 18px"
-        @click="
-          tab1 = true
-          tab2 = false
-          tab3 = false
-        "
-      >
-        <b>설문 항목</b>
-      </v-tab>
-      <v-tab
-        style="color: black; font-size: 18px"
-        @click="
-          tab1 = false
-          tab2 = true
-          tab3 = false
-        "
-      >
-        <b>보상 결과</b>
-      </v-tab>
-      <v-tab
-        style="color: black; font-size: 18px"
-        @click="
-          tab1 = false
-          tab2 = false
-          tab3 = true
-        "
-      >
-        <b>리포트</b>
-      </v-tab>
-    </v-tabs>
-    <div v-if="tab1 == true">
-      <div class="pl-5 pt-3">
-        <div class="rounded mt-5 ml-5 gray_box2">
-          <div class="pt-1" style="font-size: 13px">
-            <b>항목</b>
-          </div>
-          <div class="pt-1" style="font-size: 13px">
-            <b>총 34개</b>
-          </div>
-          <div class="pt-1" style="font-size: 8px">자세히 보기</div>
-        </div>
-        <div class="rounded mt-5 ml-3 gray_box2">
-          <div class="pt-1" style="font-size: 13px">
-            <b>회원 유형</b>
-          </div>
-          <div class="pt-1" style="font-size: 13px">
-            <b>34% 일반 회원</b>
-          </div>
-          <div class="pt-1" style="font-size: 8px">자세히 보기</div>
-        </div>
-      </div>
-      <div v-for="(list, i) in 3" :key="list" class="pl-5 pt-3">
-        <div class="rounded-lg white_box">
-          {{ quelists[i] }}
-        </div>
-      </div>
-      <div class="rounded-lg ma-3 pt-2 gray_box3">
-        <v-row>
-          <v-col cols="10"> 설문 항목 전체 보기 </v-col>
-          <v-spacer />
-          <v-col cols="2" class="pl-8">
-            <img src="assets/right Arrow.png" />
-          </v-col>
-        </v-row>
-      </div>
-      <div class="black rounded-xl ma-5" style="color: white; height: 100px">
-        <div class="pt-5 pl-5" style="font-size: 20px">배너</div>
-      </div>
-    </div>
-    <div v-if="tab2 == true">
-      <div class="pl-5 pt-3">
-        <h4>이 설문은 총 2개의 보상이 있습니다!</h4>
-      </div>
-      <div class="rounded ma-5 gray_box4">
-        <div class="d-flex pt-2">
-          <div class="pl-2">
-            <b>포인트 3,000</b>
-          </div>
-          <div style="margin-left: auto; font-size: 12px" class="pr-2">
-            자세히 보기
-          </div>
-        </div>
-        <div class="d-flex pt-3">
-          <div class="pl-2">
-            <b>전달 완료된 보상이에요!</b>
-          </div>
-          <div style="margin-left: auto" class="pr-2">
-            <img src="assets/akar-icons_circle-check.png" />
-          </div>
-        </div>
-      </div>
-      <div class="rounded ma-5 gray_box4">
-        <div class="d-flex pt-2">
-          <div class="pl-2">
-            <b>기프티콘 300개</b>
-          </div>
-          <div style="margin-left: auto; font-size: 12px" class="pr-2">
-            자세히 보기
-          </div>
-        </div>
-        <div class="d-flex pt-3">
-          <div class="pl-2">
-            <b>아직 대기 중인 보상이에요!</b>
-          </div>
-          <div style="margin-left: auto" class="pr-2">
-            <img src="assets/bx_time-five.png" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="tab3 == true">
-      <div class="pl-5 pt-3">
-        <h4>총 N개의 리포트가 있습니다.</h4>
-      </div>
-      <div class="rounded ma-5 gray_box4">
-        <div class="d-flex pt-2">
-          <div class="pl-2">
-            <b>상명대 학생들에 대한 탐구</b>
-          </div>
-          <div style="margin-left: auto; font-size: 12px" class="pr-2">
-            자세히 보기
-          </div>
-        </div>
-        <div class="d-flex pt-3">
-          <div class="pl-2">
-            <b>작성일: 2022.04.23</b>
-          </div>
-        </div>
-      </div>
-    </div>
+            <v-icon>
+              mdi-comment-processing
+            </v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
+import Report from '../../layouts/report.vue'
+import SurveyCard from '../../components/SurveyCard.vue'
 export default {
-  name: 'SurveyDetail',
-  layout: 'survey',
-  data() {
+  components: { SurveyCard, Report },
+  layout: 'empty',
+  data () {
     return {
-      tab1: true,
-      tab2: false,
-      tab3: false,
-      quelists: [
-        '1.비대면 후 가장 기대되는 학교 활동은?',
-        '2.학교행정에 만족 하시나요?',
-        '3.블라블라블라',
-      ],
+      surveyData: {
+        title: '상명대 학생들에 대한 고찰',
+        tags: ['대학생', '새내기', '축제'],
+        period: ['2022-05-05 13:00', '2022-05-10 13:00'],
+        likes: 14433,
+        participants: 14433,
+        downloads: 14433,
+        comments: 14433,
+        surveyor: '상명대학교',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      }
     }
-  },
+  }
 }
 </script>
 
 <style scoped>
-.wrap {
+.report-title {
+  margin: 0 0 3px 0;
+  font-size: 20px;
 }
-.black_box {
-  background-color: #626262;
-  width: 100%;
-  height: 100px;
+.report-created {
+  font-size: 12px;
 }
-.white_box {
-  height: 60px;
-  width: 100px;
-  text-align: center;
+.likes-comments {
+  justify-content: space-between;
+  width: 220px;
+  font-size: 10px;
 }
-.gray_box {
-  width: 100%;
-  height: 40px;
+.section-title {
+  font-size: 10px;
+}
+.survey-more {
+  display: flex;
+  flex-display: column;
+  vertical-align: center;
+  margin: 20px 0;
+  padding: 14px;
   background-color: #eeeeee;
-}
-.gray_box2 {
-  background-color: #eeeeee;
+  border-radius: 10px;
 }
 </style>

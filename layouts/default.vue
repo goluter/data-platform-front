@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-container class="pa-0">
+      <v-container class="pa-0" style="max-width: 960px">
         <v-col class="pa-0" cols="12">
           <v-app-bar dense class="elevation-0" color="transparent">
             <v-app-bar-nav-icon icon @click="back">
@@ -16,7 +16,7 @@
           <v-divider />
         </v-col>
       </v-container>
-      <Nuxt />
+      <Nuxt class="ma-auto" style="max-width: 960px" />
     </v-main>
   </v-app>
 </template>
