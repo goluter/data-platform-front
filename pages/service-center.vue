@@ -123,7 +123,7 @@
 
 <script>
 import FaqData from '../assets/data/FAQdata.js'
-import GuideData from '../assets/data/GuideData.js'
+
 import InquiryData from '../assets/data/Inquirydata.js'
 import axios from 'axios'
 
@@ -140,7 +140,7 @@ export default {
       chevrondown: [true, true, true, true],
       showanswer: [false, false, false, false],
       FaqData,
-      GuideData,
+
       InquiryData,
       users: null,
       totalpage: null,
