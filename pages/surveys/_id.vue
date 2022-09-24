@@ -188,16 +188,14 @@
         </v-col>
       </v-row>
     </v-container>
-    </v-container">
   </div>
 </template>
 
 <script>
 import Report from '../../layouts/report.vue'
-import SurveyCard from '../../components/SurveyCard.vue'
 import Banner from '../../components/Banner.vue'
 export default {
-  components: { Banner, SurveyCard, Report },
+  components: { Banner, Report },
   layout: 'empty',
   data () {
     return {
