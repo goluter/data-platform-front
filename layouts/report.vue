@@ -11,13 +11,52 @@
         <v-spacer />
         <div class="d-flex justify-content-between">
           <v-btn
-            v-for="(item, i) in btn"
-            :key="i"
             icon
             small
           >
-            <v-icon>{{ item }}</v-icon>
+            <v-icon>mdi-export-variant</v-icon>
           </v-btn>
+          <v-dialog
+            v-model="bookmark"
+            max-width="600px"
+          >
+            <template #activator="{ on, attrs }">
+              <v-btn
+                icon
+                small
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-bookmark-outline</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <div class="d-flex">
+                <span class="bookmark-title ma-auto my-3">북마크</span>
+              </div>
+              <survey-card-single :survey-data="reportData" />
+              <v-form>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-field placeholder="내용을 입력하세요." outlined color="#30cdae" style="background-color: #f7f7f8" />
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12">
+                      <div class="bookmark-save ma-auto">
+                        <NuxtLink to="/surveys/">
+                          <div class="bookmark-save-btn">
+                            <span class="ma-auto">저장</span>
+                          </div>
+                        </NuxtLink>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-form>
+            </v-card>
+          </v-dialog>
           <v-menu offset-y>
             <template
               #activator="
@@ -49,7 +88,10 @@
 </template>
 
 <script>
+import SurveyCard from '../components/SurveyCard.vue'
+import SurveyCardSingle from '../components/SurveyCardSingle.vue'
 export default {
+  components: { SurveyCardSingle, SurveyCard },
   props: {
     reportData: {
       type: Object
@@ -57,7 +99,7 @@ export default {
   },
   data () {
     return {
-      btn: ['mdi-export-variant', 'mdi-bookmark-outline']
+      bookmark: false
     }
   },
   methods: {
@@ -69,4 +111,22 @@ export default {
 </script>
 
 <style scoped>
+.bookmark-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.bookmark-save {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bookmark-save-btn {
+  display: flex;
+  height: 30px;
+  width: 80px;
+  background-color: #30cdae;
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
+}
 </style>

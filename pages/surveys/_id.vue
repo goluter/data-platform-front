@@ -181,9 +181,11 @@
                 mdi-thumb-up-outline
               </v-icon>
             </v-btn>
-            <div class="part-btn ml-auto">
-              설문 참여하기
-            </div>
+            <NuxtLink class="ml-auto" to="/surveys/join">
+              <div class="part-btn">
+                설문 참여하기
+              </div>
+            </NuxtLink>
           </div>
         </v-col>
       </v-row>
