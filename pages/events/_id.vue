@@ -12,16 +12,12 @@
       <div class="noticemain">
         {{ users[$route.params.id].content }}
       </div>
-      <img
-        class="noticeimg"
-        src="../../../assets/2021042901003307000280711.jpg"
-      />
+      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
 
 <script>
-import PlannedEvent from '../../../assets/data/PlannedEvent'
 import axios from 'axios'
 
 export default {
@@ -29,7 +25,6 @@ export default {
   layout: 'default',
   data() {
     return {
-      PlannedEvent,
       selectnum: 0,
       users: null,
       category: '이벤트',

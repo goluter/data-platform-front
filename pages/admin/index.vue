@@ -2391,15 +2391,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(a, i) in StoreData" :key="a"
-              @click="
+              <tr
+                v-for="(a, i) in StoreData"
+                :key="a"
+                @click="
                   ShowModal_StoreList = true
-                  StoreList = i">
+                  StoreList = i
+                "
+              >
                 <td style="text-align: center">
                   {{ i + 1 }}
                 </td>
                 <td>
-                  {{StoreData[i].title}}
+                  {{ StoreData[i].title }}
                 </td>
                 <td>{{ StoreData[i].point }}</td>
                 <td>{{ StoreData[i].name }}</td>
@@ -2416,17 +2420,15 @@
           <h4>제품등록</h4>
           <div>
             <div>
-              <v-text-field
-              label="제품"></v-text-field>
-              <v-text-field
-              label="요구 포인트"></v-text-field>
-              판매기간 <input class="date" type="date" />~<input class="date" type="date" />
-              <v-text-field
-              label="판매 개수"></v-text-field>
-              <v-text-field
-              label="상품 설명"></v-text-field>
-              <v-text-field
-              label="유의 사항"></v-text-field>
+              <v-text-field label="제품"></v-text-field>
+              <v-text-field label="요구 포인트"></v-text-field>
+              판매기간 <input class="date" type="date" />~<input
+                class="date"
+                type="date"
+              />
+              <v-text-field label="판매 개수"></v-text-field>
+              <v-text-field label="상품 설명"></v-text-field>
+              <v-text-field label="유의 사항"></v-text-field>
             </div>
             <v-btn
               id="usraddapply"
@@ -2456,27 +2458,35 @@
           <div>
             <div>
               <v-text-field
-              label="제품"
-              :value="StoreData[StoreList].title"></v-text-field>
+                label="제품"
+                :value="StoreData[StoreList].title"
+              ></v-text-field>
               <v-text-field
-              label="요구 포인트"
-              :value="StoreData[StoreList].point"></v-text-field>
-              판매기간 <input class="date" type="date" />~<input class="date" type="date" />
+                label="요구 포인트"
+                :value="StoreData[StoreList].point"
+              ></v-text-field>
+              판매기간 <input class="date" type="date" />~<input
+                class="date"
+                type="date"
+              />
               <v-text-field
-              label="판매 개수"
-              :value="StoreData[StoreList].remain"></v-text-field>
+                label="판매 개수"
+                :value="StoreData[StoreList].remain"
+              ></v-text-field>
               <v-text-field
-              label="상품 설명"
-              :value="StoreData[StoreList].description"></v-text-field>
+                label="상품 설명"
+                :value="StoreData[StoreList].description"
+              ></v-text-field>
               <v-text-field
-              label="유의 사항"
-              :value="StoreData[StoreList].note"></v-text-field>
+                label="유의 사항"
+                :value="StoreData[StoreList].note"
+              ></v-text-field>
             </div>
             <v-btn
               id="usraddapply"
               elevation="2"
               @click="
-                ShowModal_StoreList  = false
+                ShowModal_StoreList = false
                 addsuccess = true
                 overlay = !overlay
               "
@@ -2486,7 +2496,7 @@
             <v-btn
               id="usraddcancel"
               elevation="2"
-              @click="ShowModal_StoreList  = false"
+              @click="ShowModal_StoreList = false"
             >
               닫기
             </v-btn>
@@ -2514,15 +2524,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(a, i) in Award" :key="a"
-              @click="
+              <tr
+                v-for="(a, i) in Award"
+                :key="a"
+                @click="
                   ShowModal_AwardList = true
-                  AwardList = i">
+                  AwardList = i
+                "
+              >
                 <td style="text-align: center">
                   {{ i + 1 }}
                 </td>
                 <td>
-                  {{Award[i].title}}
+                  {{ Award[i].title }}
                 </td>
                 <td>{{ Award[i].num }}</td>
                 <td>{{ Award[i].remain }}</td>
@@ -2531,68 +2545,66 @@
           </template>
         </v-simple-table>
       </div>
-        <!-- 보상 등록 모달창 -->
-        <div v-if="ShowModal_Award == true" class="modal-black">
-          <div class="modal-white">
-            <h4>보상 등록</h4>
-            <div>
-              <v-text-field
-              label="제품"></v-text-field>
-              <v-text-field
-              label="수량"></v-text-field>
-            </div>
-            <v-btn
-              id="usraddapply"
-              elevation="2"
-              @click="
-                ShowModal_Award = false
-                addsuccess = true
-                overlay = !overlay
-              "
-            >
-              등록
-            </v-btn>
-            <v-btn
-              id="usraddcancel"
-              elevation="2"
-              @click="ShowModal_Award = false"
-            >
-              닫기
-            </v-btn>
+      <!-- 보상 등록 모달창 -->
+      <div v-if="ShowModal_Award == true" class="modal-black">
+        <div class="modal-white">
+          <h4>보상 등록</h4>
+          <div>
+            <v-text-field label="제품"></v-text-field>
+            <v-text-field label="수량"></v-text-field>
           </div>
+          <v-btn
+            id="usraddapply"
+            elevation="2"
+            @click="
+              ShowModal_Award = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            등록
+          </v-btn>
+          <v-btn
+            id="usraddcancel"
+            elevation="2"
+            @click="ShowModal_Award = false"
+          >
+            닫기
+          </v-btn>
         </div>
-        <!-- 보상 리스트 모달창 -->
-        <div v-if="ShowModal_AwardList == true" class="modal-black">
-          <div class="modal-white">
+      </div>
+      <!-- 보상 리스트 모달창 -->
+      <div v-if="ShowModal_AwardList == true" class="modal-black">
+        <div class="modal-white">
+          <v-simple-table>
+            <template #default>
+              <thead>
+                <tr>
+                  <th style="text-align: center">번호</th>
+                  <th class="text-left">설문</th>
+                  <th class="text-left">등록된 수량</th>
+                  <th class="text-left">남은 수량</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center">
+                    {{ AwardList + 1 }}
+                  </td>
+                  <td>
+                    {{ Award[AwardList].title }}
+                  </td>
+                  <td>{{ Award[AwardList].num }}</td>
+                  <td>{{ Award[AwardList].remain }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+          <br />
+          <div>
+            <h4>등록된 설문</h4>
+            <br />
             <v-simple-table>
-                <template #default>
-                  <thead>
-                    <tr>
-                      <th style="text-align: center">번호</th>
-                      <th class="text-left">설문</th>
-                      <th class="text-left">등록된 수량</th>
-                      <th class="text-left">남은 수량</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style="text-align: center">
-                        {{ AwardList + 1 }}
-                      </td>
-                      <td>
-                        {{Award[AwardList].title}}
-                      </td>
-                      <td>{{ Award[AwardList].num }}</td>
-                      <td>{{ Award[AwardList].remain }}</td>
-                    </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            <br>
-            <div>
-              <h4>등록된 설문</h4>
-              <br>
-              <v-simple-table>
               <template #default>
                 <thead>
                   <tr>
@@ -2603,15 +2615,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(a, i) in SurveyData" :key="a"
-                   @click="
-                  ShowModal_AwardList_Show = true
-                  AwardList_Show = i">
+                  <tr
+                    v-for="(a, i) in SurveyData"
+                    :key="a"
+                    @click="
+                      ShowModal_AwardList_Show = true
+                      AwardList_Show = i
+                    "
+                  >
                     <td style="text-align: center">
                       {{ i + 1 }}
                     </td>
                     <td>
-                      {{SurveyData[i].title}}
+                      {{ SurveyData[i].title }}
                     </td>
                     <td>10</td>
                     <td>5</td>
@@ -2619,32 +2635,30 @@
                 </tbody>
               </template>
             </v-simple-table>
-              
-            </div>
-           <br>
-
-            <v-btn
-              id="usraddapply"
-              elevation="2"
-              @click="
-                ShowModal_AwardList  = false
-                addsuccess = true
-                overlay = !overlay
-              "
-            >
-              확인
-            </v-btn>
-            <v-btn
-              id="usraddcancel"
-              elevation="2"
-              @click="ShowModal_AwardList  = false"
-            >
-              닫기
-            </v-btn>
           </div>
+          <br />
+
+          <v-btn
+            id="usraddapply"
+            elevation="2"
+            @click="
+              ShowModal_AwardList = false
+              addsuccess = true
+              overlay = !overlay
+            "
+          >
+            확인
+          </v-btn>
+          <v-btn
+            id="usraddcancel"
+            elevation="2"
+            @click="ShowModal_AwardList = false"
+          >
+            닫기
+          </v-btn>
         </div>
-       
-      
+      </div>
+
       <!-- 리포트-->
       <div v-if="TopTab7 == true">
         <v-simple-table>
@@ -2761,7 +2775,7 @@
                   <a :href="FaqData[i].url" style="text-decoration: none">
                     {{ FaqData[i].title }}
                   </a>
-                </td> 
+                </td>
                 <td>{{ FaqData[i].name }}</td>
                 <td>{{ FaqData[i].date }}</td>
               </tr>
@@ -2854,7 +2868,7 @@
 
 <script>
 import { GChart } from 'vue-google-charts'
-import data from '../../assets/data/NoticeData.js'
+
 import FaqData from '../../assets/data/FAQdata'
 import InquiryData from '../../assets/data/Inquirydata'
 import UserData from '../../assets/data/UserData'
@@ -2951,7 +2965,7 @@ export default {
       TopTab11: false,
       items: ['A+', 'A', 'B', 'C', 'D'],
       typelist: ['구글로그인', '페이스북로그인', '일반로그인', '네이버로그인'],
-      data,
+
       FaqData,
       QaData: QnAdata,
       InquiryData,
@@ -3001,26 +3015,26 @@ export default {
         { text: '설문참여수', value: 'SurveyAttendSum' },
         { text: '가입일', value: 'RegisterDate' },
       ],
-      usersearch:'',
-      ShowSurveyMake :false,
-      ShowHobby : false,
-      ShowBuy : false,
+      usersearch: '',
+      ShowSurveyMake: false,
+      ShowHobby: false,
+      ShowBuy: false,
 
       //스토어, 보상관리
       StoreData,
-      ShowModal_Store : false,
-      ShowModal_StoreList : false,
-      StoreList : '',
+      ShowModal_Store: false,
+      ShowModal_StoreList: false,
+      StoreList: '',
       Award,
-      ShowModal_Award : false,
-      ShowModal_AwardList : false,
-      AwardList : '',
+      ShowModal_Award: false,
+      ShowModal_AwardList: false,
+      AwardList: '',
       usersearch: '',
       ShowSurveyMake: false,
       ShowHobby: false,
       ShowBuy: false,
       ShowModal_AwardList_Show: false,
-      AwardList_Show :'',
+      AwardList_Show: '',
       reportnum: 0, //리포트 관리 검색변수
       ShowReportDetailModal: false,
       showreportcommentmodal: false,
