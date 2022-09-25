@@ -7,7 +7,7 @@
     </div>
     <v-row>
       <v-col cols="12">
-        <v-tabs fixed-tabs color="#1cddb7">
+        <!-- <v-tabs fixed-tabs color="#1cddb7">
           <v-tab
             @click="
               planned = true
@@ -35,15 +35,10 @@
           >
             마감
           </v-tab>
-        </v-tabs>
-        <div
-          v-for="(a, i) in users"
-          v-if="planned == true"
-          :key="a"
-          class="contents"
-        >
+        </v-tabs> -->
+        <div v-for="(a, i) in users" v-if="users" :key="a" class="contents">
           <NuxtLink
-            :to="PlannedEvent[i].url"
+            :to="{ name: 'events-id', params: { id: i } }"
             style="color: black; text-decoration-line: none"
           >
             <div class="eventtitle">
@@ -54,7 +49,7 @@
             </div>
           </NuxtLink>
         </div>
-        <div
+        <!-- <div
           v-for="(a, i) in OngoingEvent"
           v-if="ongoing == true"
           :key="a"
@@ -89,16 +84,13 @@
               {{ EndedEvent[i].date }}
             </div>
           </NuxtLink>
-        </div>
+        </div> -->
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import EndedEvent from 'assets/data/EndedEvent'
-import PlannedEvent from 'assets/data/PlannedEvent'
-import OngoingEvent from 'assets/data/OngoingEvent'
 import axios from 'axios'
 
 export default {
@@ -110,9 +102,7 @@ export default {
       planned: true,
       ongoing: false,
       ended: false,
-      OngoingEvent,
-      EndedEvent,
-      PlannedEvent,
+
       users: null,
       totalpage: null,
       category: '이벤트',

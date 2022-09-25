@@ -1,34 +1,61 @@
 <template>
-  <div>
+  <div v-if="users">
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ GuideData[$route.params.id].title }}
+        {{ users[$route.params.id].subject }}
       </div>
       <div class="date">
-        {{ GuideData[$route.params.id].date }}
+        {{ users[$route.params.id].createdAt }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ GuideData[$route.params.id].answer }}
+        {{ users[$route.params.id].content }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import GuideData from '../../assets/data/GuideData'
+import axios from 'axios'
+
 export default {
   name: 'Guide',
   layout: 'default',
   data() {
     return {
-      GuideData,
       selectnum: 0,
+      users: null,
+      totalpage: null,
+      category: '가이드',
+      page: 0,
+      limit: 10,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '가이드')
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+            this.category +
+            '&page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
   },
 }
 </script>

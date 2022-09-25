@@ -7,14 +7,9 @@
             고베이 공지사항을 확인해보세요!
           </div>
         </div>
-        <div
-          v-if="users"
-          v-for="(a, i) in NoticeData"
-          :key="i"
-          class="contents"
-        >
+        <div v-for="(a, i) in users" v-if="users" :key="i" class="contents">
           <NuxtLink
-            :to="NoticeData[i].url"
+            :to="{ name: 'notices-id', params: { id: i } }"
             style="color: black; text-decoration-line: none"
           >
             <div class="noticetitle">
@@ -31,18 +26,17 @@
 </template>
 
 <script>
-import NoticeData from 'assets/data/NoticeData.js'
 import axios from 'axios'
 export default {
   name: 'Notice',
   data() {
     return {
-      NoticeData,
       num: 0,
       category: '공지',
       page: 0,
       limit: 10,
       users: null,
+      linknum: 0,
     }
   },
   mounted() {
