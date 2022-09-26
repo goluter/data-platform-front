@@ -12,7 +12,6 @@
       <div class="noticemain">
         {{ users[$route.params.id].content }}
       </div>
-      <img class="noticeimg" src="../../assets/2021042901003307000280711.jpg" />
     </div>
   </div>
 </template>
@@ -62,9 +61,8 @@ export default {
 
 <style scoped>
 .noticemain {
-  width: 204px;
   height: 16px;
-  margin: 32px 0px 0px 18px;
+  margin: 32px 18px 0px 18px;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
