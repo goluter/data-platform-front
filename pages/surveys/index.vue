@@ -69,7 +69,7 @@
                 <NuxtLink
                   v-for="(item, i) in surveyData"
                   :key="i"
-                  to="/surveys/1"
+                  to="users/v1/surveys/"
                   style="text-decoration: none; color: initial"
                 >
                   <v-row>
@@ -83,26 +83,26 @@
                             <v-col cols="12">
                               <v-row>
                                 <v-col class="survey-title pb-0" cols="12">
-                                  {{ item.title }}
+                                  {{ item.subject }}
                                 </v-col>
                               </v-row>
                               <v-row>
                                 <v-col class="survey-period py-0" cols="12">
-                                  {{ item.period[0] }} ~ {{ item.period[1] }}
+                                  {{ item.startAt | date }} ~ {{ item.endAt | date }}
                                 </v-col>
                               </v-row>
                               <v-row>
                                 <v-col class="survey-stat d-flex" cols="12">
                                   <div class="report-likes mr-2">
-                                    {{ item.count }} 명 참여 중!
+                                    {{ item.hit }} 명 참여 중!
                                   </div>
                                   <div class="survey-tag ml-auto">
                                     <span
-                                      v-for="(tag, i) in item.tags"
+                                      v-for="(tag, i) in item.tag"
                                       :key="i"
                                       style="color: dodgerblue"
                                     >
-                                      #{{ tag }}
+                                      {{ tag }}
                                     </span>
                                   </div>
                                 </v-col>
@@ -148,79 +148,37 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
+      page: 0,
+      limit: 10,
       tab: null,
       surveyTab: ['진행중', '마감'],
+      surveyData: [],
       rewardsFilter: ['기프티콘', '포인트'],
-      sort: ['최신순', '추천순', '댓글순'],
-      surveyData: [
-        {
-          id: 1,
-          title: '대학생들에게 묻습니다',
-          period: ['2022.09.22', '2022.09.27'],
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        },
-        {
-          id: 2,
-          title: '대학생들에게 묻습니다',
-          period: ['2022.09.22', '2022.09.27'],
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        },
-        {
-          id: 3,
-          title: '대학생들에게 묻습니다',
-          period: ['2022.09.22', '2022.09.27'],
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        },
-        {
-          id: 4,
-          title: '대학생들에게 묻습니다',
-          period: ['2022.09.22', '2022.09.27'],
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        }
-      ]
+      sort: ['최신순', '추천순', '댓글순']
     }
+  },
+  created () {
+    this.fetchData(this.page, this.limit)
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
+  },
+  methods: {
+    fetchData (page, limit) {
+      axios.get(
+        'https://api.govey.app/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit
+      ).then((response) => {
+        this.surveyData = response.data.content
+      }).catch(error => console.log(error))
+    }
   }
 }
 </script>
