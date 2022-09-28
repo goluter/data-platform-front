@@ -69,7 +69,7 @@
                 <NuxtLink
                   v-for="(item, i) in surveyData"
                   :key="i"
-                  to="users/v1/surveys/"
+                  :to="'users/v1/surveys/'+item.id"
                   style="text-decoration: none; color: initial"
                 >
                   <v-row>
@@ -125,11 +125,17 @@
                               cols="auto"
                               class="reward-item-box pa-1 rounded-x1"
                             >
-                              <div>
-                                <v-icon small :color="reward.color">
-                                  {{ reward.icon }}
+                              <div v-if="reward.type === 'giftcon'">
+                                <v-icon small color="red">
+                                  mdi-gift
                                 </v-icon>
-                                <span>{{ reward.title }}</span>
+                                <span>{{ reward.value }}</span>
+                              </div>
+                              <div v-if="reward.type === 'point'">
+                                <v-icon small color="yellow darken-3">
+                                  mdi-circle-multiple
+                                </v-icon>
+                                <span>{{ reward.value }}</span>
                               </div>
                             </v-col>
                           </v-row>
@@ -175,9 +181,36 @@ export default {
           page +
           '&limit=' +
           limit
-      ).then((response) => {
+      ).then(async (response) => {
+        const dataWithRewards = response.data.content.map(async (survey) => {
+          const rewards = await axios.get(
+            'https://api.govey.app/users/v1/surveys/' +
+              survey.id +
+              '/rewards/'
+          ).then((response) => {
+            const rewardsData = []
+            for (let i = 0; i < response.data.length; i++) {
+              const dic = {
+                type: response.data[i].type,
+                value: response.data[i].value
+              }
+              rewardsData.push(dic)
+            }
+            console.log(rewardsData)
+            return rewardsData
+          }).catch((error) => {
+            console.log(error)
+          })
+          const mix = Object.assign({}, survey, { rewards })
+          console.log(mix)
+          return mix
+        })
+        const data = await Promise.all(dataWithRewards)
+        response.data.content = data
         this.surveyData = response.data.content
-      }).catch(error => console.log(error))
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 }
