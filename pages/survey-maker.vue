@@ -585,7 +585,7 @@ export default {
     methods: {
       summit(){
         axios.post('https://api-stage.govey.app/v1/surveys/',{
-          "content":this.title, "tag":this.tag_items, "startAt":this.startAt,"endAt":this.endAt
+          "content":this.title, "tags":this.tag_items, "startAt":this.startAt,"endAt":this.endAt
         })
         .then((res) =>{
           alert("설문이 등록되었습니다.");
