@@ -11,12 +11,15 @@
                 <img src="../assets/More vert.png">
               </div>
               <div class="pr-2">
-                <v-btn
-                  color="teal accent-4"
-                  style="color: white; height:30px; width:45px;"
-                >
-                  제출
-                </v-btn>
+                
+                  <v-btn
+                    color="teal accent-4"
+                    style="color: white; height:30px; width:45px;"
+                    @click="summit"
+                  >
+                    제출
+                  </v-btn>
+                
               </div>
           </div>
     <div class="ma-3 pt-11">
@@ -24,76 +27,18 @@
     </div>
     <div class="pl-3">
       <input 
-        placeholder="   제목을 입력하시오"
+        placeholder="제목을 입력하시오"
         required
-        class="title-box">
+        class="title-box pl-3"
+        v-model="title">
     </div>
-    <div class="ma-3">
+    <div class="ma-3 pt-3">
       <b>설문기간 <span style="color:red;">*</span></b>
     </div>
-    <div>
-      <v-row>
-      <v-col
-        cols="5"
-      >
-        <v-menu
-          ref="menu1"
-          v-model="menu1"
-          :close-on-content-click="false"
-          transition="scale-transition"
-          offset-y
-          max-width="290px"
-          min-width="auto"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-text-field
-              v-model="dateFormatted"
-              persistent-hint
-              prepend-icon="mdi-calendar"
-              v-bind="attrs"
-              @blur="date = parseDate(dateFormatted)"
-              v-on="on"
-            ></v-text-field>
-          </template>
-          <v-date-picker
-            v-model="date"
-            no-title
-            @input="menu1 = false"
-          ></v-date-picker>
-        </v-menu>
-      </v-col>
-      <v-col
-        cols="5"
-       
-      >
-        <v-menu
-          v-model="menu2"
-          :close-on-content-click="false"
-          transition="scale-transition"
-          offset-y
-          max-width="290px"
-          min-width="auto"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-text-field
-              v-model="computedDateFormatted"
-              persistent-hint
-              prepend-icon="mdi-calendar"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            ></v-text-field>
-          </template>
-          <v-date-picker
-            v-model="date"
-            no-title
-            @input="menu2 = false"
-          ></v-date-picker>
-        </v-menu>
-      </v-col>
-    </v-row>
+    <div class="ml-3">
+      <input class="date" v-model="startAt" type="date" />  ~  <input class="date" v-model="endAt" type="date" />
     </div>
-    <div class="ma-3">
+    <div class="ma-3 pt-3">
       <b>태그 <span style="color:red;">*</span></b>
     </div>
     <div class="pl-3">
@@ -105,17 +50,7 @@
             solo
           ></v-select>
     </div>
-    <div class="ma-3" style="color: #030229;">
-      콤마로 구분합니다.
-    </div>
-    <div class="d-flex">
-      <div class="rounded-lg round-box ma-3 pl-2 pr-2">
-        #대학교  
-      </div>
-      <div class="rounded-lg round-box ma-3 pl-2 pr-2">
-        #학생 
-      </div>
-    </div>
+    
     <v-tabs style="width: 100%; color: black" fixed-tabs color="#1cddb7" class="pt-3">
       <v-tab
         style="color: black; font-size: 18px"
@@ -129,7 +64,7 @@
       >
         <b>항목</b>
       </v-tab>
-      <v-tab
+      <!-- <v-tab
         style="color: black; font-size: 18px"
         @click="
           tab1 = false
@@ -164,7 +99,7 @@
         "
       >
         <b>보상</b>
-      </v-tab>
+      </v-tab> -->
       <v-tab
         style="color: black; font-size: 18px"
         @click="
@@ -185,7 +120,8 @@
         <div v-for="(item,k) in lists" :key="k">
           <div class="d-flex" >
             <div class="ma-3">
-              <input placeholder=" 항목 제목" class="que-box pr-5 pl-2">
+              <input placeholder=" 항목 제목" v-model="item.que_title" class="que-box pr-5 pl-2">
+              {{item.que_title}}
             </div>
             <div>
               <v-select
@@ -195,7 +131,6 @@
               </v-select> 
             </div>
           </div>
-          
           <div v-if="item.select_box==='객관식'">
             <div>
               <table style="width:100%">
@@ -256,7 +191,7 @@
               </div>
               <div>
                 <v-switch
-                v-model="que_switch1"
+                
                 ></v-switch>
               </div>
             </div>
@@ -589,6 +524,8 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SurveyMakePage',
   layout: 'empty',
@@ -609,8 +546,8 @@ export default {
       tab2_1: true,
       tab2_2: false,
       tab2_3: false,
-      tag:['대학생','학생'],
-      tag_items:['대학생','학생'],
+      tag:['대학생','학교','게임','스포츠','의류','뮤지엄'],
+      tag_items:['대학생','학교','게임','스포츠','의류','뮤지엄'],
       que_items:['1번 문항','2번 문항','3번 문항'],
       que_switch1:false,
       switch1:false,
@@ -619,6 +556,11 @@ export default {
       switch4:false,
       show1:true,
       show2:true,
+      title: null,
+      startAt: null,
+      endAt:null,
+      que_title:[],
+      
       
       select_items:['객관식','주관식','체크박스'],
       select_box:null,
@@ -641,6 +583,30 @@ export default {
     },
 
     methods: {
+      async summit(){
+         axios.post('https://api.govey.app/users/v1/surveys/',{
+          "content":this.title, "tags":this.tag_items, "startAt":this.startAt,"endAt":this.endAt
+        })
+        .then((res) =>{
+          alert("설문이 등록되었습니다.");
+        })
+        .catch((err)=>{
+          alert("설문등록 실패.");
+        })
+        
+      },
+      // await function(){
+      //   axios.post('https://api.govey.app/users/v1/surveys/id/polls/',{
+      //     "":this.que_title, "":this.lists, 
+      //   })
+      //   .then((res) =>{
+      //     alert("설문이 등록되었습니다.");
+      //   })
+      //   .catch((err)=>{
+      //     alert("설문등록 실패.");
+      //   })
+      // },
+     
       formatDate (date) {
         if (!date) return null
 
@@ -712,6 +678,10 @@ export default {
   border-radius: 10px;
   background: #f7f7f8;
   width: 100%;
+}
+.date {
+  background-color: ghostwhite;
+  border-radius: 5px;
 }
 
 </style>
