@@ -605,7 +605,7 @@ export default {
       //   .catch((err)=>{
       //     alert("설문등록 실패.");
       //   })
-      },
+      // },
      
       formatDate (date) {
         if (!date) return null
