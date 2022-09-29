@@ -5,18 +5,14 @@
       <v-row>
         <v-col class="my-2" cols="12" style="font-size: 13px;">
           <v-row>
-            <v-col class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
+            <v-col v-if="$route.query.status === 'ongoing'" class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
               진행중인 설문
             </v-col>
+            <v-col v-if="$route.query.status === 'ended'" class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
+              마감된 설문
+            </v-col>
             <v-col class="ml-auto" cols="auto" style="font-size: 10px;">
-              <NuxtLink
-                v-for="(item, i) in surveyData.tag"
-                :key="i"
-                to=""
-                style="text-decoration: none;"
-              >
-                #{{ item }}
-              </NuxtLink>
+              {{ surveyData.tag }}
             </v-col>
           </v-row>
           <v-row>
@@ -34,14 +30,14 @@
                   <v-icon small>
                     mdi-thumb-up
                   </v-icon>
-                  {{ surveyData.good | comma }}
+                  {{ surveyData.goods | comma }}
                 </div>
-                <div>
-                  <v-icon small>
-                    mdi-comment-processing
-                  </v-icon>
-                  {{ surveyData.hits | comma }}
-                </div>
+                <!--                <div>-->
+                <!--                  <v-icon small>-->
+                <!--                    mdi-comment-processing-->
+                <!--                  </v-icon>-->
+                <!--                  {{ surveyData.hits | comma }}-->
+                <!--                </div>-->
                 <!--                <div>-->
                 <!--                  <v-icon small>-->
                 <!--                    mdi-comment-processing-->
@@ -210,9 +206,11 @@ export default {
       bannerData: [{ icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' }]
     }
   },
+  created () {
+    this.fetchData(this.$route.query.id)
+  },
   methods: {
     fetchData (id) {
-      id = this.$route.params.id
       axios.get(
         'https://api.govey.app/users/v1/surveys/' +
           id

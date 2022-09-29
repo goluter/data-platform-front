@@ -6,7 +6,7 @@
           <v-icon>mdi-chevron-left</v-icon>
         </v-app-bar-nav-icon>
         <v-toolbar-title class="title-text pa-0" style="font-size: 14px; font-weight: 600">
-          {{ reportData.title }}
+          {{ reportData.subject }}
         </v-toolbar-title>
         <v-spacer />
         <div class="d-flex justify-content-between">
@@ -30,7 +30,7 @@
                 <v-icon>mdi-bookmark-outline</v-icon>
               </v-btn>
             </template>
-            <v-card>
+            <v-card style="border-radius: 10px;">
               <div class="d-flex">
                 <span class="bookmark-title ma-auto my-3">북마크</span>
               </div>
@@ -94,7 +94,7 @@ export default {
   components: { SurveyCardSingle, SurveyCard },
   props: {
     reportData: {
-      type: Object
+      type: Array
     }
   },
   data () {
