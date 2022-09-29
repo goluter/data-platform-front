@@ -198,11 +198,9 @@
                                   </div>
                                   <div class="survey-tag ml-auto">
                                     <span
-                                      v-for="(tag, i) in item.tag"
-                                      :key="i"
                                       style="color: dodgerblue"
                                     >
-                                      {{ tag }}
+                                      {{ item.tag }}
                                     </span>
                                   </div>
                                 </v-col>
