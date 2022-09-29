@@ -74,7 +74,7 @@
                 <NuxtLink
                   v-for="(item, j) in ongoingSurveyData"
                   :key="j"
-                  :to="{path: 'view', query: { id: item.id }}"
+                  :to="{path: 'view', query: { id: item.id, status: item.status }}"
                   style="text-decoration: none; color: initial"
                 >
                   <v-row>
@@ -103,11 +103,9 @@
                                   </div>
                                   <div class="survey-tag ml-auto">
                                     <span
-                                      v-for="(tag, i) in item.tag"
-                                      :key="i"
                                       style="color: dodgerblue"
                                     >
-                                      {{ tag }}
+                                      {{ item.tag }}
                                     </span>
                                   </div>
                                 </v-col>
@@ -169,7 +167,7 @@
                 <NuxtLink
                   v-for="(item, j) in endedSurveyData"
                   :key="j"
-                  :to="{path: 'view', query: { id: item.id }}"
+                  :to="{path: 'view', query: { id: item.id, status: item.status }}"
                   style="text-decoration: none; color: initial"
                 >
                   <v-row>
