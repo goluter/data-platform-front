@@ -5,10 +5,10 @@
       <v-row>
         <v-col class="my-2" cols="12" style="font-size: 13px;">
           <v-row>
-            <v-col v-if="$route.query.status === 'ongoing'" class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
+            <v-col v-if="surveyData.status === 'ongoing'" class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
               진행중인 설문
             </v-col>
-            <v-col v-if="$route.query.status === 'ended'" class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
+            <v-col v-if="surveyData.status === 'end'" class="pb-0" cols="auto" style="color: #30cdae; font-weight: 600;">
               마감된 설문
             </v-col>
             <v-col class="ml-auto" cols="auto" style="font-size: 10px;">

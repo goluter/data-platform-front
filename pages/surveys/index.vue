@@ -74,7 +74,7 @@
                 <NuxtLink
                   v-for="(item, j) in ongoingSurveyData"
                   :key="j"
-                  :to="{path: 'view', query: { id: item.id, status: item.status }}"
+                  :to="{path: 'view', query: { id: item.id }}"
                   style="text-decoration: none; color: initial"
                 >
                   <v-row>
@@ -167,7 +167,7 @@
                 <NuxtLink
                   v-for="(item, j) in endedSurveyData"
                   :key="j"
-                  :to="{path: 'view', query: { id: item.id, status: item.status }}"
+                  :to="{path: 'view', query: { id: item.id }}"
                   style="text-decoration: none; color: initial"
                 >
                   <v-row>
