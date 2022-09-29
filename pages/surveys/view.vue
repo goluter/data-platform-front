@@ -10,7 +10,7 @@
             </v-col>
             <v-col class="ml-auto" cols="auto" style="font-size: 10px;">
               <NuxtLink
-                v-for="(item, i) in surveyData.tags"
+                v-for="(item, i) in surveyData.tag"
                 :key="i"
                 to=""
                 style="text-decoration: none;"
@@ -22,9 +22,9 @@
           <v-row>
             <v-col class="pt-0 pb-0" cols="12">
               <p class="report-title">
-                <b>{{ surveyData.title }}</b>
+                <b>{{ surveyData.subject }}</b>
               </p>
-              <span class="report-created">설문기간: {{ surveyData.period[0] }} ~ {{ surveyData.period[1] }}</span>
+              <span class="report-created">설문기간: {{ surveyData.startAt | date }} ~ {{ surveyData.endAt | date }}</span>
             </v-col>
           </v-row>
           <v-row>
@@ -34,26 +34,26 @@
                   <v-icon small>
                     mdi-thumb-up
                   </v-icon>
-                  {{ surveyData.likes | comma }}
+                  {{ surveyData.good | comma }}
                 </div>
                 <div>
                   <v-icon small>
                     mdi-comment-processing
                   </v-icon>
-                  {{ surveyData.participants | comma }}
+                  {{ surveyData.hits | comma }}
                 </div>
-                <div>
-                  <v-icon small>
-                    mdi-comment-processing
-                  </v-icon>
-                  {{ surveyData.downloads | comma }}
-                </div>
-                <div>
-                  <v-icon small>
-                    mdi-comment-processing
-                  </v-icon>
-                  {{ surveyData.comments | comma }}
-                </div>
+                <!--                <div>-->
+                <!--                  <v-icon small>-->
+                <!--                    mdi-comment-processing-->
+                <!--                  </v-icon>-->
+                <!--                  {{ surveyData.downloads | comma }}-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <v-icon small>-->
+                <!--                    mdi-comment-processing-->
+                <!--                  </v-icon>-->
+                <!--                  {{ surveyData.comments | comma }}-->
+                <!--                </div>-->
               </div>
             </v-col>
           </v-row>
@@ -70,7 +70,7 @@
         <v-col class="py-5" cols="12" style="font-size: 12px;">
           <v-icon left>
             mdi-account-circle
-          </v-icon>{{ surveyData.surveyor }}
+          </v-icon>{{ surveyData.author }}
         </v-col>
       </v-row>
       <v-row>
@@ -194,6 +194,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Report from '../../layouts/report.vue'
 import Banner from '../../components/Banner.vue'
 export default {
@@ -203,20 +204,23 @@ export default {
     return {
       tab: null,
       tabs: ['질문', '보상'],
-      surveyData: {
-        title: '상명대 학생들에 대한 고찰',
-        tags: ['대학생', '새내기', '축제'],
-        period: ['2022-05-05 13:00', '2022-05-10 13:00'],
-        likes: 14433,
-        participants: 14433,
-        downloads: 14433,
-        comments: 14433,
-        surveyor: '상명대학교',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      },
+      surveyData: [],
       surveyStats: [{ questions: 34 }],
       surveyQs: ['대면 전환 후 가장 기대되는 활동은?', '학교 행정 편의 만족도는?', '현재 학식 가격에 대한 만족도는?', '가장 필요하다고 생각하는 개선점은?'],
       bannerData: [{ icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' }]
+    }
+  },
+  methods: {
+    fetchData (id) {
+      id = this.$route.params.id
+      axios.get(
+        'https://api.govey.app/users/v1/surveys/' +
+          id
+      ).then((response) => {
+        this.surveyData = response.data
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 }
