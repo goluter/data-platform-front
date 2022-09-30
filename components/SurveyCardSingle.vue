@@ -29,7 +29,7 @@ export default {
   name: 'SurveyCardSingle',
   props: {
     surveyData: {
-      type: Array
+      type: Object
     }
   }
 }

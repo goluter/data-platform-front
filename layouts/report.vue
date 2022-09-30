@@ -88,10 +88,10 @@
 </template>
 
 <script>
-import SurveyCard from '../components/SurveyCard.vue'
 import SurveyCardSingle from '../components/SurveyCardSingle.vue'
+
 export default {
-  components: { SurveyCardSingle, SurveyCard },
+  components: { SurveyCardSingle },
   props: {
     reportData: {
       type: Array

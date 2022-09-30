@@ -24,33 +24,31 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12">
-              <div class="likes-comments d-flex">
-                <div>
-                  <v-icon small>
-                    mdi-account
-                  </v-icon>
-                  {{ surveyData.hits | comma }}
-                </div>
-                <div>
-                  <v-icon small>
-                    mdi-thumb-up
-                  </v-icon>
-                  {{ surveyData.goods | comma }}
-                </div>
-                <!--                <div>-->
-                <!--                  <v-icon small>-->
-                <!--                    mdi-comment-processing-->
-                <!--                  </v-icon>-->
-                <!--                  {{ surveyData.downloads | comma }}-->
-                <!--                </div>-->
-                <!--                <div>-->
-                <!--                  <v-icon small>-->
-                <!--                    mdi-comment-processing-->
-                <!--                  </v-icon>-->
-                <!--                  {{ surveyData.comments | comma }}-->
-                <!--                </div>-->
+            <v-col cols="12" class="likes-comments">
+              <div class="d-inline text-no-wrap mr-5">
+                <v-icon small>
+                  mdi-account
+                </v-icon>
+                {{ surveyData.hits | comma }}
               </div>
+              <div class="d-inline text-no-wrap">
+                <v-icon small>
+                  mdi-thumb-up
+                </v-icon>
+                {{ surveyData.goods | comma }}
+              </div>
+              <!--                <div>-->
+              <!--                  <v-icon small>-->
+              <!--                    mdi-comment-processing-->
+              <!--                  </v-icon>-->
+              <!--                  {{ surveyData.downloads | comma }}-->
+              <!--                </div>-->
+              <!--                <div>-->
+              <!--                  <v-icon small>-->
+              <!--                    mdi-comment-processing-->
+              <!--                  </v-icon>-->
+              <!--                  {{ surveyData.comments | comma }}-->
+              <!--                </div>-->
             </v-col>
           </v-row>
         </v-col>
@@ -76,21 +74,24 @@
       </v-row>
       <v-row>
         <v-col class="pa-4" cols="12">
-          {{ surveyData.content }}
-          <v-row>
-            <v-col class="pa-2 pb-1" cols="12">
-              <div class="survey-more">
-                <div class="survey-more-text">
-                  <span style="font-size: 11px; font-weight: 600;">자세히 보기</span>
-                </div>
-                <div class="survey-more-btn ml-auto">
-                  <v-icon>mdi-chevron-right</v-icon>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
+          <!--          {{ surveyData.content }}-->
+          {{ surveyData.content | trunc(100, '...') }}
         </v-col>
       </v-row>
+      <!--      <v-row v-if="showToggle">-->
+      <!--        <v-col class="pa-2 pb-1" cols="12">-->
+      <!--          <button style="font-size: 11px; font-weight: 600;">-->
+      <!--            <div class="survey-more">-->
+      <!--              <div style="display: flex; align-items: center">-->
+      <!--                자세히 보기-->
+      <!--              </div>-->
+      <!--              <v-icon class="ml-auto">-->
+      <!--                mdi-chevron-right-->
+      <!--              </v-icon>-->
+      <!--            </div>-->
+      <!--          </button>-->
+      <!--        </v-col>-->
+      <!--      </v-row>-->
       <v-row>
         <v-col class="pa-4" cols="12" style="background-color: #eeeeee" />
       </v-row>
@@ -200,10 +201,17 @@ export default {
     return {
       tab: null,
       tabs: ['질문', '보상'],
+      more: false,
       surveyData: [],
       surveyStats: [{ questions: 34 }],
       surveyQs: ['대면 전환 후 가장 기대되는 활동은?', '학교 행정 편의 만족도는?', '현재 학식 가격에 대한 만족도는?', '가장 필요하다고 생각하는 개선점은?'],
       bannerData: [{ icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' }]
+    }
+  },
+  computed: {
+    showToggle () {
+      const content = this.surveyData.content
+      return String(content).length > 100
     }
   },
   created () {
@@ -234,7 +242,6 @@ export default {
 }
 .likes-comments {
   justify-content: space-between;
-  width: 220px;
   font-size: 10px;
 }
 .section-title {
@@ -244,10 +251,15 @@ export default {
   display: flex;
   flex-display: column;
   vertical-align: center;
+  width: 100%;
   margin: 20px 0;
   padding: 14px;
   background-color: #eeeeee;
   border-radius: 10px;
+}
+.survey-more-text {
+  display: flex;
+  vertical-align: center;
 }
 .part-btn {
   display: flex;
@@ -291,6 +303,7 @@ export default {
 .survey-q-more {
   padding: 14px;
   display: flex;
+  align-items: center;
   background-color: #eeeeee;
   border-radius: 10px;
 }

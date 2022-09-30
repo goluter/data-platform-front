@@ -268,7 +268,7 @@ export default {
     }
   },
   created () {
-    this.fetchData(this.page, this.limit, 'ongoing')
+    this.fetchData(this.page, this.limit)
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
