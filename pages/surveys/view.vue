@@ -28,16 +28,16 @@
               <div class="likes-comments d-flex">
                 <div>
                   <v-icon small>
+                    mdi-account
+                  </v-icon>
+                  {{ surveyData.hits | comma }}
+                </div>
+                <div>
+                  <v-icon small>
                     mdi-thumb-up
                   </v-icon>
                   {{ surveyData.goods | comma }}
                 </div>
-                <!--                <div>-->
-                <!--                  <v-icon small>-->
-                <!--                    mdi-comment-processing-->
-                <!--                  </v-icon>-->
-                <!--                  {{ surveyData.hits | comma }}-->
-                <!--                </div>-->
                 <!--                <div>-->
                 <!--                  <v-icon small>-->
                 <!--                    mdi-comment-processing-->
