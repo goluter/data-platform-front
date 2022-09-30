@@ -24,7 +24,8 @@ export default {
   plugins: [
     { src: '~/plugins/gtag.js', mode: 'client' },
     { src: '~/plugins/comma.js' },
-    { src: '~/plugins/date.js' }
+    { src: '~/plugins/date.js' },
+    { src: '~/plugins/trunc.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
