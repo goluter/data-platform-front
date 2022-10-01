@@ -134,7 +134,6 @@ export default {
 }
 
 .date {
-  width: 100px;
   height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;

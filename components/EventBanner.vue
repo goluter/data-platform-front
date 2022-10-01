@@ -20,9 +20,6 @@
             <v-col class="banner-title" cols="12">
               {{ users[i].subject }}
             </v-col>
-            <v-col class="banner-msg" cols="12">
-              {{ users[i].content }}
-            </v-col>
           </v-sheet>
         </NuxtLink>
       </v-col>
