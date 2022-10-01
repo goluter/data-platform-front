@@ -583,9 +583,9 @@ export default {
     },
 
     methods: {
-      summit(){
-        axios.post('https://api-stage.govey.app/v1/surveys/',{
-          "content":this.title, "tag":this.tag_items, "startAt":this.startAt,"endAt":this.endAt
+      async summit(){
+         axios.post('https://api.govey.app/users/v1/surveys/',{
+          "content":this.title, "tags":this.tag_items, "startAt":this.startAt,"endAt":this.endAt
         })
         .then((res) =>{
           alert("설문이 등록되었습니다.");
@@ -593,16 +593,19 @@ export default {
         .catch((err)=>{
           alert("설문등록 실패.");
         })
-        // axios.post('https://api-stage.govey.app/v1/surveys/id/polls/',{
-        //   "":this.que_title, "":this.lists, 
-        // })
-        // .then((res) =>{
-        //   alert("설문이 등록되었습니다.");
-        // })
-        // .catch((err)=>{
-        //   alert("설문등록 실패.");
-        // })
+        
       },
+      // await function(){
+      //   axios.post('https://api.govey.app/users/v1/surveys/id/polls/',{
+      //     "":this.que_title, "":this.lists, 
+      //   })
+      //   .then((res) =>{
+      //     alert("설문이 등록되었습니다.");
+      //   })
+      //   .catch((err)=>{
+      //     alert("설문등록 실패.");
+      //   })
+      // },
      
       formatDate (date) {
         if (!date) return null
