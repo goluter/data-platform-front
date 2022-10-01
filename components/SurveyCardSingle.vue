@@ -8,13 +8,13 @@
           </v-col>
           <v-col class="survey-content col-9">
             <span class="survey-title">
-              {{ surveyData.title }}
+              {{ surveyData.subject }}
             </span>
-            <span class="survey-period"> {{ surveyData.period[0] }} ~ {{ surveyData.period[1] }} </span>
+            <span class="survey-period"> {{ surveyData.startAt | date }} ~ {{ surveyData.endAt | date }} </span>
             <div class="survey-count-tags">
-              <span class="survey-count"> {{ surveyData.participants }}명이 참여 중 </span>
-              <span v-for="tags in surveyData.tags" class="survey-tags">
-                <a href="">#{{ tags }}</a>
+              <span class="survey-count"> {{ surveyData.hits }}명이 참여 중 </span>
+              <span class="survey-tags">
+                {{ surveyData.tag }}
               </span>
             </div>
           </v-col>
@@ -29,8 +29,7 @@ export default {
   name: 'SurveyCardSingle',
   props: {
     surveyData: {
-      type: Array,
-      default: []
+      type: Object
     }
   }
 }
