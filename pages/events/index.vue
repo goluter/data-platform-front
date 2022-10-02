@@ -139,6 +139,9 @@ export default {
 </script>
 
 <style scoped>
+.row {
+  margin: 0px;
+}
 .eventtitle {
   flex-grow: 0;
   margin: 24px 0px 0px 17px;

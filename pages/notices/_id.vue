@@ -94,9 +94,7 @@ export default {
   color: #000;
   width: 200px;
 }
-.container {
-  padding: 0px;
-}
+
 .banner {
   background-color: #eee;
   height: 96px;

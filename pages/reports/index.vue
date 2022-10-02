@@ -33,7 +33,7 @@
       <NuxtLink
         v-for="(item, i) in users"
         :key="i"
-        to="/reports/item"
+        :to="{ name: 'reports-id', params: { id: i } }"
         style="text-decoration: none; color: initial"
       >
         <v-row>
@@ -87,27 +87,24 @@ export default {
       totalpage: null,
       limit: 10,
       page: 0,
-      category: '리포트',
       sort: ['최신순', '추천순', '댓글순'],
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '내 리포트')
+    this.$store.commit('setPageTitle', '리포트')
   },
   methods: {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/page?category=' +
-            this.category +
-            '&page=' +
+          'https://api.govey.app/users/v1/reports/page?' +
+            'page=' +
             this.page +
             '&limit=' +
             this.limit
         )
         .then((res) => {
           this.users = res.data.content
-          console.log(this.users)
         })
         .catch((err) => {
           console.log(err)

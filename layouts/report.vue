@@ -5,33 +5,25 @@
         <v-app-bar-nav-icon icon @click="back">
           <v-icon>mdi-chevron-left</v-icon>
         </v-app-bar-nav-icon>
-        <v-toolbar-title class="title-text pa-0" style="font-size: 14px; font-weight: 600">
-          {{ reportData.title }}
+        <v-toolbar-title
+          class="title-text pa-0"
+          style="font-size: 14px; font-weight: 600"
+        >
         </v-toolbar-title>
         <v-spacer />
         <div class="d-flex justify-content-between">
-          <v-btn
-            v-for="(item, i) in btn"
-            :key="i"
-            icon
-            small
-          >
-            <v-icon>{{ item }}</v-icon>
+          <v-btn icon small>
+            <v-icon>mdi-export-variant</v-icon>
+          </v-btn>
+          <v-btn icon small>
+            <!-- 북마크-->
+            <v-icon @click="id = users[$route.params.id].id"
+              >mdi-bookmark-outline</v-icon
+            >
           </v-btn>
           <v-menu offset-y>
-            <template
-              #activator="
-                {
-                  on,
-                  attrs
-                }"
-            >
-              <v-btn
-                icon
-                small
-                v-bind="attrs"
-                v-on="on"
-              >
+            <template #activator="{ on, attrs }">
+              <v-btn icon small v-bind="attrs" v-on="on">
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </template>
@@ -49,24 +41,58 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: {
     reportData: {
-      type: Object
-    }
+      type: Object,
+    },
   },
-  data () {
+  data() {
     return {
-      btn: ['mdi-export-variant', 'mdi-bookmark-outline']
+      temp: 0,
+      page: 0,
+      limit: 10,
+      id: null,
+      users: null,
     }
   },
   methods: {
-    back () {
+    back() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    }
-  }
+    },
+    fetchData(page, limit) {
+      axios
+        .get(
+          'https://api.govey.app/users/v1/reports/page?' +
+            'page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    fetch() {
+      axios
+        .post(
+          'https://api-stage.govey.app/users/v1/posts/page?category=공지&page=0&limit=10'
+        )
+        .then((res) => {
+          this.users2 = res.data.content
+          console.log('success')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

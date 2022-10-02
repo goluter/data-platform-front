@@ -28,9 +28,9 @@ export default {
   props: {
     surveyData: {
       type: Array,
-      default: []
-    }
-  }
+      default: [],
+    },
+  },
 }
 </script>
 
