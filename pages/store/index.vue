@@ -40,7 +40,7 @@
               >
                 <span class="item-title">
                   
-                  {{ item.name }}
+                [{{category}}]  {{ item.name }}
                 </span>
                 <span class="item-price"> {{ item.price | comma }} P </span>
               </v-col>
