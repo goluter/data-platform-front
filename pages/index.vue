@@ -15,7 +15,7 @@
       <v-col cols="12" style="height: 20px" />
     </v-row>
 
-    <Banner :banner-data="bannerData[0]" />
+<!--    <Banner :banner-data="bannerData[0]" />-->
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
         <h1 class="section-title">인기 설문</h1>
@@ -30,7 +30,7 @@
       </v-col>
     </v-row>
     <SurveyBanner :survey-data="surveyData" />
-    <Banner :banner-data="bannerData[1]" />
+    <Banner :banner-data="bannerData[0]" />
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
         <h1 class="section-title">이벤트</h1>
@@ -70,17 +70,17 @@ export default {
   name: 'IndexPage',
   components: { NoticeBanner, EventBanner, SurveyBanner, Banner, Carousels },
   layout: 'main',
-  data() {
+  data () {
     return {
       carouselData: [],
       surveyData: [],
       bannerData: [
-        {
-          title: '설문 등록',
-          msg: '지금 등록하시면 1000P 를 바로 적립해드려요!',
-          icon: 'mdi-vote',
-          to: '/survey-maker',
-        },
+        // {
+        //   title: '설문 등록',
+        //   msg: '지금 등록하시면 1000P 를 바로 적립해드려요!',
+        //   icon: 'mdi-vote',
+        //   to: '/survey-maker',
+        // },
         {
           title: '가이드',
           msg: '더 재미있게 즐기실 수 있도록 가이드를 모아봤어요!',
@@ -90,7 +90,7 @@ export default {
       ],
     }
   },
-  created() {
+  created () {
     this.fetchData()
   },
   methods: {
@@ -128,7 +128,13 @@ export default {
       axios.get(
         'https://api.govey.app/users/v1/surveys/curations?type=recommended'
       ).then((response) => {
-        this.carouselData = response.data
+        const cr = response.data
+        const colors = [{ color: 'indigo accent-4' }, { color: '#ed2121' }, { color: 'pink accent-2' }]
+        const slicedCr = cr.slice(0, 3).map((card, i) => {
+          const mix = Object.assign({}, card, colors[i])
+          return mix
+        })
+        this.carouselData = slicedCr
       }).catch((error) => {
         console.log(error)
       })

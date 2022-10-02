@@ -17,13 +17,13 @@
               </div>
               <div class="count-box">
                 <span class="survey-participate-count">
-                  {{ item.count }}명이 참여중이에요!
+                  {{ item.hits }}명이 참여중이에요!
                 </span>
               </div>
               <div class="target-box">
-                <span class="surveyor"> 설문자: {{ item.surveyor }} </span>
+                <span class="surveyor"> 설문자: {{ item.author }} </span>
                 <span class="survey-target">
-                  {{ item.target }}
+                  {{ item.subject }}
                 </span>
               </div>
             </v-sheet>
