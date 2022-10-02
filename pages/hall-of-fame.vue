@@ -29,36 +29,77 @@
         업적
       </v-tab>
     </v-tabs>
-    <div
-      v-for="(a, i) in hofpoint"
-      :key="a"
-      v-if="point == true"
-      class="contents"
-    >
-      <img class="profileimg" src="../assets/Male User.png" align="middle" />
-      <span>{{ hofpoint[i].name }}</span>
-      <div class="point">{{ hofpoint[i].point }} P</div>
+    <div v-if="point == true">
+      <div class="point-box">
+        <div class="pt-5  d-flex justify-space-between">
+          <div class = "pl-3 pt-2">
+            포인트 어떻게 해야 얻을 수 있지?
+          </div>
+          <div class = "mr-3 pa-2 click-box">
+            <NuxtLink to="/reward-list" style="color: black; text-decoration-line: none">
+              <button>궁금하면 클릭!</button>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+      <div
+        v-for="(a, i) in hofpoint"
+        :key="a"
+        class="contents"
+      >
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <span>{{ hofpoint[i].name }}</span>
+        <div class="point">{{ hofpoint[i].point }} P</div>
+      </div>
     </div>
+        <div v-if="nickname == true">
+      <div class="point-box">
+        <div class="pt-5  d-flex justify-space-between">
+          <div class = "pl-3 pt-2">
+            칭호 어떻게 해야 얻을 수 있지?
+          </div>
+          <div class = "mr-3 pa-2 click-box">
+            <NuxtLink to="/title-list" style="color: black; text-decoration-line: none">
+              <button>궁금하면 클릭!</button>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
     <div
       v-for="(a, i) in hofnickname"
       :key="a"
-      v-if="nickname == true"
+      
       class="contents"
     >
       <img class="profileimg" src="../assets/Male User.png" align="middle" />
       <span>{{ hofnickname[i].name }}</span>
       <div class="point2">{{ hofnickname[i].point }} 개</div>
     </div>
+        </div>
+    <div v-if="achieve == true">
+      <div class="point-box">
+        <div class="pt-5  d-flex justify-space-between">
+          <div class = "pl-3 pt-2">
+            업적 어떻게 해야 얻을 수 있지?
+          </div>
+          <div class = "mr-3 pa-2 click-box">
+            <NuxtLink to="/reward-list" style="color: black; text-decoration-line: none">
+              <button>궁금하면 클릭!</button>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
     <div
       v-for="(a, i) in hofachieve"
       :key="a"
-      v-if="achieve == true"
+      
       class="contents"
     >
       <img class="profileimg" src="../assets/Male User.png" align="middle" />
       <span>{{ hofachieve[i].name }}</span>
       <div class="point2">{{ hofachieve[i].point }} 개</div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -140,5 +181,15 @@ export default {
 }
 .v-tab {
   font-size: 18px;
+}
+.point-box{
+  background-color: #1087f4;
+  height: 80px;
+  color:white;
+}
+.click-box{
+  background-color: white;
+  color:black;
+  border-radius: 1rem;
 }
 </style>
