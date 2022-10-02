@@ -21,7 +21,7 @@
               <v-icon
                 @click="
                   bookmark1()
-                  id = users[$route.params.id].id
+                  id = users.id
                 "
                 >mdi-bookmark-outline</v-icon
               >
@@ -52,18 +52,16 @@
             </v-col>
             <v-col class="ml-auto" cols="auto" style="font-size: 10px">
               <NuxtLink to="" style="text-decoration: none">
-                {{ users[$route.params.id].survey.tag }}
+                {{ users.survey.tag }}
               </NuxtLink>
             </v-col>
           </v-row>
           <v-row>
             <v-col class="pt-0 pb-0" cols="12">
               <p class="report-title">
-                <b>{{ users[$route.params.id].subject }}</b>
+                <b>{{ users.subject }}</b>
               </p>
-              <span class="report-created"
-                >작성일: {{ users[$route.params.id].createdAt }}</span
-              >
+              <span class="report-created">작성일: {{ users.createdAt }}</span>
             </v-col>
           </v-row>
           <v-row>
@@ -71,7 +69,7 @@
               <div class="likes-comments d-flex">
                 <div>
                   <v-icon small> mdi-thumb-up </v-icon>
-                  {{ users[$route.params.id].goods | comma }}
+                  {{ users.goods | comma }}
                 </div>
                 <!-- <div>
                   <v-icon small> mdi-comment-processing </v-icon>
@@ -91,8 +89,7 @@
       </v-row>
       <v-row>
         <v-col class="py-5" cols="12" style="font-size: 12px">
-          <v-icon left> mdi-account-circle </v-icon
-          >{{ users[$route.params.id].author }}
+          <v-icon left> mdi-account-circle </v-icon>{{ users.author }}
         </v-col>
       </v-row>
       <v-row>
@@ -100,54 +97,63 @@
           <span class="section-title">설문 정보</span>
         </v-col>
       </v-row>
+
       <v-row>
-        <v-col cols="12">
-          <v-row>
-            <v-col class="d-flex pr-0" cols="auto">
-              <div class="survey-img" />
-            </v-col>
-            <v-col class="d-flex" cols="auto" style="align-self: center">
-              <v-row>
-                <v-col cols="12">
-                  <v-row>
-                    <v-col class="pb-0" cols="12" style="font-size: 12px">
-                      {{ users[$route.params.id].survey.subject }}
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col class="py-0" cols="12" style="font-size: 10px">
-                      {{ users[$route.params.id].survey.startAt }} ~
-                      {{ users[$route.params.id].survey.endAt }}
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="auto" style="font-size: 10px">
-                      {{ users[$route.params.id].survey.hits | comma }}명이 참여
-                      중
-                    </v-col>
-                    <v-col
-                      class="ml-auto pr-0"
-                      cols="auto"
-                      style="font-size: 10px"
-                    >
-                      <span>
-                        <NuxtLink
-                          to=""
-                          style="
-                            text-decoration: none;
-                            color: rgba(37, 144, 222, 0.87);
-                          "
-                          >{{ users[$route.params.id].survey.tag }}
-                        </NuxtLink>
-                      </span>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-col>
+        <NuxtLink
+          :to="{
+            path: '/surveys/view',
+            query: { id: users.survey.id },
+          }"
+          style="text-decoration: none"
+        >
+          <v-col cols="12">
+            <v-row>
+              <v-col class="d-flex pr-0" cols="auto">
+                <div class="survey-img" />
+              </v-col>
+              <v-col class="d-flex" cols="auto" style="align-self: center">
+                <v-row>
+                  <v-col cols="12">
+                    <v-row>
+                      <v-col class="pb-0" cols="12" style="font-size: 12px">
+                        {{ users.survey.subject }}
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col class="py-0" cols="12" style="font-size: 10px">
+                        {{ users.survey.startAt }} ~
+                        {{ users.survey.endAt }}
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="auto" style="font-size: 10px">
+                        {{ users.survey.hits | comma }}명이 참여 중
+                      </v-col>
+                      <v-col
+                        class="ml-auto pr-0"
+                        cols="auto"
+                        style="font-size: 10px"
+                      >
+                        <span>
+                          <NuxtLink
+                            to=""
+                            style="
+                              text-decoration: none;
+                              color: rgba(37, 144, 222, 0.87);
+                            "
+                            >{{ users.survey.tag }}
+                          </NuxtLink>
+                        </span>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+        </NuxtLink>
       </v-row>
+
       <v-row>
         <v-col class="pt-4 pb-1" cols="12" style="background-color: #eeeeee">
           <span class="section-title">분석</span>
@@ -155,7 +161,7 @@
       </v-row>
       <v-row>
         <v-col class="py-5" col="12">
-          {{ users[$route.params.id].content }}
+          {{ users.content }}
         </v-col>
       </v-row>
       <v-row>
@@ -237,33 +243,33 @@ export default {
   methods: {
     fetchData(category, page, limit) {
       axios
-        .get(
-          'https://api.govey.app/users/v1/reports/page?' +
-            'page=' +
-            this.page +
-            '&limit=' +
-            this.limit
-        )
+        .get('https://api.govey.app/users/v1/reports/' + this.$route.params.id)
         .then((res) => {
-          this.users = res.data.content
+          this.users = res.data
         })
         .catch((err) => {
           console.log(err)
         })
     },
     bookmark1() {
+      const body = {}
       axios
         .post(
           'https://api.govey.app/users/v1/reports/' + this.id + '/bookmark',
-          {}
+          body
         )
         .then((res) => {
-          this.users2 = res.data.content
           console.log('success')
         })
         .catch((err) => {
           console.log(err)
         })
+        .finally(() => {
+          alert('북마크에 추가되었습니다')
+        })
+    },
+    back() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
   },
   created() {

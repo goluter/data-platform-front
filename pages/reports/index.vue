@@ -33,7 +33,7 @@
       <NuxtLink
         v-for="(item, i) in users"
         :key="i"
-        :to="{ name: 'reports-id', params: { id: i } }"
+        :to="{ name: 'reports-id', params: { id: users[i].id } }"
         style="text-decoration: none; color: initial"
       >
         <v-row>

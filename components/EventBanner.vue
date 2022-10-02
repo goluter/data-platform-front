@@ -10,7 +10,7 @@
         md="4"
       >
         <NuxtLink
-          :to="{ name: 'events-id', params: { id: i } }"
+          :to="{ name: 'events-id', params: { id: users[i].id } }"
           style="text-decoration: none; color: white"
         >
           <v-sheet

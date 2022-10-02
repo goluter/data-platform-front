@@ -1,9 +1,7 @@
 <template>
-  <div class="wrapper">
+  <div v-if="users" class="wrapper">
     <v-container>
-      <v-row
-        style="padding: 10px 0; background-color: #eeeeee"
-      >
+      <v-row style="padding: 10px 0; background-color: #eeeeee">
         <v-col cols="12">
           <v-row style="background-color: white">
             <v-col class="ma-auto" cols="12" sm="9" md="9">
@@ -26,13 +24,7 @@
     <v-container class="pa-0">
       <v-row class="ma-0" justify="end" style="height: 60px">
         <v-col cols="4">
-          <v-select
-            :items="sort"
-            label="최신순"
-            solo
-            flat
-            dense
-          />
+          <v-select :items="sort" label="최신순" solo flat dense />
         </v-col>
       </v-row>
     </v-container>
@@ -40,10 +32,7 @@
       <v-divider />
     </v-container>
     <v-container>
-      <v-row
-        v-for="(item, i) in reportData"
-        :key="i"
-      >
+      <v-row v-for="(item, i) in users" :key="i">
         <v-col cols="12">
           <v-row>
             <NuxtLink
@@ -61,27 +50,26 @@
                     <v-col cols="12">
                       <v-row>
                         <NuxtLink
-                          to="/reports/item"
+                          :to="{
+                            name: 'reports-id',
+                            params: { id: users[i].report.id },
+                          }"
                           style="text-decoration: none; color: initial"
                         >
                           <v-col class="report-title" cols="auto">
-                            {{ item.title }}
+                            {{ users[i].report.subject }}
                           </v-col>
                         </NuxtLink>
                         <v-col class="ml-auto py-0 pt-2" cols="auto">
                           <v-menu offset-y>
                             <template #activator="{ on, attrs }">
                               <v-btn x-small icon v-bind="attrs" v-on="on">
-                                <v-icon small>
-                                  mdi-dots-vertical
-                                </v-icon>
+                                <v-icon small> mdi-dots-vertical </v-icon>
                               </v-btn>
                             </template>
                             <v-list style="font-size: 12px">
                               <v-list-item-group>
-                                <v-list-item>
-                                  삭제
-                                </v-list-item>
+                                <v-list-item> 삭제 </v-list-item>
                               </v-list-item-group>
                             </v-list>
                           </v-menu>
@@ -92,22 +80,16 @@
                   <v-row>
                     <v-col class="report-stat d-flex" cols="12">
                       <div class="report-likes mr-2">
-                        <v-icon small>
-                          mdi-thumb-up
-                        </v-icon>
-                        {{ item.likes }}
+                        <v-icon small> mdi-thumb-up </v-icon>
+                        {{ users[i].report.goods }}
                       </div>
-                      <div class="report-comments">
-                        <v-icon small>
-                          mdi-comment-processing
-                        </v-icon>
+                      <!-- <div class="report-comments">
+                        <v-icon small> mdi-comment-processing </v-icon>
                         {{ item.comments }}
-                      </div>
+                      </div> -->
                       <div class="report-surveyor ml-auto">
-                        <v-icon small>
-                          {{ item.icon }}
-                        </v-icon>
-                        {{ item.surveyor }}
+                        <v-icon small> mdi-account-circle </v-icon>
+                        {{ users[i].report.author }}
                       </div>
                     </v-col>
                   </v-row>
@@ -122,31 +104,42 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  data () {
+  data() {
     return {
+      users: null,
+      page: 0,
+      limit: 10,
       sort: ['최신순', '추천순', '댓글순'],
-      reportData: [
-        {
-          title: '상명대 학생들에 대한 고찰',
-          likes: 14423,
-          comments: 14423,
-          surveyor: '상명대학교',
-          icon: 'mdi-account-circle'
-        },
-        {
-          title: '대학생 탐구 리포트',
-          likes: 13211,
-          comments: 9654,
-          surveyor: '상명대학교',
-          icon: 'mdi-account-circle'
-        }
-      ]
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '저장한 리포트')
-  }
+  },
+  methods: {
+    fetchData(category, page, limit) {
+      axios
+        .get(
+          'https://api.govey.app/users/v1/self/reports/bookmarks?' +
+            'page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+          console.log(this.users)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
+  },
 }
 </script>
 

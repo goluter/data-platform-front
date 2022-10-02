@@ -71,6 +71,9 @@ export default {
   layout: 'main',
   data() {
     return {
+      page: 0,
+      limit: 10,
+      inquiry: null,
       carouselData: [
         {
           target: '2022 대학생들에게 묻습니다!',

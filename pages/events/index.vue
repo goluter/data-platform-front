@@ -38,7 +38,7 @@
         </v-tabs> -->
         <div v-for="(a, i) in users" v-if="users" :key="a" class="contents">
           <NuxtLink
-            :to="{ name: 'events-id', params: { id: i } }"
+            :to="{ name: 'events-id', params: { id: users[i].id } }"
             style="color: black; text-decoration-line: none"
           >
             <div class="eventtitle">

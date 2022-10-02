@@ -2,15 +2,15 @@
   <div v-if="users">
     <div style="border-bottom: 1px solid #d3d3d3">
       <div class="noticetitle">
-        {{ users[$route.params.id].subject }}
+        {{ users.subject }}
       </div>
       <div class="date">
-        {{ users[$route.params.id].createdAt }}
+        {{ users.createdAt }}
       </div>
     </div>
     <div>
       <div class="noticemain">
-        {{ users[$route.params.id].content }}
+        {{ users.content }}
       </div>
     </div>
   </div>
@@ -38,15 +38,10 @@ export default {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/page?category=' +
-            this.category +
-            '&page=' +
-            this.page +
-            '&limit=' +
-            this.limit
+          'https://api-stage.govey.app/users/v1/posts/' + this.$route.params.id
         )
         .then((res) => {
-          this.users = res.data.content
+          this.users = res.data
         })
         .catch((err) => {
           console.log(err)
