@@ -72,29 +72,29 @@
               </v-form>
             </v-card>
           </v-dialog>
-          <v-menu offset-y>
-            <template
-              #activator="
-                {
-                  on,
-                  attrs
-                }"
-            >
-              <v-btn
-                icon
-                small
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item>
-                <v-list-item-title>삭제</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+<!--          <v-menu offset-y>-->
+<!--            <template-->
+<!--              #activator="-->
+<!--                {-->
+<!--                  on,-->
+<!--                  attrs-->
+<!--                }"-->
+<!--            >-->
+<!--              <v-btn-->
+<!--                icon-->
+<!--                small-->
+<!--                v-bind="attrs"-->
+<!--                v-on="on"-->
+<!--              >-->
+<!--                <v-icon>mdi-dots-vertical</v-icon>-->
+<!--              </v-btn>-->
+<!--            </template>-->
+<!--            <v-list>-->
+<!--              <v-list-item>-->
+<!--                <v-list-item-title>삭제</v-list-item-title>-->
+<!--              </v-list-item>-->
+<!--            </v-list>-->
+<!--          </v-menu>-->
         </div>
       </v-app-bar>
     </v-col>
