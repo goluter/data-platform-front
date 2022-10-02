@@ -10,12 +10,27 @@
         </v-toolbar-title>
         <v-spacer />
         <div class="d-flex justify-content-between">
-          <v-btn
-            icon
-            small
-          >
-            <v-icon>mdi-export-variant</v-icon>
-          </v-btn>
+          <v-menu offset-y :close-on-content-click="false" :nudge-width="300">
+            <template
+                #activator="{on, attrs}"
+            >
+              <v-btn
+                  icon
+                  small
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="copyURL(url)"
+              >
+                <v-icon>mdi-export-variant</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-text-field outlined single-line :value="getURL()" class="ma-auto pa-3" style="height: 80px"></v-text-field>
+              <v-card-text class="pt-0 pb-3">
+                <v-icon>mdi-check</v-icon>
+                클립보드에 복사되었습니다!</v-card-text>
+            </v-card>
+          </v-menu>
           <v-dialog
             v-model="bookmark"
             max-width="600px"
@@ -99,12 +114,23 @@ export default {
   },
   data () {
     return {
-      bookmark: false
+      bookmark: false,
+      url: ''
     }
   },
   methods: {
     back () {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+    getURL () {
+      this.url = 'https://govey.app/surveys/view/?id=' + this.reportData.id
+      return this.url
+    },
+    async copyURL (url) {
+      try {
+        await navigator.clipboard.writeText(url)
+      } catch ($e) {
+      }
     }
   }
 }
