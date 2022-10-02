@@ -6,7 +6,7 @@
     >
       <v-container>
         <v-row>
-          <v-col class="pa-0" >
+          <v-col class="pa-0" cols="12">
               <img :src= "item.imageUrl" width="80%" >  
           </v-col>
         </v-row>
@@ -14,7 +14,7 @@
           <v-col class="d-flex flex-column" cols="12">
             <div class="title-wrapper">
               <p>
-                <b>{{ item.name }}</b>
+                <b>[{{item.category}}]{{ item.name }}</b>
               </p>
               <p>
                 <b>{{ item.price | comma }}</b> P
