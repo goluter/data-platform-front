@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <v-container>
+    <!-- <v-container>
       <v-row style="padding: 10px 0; background-color: #eeeeee">
         <v-col cols="12">
           <v-row style="background-color: white">
@@ -20,14 +20,14 @@
           </v-row>
         </v-col>
       </v-row>
-    </v-container>
-    <v-container class="pa-0">
+    </v-container> -->
+    <!-- <v-container class="pa-0">
       <v-row class="ma-0" justify="end" style="height: 60px">
         <v-col cols="4">
           <v-select :items="sort" label="최신순" solo flat dense />
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
     <v-divider />
     <v-container v-if="users">
       <NuxtLink

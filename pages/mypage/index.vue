@@ -1,10 +1,8 @@
 <template>
-  <v-container style="align-items: center">
+  <v-container style="align-items: center; height: 100%">
     <v-row style="height: 95px; background-color: #f8f8f8">
       <v-col cols="12" align-self="center">
-        <v-icon x-large left>
-          mdi-account-circle
-        </v-icon>
+        <v-icon x-large left> mdi-account-circle </v-icon>
         <span class="username">@{{ username }}</span>
       </v-col>
     </v-row>
@@ -36,10 +34,66 @@
             </div>
           </v-tab-item>
           <v-tab-item class="pa-2 pt-0">
-            <survey-card :survey-data="surveyData" />
+            <div class="wrapper">
+              <div
+                v-for="(item, i) in mysurveydata"
+                :key="i"
+                class="survey-wrapper"
+              >
+                <v-row>
+                  <v-col class="survey-img-box col-3">
+                    <div class="survey-img" />
+                  </v-col>
+                  <v-col class="survey-content col-9">
+                    <span class="survey-title">
+                      {{ mysurveydata[i].subject }}
+                    </span>
+                    <span class="survey-left-time">
+                      {{ mysurveydata[i].endAt }}에 종류
+                    </span>
+                    <div class="survey-count-tags">
+                      <span class="survey-count">
+                        {{ mysurveydata[i].answers }}명이 참여 중
+                      </span>
+                      <span v-for="tags in item.tags" class="survey-tags">
+                        <a href="">#{{ mysurveydata[i].tag }}</a>
+                      </span>
+                    </div>
+                  </v-col>
+                </v-row>
+              </div>
+            </div>
           </v-tab-item>
           <v-tab-item class="pa-2 pt-0">
-            <survey-card :survey-data="surveyData" />
+            <div class="wrapper">
+              <div
+                v-for="(item, i) in surveyData"
+                :key="i"
+                class="survey-wrapper"
+              >
+                <v-row>
+                  <v-col class="survey-img-box col-3">
+                    <div class="survey-img" />
+                  </v-col>
+                  <v-col class="survey-content col-9">
+                    <span class="survey-title">
+                      {{ item.title }}
+                    </span>
+                    <span class="survey-left-time">
+                      {{ item.left }}일 남음
+                    </span>
+                    <div class="survey-count-tags">
+                      <span class="survey-count">
+                        {{ item.count }}명이 참여 중
+                      </span>
+                      <span v-for="tags in item.tags" class="survey-tags">
+                        <a href="">#{{ tags }}</a>
+                      </span>
+                    </div>
+                  </v-col>
+                </v-row>
+              </div>
+            </div>
           </v-tab-item>
           <v-tab-item>
             <v-list v-for="(item, i) in listData" :key="i">
@@ -63,101 +117,136 @@
 
 <script>
 import SurveyCard from '../../components/SurveyCard.vue'
+import axios from 'axios'
+
 export default {
   name: 'MyPage',
   components: { SurveyCard },
   layout: 'main',
-  data () {
+  data() {
     return {
+      page: 0,
+      limit: 10,
+      mysurveydata: null,
       tab: null,
       username: 'jooyoung',
       tabsData: [
         { title: '타임라인' },
         { title: '등록설문' },
         { title: '참여설문' },
-        { title: '더보기' }
+        { title: '더보기' },
       ],
       achievement: ['설문 참여', '대학생'],
-      surveyData: [
-        {
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        },
-        {
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        },
-        {
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3'
-            }
-          ]
-        }
-      ],
       listData: [
         {
           subheader: '설문',
           item: [
-            { title: '내 설문', to: '' },
+            { title: '내 설문', to: '/mypage/mysurvey/' },
             { title: '내 리포트', to: '/mypage/reports/' },
-            { title: '저장한 리포트', to: '/mypage/saved-reports/' },
+            { title: '북마크한 리포트', to: '/mypage/saved-reports/' },
             { title: '내 댓글', to: '' },
-            { title: '다운로드 기록', to: '/mypage/download/' }
-          ]
+            { title: '다운로드 기록', to: '/mypage/download/' },
+          ],
         },
         {
           subheader: '보상',
           item: [
             { title: '내 포인트', to: '/point/' },
-            { title: '구매내역', to: '' }
-          ]
+            { title: '구매내역', to: '' },
+          ],
         },
         {
           subheader: '기타',
           item: [
             { title: '로그아웃', to: '' },
-            { title: '회원탈퇴', to: '' }
-          ]
-        }
-      ]
+            { title: '회원탈퇴', to: '' },
+          ],
+        },
+      ],
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', this.username)
-  }
+  },
+  methods: {
+    fetchData(page, limit) {
+      axios
+        .get(
+          'https://api.govey.app/users/v1/self/surveys/registrations?' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.mysurveydata = res.data.content
+          console.log(this.mysurveydata)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    fetchData(page, limit) {
+      axios
+        .get(
+          'https://api.govey.app/users/v1/self/surveys/registrations?' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.mysurveydata = res.data.content
+          console.log(this.mysurveydata)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.fetchData(this.pageNum)
+  },
 }
 </script>
 
 <style scoped>
 .timeline-text {
   margin: 25px 0;
+}
+.wrapper {
+  margin-top: 10px;
+}
+.survey-img {
+  padding: 3%;
+  width: 100%;
+  height: 100%;
+  background-color: #a7a7a7;
+  border-radius: 14px;
+}
+.survey-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+}
+.survey-title {
+  display: block;
+  margin-bottom: 13px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.survey-left-time {
+  margin-bottom: 2px;
+  text-align: right;
+  font-size: 10px;
+}
+.survey-count-tags {
+  font-size: 10px;
+}
+.survey-tags {
+  float: right;
+  margin: 1px;
+}
+.survey-tags a {
+  color: rgba(48, 205, 174, 0.87);
+  text-decoration: none;
 }
 </style>
