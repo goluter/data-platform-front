@@ -1,64 +1,70 @@
 <template>
 <div>
-    <div
-        v-for="(item, i) in reward"
-        :key="i"
-        class="contents"
-      >
-      <NuxtLink 
-          :to="{path: 'reward-detail', query: { id: item.id }}" 
-          style="text-decoration: none; color: initial;">
-        <img class="profileimg" src="../assets/Male User.png" align="middle" />
-        <span>{{ item.name }}</span>
-        <div class="point">{{ item.count }} 회</div>
-        </NuxtLink>
-      </div>
-    
+    <div class="d-flex justify-center pt-5">
+        <div>
+            <img class="profileimg" src="../assets/man.png" align="middle" />
+        </div>
+    </div>
+    <div class="d-flex justify-center pt-5">
+        <div>
+            <b>{{reward.name}}</b>
+        </div>
+    </div>
+    <div class="d-flex justify-center pt-5">
+        <div>
+            <b>{{reward.requirements}}</b>
+        </div>
+    </div>
+
+    <hr>
 </div>
+
+
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-  name: 'RewardList',
+  name: 'EventList',
   layout: 'default',
   data() {
     return {
-      page :0,
-      limit :10,
-      type:"업적",
       reward:[]
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', ' 업적')
+    this.$store.commit('setPageTitle', ' 업적 상세')
   },
   created(){
-    this.fetchData(this.page,this.limit,this.type)
+    this.fetchData(this.$route.query.id)
   },
-  methods:{
-    fetchData(page,limit,type){
-        axios.get(
-            'https://api.govey.app/users/v1/rewards/page?page='+
-            this.page +
-            '&limit=' +
-            this.limit +
-            "&type=" +
-            this.type
-        )
-        .then((res) =>{
-            this.reward = res.data.content
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+   methods: {
+    fetchData (id) {
+      axios.get(
+        'https://api.govey.app/users/v1/rewards/'+
+        id 
+          
+      )
+      .then((res) => {
+        this.reward = res.data
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+.Ellipse-21 {
+  width: 74px;
+  height: 74px;
+  flex-grow: 0;
+  margin: 0 59px 23px 58px;
+  background-color: #c4c4c4;
+}
 .point2 {
   float: right;
   margin: 4px 12px 0px 0px;
@@ -121,5 +127,9 @@ export default {
   background-color: white;
   color:black;
   border-radius: 1rem;
+}
+.profileimg{
+    height: 100px;
+    width: 100px;
 }
 </style>
