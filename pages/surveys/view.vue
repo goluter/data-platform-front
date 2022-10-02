@@ -162,20 +162,20 @@
               </v-tab-item>
               <v-tab-item class="pa-2 py-5">
                 <v-row style="padding: 5px;">
-                  <v-col v-if="surveyData.rewardsData" class="" cols="12">
+                  <v-col v-if="surveyData.rewardsData" cols="12">
                     <v-row>
                       <v-col cols="12">
-                        <span class="survey-rewards-title">이 설문에는 총 {{ surveyData.rewardsData.length }}개의 보상이 있습니다!</span>
+                        <span class="survey-rewards-title">이 설문에는 총 <b>{{ surveyData.rewardsData.length }}개</b>의 보상이 있습니다!</span>
                       </v-col>
                     </v-row>
-                    <v-row v-for="(item, i) in surveyData.rewardsData" :key="i" class="survey-rewards-box mb-3">
-                      <v-col v-if="item.type === 'point'" cols="12" style="display: flex; align-items: center">
+                    <v-row v-for="(item, i) in surveyData.rewardsData" :key="i" class="pa-2">
+                      <v-col v-if="item.type === 'point'" cols="12" style="display: flex; align-items: center" class="survey-rewards-box">
                         <v-icon color="yellow darken-3" class="mr-2">
                           mdi-circle-multiple
                         </v-icon>
                         {{ item.value | comma }} 포인트
                       </v-col>
-                      <v-col v-if="item.type === 'giftcon'" cols="12" style="display: flex; align-items: center">
+                      <v-col v-if="item.type === 'giftcon'" cols="12" style="display: flex; align-items: center" class="survey-rewards-box">
                         <v-icon color="red" class="mr-2">
                           mdi-gift
                         </v-icon>
@@ -393,9 +393,7 @@ export default {
   margin: 5px 0;
 }
 .survey-rewards-box {
-  display: flex;
-  flex-direction: column;
-  padding: 3px;
+  padding: 15px 10px;
   background-color: #ececec;
   border-radius: 10px;
   font-size: 14px;
