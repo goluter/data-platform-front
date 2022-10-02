@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <router-view :key="$route.fullPath" />
     <v-container>
       <v-row>
         <v-col class="pa-0" cols="12">
@@ -25,17 +26,17 @@
             <v-col class="" cols="12" style="display: flex; align-items: center">
               <v-row style="background-color: white">
                 <v-col class="" cols="4" md="2">
-                  <v-form style="height: 40px">
-                    <v-text-field
-                      label="검색"
-                      single-line
-                      clearable
-                      outlined
-                      dense
-                      append-icon="mdi-magnify"
-                      style="height: 40px; border-radius: 45px"
-                    />
-                  </v-form>
+                  <v-text-field
+                    v-model="searchValue"
+                    label="검색"
+                    single-line
+                    clearable
+                    outlined
+                    dense
+                    append-icon="mdi-magnify"
+                    style="height: 40px; border-radius: 45px"
+                    @keyup.enter="search(searchValue)"
+                  />
                 </v-col>
                 <v-col cols="4" md="2">
                   <v-select
@@ -255,8 +256,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      page: 0,
-      limit: 10,
+      searchKey: '',
+      searchValue: '',
       tab: null,
       bool: true,
       surveyTab: ['진행중', '마감'],
@@ -268,18 +269,20 @@ export default {
     }
   },
   created () {
-    this.fetchData(this.page, this.limit)
+    this.fetchData(0, 10, this.$route.query.searchKey, this.$route.query.searchValue)
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
   },
   methods: {
-    fetchData (page, limit) {
-      axios.get(
-        'https://api.govey.app/users/v1/surveys/?page=' +
-          page +
-          '&limit=' +
-          limit
+    fetchData (page = 0, limit = 10, searchKey, searchValue) {
+      let url = ''
+      if (searchKey && searchValue) {
+        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&searchKey=' + searchKey + '&searchValue=' + searchValue
+      } else {
+        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit
+      }
+      axios.get(url
       ).then(async (response) => {
         const dataWithRewards = response.data.content.map(async (survey) => {
           const rewards = await axios.get(
@@ -320,6 +323,10 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
+    },
+    search (searchValue) {
+      this.$router.push({ path: '/surveys/', query: { searchKey: 'subject', searchValue } })
+      this.$router.replace(router.currentRoute.fullPath)
     }
   }
 }
