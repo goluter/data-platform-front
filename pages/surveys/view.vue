@@ -264,6 +264,12 @@ export default {
         'https://api.govey.app/users/v1/surveys/' +
           id
       ).then(async (response) => {
+        if (response.data.goods === null) {
+          response.data.goods = 0
+        }
+        if (response.data.hits === null) {
+          response.data.hits = 0
+        }
         this.surveyData = response.data
         this.surveyContent = response.data.content
         this.surveyContentArr.push(this.surveyContent)
