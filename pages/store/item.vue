@@ -7,7 +7,7 @@
       <v-container>
         <v-row>
           <v-col class="pa-0" cols="12">
-              <img :src= "item.imageUrl" width="80%" >  
+              <img :src= "item.imageUrl" width="100%" >  
           </v-col>
         </v-row>
         <v-row style="background-color: white">
