@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <router-view :key="$route.fullPath" />
     <v-container>
       <v-row>
         <v-col class="pa-0" cols="12">

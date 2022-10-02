@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Carousels from '../components/Carousels.vue'
 import Banner from '../components/Banner.vue'
 import SurveyBanner from '../components/SurveyBanner.vue'
@@ -71,26 +72,8 @@ export default {
   layout: 'main',
   data() {
     return {
-      carouselData: [
-        {
-          target: '2022 대학생들에게 묻습니다!',
-          surveyor: '상명대학교',
-          count: 1234,
-          color: 'indigo accent-4',
-        },
-        {
-          target: '2022 직장인들에게 묻습니다!',
-          surveyor: '상명대학교',
-          count: 2345,
-          color: '#ed2121',
-        },
-        {
-          target: '2022 구직자들에게 물어봅니다!',
-          surveyor: '상명대학교',
-          count: 3456,
-          color: 'pink accent-2',
-        },
-      ],
+      carouselData: [],
+      surveyData: [],
       bannerData: [
         {
           title: '설문 등록',
@@ -105,70 +88,52 @@ export default {
           to: '/service-center/',
         },
       ],
-      surveyData: [
-        {
-          id: 1,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-        {
-          id: 3,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-        {
-          id: 4,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-      ],
     }
   },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      axios.get(
+        'https://api.govey.app/users/v1/surveys/curations?type=popular'
+      ).then(async (response) => {
+        const dataWithRewards = response.data.map(async (survey) => {
+          const rewards = await axios.get(
+            'https://api.govey.app/users/v1/surveys/' +
+              survey.id +
+              '/rewards/'
+          ).then((response) => {
+            const rewardsData = []
+            for (let i = 0; i < response.data.length; i++) {
+              const dic = {
+                type: response.data[i].type,
+                value: response.data[i].value
+              }
+              rewardsData.push(dic)
+            }
+            return rewardsData
+          }).catch((error) => {
+            console.log(error)
+          })
+          const mix = Object.assign({}, survey, { rewards })
+          return mix
+        })
+        const finalData = await Promise.all(dataWithRewards)
+        this.surveyData = finalData
+      }).catch((error) => {
+        console.log(error)
+      })
+
+      axios.get(
+        'https://api.govey.app/users/v1/surveys/curations?type=recommended'
+      ).then((response) => {
+        this.carouselData = response.data
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 
