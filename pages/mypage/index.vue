@@ -33,6 +33,7 @@
               <v-divider />
             </div>
           </v-tab-item>
+
           <v-tab-item class="pa-2 pt-0">
             <div class="wrapper">
               <div
@@ -40,58 +41,73 @@
                 :key="i"
                 class="survey-wrapper"
               >
-                <v-row>
-                  <v-col class="survey-img-box col-3">
-                    <div class="survey-img" />
-                  </v-col>
-                  <v-col class="survey-content col-9">
-                    <span class="survey-title">
-                      {{ mysurveydata[i].subject }}
-                    </span>
-                    <span class="survey-left-time">
-                      {{ mysurveydata[i].endAt }}에 종류
-                    </span>
-                    <div class="survey-count-tags">
-                      <span class="survey-count">
-                        {{ mysurveydata[i].answers }}명이 참여 중
+                <NuxtLink
+                  :to="{
+                    path: '/surveys/view',
+                    query: { id: mysurveydata[i].id },
+                  }"
+                >
+                  <v-row>
+                    <v-col class="survey-img-box col-3">
+                      <div class="survey-img" />
+                    </v-col>
+                    <v-col class="survey-content col-9">
+                      <span class="survey-title">
+                        {{ mysurveydata[i].subject }}
                       </span>
-                      <span v-for="tags in item.tags" class="survey-tags">
-                        <a href="">#{{ mysurveydata[i].tag }}</a>
+                      <span class="survey-left-time">
+                        {{ mysurveydata[i].endAt }}에 종류
                       </span>
-                    </div>
-                  </v-col>
-                </v-row>
+                      <div class="survey-count-tags">
+                        <span class="survey-count">
+                          {{ mysurveydata[i].answers }}명이 참여 중
+                        </span>
+                        <span v-for="tags in item.tags" class="survey-tags">
+                          <a href="">#{{ mysurveydata[i].tag }}</a>
+                        </span>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </NuxtLink>
               </div>
             </div>
           </v-tab-item>
+
           <v-tab-item class="pa-2 pt-0">
             <div class="wrapper">
               <div
-                v-for="(item, i) in surveyData"
+                v-for="(item, i) in partisurveydata"
                 :key="i"
                 class="survey-wrapper"
               >
-                <v-row>
-                  <v-col class="survey-img-box col-3">
-                    <div class="survey-img" />
-                  </v-col>
-                  <v-col class="survey-content col-9">
-                    <span class="survey-title">
-                      {{ item.title }}
-                    </span>
-                    <span class="survey-left-time">
-                      {{ item.left }}일 남음
-                    </span>
-                    <div class="survey-count-tags">
-                      <span class="survey-count">
-                        {{ item.count }}명이 참여 중
+                <NuxtLink
+                  :to="{
+                    path: '/surveys/view',
+                    query: { id: partisurveydata[i].id },
+                  }"
+                >
+                  <v-row>
+                    <v-col class="survey-img-box col-3">
+                      <div class="survey-img" />
+                    </v-col>
+                    <v-col class="survey-content col-9">
+                      <span class="survey-title">
+                        {{ partisurveydata[i].survey.subject }}
                       </span>
-                      <span v-for="tags in item.tags" class="survey-tags">
-                        <a href="">#{{ tags }}</a>
+                      <span class="survey-left-time">
+                        {{ partisurveydata[i].survey.endAt }}에 종료
                       </span>
-                    </div>
-                  </v-col>
-                </v-row>
+                      <div class="survey-count-tags">
+                        <span class="survey-count">
+                          {{ partisurveydata[i].survey.hits }}명이 참여 중
+                        </span>
+                        <span v-for="tags in item.tags" class="survey-tags">
+                          <a href="">#{{ partisurveydata[i].survey.tag }}</a>
+                        </span>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </NuxtLink>
               </div>
             </div>
           </v-tab-item>
@@ -128,6 +144,7 @@ export default {
       page: 0,
       limit: 10,
       mysurveydata: null,
+      partisurveydata: null,
       tab: null,
       username: 'jooyoung',
       tabsData: [
@@ -179,23 +196,19 @@ export default {
         )
         .then((res) => {
           this.mysurveydata = res.data.content
-          console.log(this.mysurveydata)
         })
         .catch((err) => {
           console.log(err)
         })
-    },
-    fetchData(page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/registrations?' +
+          'https://api.govey.app/users/v1/self/surveys/answers?' +
             this.page +
             '&limit=' +
             this.limit
         )
         .then((res) => {
-          this.mysurveydata = res.data.content
-          console.log(this.mysurveydata)
+          this.partisurveydata = res.data.content
         })
         .catch((err) => {
           console.log(err)
