@@ -338,11 +338,11 @@ export default {
     },
     search (searchValue) {
       this.$router.push({ path: '/surveys/', query: { searchKey: 'subject', searchValue } })
-      this.$router.replace(router.currentRoute.fullPath)
+      this.$router.go(router.currentRoute.fullPath)
     },
     sort (sortKey) {
       this.$router.push({ path: '/surveys/', query: { sortKey } })
-      this.$router.replace(router.currentRoute.fullPath)
+      this.$router.go(router.currentRoute.fullPath)
     }
   }
 }
