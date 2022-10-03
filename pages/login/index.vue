@@ -7,7 +7,7 @@
         <div class="signup">
           <p>아직 고베이 계정이 없으신가요?</p>
           <NuxtLink
-            to="/login/sign-up/"
+            to="/signup/"
             style="
               margin-top: 10px;
               padding: 10px 20px;
@@ -39,20 +39,21 @@
       </div>
       <div class="login">
         <div class="input">
-          <label>이메일</label>
+          <h3>아이디</h3>
           <input
             id="account"
             v-model="id"
-            type="email"
-            placeholder="이메일을 입력하세요."
+            style="padding: 0px 12px"
+            placeholder="아이디를 입력하세요."
             required
           />
         </div>
-        <div class="input">
-          <label>비밀번호</label>
+        <div class="input" style="margin-top: 12px">
+          <h3>비밀번호</h3>
           <input
             id=" password"
             v-model="password"
+            style="padding: 0px 12px"
             type="password"
             placeholder="비밀번호를 입력하세요."
             required
@@ -73,7 +74,7 @@
 </template>
 
 <script>
-import { login } from '../../src/libs/auth'
+import { login } from 'govey/src/libs/auth'
 
 export default {
   name: 'LoginPage',
@@ -172,8 +173,7 @@ export default {
   position: relative;
 }
 
-.login input[type='email'],
-input[type='password'] {
+.login input {
   width: 100%;
   height: 50px;
   margin: 0 0 10px 0;
