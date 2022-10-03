@@ -1,63 +1,60 @@
 <template>
-<div>
-    <div
-        v-for="(item, i) in reward"
-        :key="i"
-        class="contents"
+  <div>
+    <div v-for="(item, i) in reward" :key="i" class="contents">
+      <NuxtLink
+        :to="{ path: 'reward-detail', query: { id: item.id } }"
+        style="text-decoration: none; color: initial"
       >
-      <NuxtLink 
-          :to="{path: 'reward-detail', query: { id: item.id }}" 
-          style="text-decoration: none; color: initial;">
         <img class="profileimg" src="../assets/Male User.png" align="middle" />
         <span>{{ item.name }}</span>
         <div class="point">{{ item.count }} 회</div>
-        </NuxtLink>
-      </div>
-    
-</div>
+      </NuxtLink>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'RewardList',
   layout: 'default',
   data() {
     return {
-      page :0,
-      limit :10,
-      type:"업적",
-      category:"포인트",
-      reward:[]
+      page: 0,
+      limit: 10,
+      type: '업적',
+      category: '포인트',
+      reward: [],
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', ' 업적')
   },
-  created(){
-    this.fetchData(this.page,this.limit,this.type,this.category)
+  created() {
+    this.fetchData(this.page, this.limit, this.type, this.category)
   },
-  methods:{
-    fetchData(page,limit,type,catagory){
-        axios.get(
-            'https://api.govey.app/users/v1/rewards/page?page='+
+  methods: {
+    fetchData(page, limit, type, catagory) {
+      axios
+        .get(
+          '/users/v1/rewards/page?page=' +
             this.page +
             '&limit=' +
             this.limit +
-            "&type=" +
+            '&type=' +
             this.type +
-            "&category="+
+            '&category=' +
             this.category
         )
-        .then((res) =>{
-            this.reward = res.data.content
+        .then((res) => {
+          this.reward = res.data.content
         })
-        .catch((err)=>{
-            console.log(err)
+        .catch((err) => {
+          console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -115,14 +112,14 @@ export default {
 .v-tab {
   font-size: 18px;
 }
-.point-box{
+.point-box {
   background-color: #1087f4;
   height: 80px;
-  color:white;
+  color: white;
 }
-.click-box{
+.click-box {
   background-color: white;
-  color:black;
+  color: black;
   border-radius: 1rem;
 }
 </style>

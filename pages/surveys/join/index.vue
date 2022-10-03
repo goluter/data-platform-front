@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'SurveyJoinPage',
@@ -144,7 +144,7 @@ export default {
         .map(async (poll) => {
           return await axios.post(
             // http://localhost:8080/users/v1/polls/42cd99bf-a58c-45f5-8e05-d941af7f52ac/poll-users
-            'https://api.govey.app/users/v1/polls/' + poll.id + '/poll-users',
+            '/users/v1/polls/' + poll.id + '/poll-users',
             {
               features,
               mainFeature,
@@ -166,18 +166,16 @@ export default {
     async fetchIdentifiers(id) {
       const [identifiers, polls] = await Promise.all([
         await axios
-          .get('https://api.govey.app/users/v1/surveys/' + id + '/identifiers')
+          .get('/users/v1/surveys/' + id + '/identifiers')
           .then((r) => r.data),
-        await axios
-          .get('https://api.govey.app/users/v1/surveys/' + id + '/polls/')
-          .then((r) =>
-            r.data.map((v) => {
-              return {
-                ...v,
-                options: JSON.parse(v.content),
-              }
-            })
-          ),
+        await axios.get('/users/v1/surveys/' + id + '/polls/').then((r) =>
+          r.data.map((v) => {
+            return {
+              ...v,
+              options: JSON.parse(v.content),
+            }
+          })
+        ),
       ])
 
       this.polls = [
@@ -195,7 +193,7 @@ export default {
     },
     fetchData(id) {
       axios
-        .get('https://api.govey.app/users/v1/surveys/' + id)
+        .get('/users/v1/surveys/' + id)
         .then(async (response) => {
           if (response.data.goods === null) {
             response.data.goods = 0
@@ -207,7 +205,7 @@ export default {
           this.surveyContent = response.data.content
           this.surveyContentArr.push(this.surveyContent)
           const rewardsData = await axios
-            .get('https://api.govey.app/users/v1/surveys/' + id + '/rewards/')
+            .get('/users/v1/surveys/' + id + '/rewards/')
             .then((response) => {
               const reward = []
               for (let i = 0; i < response.data.length; i++) {

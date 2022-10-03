@@ -7,14 +7,14 @@
       <v-container>
         <v-row>
           <v-col class="pa-0" cols="12">
-              <img :src= "item.imageUrl" width="100%" >  
+            <img :src="item.imageUrl" width="100%" />
           </v-col>
         </v-row>
         <v-row style="background-color: white">
           <v-col class="d-flex flex-column" cols="12">
             <div class="title-wrapper">
               <p>
-                <b>[{{item.category}}]{{ item.name }}</b>
+                <b>[{{ item.category }}]{{ item.name }}</b>
               </p>
               <p>
                 <b>{{ item.price | comma }}</b> P
@@ -27,11 +27,15 @@
         </v-row>
         <v-row style="min-height: 300px; background-color: white">
           <v-col class="pa-0 pl-2" cols="auto">
-            <div class="item-desc"><br />
-            <h3>상품설명</h3><br />
-            -{{ item.description }} <br /><br />
-            <h3>유의사항</h3> <br />
-            -{{item.notice }}</div>
+            <div class="item-desc">
+              <br />
+              <h3>상품설명</h3>
+              <br />
+              -{{ item.description }} <br /><br />
+              <h3>유의사항</h3>
+              <br />
+              -{{ item.notice }}
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -41,11 +45,9 @@
             class="d-flex justify-center"
             cols="12"
             style="background-color: #515151"
-            @click ="check"
+            @click="check"
           >
-            
-              <b style="color: white">구매하기</b>
-            
+            <b style="color: white">구매하기</b>
           </v-col>
         </v-row>
       </v-container>
@@ -53,39 +55,35 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   data() {
     return {
-      item: {}
+      item: {},
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '상품 상세')
   },
-   created () {
+  created() {
     this.fetchData(this.$route.query.id)
-    
   },
   methods: {
-    fetchData (id) {
-      axios.get(
-        'https://api.govey.app/users/v1/store-items/'+
-        id 
-          
-      )
-      .then((res) => {
-        this.item = res.data
-      })
-      .catch((err) =>{
-        console.log(err)
-      })
+    fetchData(id) {
+      axios
+        .get('/users/v1/store-items/' + id)
+        .then((res) => {
+          this.item = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
-    check(event){
-      alert("포인트가 부족합니다.")
-    }
-  }
+    check(event) {
+      alert('포인트가 부족합니다.')
+    },
+  },
 }
 </script>
 

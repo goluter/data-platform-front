@@ -91,12 +91,12 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'EventList',
   layout: 'default',
-  data() {
+  data () {
     return {
       num: 0,
       planned: true,
@@ -107,14 +107,17 @@ export default {
       totalpage: null,
       category: '이벤트',
       page: 0,
-      limit: 10,
+      limit: 10
     }
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', '이벤트')
   },
+  created () {
+    this.fetchData(this.pageNum)
+  },
   methods: {
-    fetchData(category, page, limit) {
+    fetchData (category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/page?category=' +
@@ -130,11 +133,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
-  created() {
-    this.fetchData(this.pageNum)
-  },
+    }
+  }
 }
 </script>
 

@@ -24,8 +24,9 @@
                   bookmark1()
                   id = users.id
                 "
-                >mdi-bookmark-outline</v-icon
               >
+                mdi-bookmark-outline
+              </v-icon>
             </v-btn>
             <v-menu offset-y>
               <template #activator="{ on, attrs }">
@@ -128,7 +129,7 @@
                     </v-row>
                     <v-row>
                       <v-col cols="auto" style="font-size: 10px">
-                        {{ users.survey.hits | comma }}명이 참여 중
+                        {{ users.survey.answers | comma }}명이 참여 중
                       </v-col>
                       <v-col
                         class="ml-auto pr-0"
@@ -220,9 +221,9 @@
 </template>
 
 <script>
+import axios from 'govey/src/libs/http-client'
 import Report from '../../layouts/report.vue'
 import SurveyCard from '../../components/SurveyCard.vue'
-import axios from 'axios'
 
 export default {
   components: { SurveyCard, Report },
@@ -241,10 +242,13 @@ export default {
       type: null,
     }
   },
+  created() {
+    this.fetchData(this.pageNum)
+  },
   methods: {
     fetchData(category, page, limit) {
       axios
-        .get('https://api.govey.app/users/v1/reports/' + this.$route.params.id)
+        .get('/users/v1/reports/' + this.$route.params.id)
         .then((res) => {
           this.users = res.data
         })
@@ -255,10 +259,7 @@ export default {
     bookmark1() {
       const body = {}
       axios
-        .post(
-          'https://api.govey.app/users/v1/reports/' + this.id + '/bookmark',
-          body
-        )
+        .post('/users/v1/reports/' + this.id + '/bookmark', body)
         .then((res) => {
           console.log('success')
         })
@@ -272,9 +273,6 @@ export default {
     back() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
-  },
-  created() {
-    this.fetchData(this.pageNum)
   },
 }
 </script>

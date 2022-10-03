@@ -1,29 +1,22 @@
 <template>
   <div>
-      
     <div class="box">
       <div class="subbox">
-        <img
-          class="profileimg"
-          src="../assets/Male User.png"
-          align="middle"
-        />
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
         <span>{{ username }}</span>
       </div>
-      <div class="point1">
-        + {{  point.amount}}
-      </div>
-      
+      <div class="point1">+ {{ point.amount }}</div>
+
       <div class="onemain">
         <div class="onetitle">거래시간</div>
         <div class="time">
-          {{ point.createdAt | yyyyMMdd}}
+          {{ point.createdAt | yyyyMMdd }}
         </div>
       </div>
       <div class="onemain">
         <div class="onetitle">수신</div>
         <div class="time">
-          {{  point.amount}}
+          {{ point.amount }}
         </div>
       </div>
       <div class="onemain">
@@ -33,7 +26,7 @@
         </div>
       </div>
       <div class="onemain">
-        <div class="onetitle">획득 </div>
+        <div class="onetitle">획득</div>
         <div class="time">
           {{ point.title }}
         </div>
@@ -46,19 +39,40 @@
       </div>
       <div style="height: 60vh; background-color: #f0f0f0" />
     </div>
-    
   </div>
-  
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 export default {
   name: 'Planneddetail',
+  filters: {
+    yyyyMMdd: function (value) {
+      if (value == '') {
+        return ''
+      }
+
+      const js_date = new Date(value)
+
+      const year = js_date.getFullYear()
+      let month = js_date.getMonth() + 1
+      let day = js_date.getDate()
+
+      if (month < 10) {
+        month = '0' + month
+      }
+
+      if (day < 10) {
+        day = '0' + day
+      }
+
+      return year + '-' + month + '-' + day
+    },
+  },
   layout: 'default',
   data() {
     return {
-      point:[],
+      point: [],
       selectnum: 0,
       username: '고베이',
     }
@@ -66,51 +80,21 @@ export default {
   mounted() {
     this.$store.commit('setPageTitle', '포인트 상세내역')
   },
-  created(){
+  created() {
     this.fetchData(this.$route.query.id)
   },
-   methods: {
-    fetchData (id) {
-      axios.get(
-        'https://api.govey.app/users/v1/points/'+
-        id 
-          
-      )
-      .then((res) => {
-        this.point = res.data
-      })
-      .catch((err) =>{
-        console.log(err)
-      })
-    }
+  methods: {
+    fetchData(id) {
+      axios
+        .get('/users/v1/points/' + id)
+        .then((res) => {
+          this.point = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
-  filters : {  
-        
-	yyyyMMdd : function(value){ 
-          
-          if(value == '') return '';
-      
-          
-          var js_date = new Date(value);
-
-          
-          var year = js_date.getFullYear();
-          var month = js_date.getMonth() + 1;
-          var day = js_date.getDate();
-
-          
-          if(month < 10){
-          	month = '0' + month;
-          }
-
-          if(day < 10){
-          	day = '0' + day;
-          }
-
-          
-          return year + '-' + month + '-' + day;
-	}
-}
 }
 </script>
 

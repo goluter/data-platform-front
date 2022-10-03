@@ -1,169 +1,151 @@
 <template>
-<div>
+  <div>
     <div class="d-flex justify-center pt-5">
-        <div>
-            <img class="profileimg" src="../assets/man.png" align="middle" />
-        </div>
+      <div>
+        <img class="profileimg" src="../assets/man.png" align="middle" />
+      </div>
     </div>
     <div class="d-flex justify-center pt-5">
-        <div>
-            <b>{{title.name}}</b>
-        </div>
+      <div>
+        <b>{{ title.name }}</b>
+      </div>
     </div>
     <div class="d-flex justify-center pt-5 pb-8">
-        <div>
-            <b>{{title.requirements}}</b>
-        </div>
+      <div>
+        <b>{{ title.requirements }}</b>
+      </div>
     </div>
     <v-container>
-        <v-row>
-          <v-col
-            class="d-flex justify-center"
-            cols="12"
-            style="background-color: #1a9efe; color:white;"
-            @click ="acbtn"
-          >
-              <b style="color: white">획득하기</b>
-          </v-col>
-        </v-row>
-      </v-container>
-    
+      <v-row>
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          style="background-color: #1a9efe; color: white"
+          @click="acbtn"
+        >
+          <b style="color: white">획득하기</b>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <div class="pt-4 pl-4">
       <b>획득 유저</b>
     </div>
     <div>
-      <v-tabs fixed-tabs >
+      <v-tabs fixed-tabs>
         <v-tab
-         @click="
-          Tab1 = true
-          Tab2 = false">
+          @click="
+            Tab1 = true
+            Tab2 = false
+          "
+        >
           <b>최근획득</b>
         </v-tab>
         <v-tab
           @click="
-          Tab1 = false
-          Tab2 = true">
+            Tab1 = false
+            Tab2 = true
+          "
+        >
           <b>누적</b>
         </v-tab>
       </v-tabs>
     </div>
     <div v-if="Tab1 == true">
-      <div
-      v-for="(a, i) in list"
-      :key="a"
-      
-      class="contents"
-    >
-      <img class="profileimg2" src="../assets/man.png" align="middle" />
-      <span>{{ list[i].user.nickname }}</span>
-      <div class="point2">{{ list[i].createdAt | yyyyMMdd }} </div>
-    </div>
+      <div v-for="(a, i) in list" :key="a" class="contents">
+        <img class="profileimg2" src="../assets/man.png" align="middle" />
+        <span>{{ list[i].user.nickname }}</span>
+        <div class="point2">
+          {{ list[i].createdAt | yyyyMMdd }}
+        </div>
+      </div>
     </div>
     <div v-if="Tab2 == true">
-      <div
-      v-for="(a, i) in list"
-      :key="a"
-      
-      class="contents"
-    >
-      <img class="profileimg2" src="../assets/man.png" align="middle" />
-      <span>{{ list[i].user.nickname }}</span>
-      <div class="point2">{{ list[i].createdAt | yyyyMMdd }} </div>
+      <div v-for="(a, i) in list" :key="a" class="contents">
+        <img class="profileimg2" src="../assets/man.png" align="middle" />
+        <span>{{ list[i].user.nickname }}</span>
+        <div class="point2">
+          {{ list[i].createdAt | yyyyMMdd }}
+        </div>
+      </div>
     </div>
-    </div>
-</div>
-
-
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'EventList',
+  filters: {
+    yyyyMMdd: function (value) {
+      if (value == '') {
+        return ''
+      }
+
+      const js_date = new Date(value)
+
+      const year = js_date.getFullYear()
+      let month = js_date.getMonth() + 1
+      let day = js_date.getDate()
+
+      if (month < 10) {
+        month = '0' + month
+      }
+
+      if (day < 10) {
+        day = '0' + day
+      }
+
+      return year + '-' + month + '-' + day
+    },
+  },
   layout: 'default',
   data() {
     return {
-      title:[],
-      list:[],
-      Tab1:true,
-      Tab2:false
+      title: [],
+      list: [],
+      Tab1: true,
+      Tab2: false,
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', ' 칭호 상세')
   },
-  created(){
+  created() {
     this.fetchData(this.$route.query.id)
-    
-    
   },
-   methods: {
-    fetchData (id){
+  methods: {
+    fetchData(id) {
       axios
-      .all([
-        axios.get(
-        'https://api.govey.app/users/v1/rewards/'+
-        id  
-      ),
-        axios.get(
-        'https://api.govey.app/users/v1/rewards/'+
-        id +
-        '/users?page=0&limit=20&isDesc=true' 
-      ),
-      ])
-      .then(axios.spread((res1,res2) =>{
-        this.title = res1.data
-        this.list = res2.data.content
+        .all([
+          axios.get('/users/v1/rewards/' + id),
+          axios.get(
+            '/users/v1/rewards/' + id + '/users?page=0&limit=20&isDesc=true'
+          ),
+        ])
+        .then(
+          axios.spread((res1, res2) => {
+            this.title = res1.data
+            this.list = res2.data.content
+          })
+        )
+        .catch((err) => {
+          console.log(err)
         })
-      )
-      .catch((err) =>{
-        console.log(err)
-      })
-    },  
-   
+    },
 
-    acbtn(event){
-      axios.post(
-        'https://api.govey.app/users/v1/rewards/'+
-        this.title.id +
-        '/users/'
-      )
-      .then((res) => {
-        alert("획득하셨습니다.")
-      })
-      .catch((err) =>{
-        alert("이미 획득하셨습니다.")
-      })
-    }
+    acbtn(event) {
+      axios
+        .post('/users/v1/rewards/' + this.title.id + '/users/')
+        .then((res) => {
+          alert('획득하셨습니다.')
+        })
+        .catch((err) => {
+          alert('이미 획득하셨습니다.')
+        })
+    },
   },
-  filters : {  
-        
-	yyyyMMdd : function(value){ 
-          
-          if(value == '') return '';
-      
-          
-          var js_date = new Date(value);
-
-          
-          var year = js_date.getFullYear();
-          var month = js_date.getMonth() + 1;
-          var day = js_date.getDate();
-
-          
-          if(month < 10){
-          	month = '0' + month;
-          }
-
-          if(day < 10){
-          	day = '0' + day;
-          }
-
-          
-          return year + '-' + month + '-' + day;
-	}
-}
 }
 </script>
 
@@ -233,18 +215,18 @@ export default {
 .v-tab {
   font-size: 18px;
 }
-.point-box{
+.point-box {
   background-color: #1087f4;
   height: 80px;
-  color:white;
+  color: white;
 }
-.click-box{
+.click-box {
   background-color: white;
-  color:black;
+  color: black;
   border-radius: 1rem;
 }
-.profileimg{
-    height: 100px;
-    width: 100px;
+.profileimg {
+  height: 100px;
+  width: 100px;
 }
 </style>

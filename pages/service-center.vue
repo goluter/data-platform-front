@@ -40,7 +40,9 @@
     <div v-for="(a, i) in FaqData" v-if="faq == true" :key="i">
       <div class="box1">
         {{ FaqData[i].title }}
-        <div style="display: none">{{ selectnum }} {{ chevrondown[i] }}</div>
+        <div style="display: none">
+          {{ selectnum }} {{ chevrondown[i] }}
+        </div>
         <img
           v-if="chevrondown[i] == true"
           class="chevron"
@@ -51,7 +53,7 @@
             chevronup[i] = true
             showanswer[i] = true
           "
-        />
+        >
         <img
           v-if="chevronup[i] == true"
           class="chevron"
@@ -62,7 +64,7 @@
             chevronup[i] = false
             showanswer[i] = false
           "
-        />
+        >
       </div>
       <div v-if="showanswer[i] == true" class="box2">
         {{ FaqData[i].answer }}
@@ -122,15 +124,15 @@
 </template>
 
 <script>
+import axios from 'govey/src/libs/http-client'
 import FaqData from '../assets/data/FAQdata.js'
 
 import InquiryData from '../assets/data/Inquirydata.js'
-import axios from 'axios'
 
 export default {
   name: 'ServiceCenter',
   layout: 'default',
-  data() {
+  data () {
     return {
       selectnum: -1,
       faq: true,
@@ -146,14 +148,17 @@ export default {
       totalpage: null,
       category: '가이드',
       page: 0,
-      limit: 10,
+      limit: 10
     }
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', '고객센터')
   },
+  created () {
+    this.fetchData(this.pageNum)
+  },
   methods: {
-    fetchData(category, page, limit) {
+    fetchData (category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/page?category=' +
@@ -169,11 +174,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
-  created() {
-    this.fetchData(this.pageNum)
-  },
+    }
+  }
 }
 </script>
 

@@ -55,7 +55,7 @@
                         {{ mysurveydata[i].subject }}
                       </span>
                       <span class="survey-left-time">
-                        {{ mysurveydata[i].endAt }}에 종류
+                        {{ mysurveydata[i].endAt }}에 종료
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
@@ -82,7 +82,7 @@
                 <NuxtLink
                   :to="{
                     path: '/surveys/view',
-                    query: { id: partisurveydata[i].id },
+                    query: { id: partisurveydata[i].survey.id },
                   }"
                 >
                   <v-row>
@@ -98,7 +98,7 @@
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
-                          {{ partisurveydata[i].survey.hits }}명이 참여 중
+                          {{ partisurveydata[i].survey.answers }}명이 참여 중
                         </span>
                         <span v-for="tags in item.tags" class="survey-tags">
                           <a href="">#{{ partisurveydata[i].survey.tag }}</a>
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 import { signOut } from 'govey/src/libs/auth'
 import SurveyCard from '../../components/SurveyCard.vue'
 
@@ -206,7 +206,7 @@ export default {
     fetchData(page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/registrations?' +
+          '/users/v1/self/surveys/registrations?' +
             this.page +
             '&limit=' +
             this.limit
@@ -219,10 +219,7 @@ export default {
         })
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/answers?' +
-            this.page +
-            '&limit=' +
-            this.limit
+          '/users/v1/self/surveys/answers?' + this.page + '&limit=' + this.limit
         )
         .then((res) => {
           this.partisurveydata = res.data.content
@@ -231,7 +228,7 @@ export default {
           console.log(err)
         })
       axios
-        .get('https://api.govey.app/users/v1/self/info')
+        .get('/users/v1/self/info')
         .then((res) => {
           this.userinfo = res.data
         })
@@ -239,12 +236,7 @@ export default {
           console.log(err)
         })
       axios
-        .get(
-          'https://api.govey.app/users/v1/self/timelines?' +
-            this.page +
-            '&limit=' +
-            this.limit
-        )
+        .get('/users/v1/self/timelines?' + this.page + '&limit=' + this.limit)
         .then((res) => {
           this.timelinedata = res.data.content
         })

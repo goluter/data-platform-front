@@ -9,7 +9,7 @@
               <v-tab
                 v-for="(item, i) in surveyTab"
                 :key="i"
-                style="color: black; font-weight: 600;"
+                style="color: black; font-weight: 600"
               >
                 {{ item }}
               </v-tab>
@@ -19,11 +19,12 @@
       </v-row>
       <v-row>
         <v-col class="py-0" cols="12">
-          <v-row
-            class="my-0 py-2"
-            style="background-color: #eeeeee"
-          >
-            <v-col class="" cols="12" style="display: flex; align-items: center">
+          <v-row class="my-0 py-2" style="background-color: #eeeeee">
+            <v-col
+              class=""
+              cols="12"
+              style="display: flex; align-items: center"
+            >
               <v-row style="background-color: white">
                 <v-col class="" cols="4" md="2">
                   <v-text-field
@@ -81,7 +82,7 @@
                 <NuxtLink
                   v-for="(item, j) in data"
                   :key="j"
-                  :to="{path: 'view', query: { id: item.id }}"
+                  :to="{ path: 'view', query: { id: item.id } }"
                   style="text-decoration: none; color: initial"
                 >
                   <div class="mb-7">
@@ -101,7 +102,8 @@
                                 </v-row>
                                 <v-row>
                                   <v-col class="survey-period py-0" cols="12">
-                                    {{ item.startAt | date }} ~ {{ item.endAt | date }}
+                                    {{ item.startAt | date }} ~
+                                    {{ item.endAt | date }}
                                   </v-col>
                                 </v-row>
                                 <v-row>
@@ -110,9 +112,7 @@
                                       {{ item.answers }}명 참여중!
                                     </div>
                                     <div class="survey-tag ml-auto">
-                                      <span
-                                        style="color: dodgerblue"
-                                      >
+                                      <span style="color: dodgerblue">
                                         {{ item.tag }}
                                       </span>
                                     </div>
@@ -155,7 +155,7 @@
                       </v-col>
                     </v-row>
                   </div>
-                </nuxtlink>
+                </NuxtLink>
               </v-container>
             </v-tab-item>
           </v-tabs-items>
@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   data () {
@@ -218,13 +218,38 @@ export default {
     async fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
       let url = ''
       if (searchKey && searchValue) {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&searchKey=' + searchKey + '&searchValue=' + searchValue
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit +
+          '&searchKey=' +
+          searchKey +
+          '&searchValue=' +
+          searchValue
       } else if (sortKey === 'endAt') {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&sortKey=' + sortKey + '&isDesc=false'
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit +
+          '&sortKey=' +
+          sortKey +
+          '&isDesc=false'
       } else if (sortKey) {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&sortKey=' + sortKey
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit +
+          '&sortKey=' +
+          sortKey
       } else {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit
       }
       await axios.get(url
       ).then(async (response) => {
@@ -246,29 +271,27 @@ export default {
           }).catch((error) => {
             console.log(error)
           })
-          const mix = Object.assign({}, survey, { rewards })
-          return mix
-        })
-        const data = await Promise.all(dataWithRewards)
-        response.data.content = data
-        this.surveyData = response.data.content
-        const ongoingSurveyData = []
-        const endedSurveyData = []
-        const temp = this.surveyData
-        for (let i = 0; i < temp.length; i++) {
-          if (temp[i].status === 'ongoing') {
-            ongoingSurveyData.push(temp[i])
-          } else {
-            endedSurveyData.push(temp[i])
+          const data = await Promise.all(dataWithRewards)
+          response.data.content = data
+          this.surveyData = response.data.content
+          const ongoingSurveyData = []
+          const endedSurveyData = []
+          const temp = this.surveyData
+          for (let i = 0; i < temp.length; i++) {
+            if (temp[i].status === 'ongoing') {
+              ongoingSurveyData.push(temp[i])
+            } else {
+              endedSurveyData.push(temp[i])
+            }
           }
-        }
-        this.ongoingSurveyData = ongoingSurveyData
-        this.endedSurveyData = endedSurveyData
-        this.surveyDataArr.push(this.ongoingSurveyData)
-        this.surveyDataArr.push(this.endedSurveyData)
-      }).catch((error) => {
-        console.log(error)
-      })
+          this.ongoingSurveyData = ongoingSurveyData
+          this.endedSurveyData = endedSurveyData
+          this.surveyDataArr.push(this.ongoingSurveyData)
+          this.surveyDataArr.push(this.endedSurveyData)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     search () {
       this.returnedSearchValue = this.searchValue
