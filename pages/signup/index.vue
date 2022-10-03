@@ -5,10 +5,14 @@
         <h1>회원가입</h1>
         <div class="login">
           <p>이미 고베이 계정이 있으신가요?</p>
-          <a href="/login/"><span style="font-weight: bold; color: dodgerblue;">로그인</span></a>
+          <a href="/login/"><span style="font-weight: bold; color: dodgerblue">로그인</span></a>
         </div>
       </div>
+
       <div class="signup-type">
+        <p>30초 안에 가입하기</p>
+      </div>
+      <div style="display: none" class="signup-type">
         <div class="social-signup">
           <p>30초 안에 가입하기</p>
           <button class="kakao">
@@ -27,54 +31,78 @@
         <p>또는 이메일 회원가입</p>
       </div>
       <div class="signup">
-        <form action="" method="post">
-          <h3>이메일</h3>
-          <div class="input-email">
-            <span class="box">
-              <input
-                id="account"
-                type="email"
-                placeholder="example@gmail.com"
-                required
-              >
-            </span>
-            <input id="verify" type="submit" value="인증번호 발송">
-          </div>
-          <div class="input-email-verify">
-            <h3>인증번호</h3>
-            <span class="box">
-              <input id="verify-code" type="text" placeholder="1234" required>
-            </span>
-            <p>
-              이메일로 도착한 인증번호를 입력해주세요. 인증번호 발송에 최대 20초
-              까지 소요될 수 있습니다.
-            </p>
-          </div>
-          <div class="input-password">
-            <h3>비밀번호</h3>
-            <span class="box">
-              <input
-                id="password"
-                type="password"
-                placeholder="비밀번호를 입력하세요."
-                required
-              >
-            </span>
-          </div>
-          <input id="signup" type="submit" value="회원가입">
-        </form>
+        <h3>아이디</h3>
+        <div class="input-email">
+          <span class="box">
+            <input
+              id="account"
+              v-model="id"
+              placeholder="아이디를 입력하세요."
+              required
+            />
+          </span>
+        </div>
+
+        <div class="input-password">
+          <h3>비밀번호</h3>
+          <span class="box">
+            <input
+              id="password"
+              v-model="password"
+              type="password"
+              placeholder="비밀번호를 입력하세요."
+              required
+            />
+          </span>
+        </div>
+
+        <div class="input-nickname" style="margin-top: 21px">
+          <h3>닉네임</h3>
+          <span class="box">
+            <input
+              id="nickname"
+              v-model="nickname"
+              required
+              placeholder="닉네임을 입력하세요."
+            />
+          </span>
+        </div>
+
+        <input id="signup" type="submit" value="회원가입" @click="signUp()" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { signUp } from 'govey/src/libs/auth'
+
 export default {
   name: 'SignupPage',
   layout: 'login',
+  data() {
+    return {
+      nickname: '',
+      id: '',
+      password: '',
+    }
+  },
   head: {
-    title: 'Sign Up'
-  }
+    title: 'Sign Up',
+  },
+  methods: {
+    signUp() {
+      if (!this.nickname || !this.id || !this.password) {
+        alert('정보를 모두 입력해주세요!')
+        return
+      }
+
+      signUp.call(this, this.id, this.password, this.nickname, this.nickname)
+    },
+    // loginWithGoogle() {
+    //   this.$auth.loginWith('google')
+    // },
+  },
 }
 </script>
 
@@ -172,10 +200,13 @@ h3 {
   width: 100%;
   height: 100%;
   margin-bottom: 21px;
-  padding-right: 150px;
 }
 
-.signup .input-email input[type='email'] {
+.signup .input-nickname input {
+  width: 100%;
+}
+
+.signup .input-email input {
   width: 100%;
 }
 

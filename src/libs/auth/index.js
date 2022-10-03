@@ -10,7 +10,31 @@ function signOut (router) {
   router.replace('/')
 }
 
-function login (id, password) {
+function signUp (id, password, name, nickname) {
+  axios.post(`${API_HOST}/users/v1/users/signup`, {
+    username: id,
+    password,
+    name,
+    nickname
+  }).then((r) => {
+    if (r.data.username === id) {
+      login.call(this, id, password, '/')
+    } else {
+      alert('알 수 없는 에러가 발생했습니다.')
+    }
+  }).catch((e) => {
+    console.error(e)
+    if (e?.response?.data.message) {
+      if (e?.response?.data.message === '이미 가입되어 있는 유저입니다.') {
+        alert('이미 가입되어 있는 유저입니다.')
+      }
+    } else {
+      alert('알 수 없는 에러가 발생했습니다. 관리자에게 문의해주세요.')
+    }
+  })
+}
+
+function login (id, password, url = '/') {
   if (!id || !password) {
     alert('로그인 정보를 입력해주세요.')
     return
@@ -22,7 +46,7 @@ function login (id, password) {
   }).then((r) => {
     if (r.data.token) {
       localStorage.setItem('TOKEN', r.data.token)
-      this.$router.replace('/')
+      this.$router.replace(url)
     } else {
       alert('알 수 없는 에러가 발생했습니다.')
     }
@@ -55,4 +79,4 @@ function login (id, password) {
 //   }
 // }
 
-export { isLogin, signOut, login }
+export { isLogin, signUp, signOut, login }

@@ -8,7 +8,7 @@ export default function ({ app, route, redirect }) {
   const initPath = app.router.history.current.path
   console.log('initPath: ', initPath)
   console.log('isLogin: ', isLogin())
-  console.log('route: ', route.name)
+  console.log('route name: ', route.name)
   a(route.name, app.router, redirect)
 
   app.router.beforeResolve((to, from, next) => {

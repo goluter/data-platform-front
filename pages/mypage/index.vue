@@ -174,15 +174,14 @@ export default {
             { title: '내 포인트', to: '/point-list/' },
             { title: '내 칭호', to: '/mypage/my-title-list/' },
             { title: '내 업적', to: '/mypage/my-reward-list/' },
-            { title: '구매내역', to: '' }
-          ]
-
+            { title: '구매내역', to: '' },
+          ],
         },
         {
           subheader: '기타',
           item: [
             { title: '로그아웃', to: 'logout' },
-            { title: '회원탈퇴', to: '' },
+            // { title: '회원탈퇴', to: '' },
           ],
         },
       ],
