@@ -1,30 +1,11 @@
-<template>
-  <Pie :chartData="chartData" :options="options"></Pie>
-</template>
-
 <script>
-import { Pie, mixins } from 'vue-chartjs'
-const { reactiveProp } = mixins
+import { Pie } from 'vue-chartjs';
 
 export default {
   extends: Pie,
-  mixins: [reactiveProp],
-  props: {
-    chartData: {
-      type: Object,
-      default: null
-    },
-    options: {
-      type: Object,
-      default: null
-    }
-  },
-  mounted () {
-    this.renderChart(this.chartData, this.options)
+  props: ["data", "options"],
+  mounted() {
+    this.renderChart(this.data, this.options);
   }
 }
 </script>
-
-<style scoped>
-
-</style>

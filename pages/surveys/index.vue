@@ -216,13 +216,6 @@ export default {
   // },
   methods: {
     async fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
-    fetchData (
-      page = 0,
-      limit = 10,
-      searchKey = false,
-      searchValue = false,
-      sortKey = false
-    ) {
       let url = ''
       if (searchKey && searchValue) {
         url =
@@ -262,7 +255,7 @@ export default {
       ).then(async (response) => {
         const dataWithRewards = response.data.content.map(async (survey) => {
           const rewards = await axios.get(
-            'https://api.govey.app/users/v1/surveys/' +
+            '/users/v1/surveys/' +
               survey.id +
               '/rewards/'
           ).then((response) => {

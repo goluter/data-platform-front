@@ -156,7 +156,9 @@
                           </v-btn>
                         </template>
                         <v-card>
-                          {{ item.groups }}
+                          <v-card>
+                            <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions"></GChart>
+                          </v-card>
                         </v-card>
                       </v-dialog>
                     </v-col>
@@ -183,8 +185,7 @@
                                 </v-btn>
                               </template>
                               <v-card>
-                                {{ item.groups }}
-<!--                                <PieChart :chart-data="fillPie(pollGroupsData[i])" :options="pie_options"></PieChart>-->
+                                <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions"></GChart>
                               </v-card>
                             </v-dialog>
                           </v-col>
@@ -194,9 +195,9 @@
                         <v-col cols="12" class="pa-0">
                           <v-card-actions class="pa-0 mt-2" style="width: 100%">
                             <button
-                                class="survey-q-more"
-                                style="width: 100%"
-                                @click="visible = !visible"
+                              class="survey-q-more"
+                              style="width: 100%"
+                              @click="visible = !visible"
                             >
                               <div class="survey-more-text">
                                 <span> 설문 항목 전체 보기 </span>
@@ -295,13 +296,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
+import { GChart } from 'vue-google-charts'
 import Report from '../../layouts/report.vue'
 import Banner from '../../components/Banner.vue'
-import PieChart from '../../components/PieChart.vue'
 
 export default {
-  components: { PieChart, Banner, Report },
+  components: { GChart, Banner, Report },
   layout: 'empty',
   data () {
     return {
@@ -319,8 +320,11 @@ export default {
       bannerData: [
         { icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' }
       ],
-      pie_options: { responsive: true },
-      pieData: {}
+      pieOptions: {
+        title: '답변 분포',
+        pieHole: 0.4
+      },
+      pieData: []
     }
   },
   computed: {},
@@ -333,7 +337,7 @@ export default {
   methods: {
     fetchData (id) {
       axios
-        .get('https://api.govey.app/users/v1/surveys/' + id)
+        .get('/users/v1/surveys/' + id)
         .then(async (response) => {
           if (response.data.goods === null) {
             response.data.goods = 0
@@ -344,7 +348,7 @@ export default {
           this.surveyContent = response.data.content
           this.surveyContentArr.push(this.surveyContent)
           const rewardsData = await axios
-            .get('https://api.govey.app/users/v1/surveys/' + id + '/rewards/')
+            .get('/users/v1/surveys/' + id + '/rewards/')
             .then((response) => {
               const reward = []
               for (let i = 0; i < response.data.length; i++) {
@@ -367,7 +371,7 @@ export default {
     },
     fetchPollData (id) {
       axios
-        .get('https://api.govey.app/users/v1/surveys/' + id + '/statistics/')
+        .get('/users/v1/surveys/' + id + '/statistics/')
         .then((response) => {
           this.pollData = response.data
           const arr = {}
@@ -386,41 +390,27 @@ export default {
           })
           this.pollGroupsData = pollGroups
           this.pollTransit = pollTransit
-
-          const pieData = {}
-          const temp = []
-          for (let i = 0; i < pollGroups.length; i++) {
-            const labels = []
-            const data = []
-            for (let j = 0; j < pollGroups[i].groups.length; j++) {
-              labels.push(pollGroups[i].groups[j].name)
-              data.push(pollGroups[i].groups[j].count)
-            }
-            const datasets = []
-            const temp2 = Object.assign({}, {data})
-            const temp3 = Object.assign({}, temp2)
-            Object.assign(datasets, temp3)
-            temp.push({labels, datasets})
-          }
-          this.pieData = pieData
-          console.log(temp[0])
         })
         .catch((error) => {
           console.log(error)
         })
     },
-    fillPie (groups) {
+    fetchPollAnswers (id) {
+      const pollGroups = this.pollGroupsData
       const pieData = []
-      const labels = []
-      const dataset = []
 
-      for (let i = 0; i < groups.length; i++) {
-        labels.push(groups[i].name)
-        dataset.push(groups[i].count)
+      pieData.push(['name', 'count'])
+      for (let i = 0; i < pollGroups.length; i++) {
+        if (pollGroups[i].id === id) {
+          const data = []
+          for (let j = 0; j < pollGroups[i].groups.length; j++) {
+            data.push(pollGroups[i].groups[j].name)
+            data.push(pollGroups[i].groups[j].count)
+          }
+          pieData.push(data)
+        }
       }
-      pieData.push(labels, dataset)
-      this.pieData = pieData
-      console.log(this.pieData)
+      return pieData
     }
   }
 }
