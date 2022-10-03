@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   data() {
@@ -93,11 +93,14 @@ export default {
   mounted() {
     this.$store.commit('setPageTitle', '리포트')
   },
+  created() {
+    this.fetchData(this.pageNum)
+  },
   methods: {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/reports/page?' +
+          '/users/v1/reports/page?' +
             'page=' +
             this.page +
             '&limit=' +
@@ -110,9 +113,6 @@ export default {
           console.log(err)
         })
     },
-  },
-  created() {
-    this.fetchData(this.pageNum)
   },
 }
 </script>

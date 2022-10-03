@@ -1,60 +1,62 @@
 <template>
-<div>
+  <div>
     <div
-        v-for="(item, i) in title"
-        :key="i"
-        class="contents"
+      v-for="(item, i) in title"
+      :key="i"
+      class="contents"
+    >
+      <NuxtLink
+        :to="{path: 'title-detail', query: { id: item.id }}"
+        style="text-decoration: none; color: initial;"
       >
-      <NuxtLink 
-          :to="{path: 'title-detail', query: { id: item.id }}" 
-          style="text-decoration: none; color: initial;">
-        <img class="profileimg" src="../assets/Male User.png" align="middle" />
+        <img class="profileimg" src="../assets/Male User.png" align="middle">
         <span>{{ item.name }}</span>
-        <div class="point">{{ item.count }} 회</div>
+        <div class="point">
+          {{ item.count }} 회
+        </div>
       </NuxtLink>
-      </div>
-    
-</div>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'EventList',
   layout: 'default',
-  data() {
+  data () {
     return {
-      page :0,
-      limit :10,
-      type:"칭호",
-      category:"정보인증",
-      title:[]
+      page: 0,
+      limit: 10,
+      type: '칭호',
+      category: '정보인증',
+      title: []
     }
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', ' 칭호')
   },
-  created(){
-    this.fetchData(this.page,this.limit,this.type,this.category)
+  created () {
+    this.fetchData(this.page, this.limit, this.type, this.category)
   },
-  methods:{
-    fetchData(page,limit,type,category){
-        axios.get(
-            'https://api.govey.app/users/v1/rewards/page?page='+
+  methods: {
+    fetchData (page, limit, type, category) {
+      axios.get(
+        '/users/v1/rewards/page?page=' +
             this.page +
             '&limit=' +
             this.limit +
-            "&type=" +
+            '&type=' +
             this.type +
-            "&category=" +
-            this.category 
-        )
-        .then((res) =>{
-            this.title = res.data.content
+            '&category=' +
+            this.category
+      )
+        .then((res) => {
+          this.title = res.data.content
         })
-        .catch((err)=>{
-            console.log(err)
+        .catch((err) => {
+          console.log(err)
         })
     }
   }

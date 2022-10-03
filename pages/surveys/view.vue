@@ -39,9 +39,7 @@
           <v-row>
             <v-col cols="12" class="likes-comments">
               <div class="d-inline text-no-wrap mr-5">
-                <v-icon small>
-                  mdi-account
-                </v-icon>
+                <v-icon small> mdi-account </v-icon>
                 {{ surveyData.answers }}
               </div>
               <div class="d-inline text-no-wrap">
@@ -270,7 +268,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 import Report from '../../layouts/report.vue'
 import Banner from '../../components/Banner.vue'
 
@@ -301,7 +299,7 @@ export default {
   methods: {
     fetchData(id) {
       axios
-        .get('https://api.govey.app/users/v1/surveys/' + id)
+        .get('/users/v1/surveys/' + id)
         .then(async (response) => {
           if (response.data.goods === null) {
             response.data.goods = 0
@@ -313,7 +311,7 @@ export default {
           this.surveyContent = response.data.content
           this.surveyContentArr.push(this.surveyContent)
           const rewardsData = await axios
-            .get('https://api.govey.app/users/v1/surveys/' + id + '/rewards/')
+            .get('/users/v1/surveys/' + id + '/rewards/')
             .then((response) => {
               const reward = []
               for (let i = 0; i < response.data.length; i++) {
@@ -336,7 +334,7 @@ export default {
     },
     fetchPollData(id) {
       axios
-        .get('https://api.govey.app/users/v1/surveys/' + id + '/polls/')
+        .get('/users/v1/surveys/' + id + '/polls/')
         .then((response) => {
           this.pollData = response.data
           const arr = {}

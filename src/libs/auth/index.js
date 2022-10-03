@@ -1,8 +1,12 @@
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 import { API_HOST } from 'govey/config'
 
 function isLogin () {
   return process.client && !!localStorage.getItem('TOKEN')
+}
+
+function getToken () {
+  return process.client ? localStorage.getItem('TOKEN') : ''
 }
 
 function signOut (router) {
@@ -79,4 +83,4 @@ function login (id, password, url = '/') {
 //   }
 // }
 
-export { isLogin, signUp, signOut, login }
+export { isLogin, signUp, signOut, login, getToken }
