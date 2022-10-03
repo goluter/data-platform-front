@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <router-view :key="this.$route.fullPath"></router-view>
     <v-container>
       <v-row>
         <v-col class="pa-0" cols="12">
@@ -283,9 +284,6 @@ export default {
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
-  },
-  watch: {
-    '$route.params': 'functionToRunWhenParamsChange'
   },
   methods: {
     fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
