@@ -9,10 +9,10 @@
         >
           <v-row style="">
             <v-col cols="12">
-              <v-tabs hide-slider style="font-size: 20px;">
+              <v-tabs hide-slider style="font-size: 20px">
                 <v-tab class="pa-0 pt-1">
                   <NuxtLink to="/">
-                    <img src="../static/govey.svg" width="120" height="38">
+                    <img src="../static/govey.svg" width="120" height="38" />
                   </NuxtLink>
                 </v-tab>
                 <v-tab
@@ -20,7 +20,7 @@
                   :key="menu"
                   :href="menu.to"
                   class="pa-0"
-                  style="font-size: 20px; font-weight: 600;"
+                  style="font-size: 20px; font-weight: 600"
                 >
                   {{ menu.page }}
                 </v-tab>
@@ -28,13 +28,19 @@
             </v-col>
           </v-row>
         </v-container>
-        <v-app-bar v-if="$vuetify.breakpoint.mobile" class="header" dense elevation="0" color="white">
+        <v-app-bar
+          v-if="$vuetify.breakpoint.mobile"
+          class="header"
+          dense
+          elevation="0"
+          color="white"
+        >
           <v-app-bar-nav-icon @click="drawer = !drawer" />
           <v-btn icon disabled />
           <v-spacer />
           <v-toolbar-title style="height: 22px">
             <NuxtLink to="/" style="color: black; text-decoration-line: none">
-              <img src="../static/govey.svg">
+              <img src="../static/govey.svg" />
             </NuxtLink>
           </v-toolbar-title>
           <v-spacer />
@@ -53,7 +59,7 @@
           <v-list nav dense>
             <v-list-item to="/login">
               <v-list-item-avatar>
-                <img src="../assets/premium-icon-person-2815428.png">
+                <img src="../assets/premium-icon-person-2815428.png" />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>로그인</v-list-item-title>
@@ -79,36 +85,34 @@
                 <a
                   target="_blank"
                   href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                ><img
-                  class="sns-icon"
-                  src="../static/image 4.png"
-                ></a>
+                  ><img class="sns-icon" src="../static/image 4.png"
+                /></a>
               </v-col>
               <v-col>
                 <a
                   target="_blank"
                   href="https://www.instagram.com/govey_official/?hl=ko"
-                ><img
-                  class="sns-icon"
-                  style="margin-top: 6px; width: 50px; height: 50px"
-                  src="../static/image 5.png"
-                ></a>
+                  ><img
+                    class="sns-icon"
+                    style="margin-top: 6px; width: 50px; height: 50px"
+                    src="../static/image 5.png"
+                /></a>
               </v-col>
               <v-col>
                 <a
                   target="_blank"
                   href="https://www.facebook.com/고베이-104289228923939"
-                ><img
-                  class="sns-icon"
-                  style="margin-top: 6px; width: 50px; height: 50px"
-                  src="../static/image 6.png"
-                ></a>
+                  ><img
+                    class="sns-icon"
+                    style="margin-top: 6px; width: 50px; height: 50px"
+                    src="../static/image 6.png"
+                /></a>
               </v-col>
             </v-row>
           </div>
         </v-navigation-drawer>
       </div>
-      <Nuxt v-if="!$slots.default" class="ma-auto" style="max-width: 960px;" />
+      <Nuxt v-if="!$slots.default" class="ma-auto" style="max-width: 960px" />
       <slot />
       <div v-if="$vuetify.breakpoint.mobile" class="footer">
         <v-bottom-navigation grow class="elevation-0">
@@ -124,12 +128,12 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       menu: [
         { page: '설문', to: '/surveys/' },
         { page: '스토어', to: '/store/' },
-        { page: '마이', to: '/login/' }
+        { page: '마이', to: '/mypage/' },
       ],
       items: [
         { page: '리포트', to: '/reports/' },
@@ -138,28 +142,28 @@ export default {
         { page: '명예의전당', to: '/hall-of-fame/' },
         { page: '고객센터', to: '/service-center/' },
         { page: '개인정보처리방침', to: '/privacy-policy/' },
-        { page: '이용약관', to: '/terms-of-service/' }
+        { page: '이용약관', to: '/terms-of-service/' },
       ],
       fitems: [
         { page: '홈', icon: 'mdi-home', to: '/' },
         { page: '설문', icon: 'mdi-text-box-edit', to: '/surveys/' },
         { page: '스토어', icon: 'mdi-store', to: '/store/' },
-        { page: '마이', icon: 'mdi-account-circle', to: '/login/' }
+        { page: '마이', icon: 'mdi-account-circle', to: '/mypage/' },
       ],
       drawer: false,
-      group: null
+      group: null,
     }
   },
   watch: {
-    group () {
+    group() {
       this.drawer = false
-    }
+    },
   },
   methods: {
-    commitTitle (title) {
+    commitTitle(title) {
       this.$store.commit('setPageTitle', title)
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>

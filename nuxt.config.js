@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -25,8 +26,13 @@ export default {
     { src: '~/plugins/gtag.js', mode: 'client' },
     { src: '~/plugins/comma.js' },
     { src: '~/plugins/date.js' },
-    { src: '~/plugins/trunc.js' }
+    { src: '~/plugins/trunc.js' },
+    { src: '~/plugins/route' }
   ],
+
+  alias: {
+    govey: resolve(__dirname, './')
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -41,6 +47,9 @@ export default {
     '@nuxtjs/vuetify'
   ],
 
+  env: {
+    API_HOST: process.env.API_HOST
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -98,8 +107,10 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
-
+  build: {},
+  publicRuntimeConfig: {
+    API_HOST: process.env.API_HOST
+  },
   // redirect: [
   //   {
   //     from: '^.*(?<!\/)$',
@@ -109,4 +120,5 @@ export default {
   // router: {
   //   trailingSlash: true
   // }
+  router: { middleware: ['route-guard'] }
 }
