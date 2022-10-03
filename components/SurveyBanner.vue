@@ -28,7 +28,7 @@
               </v-row>
               <v-row class="banner-count-tags">
                 <v-col class="pt-0 pb-0" cols="auto">
-                  {{ item.hits }}명이 참여 중
+                  {{ item.answers }}명 참여중!
                 </v-col>
                 <v-col class="ml-auto pt-0 pb-0" cols="auto">
                     {{ item.tag }}

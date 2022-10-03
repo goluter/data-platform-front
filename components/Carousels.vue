@@ -10,14 +10,14 @@
           :key="i"
           style="height: 330px; align-items: flex-end"
         >
-          <NuxtLink to="/surveys/">
+          <NuxtLink :to="'/surveys/view?id='+item.id">
             <v-sheet class="survey-sheet elevation-5" :color="item.color">
               <div class="play-icon-box">
                 <img class="play-icon" src="../assets/play_index.png">
               </div>
               <div class="count-box">
                 <span class="survey-participate-count">
-                  {{ item.hits }}명이 참여중이에요!
+                  {{ item.answers }}명이 참여중이에요!
                 </span>
               </div>
               <div class="target-box">
