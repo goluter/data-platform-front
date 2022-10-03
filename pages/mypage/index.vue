@@ -1,9 +1,11 @@
 <template>
-  <v-container style="align-items: center; height: 100%">
+  <v-container v-if="userinfo" style="align-items: center; height: 100%">
     <v-row style="height: 95px; background-color: #f8f8f8">
       <v-col cols="12" align-self="center">
         <v-icon x-large left> mdi-account-circle </v-icon>
-        <span class="username">@{{ username }}</span>
+        <span class="username"
+          >{{ userinfo.username }}<br />남은 포인트: {{ userinfo.point }}P</span
+        >
       </v-col>
     </v-row>
     <v-row>
@@ -20,17 +22,14 @@
         </v-tabs>
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <div v-for="(item, i) in achievement" :key="i" class="achievement">
-              <div class="pl-1 timeline-text">
-                <h4>
-                  @{{ username }}님이
-                  <h4 style="display: inline; color: red">
-                    {{ item }}
-                  </h4>
-                  업적을 남기셨습니다
-                </h4>
-              </div>
-              <v-divider />
+            <div v-for="(item, i) in timelinedata" :key="i" class="achievement">
+              <h5>
+                <div class="pl-1 timeline-text">
+                  {{ userinfo.username }}님이
+                  <a>{{ timelinedata[i].content }}</a>
+                </div>
+                <v-divider />
+              </h5>
             </div>
           </v-tab-item>
 
@@ -146,6 +145,7 @@ export default {
       mysurveydata: null,
       partisurveydata: null,
       userinfo: null,
+      timelinedata: null,
       tab: null,
       username: 'jooyoung',
       tabsData: [
@@ -218,7 +218,19 @@ export default {
         .get('https://api.govey.app/users/v1/self/info')
         .then((res) => {
           this.userinfo = res.data
-          console.log(this.userinfo)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      axios
+        .get(
+          'https://api.govey.app/users/v1/self/timelines?' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.timelinedata = res.data.content
         })
         .catch((err) => {
           console.log(err)
