@@ -35,8 +35,8 @@
                     dense
                     append-icon="mdi-magnify"
                     style="height: 40px; border-radius: 45px"
-                    @click:append="search(searchValue)"
-                    @keyup.enter="search(searchValue)"
+                    @click:append="search"
+                    @keyup.enter="search"
                   />
                 </v-col>
                 <v-col cols="4" md="2">
@@ -68,7 +68,7 @@
               flat
               dense
               single-line
-              @change="sort(sortKey)"
+              @change="sort"
             />
           </v-col>
         </v-row>
@@ -174,7 +174,9 @@ export default {
       surveyDataArr: [],
       searchKey: '',
       searchValue: '',
+      returnedSearchValue: '',
       sortKey: '',
+      returnedSortKey: '',
       tab: null,
       bool: true,
       surveyTab: ['진행중', '마감'],
@@ -191,13 +193,29 @@ export default {
     }
   },
   created () {
-    this.fetchData(0, 10, this.$route.query.searchKey, this.$route.query.searchValue, this.$route.query.sortKey)
+    this.fetchData(0, 10)
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
   },
+  watch: {
+    returnedSearchValue (newD, oldD) {
+      this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
+    },
+    returnedSortKey (newD, oldD) {
+      this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
+    }
+  },
+  // computed: {
+  //   search () {
+  //     return this.fetchData(0, 10, 'subject', this.searchKey)
+  //   },
+  //   sort () {
+  //     return this.fetchData(0, 10, '', '', this.sortKey)
+  //   }
+  // },
   methods: {
-    fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
+    async fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
       let url = ''
       if (searchKey && searchValue) {
         url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&searchKey=' + searchKey + '&searchValue=' + searchValue
@@ -208,7 +226,7 @@ export default {
       } else {
         url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit
       }
-      axios.get(url
+      await axios.get(url
       ).then(async (response) => {
         const dataWithRewards = response.data.content.map(async (survey) => {
           const rewards = await axios.get(
@@ -252,11 +270,11 @@ export default {
         console.log(error)
       })
     },
-    search (searchValue) {
-      this.$router.push({ path: '/surveys/', query: { searchKey: 'subject', searchValue } }).catch(() => {})
+    search () {
+      this.returnedSearchValue = this.searchValue
     },
-    sort (sortKey) {
-      this.$router.push({ path: '/surveys/', query: { sortKey } }).catch(() => {})
+    sort () {
+      this.returnedSortKey = this.sortKey
     }
   }
 }
