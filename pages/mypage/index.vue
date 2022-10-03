@@ -4,7 +4,7 @@
       <v-col cols="12" align-self="center">
         <v-icon x-large left> mdi-account-circle </v-icon>
         <span class="username"
-          >{{ userinfo.username }}<br />남은 포인트: {{ userinfo.point }}P</span
+          >{{ userinfo.nickname }}<br />남은 포인트: {{ userinfo.point }}P</span
         >
       </v-col>
     </v-row>
@@ -165,7 +165,6 @@ export default {
             { title: '내 리포트', to: '/mypage/reports/' },
             { title: '북마크한 리포트', to: '/mypage/saved-reports/' },
             { title: '북마크한 설문', to: '/mypage/saved-survey' },
-            { title: '다운로드 기록', to: '/mypage/download/' },
           ],
         },
         {
