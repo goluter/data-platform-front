@@ -8,16 +8,19 @@
           <p>아직 고베이 계정이 없으신가요?</p>
           <NuxtLink
             to="/login/sign-up/"
-            style="margin-top: 10px;
-                   padding: 10px 20px;
-                   border: solid 1px dodgerblue;
-                   border-radius: 4px;"
+            style="
+              margin-top: 10px;
+              padding: 10px 20px;
+              border: solid 1px dodgerblue;
+              border-radius: 4px;
+            "
           >
             <span style="font-weight: bold; color: dodgerblue">회원가입</span>
           </NuxtLink>
         </div>
       </div>
-      <div class="login-type">
+
+      <div style="display: none" class="login-type">
         <div class="social-login">
           <button class="kakao">
             <v-img src="/kakao.jpg" height="50px" width="50px" />
@@ -35,52 +38,68 @@
         <p>또는 이메일 로그인</p>
       </div>
       <div class="login">
-        <form action="" method="post">
-          <div class="input">
-            <label>이메일</label>
-            <input
-              id="account"
-              type="email"
-              placeholder="이메일을 입력하세요."
-              required
-            >
+        <div class="input">
+          <label>이메일</label>
+          <input
+            id="account"
+            v-model="id"
+            type="email"
+            placeholder="이메일을 입력하세요."
+            required
+          />
+        </div>
+        <div class="input">
+          <label>비밀번호</label>
+          <input
+            id=" password"
+            v-model="password"
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            required
+          />
+        </div>
+        <div id="login-option" style="display: none">
+          <div class="auto-login">
+            <input type="checkbox" /><label>자동로그인</label>
           </div>
-          <div class="input">
-            <label>비밀번호</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="비밀번호를 입력하세요."
-              required
-            >
+          <div id="forgot">
+            <a href="/static">비밀번호 찾기</a>
           </div>
-          <div id="login-option">
-            <div class="auto-login">
-              <input type="checkbox"><label>자동로그인</label>
-            </div>
-            <div id="forgot">
-              <a href="/static">비밀번호 찾기</a>
-            </div>
-          </div>
-          <input type="submit" value="로그인">
-        </form>
+        </div>
+        <input type="submit" value="로그인" @click="loginWithEmail()" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { login } from '../../src/libs/auth'
+
 export default {
   name: 'LoginPage',
   layout: 'login',
+  data() {
+    return {
+      id: '',
+      password: '',
+    }
+  },
   head: {
-    title: 'Log In'
+    title: 'Log In',
   },
   methods: {
-    loginWithGoogle () {
-      this.$auth.loginWith('google')
-    }
-  }
+    loginWithEmail() {
+      if (!this.id || !this.password) {
+        alert('로그인 정보를 입력해주세요!')
+        return
+      }
+
+      login.call(this, this.id, this.password)
+    },
+    // loginWithGoogle() {
+    //   this.$auth.loginWith('google')
+    // },
+  },
 }
 </script>
 
