@@ -1,28 +1,18 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" style="padding: 24px">
     <div class="welcome">
       <h1>가입완료</h1>
-      <a href="/static">홈으로</a>
     </div>
-    <span class="desc">고베이를 즐기기 위한 다양한 가이드들을 살펴보세요!</span>
-    <div class="qa-container">
-      <div class="question">
-        <a href="/static" class="question-item">포인트 시스템이 뭔가요?</a>
-      </div>
-      <div class="question">
-        <a href="/static" class="question-item">칭호는 어떻게 얻을 수 있나요?</a>
-      </div>
-    </div>
+    <a class="welcomeButton" href="/">홈으로</a>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SignupFinish',
-  layout: 'layout_login',
   head: {
-    title: 'Sign Up'
-  }
+    title: 'Sign Up',
+  },
 }
 </script>
 
@@ -37,7 +27,7 @@ export default {
 .welcome h1 {
   display: inline-block;
 }
-.welcome a {
+.welcomeButton {
   width: 81px;
   height: 42px;
   padding-top: 10px;
