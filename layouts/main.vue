@@ -48,23 +48,20 @@
             <v-btn icon style="visibility: hidden">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
-            <NuxtLink to="/notifications">
-              <v-btn icon>
-                <v-icon>mdi-bell</v-icon>
-              </v-btn>
-            </NuxtLink>
+            <!-- 알림창 버튼(였던것) -->
+            <v-icon style="opacity: 0">mdi-bell</v-icon>
           </div>
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app temporary>
           <v-list nav dense>
-            <v-list-item to="/login">
+            <!-- <v-list-item to="/login">
               <v-list-item-avatar>
                 <img src="../assets/premium-icon-person-2815428.png" />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>로그인</v-list-item-title>
               </v-list-item-content>
-            </v-list-item>
+            </v-list-item> -->
             <v-divider />
             <v-list-item-group v-model="group" active-class="text--accent-4">
               <v-list-item
