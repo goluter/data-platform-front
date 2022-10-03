@@ -48,7 +48,7 @@
         <h1 class="section-title">공지사항</h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/notice/"> 더보기 </NuxtLink>
+        <NuxtLink class="section-more" to="/notices/"> 더보기 </NuxtLink>
       </v-col>
     </v-row>
     <v-row class="section-desc">

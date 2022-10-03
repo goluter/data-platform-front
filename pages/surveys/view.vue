@@ -82,7 +82,7 @@
           </v-col>
         </v-expand-transition>
       </v-row>
-      <v-row>
+      <v-row v-if="surveyContent.length > 200">
         <v-col class="pa-2 pt-0" cols="12">
           <button class="survey-more" @click="survVisible=!survVisible">
             <span class="survey-more-text">자세히 보기</span>
@@ -142,7 +142,7 @@
                       </v-col>
                     </v-row>
                   </v-expand-transition>
-                  <v-row>
+                  <v-row v-if="pollData.length > 4">
                     <v-col cols="12" class="pa-0">
                       <v-card-actions class="pa-0 mt-5" style="width: 100%;">
                         <button class="survey-q-more" style="width: 100%;" @click="visible=!visible">
