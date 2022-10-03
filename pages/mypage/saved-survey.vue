@@ -54,8 +54,8 @@
                       <v-row>
                         <NuxtLink
                           :to="{
-                            name: 'reports-id',
-                            params: { id: users[i].report.id },
+                            path: '/surveys/view',
+                            query: { id: users[i].id },
                           }"
                           style="text-decoration: none; color: initial"
                         >

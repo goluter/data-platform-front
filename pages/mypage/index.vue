@@ -145,6 +145,7 @@ export default {
       limit: 10,
       mysurveydata: null,
       partisurveydata: null,
+      userinfo: null,
       tab: null,
       username: 'jooyoung',
       tabsData: [
@@ -209,6 +210,15 @@ export default {
         )
         .then((res) => {
           this.partisurveydata = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      axios
+        .get('https://api.govey.app/users/v1/self/info')
+        .then((res) => {
+          this.userinfo = res.data
+          console.log(this.userinfo)
         })
         .catch((err) => {
           console.log(err)
