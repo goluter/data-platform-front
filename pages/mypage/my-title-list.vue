@@ -16,13 +16,13 @@
         :key="i"
         class="contents"
       >
-      <!-- <NuxtLink 
-          :to="{path: 'title-detail', query: { id: item.id }}" 
-          style="text-decoration: none; color: initial;"> -->
+      <NuxtLink 
+          :to="{path: '/title-detail', query: { id: item.reward.id }}" 
+          style="text-decoration: none; color: initial;">
         <img class="profileimg" src="../../assets/Male User.png" align="middle" />
         <span>{{ item.name }}</span>
         <div class="point">{{ item.createdAt | yyyyMMdd }} </div>
-      <!-- </NuxtLink> -->
+      </NuxtLink>
       </div>
     </div>
 </div>

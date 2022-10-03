@@ -16,16 +16,16 @@
         :key="i"
         class="contents"
       >
-      <NuxtLink 
+      <!-- <NuxtLink 
           :to="{path: '/reward-detail', query: { id: item.reward.id }}" 
-          style="text-decoration: none; color: initial;">
-        <img class="profileimg" src="../../assets/Male User.png" align="middle" />
+          style="text-decoration: none; color: initial;"> -->
+        <img class="profileimg" src="../assets/Male User.png" align="middle" />
         <span>{{ item.reward.name }}</span>
         
         <div class="point pr-4">{{ item.reward.count }} 회 <br> {{ item.reward.createdAt | yyyyMMdd }} </div>
         
         
-      </NuxtLink>
+      <!-- </NuxtLink> -->
       </div>
     </div>
 </div>
@@ -47,20 +47,17 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '내 업적')
+    this.$store.commit('setPageTitle', '유저 업적')
   },
   created(){
-    this.fetchData(this.page,this.limit,this.type,this.category)
+    this.fetchData(this.$route.query.id)
   },
   methods:{
-    fetchData(page,limit,type){
+    fetchData(id){
         axios.get(
-            'https://api.govey.app/users/v1/self/rewards?type='+
-            this.type +
-            '&page=' +
-            this.page +
-            '&limit=' +
-            this.limit 
+            'https://api.govey.app/users/v1/userd/'+
+            id +
+            '/rewards?type=업적&page=0&limit=10'
         )
         .then((res) =>{
             this.reward = res.data.content
