@@ -36,8 +36,8 @@
                     dense
                     append-icon="mdi-magnify"
                     style="height: 40px; border-radius: 45px"
-                    @click:append="search(searchValue)"
-                    @keyup.enter="search(searchValue)"
+                    @click:append="search"
+                    @keyup.enter="search"
                   />
                 </v-col>
                 <v-col cols="4" md="2">
@@ -69,7 +69,7 @@
               flat
               dense
               single-line
-              @change="sort(sortKey)"
+              @change="sort"
             />
           </v-col>
         </v-row>
@@ -137,9 +137,7 @@
                                 class="reward-item-box pa-1 rounded-x1"
                               >
                                 <div v-if="reward.type === 'giftcon'">
-                                  <v-icon small color="red">
-                                    mdi-gift
-                                  </v-icon>
+                                  <v-icon small color="red"> mdi-gift </v-icon>
                                   <span>{{ reward.value }}</span>
                                 </div>
                                 <div v-if="reward.type === 'point'">
@@ -169,12 +167,14 @@
 import axios from 'govey/src/libs/http-client'
 
 export default {
-  data () {
+  data() {
     return {
       surveyDataArr: [],
       searchKey: '',
       searchValue: '',
+      returnedSearchValue: '',
       sortKey: '',
+      returnedSortKey: '',
       tab: null,
       bool: true,
       surveyTab: ['진행중', '마감'],
@@ -186,24 +186,34 @@ export default {
         { order: '최신순', sortKey: 'createdAt' },
         { order: '추천순', sortKey: 'goods' },
         { order: '마감순', sortKey: 'endAt' },
-        { order: '참여순', sortKey: 'answers' }
-      ]
+        { order: '참여순', sortKey: 'answers' },
+      ],
     }
   },
-  created () {
-    this.fetchData(
-      0,
-      10,
-      this.$route.query.searchKey,
-      this.$route.query.searchValue,
-      this.$route.query.sortKey
-    )
+  watch: {
+    returnedSearchValue(newD, oldD) {
+      this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
+    },
+    returnedSortKey(newD, oldD) {
+      this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
+    },
   },
-  mounted () {
+  created() {
+    this.fetchData(0, 10)
+  },
+  mounted() {
     this.$store.commit('setPageTitle', '설문')
   },
+  // computed: {
+  //   search () {
+  //     return this.fetchData(0, 10, 'subject', this.searchKey)
+  //   },
+  //   sort () {
+  //     return this.fetchData(0, 10, '', '', this.sortKey)
+  //   }
+  // },
   methods: {
-    fetchData (
+    async fetchData(
       page = 0,
       limit = 10,
       searchKey = false,
@@ -239,19 +249,14 @@ export default {
           '&sortKey=' +
           sortKey
       } else {
-        url =
-          '/users/v1/surveys/?page=' +
-          page +
-          '&limit=' +
-          limit
+        url = '/users/v1/surveys/?page=' + page + '&limit=' + limit
       }
-      axios
-        .get(url)
-        .then(async (response) => {
-          const dataWithRewards = response.data.content.map(async (survey) => {
+      await axios.get(url).then(async (response) => {
+        const dataWithRewards = response.data.content
+          .map(async (survey) => {
             const rewards = await axios
               .get(
-                '/users/v1/surveys/' +
+                'https://api.govey.app/users/v1/surveys/' +
                   survey.id +
                   '/rewards/'
               )
@@ -260,7 +265,7 @@ export default {
                 for (let i = 0; i < response.data.length; i++) {
                   const dic = {
                     type: response.data[i].type,
-                    value: response.data[i].value
+                    value: response.data[i].value,
                   }
                   rewardsData.push(dic)
                 }
@@ -269,45 +274,36 @@ export default {
               .catch((error) => {
                 console.log(error)
               })
-            const mix = Object.assign({}, survey, { rewards })
-            return mix
-          })
-          const data = await Promise.all(dataWithRewards)
-          response.data.content = data
-          this.surveyData = response.data.content
-          const ongoingSurveyData = []
-          const endedSurveyData = []
-          const temp = this.surveyData
-          for (let i = 0; i < temp.length; i++) {
-            if (temp[i].status === 'ongoing') {
-              ongoingSurveyData.push(temp[i])
-            } else {
-              endedSurveyData.push(temp[i])
+            const data = await Promise.all(dataWithRewards)
+            response.data.content = data
+            this.surveyData = response.data.content
+            const ongoingSurveyData = []
+            const endedSurveyData = []
+            const temp = this.surveyData
+            for (let i = 0; i < temp.length; i++) {
+              if (temp[i].status === 'ongoing') {
+                ongoingSurveyData.push(temp[i])
+              } else {
+                endedSurveyData.push(temp[i])
+              }
             }
-          }
-          this.ongoingSurveyData = ongoingSurveyData
-          this.endedSurveyData = endedSurveyData
-          this.surveyDataArr.push(this.ongoingSurveyData)
-          this.surveyDataArr.push(this.endedSurveyData)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+            this.ongoingSurveyData = ongoingSurveyData
+            this.endedSurveyData = endedSurveyData
+            this.surveyDataArr.push(this.ongoingSurveyData)
+            this.surveyDataArr.push(this.endedSurveyData)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      })
     },
-    search (searchValue) {
-      this.$router
-        .push({
-          path: '/surveys/',
-          query: { searchKey: 'subject', searchValue }
-        })
-        .catch(() => {})
+    search() {
+      this.returnedSearchValue = this.searchValue
     },
-    sort (sortKey) {
-      this.$router
-        .push({ path: '/surveys/', query: { sortKey } })
-        .catch(() => {})
-    }
-  }
+    sort() {
+      this.returnedSortKey = this.sortKey
+    },
+  },
 }
 </script>
 
