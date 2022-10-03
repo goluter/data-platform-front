@@ -96,6 +96,7 @@ export default {
   created(){
     this.fetchData(this.$route.query.id)
     
+    
   },
    methods: {
     fetchData (id){
@@ -125,7 +126,7 @@ export default {
     acbtn(event){
       axios.post(
         'https://api.govey.app/users/v1/rewards/'+
-        this.reward.id +
+        this.title.id +
         '/users/'
       )
       .then((res) => {
