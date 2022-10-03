@@ -337,12 +337,12 @@ export default {
       })
     },
     search (searchValue) {
-      this.$router.push({ path: '/surveys/', query: { searchKey: 'subject', searchValue } })
-      this.$router.go(router.currentRoute.fullPath)
+      this.$router.push({ path: '/surveys/', query: { searchKey: 'subject', searchValue } }).catch(() => {})
+      this.$router.replace(this.$router.currentRoute.fullPath)
     },
     sort (sortKey) {
-      this.$router.push({ path: '/surveys/', query: { sortKey } })
-      this.$router.go(router.currentRoute.fullPath)
+      this.$router.push({ path: '/surveys/', query: { sortKey } }).catch(() => {})
+      this.$router.replace(this.$router.currentRoute.fullPath)
     }
   }
 }
