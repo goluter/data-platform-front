@@ -10,7 +10,7 @@
           :key="i"
           style="height: 330px; align-items: flex-end"
         >
-          <NuxtLink to="/surveys/">
+          <NuxtLink :to="'/surveys/view?id='+item.id">
             <v-sheet class="survey-sheet elevation-5" :color="item.color">
               <div class="play-icon-box">
                 <img class="play-icon" src="../assets/play_index.png">
