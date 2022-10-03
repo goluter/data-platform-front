@@ -137,7 +137,9 @@
                                 class="reward-item-box pa-1 rounded-x1"
                               >
                                 <div v-if="reward.type === 'giftcon'">
-                                  <v-icon small color="red"> mdi-gift </v-icon>
+                                  <v-icon small color="red">
+                                    mdi-gift
+                                  </v-icon>
                                   <span>{{ reward.value }}</span>
                                 </div>
                                 <div v-if="reward.type === 'point'">
@@ -167,7 +169,7 @@
 import axios from 'govey/src/libs/http-client'
 
 export default {
-  data() {
+  data () {
     return {
       surveyDataArr: [],
       searchKey: '',
@@ -186,22 +188,22 @@ export default {
         { order: '최신순', sortKey: 'createdAt' },
         { order: '추천순', sortKey: 'goods' },
         { order: '마감순', sortKey: 'endAt' },
-        { order: '참여순', sortKey: 'answers' },
-      ],
+        { order: '참여순', sortKey: 'answers' }
+      ]
     }
   },
   watch: {
-    returnedSearchValue(newD, oldD) {
+    returnedSearchValue (newD, oldD) {
       this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
     },
-    returnedSortKey(newD, oldD) {
+    returnedSortKey (newD, oldD) {
       this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
-    },
+    }
   },
-  created() {
+  created () {
     this.fetchData(0, 10)
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', '설문')
   },
   // computed: {
@@ -213,7 +215,7 @@ export default {
   //   }
   // },
   methods: {
-    async fetchData(
+    fetchData (
       page = 0,
       limit = 10,
       searchKey = false,
@@ -251,21 +253,21 @@ export default {
       } else {
         url = '/users/v1/surveys/?page=' + page + '&limit=' + limit
       }
-      await axios.get(url).then(async (response) => {
+      axios.get(url).then(async (response) => {
         const dataWithRewards = response.data.content
           .map(async (survey) => {
             const rewards = await axios
               .get(
-                'https://api.govey.app/users/v1/surveys/' +
-                  survey.id +
-                  '/rewards/'
+                '/users/v1/surveys/' +
+                      survey.id +
+                      '/rewards/'
               )
               .then((response) => {
                 const rewardsData = []
                 for (let i = 0; i < response.data.length; i++) {
                   const dic = {
                     type: response.data[i].type,
-                    value: response.data[i].value,
+                    value: response.data[i].value
                   }
                   rewardsData.push(dic)
                 }
@@ -274,36 +276,38 @@ export default {
               .catch((error) => {
                 console.log(error)
               })
-            const data = await Promise.all(dataWithRewards)
-            response.data.content = data
-            this.surveyData = response.data.content
-            const ongoingSurveyData = []
-            const endedSurveyData = []
-            const temp = this.surveyData
-            for (let i = 0; i < temp.length; i++) {
-              if (temp[i].status === 'ongoing') {
-                ongoingSurveyData.push(temp[i])
-              } else {
-                endedSurveyData.push(temp[i])
-              }
-            }
-            this.ongoingSurveyData = ongoingSurveyData
-            this.endedSurveyData = endedSurveyData
-            this.surveyDataArr.push(this.ongoingSurveyData)
-            this.surveyDataArr.push(this.endedSurveyData)
+            const mix = Object.assign({}, survey, { rewards })
+            return mix
           })
-          .catch((error) => {
-            console.log(error)
-          })
+        const data = await Promise.all(dataWithRewards)
+        response.data.content = data
+        this.surveyData = response.data.content
+        const ongoingSurveyData = []
+        const endedSurveyData = []
+        const temp = this.surveyData
+        for (let i = 0; i < temp.length; i++) {
+          if (temp[i].status === 'ongoing') {
+            ongoingSurveyData.push(temp[i])
+          } else {
+            endedSurveyData.push(temp[i])
+          }
+        }
+        this.ongoingSurveyData = ongoingSurveyData
+        this.endedSurveyData = endedSurveyData
+        this.surveyDataArr.push(this.ongoingSurveyData)
+        this.surveyDataArr.push(this.endedSurveyData)
       })
+        .catch((error) => {
+          console.log(error)
+        })
     },
-    search() {
+    search () {
       this.returnedSearchValue = this.searchValue
     },
-    sort() {
+    sort () {
       this.returnedSortKey = this.sortKey
-    },
-  },
+    }
+  }
 }
 </script>
 
