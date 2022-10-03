@@ -29,7 +29,7 @@
                 <v-icon small>
                   mdi-account
                 </v-icon>
-                {{ surveyData.hits | comma }}
+                {{ surveyData.answers }}
               </div>
               <div class="d-inline text-no-wrap">
                 <v-icon small>

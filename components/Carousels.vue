@@ -17,7 +17,7 @@
               </div>
               <div class="count-box">
                 <span class="survey-participate-count">
-                  {{ item.hits }}명이 참여중이에요!
+                  {{ item.answers }}명이 참여중이에요!
                 </span>
               </div>
               <div class="target-box">

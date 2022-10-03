@@ -105,7 +105,7 @@
                               <v-row>
                                 <v-col class="survey-stat d-flex" cols="12">
                                   <div class="report-likes mr-2">
-                                    {{ item.hit }} 명 참여 중!
+                                    {{ item.answers }}명 참여중!
                                   </div>
                                   <div class="survey-tag ml-auto">
                                     <span
@@ -198,7 +198,7 @@
                               <v-row>
                                 <v-col class="survey-stat d-flex" cols="12">
                                   <div class="report-likes mr-2">
-                                    {{ item.hit }} 명 참여 중!
+                                    {{ item.answers }}명 참여중!
                                   </div>
                                   <div class="survey-tag ml-auto">
                                     <span
