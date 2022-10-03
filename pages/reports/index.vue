@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <v-container>
+    <!-- <v-container>
       <v-row style="padding: 10px 0; background-color: #eeeeee">
         <v-col cols="12">
           <v-row style="background-color: white">
@@ -20,20 +20,20 @@
           </v-row>
         </v-col>
       </v-row>
-    </v-container>
-    <v-container class="pa-0">
+    </v-container> -->
+    <!-- <v-container class="pa-0">
       <v-row class="ma-0" justify="end" style="height: 60px">
         <v-col cols="4">
           <v-select :items="sort" label="최신순" solo flat dense />
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
     <v-divider />
     <v-container v-if="users">
       <NuxtLink
         v-for="(item, i) in users"
         :key="i"
-        to="/reports/item"
+        :to="{ name: 'reports-id', params: { id: users[i].id } }"
         style="text-decoration: none; color: initial"
       >
         <v-row>
@@ -87,27 +87,24 @@ export default {
       totalpage: null,
       limit: 10,
       page: 0,
-      category: '리포트',
       sort: ['최신순', '추천순', '댓글순'],
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '내 리포트')
+    this.$store.commit('setPageTitle', '리포트')
   },
   methods: {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/page?category=' +
-            this.category +
-            '&page=' +
+          'https://api.govey.app/users/v1/reports/page?' +
+            'page=' +
             this.page +
             '&limit=' +
             this.limit
         )
         .then((res) => {
           this.users = res.data.content
-          console.log(this.users)
         })
         .catch((err) => {
           console.log(err)

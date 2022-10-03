@@ -5,47 +5,41 @@
         <v-app-bar-nav-icon icon @click="back">
           <v-icon>mdi-chevron-left</v-icon>
         </v-app-bar-nav-icon>
-        <v-toolbar-title class="title-text pa-0" style="font-size: 14px; font-weight: 600">
+        <v-toolbar-title
+          class="title-text pa-0"
+          style="font-size: 14px; font-weight: 600"
+        >
           {{ reportData.subject }}
         </v-toolbar-title>
         <v-spacer />
         <div class="d-flex justify-content-between">
           <v-menu offset-y :close-on-content-click="false" :nudge-width="300">
-            <template
-                #activator="{on, attrs}"
-            >
-              <v-btn
-                  icon
-                  small
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="copyURL(url)"
-              >
+            <template #activator="{ on, attrs }">
+              <v-btn icon small v-bind="attrs" v-on="on" @click="copyURL(url)">
                 <v-icon>mdi-export-variant</v-icon>
               </v-btn>
             </template>
             <v-card>
-              <v-text-field outlined single-line :value="getURL()" class="ma-auto pa-3" style="height: 80px"></v-text-field>
+              <v-text-field
+                outlined
+                single-line
+                :value="getURL()"
+                class="ma-auto pa-3"
+                style="height: 80px"
+              ></v-text-field>
               <v-card-text class="pt-0 pb-3">
                 <v-icon>mdi-check</v-icon>
-                클립보드에 복사되었습니다!</v-card-text>
+                클립보드에 복사되었습니다!</v-card-text
+              >
             </v-card>
           </v-menu>
-          <v-dialog
-            v-model="bookmark"
-            max-width="600px"
-          >
+          <v-dialog v-model="bookmark" max-width="600px">
             <template #activator="{ on, attrs }">
-              <v-btn
-                icon
-                small
-                v-bind="attrs"
-                v-on="on"
-              >
+              <v-btn icon small v-bind="attrs" v-on="on">
                 <v-icon>mdi-bookmark-outline</v-icon>
               </v-btn>
             </template>
-            <v-card style="border-radius: 10px;">
+            <v-card style="border-radius: 10px">
               <div class="d-flex">
                 <span class="bookmark-title ma-auto my-3">북마크</span>
               </div>
@@ -54,7 +48,12 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12">
-                      <v-text-field placeholder="내용을 입력하세요." outlined color="#30cdae" style="background-color: #f7f7f8" />
+                      <v-text-field
+                        placeholder="내용을 입력하세요."
+                        outlined
+                        color="#30cdae"
+                        style="background-color: #f7f7f8"
+                      />
                     </v-col>
                   </v-row>
                   <v-row>
@@ -72,29 +71,29 @@
               </v-form>
             </v-card>
           </v-dialog>
-<!--          <v-menu offset-y>-->
-<!--            <template-->
-<!--              #activator="-->
-<!--                {-->
-<!--                  on,-->
-<!--                  attrs-->
-<!--                }"-->
-<!--            >-->
-<!--              <v-btn-->
-<!--                icon-->
-<!--                small-->
-<!--                v-bind="attrs"-->
-<!--                v-on="on"-->
-<!--              >-->
-<!--                <v-icon>mdi-dots-vertical</v-icon>-->
-<!--              </v-btn>-->
-<!--            </template>-->
-<!--            <v-list>-->
-<!--              <v-list-item>-->
-<!--                <v-list-item-title>삭제</v-list-item-title>-->
-<!--              </v-list-item>-->
-<!--            </v-list>-->
-<!--          </v-menu>-->
+          <!--          <v-menu offset-y>-->
+          <!--            <template-->
+          <!--              #activator="-->
+          <!--                {-->
+          <!--                  on,-->
+          <!--                  attrs-->
+          <!--                }"-->
+          <!--            >-->
+          <!--              <v-btn-->
+          <!--                icon-->
+          <!--                small-->
+          <!--                v-bind="attrs"-->
+          <!--                v-on="on"-->
+          <!--              >-->
+          <!--                <v-icon>mdi-dots-vertical</v-icon>-->
+          <!--              </v-btn>-->
+          <!--            </template>-->
+          <!--            <v-list>-->
+          <!--              <v-list-item>-->
+          <!--                <v-list-item-title>삭제</v-list-item-title>-->
+          <!--              </v-list-item>-->
+          <!--            </v-list>-->
+          <!--          </v-menu>-->
         </div>
       </v-app-bar>
     </v-col>
@@ -104,35 +103,69 @@
 
 <script>
 import SurveyCardSingle from '../components/SurveyCardSingle.vue'
+import axios from 'axios'
 
 export default {
   components: { SurveyCardSingle },
   props: {
     reportData: {
-      type: Array
-    }
+      type: Array,
+    },
   },
-  data () {
+  data() {
     return {
       bookmark: false,
-      url: ''
+      url: '',
+      temp: 0,
+      page: 0,
+      limit: 10,
+      id: null,
+      users: null,
     }
   },
   methods: {
-    back () {
+    back() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
-    getURL () {
+    getURL() {
       this.url = 'https://govey.app/surveys/view/?id=' + this.reportData.id
       return this.url
     },
-    async copyURL (url) {
+    async copyURL(url) {
       try {
         await navigator.clipboard.writeText(url)
-      } catch ($e) {
-      }
-    }
-  }
+      } catch ($e) {}
+    },
+    fetchData(page, limit) {
+      axios
+        .get(
+          'https://api.govey.app/users/v1/reports/page?' +
+            'page=' +
+            this.page +
+            '&limit=' +
+            this.limit
+        )
+        .then((res) => {
+          this.users = res.data.content
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    fetch() {
+      axios
+        .post(
+          'https://api-stage.govey.app/users/v1/posts/page?category=공지&page=0&limit=10'
+        )
+        .then((res) => {
+          this.users2 = res.data.content
+          console.log('success')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
 }
 </script>
 

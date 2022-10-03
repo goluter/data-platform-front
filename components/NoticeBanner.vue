@@ -3,7 +3,7 @@
     <div>
       <ul>
         <li v-for="(item, i) in users" v-if="users" :key="i" class="notice-box">
-          <NuxtLink :to="{ name: 'notices-id', params: { id: i } }">
+          <NuxtLink :to="{ name: 'notices-id', params: { id: users[i].id } }">
             <h5>{{ users[i].subject }}</h5>
           </NuxtLink>
         </li>
@@ -29,8 +29,7 @@ export default {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/page?category=' +
-            this.category +
+          'https://api-stage.govey.app/users/v1/posts/page?category=공지' +
             '&page=' +
             this.page +
             '&limit=' +
