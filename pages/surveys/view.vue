@@ -402,12 +402,12 @@ export default {
       pieData.push(['name', 'count'])
       for (let i = 0; i < pollGroups.length; i++) {
         if (pollGroups[i].id === id) {
-          const data = []
           for (let j = 0; j < pollGroups[i].groups.length; j++) {
+            const data = []
             data.push(pollGroups[i].groups[j].name)
             data.push(pollGroups[i].groups[j].count)
+            pieData.push(data)
           }
-          pieData.push(data)
         }
       }
       return pieData
