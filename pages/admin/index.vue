@@ -2660,53 +2660,7 @@
       </div>
 
       <!-- 리포트-->
-      <div v-if="TopTab7 == true">
-        <v-simple-table>
-          <template #default>
-            <thead>
-              <tr>
-                <th style="text-align: center">번호</th>
-                <th style="text-align: center">설문 제목</th>
-                <th style="text-align: center">리포트 제목</th>
-                <th style="text-align: center">등록날짜</th>
-                <th style="text-align: center">작성자</th>
-                <th style="text-align: center">좋아요</th>
-                <th style="text-align: center">댓글</th>
-                <th style="text-align: center">자세히</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(a, i) in ReportData"
-                :key="a"
-                style="text-align: center"
-              >
-                <td style="text-align: center">
-                  {{ i + 1 }}
-                </td>
-                <td>
-                  {{ ReportData[i].surveytitle }}
-                </td>
-                <td>{{ ReportData[i].reporttitle }}</td>
-                <td>{{ ReportData[i].date }}</td>
-                <td>{{ ReportData[i].name }}</td>
-                <td>{{ ReportData[i].thumbup }}</td>
-                <td>{{ ReportData[i].commentnum }}</td>
-                <td>
-                  <v-btn
-                    @click="
-                      reportnum = i
-                      ShowReportDetailModal = true
-                    "
-                    small
-                    >자세히</v-btn
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-      </div>
+      <div v-if="TopTab7 == true"></div>
 
       <!-- 공지사항-->
       <div v-if="TopTab8 == true">

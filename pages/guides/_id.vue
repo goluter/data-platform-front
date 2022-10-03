@@ -62,9 +62,8 @@ export default {
 
 <style scoped>
 .noticemain {
-  width: 204px;
   height: 16px;
-  margin: 32px 0px 0px 18px;
+  margin: 32px 18px 0px 18px;
   font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
