@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <router-view :key="this.$route.fullPath"></router-view>
+    <router-view :key="$route.fullPath" />
     <v-container>
       <v-row>
         <v-col class="pa-0" cols="12">
@@ -55,197 +55,106 @@
           </v-row>
         </v-col>
       </v-row>
+      <v-container class="pa-0">
+        <v-row class="pa-2 pr-0" justify="end" style="height: 60px">
+          <v-col class="pr-0" cols="4" md="2">
+            <v-select
+              v-model="sortKey"
+              :items="sortOrder"
+              item-text="order"
+              item-value="sortKey"
+              label="정렬"
+              solo
+              flat
+              dense
+              single-line
+              @change="sort(sortKey)"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
       <v-row>
         <v-col class="pa-0">
           <v-tabs-items v-model="tab">
-            <v-tab-item>
-              <v-container class="pa-0">
-                <v-row class="ma-0" justify="end" style="height: 60px">
-                  <v-col cols="4" md="2">
-                    <v-select
-                      v-model="sortKey"
-                      :items="sortOrder"
-                      item-text="order"
-                      item-value="sortKey"
-                      label="정렬"
-                      solo
-                      flat
-                      dense
-                      single-line
-                      @change="sort(sortKey)"
-                    />
-                  </v-col>
-                </v-row>
-              </v-container>
-              <v-container>
+            <v-tab-item v-for="(data, i) in surveyDataArr" :key="i">
+              <v-container class="mb-5">
                 <NuxtLink
-                  v-for="(item, j) in ongoingSurveyData"
+                  v-for="(item, j) in data"
                   :key="j"
                   :to="{path: 'view', query: { id: item.id }}"
                   style="text-decoration: none; color: initial"
                 >
-                  <v-row>
-                    <v-col class="pb-0" cols="12">
-                      <v-row>
-                        <v-col cols="auto">
-                          <div class="thumbnail" />
-                        </v-col>
-                        <v-col class="grow" cols="auto">
-                          <v-row>
-                            <v-col cols="12">
-                              <v-row>
-                                <v-col class="survey-title pb-0" cols="12">
-                                  {{ item.subject }}
-                                </v-col>
-                              </v-row>
-                              <v-row>
-                                <v-col class="survey-period py-0" cols="12">
-                                  {{ item.startAt | date }} ~ {{ item.endAt | date }}
-                                </v-col>
-                              </v-row>
-                              <v-row>
-                                <v-col class="survey-stat d-flex" cols="12">
-                                  <div class="report-likes mr-2">
-                                    {{ item.answers }}명 참여중!
-                                  </div>
-                                  <div class="survey-tag ml-auto">
-                                    <span
-                                      style="color: dodgerblue"
-                                    >
-                                      {{ item.tag }}
-                                    </span>
-                                  </div>
-                                </v-col>
-                              </v-row>
-                            </v-col>
-                          </v-row>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col class="pt-0 pb-5" cols="12">
-                      <div class="reward-box-triangle ma-auto" />
-                      <div class="reward-box">
-                        <v-container>
-                          <v-row>
-                            <v-col
-                              v-for="(reward, i) in item.rewards"
-                              :key="i"
-                              cols="auto"
-                              class="reward-item-box pa-1 rounded-x1"
-                            >
-                              <div v-if="reward.type === 'giftcon'">
-                                <v-icon small color="red">
-                                  mdi-gift
-                                </v-icon>
-                                <span>{{ reward.value }}</span>
-                              </div>
-                              <div v-if="reward.type === 'point'">
-                                <v-icon small color="yellow darken-3">
-                                  mdi-circle-multiple
-                                </v-icon>
-                                <span>{{ reward.value }}</span>
-                              </div>
-                            </v-col>
-                          </v-row>
-                        </v-container>
-                      </div>
-                    </v-col>
-                  </v-row>
-                </nuxtlink>
-              </v-container>
-            </v-tab-item>
-            <v-tab-item>
-              <v-container class="pa-0">
-                <v-row class="ma-0" justify="end" style="height: 60px">
-                  <v-col cols="4">
-                    <v-select
-                      :items="sort"
-                      label="최신순"
-                      solo
-                      flat
-                      dense
-                    />
-                  </v-col>
-                </v-row>
-              </v-container>
-              <v-container>
-                <NuxtLink
-                  v-for="(item, j) in endedSurveyData"
-                  :key="j"
-                  :to="{path: 'view', query: { id: item.id }}"
-                  style="text-decoration: none; color: initial"
-                >
-                  <v-row>
-                    <v-col class="pb-0" cols="12">
-                      <v-row>
-                        <v-col cols="auto">
-                          <div class="thumbnail" />
-                        </v-col>
-                        <v-col class="grow" cols="auto">
-                          <v-row>
-                            <v-col cols="12">
-                              <v-row>
-                                <v-col class="survey-title pb-0" cols="12">
-                                  {{ item.subject }}
-                                </v-col>
-                              </v-row>
-                              <v-row>
-                                <v-col class="survey-period py-0" cols="12">
-                                  {{ item.startAt | date }} ~ {{ item.endAt | date }}
-                                </v-col>
-                              </v-row>
-                              <v-row>
-                                <v-col class="survey-stat d-flex" cols="12">
-                                  <div class="report-likes mr-2">
-                                    {{ item.answers }}명 참여중!
-                                  </div>
-                                  <div class="survey-tag ml-auto">
-                                    <span
-                                      style="color: dodgerblue"
-                                    >
-                                      {{ item.tag }}
-                                    </span>
-                                  </div>
-                                </v-col>
-                              </v-row>
-                            </v-col>
-                          </v-row>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col class="pt-0 pb-5" cols="12">
-                      <div class="reward-box-triangle ma-auto" />
-                      <div class="reward-box">
-                        <v-container>
-                          <v-row>
-                            <v-col
-                              v-for="(reward, i) in item.rewards"
-                              :key="i"
-                              cols="auto"
-                              class="reward-item-box pa-1 rounded-x1"
-                            >
-                              <div v-if="reward.type === 'giftcon'">
-                                <v-icon small color="red">
-                                  mdi-gift
-                                </v-icon>
-                                <span>{{ reward.value }}</span>
-                              </div>
-                              <div v-if="reward.type === 'point'">
-                                <v-icon small color="yellow darken-3">
-                                  mdi-circle-multiple
-                                </v-icon>
-                                <span>{{ reward.value }}</span>
-                              </div>
-                            </v-col>
-                          </v-row>
-                        </v-container>
-                      </div>
-                    </v-col>
-                  </v-row>
+                  <div class="mb-7">
+                    <v-row>
+                      <v-col class="pb-0" cols="12">
+                        <v-row>
+                          <v-col cols="auto" class="pr-1">
+                            <div class="thumbnail" />
+                          </v-col>
+                          <v-col class="grow" cols="auto">
+                            <v-row>
+                              <v-col cols="12">
+                                <v-row>
+                                  <v-col class="survey-title pb-0" cols="12">
+                                    {{ item.subject }}
+                                  </v-col>
+                                </v-row>
+                                <v-row>
+                                  <v-col class="survey-period py-0" cols="12">
+                                    {{ item.startAt | date }} ~ {{ item.endAt | date }}
+                                  </v-col>
+                                </v-row>
+                                <v-row>
+                                  <v-col class="survey-stat d-flex" cols="12">
+                                    <div class="report-likes mr-2">
+                                      {{ item.answers }}명 참여중!
+                                    </div>
+                                    <div class="survey-tag ml-auto">
+                                      <span
+                                        style="color: dodgerblue"
+                                      >
+                                        {{ item.tag }}
+                                      </span>
+                                    </div>
+                                  </v-col>
+                                </v-row>
+                              </v-col>
+                            </v-row>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+                    <v-row v-if="item.rewards.length > 0">
+                      <v-col class="py-0" cols="12">
+                        <div class="reward-box-triangle ma-auto" />
+                        <div class="reward-box">
+                          <v-container>
+                            <v-row>
+                              <v-col
+                                v-for="(reward, i) in item.rewards"
+                                :key="i"
+                                cols="auto"
+                                class="reward-item-box pa-1 rounded-x1"
+                              >
+                                <div v-if="reward.type === 'giftcon'">
+                                  <v-icon small color="red">
+                                    mdi-gift
+                                  </v-icon>
+                                  <span>{{ reward.value }}</span>
+                                </div>
+                                <div v-if="reward.type === 'point'">
+                                  <v-icon small color="yellow darken-3">
+                                    mdi-circle-multiple
+                                  </v-icon>
+                                  <span>{{ reward.value }}</span>
+                                </div>
+                              </v-col>
+                            </v-row>
+                          </v-container>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </div>
                 </nuxtlink>
               </v-container>
             </v-tab-item>
@@ -262,6 +171,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      surveyDataArr: [],
       searchKey: '',
       searchValue: '',
       sortKey: '',
@@ -275,12 +185,13 @@ export default {
       sortOrder: [
         { order: '최신순', sortKey: 'createdAt' },
         { order: '추천순', sortKey: 'goods' },
-        { order: '마감순', sortKey: 'endAt' }
+        { order: '마감순', sortKey: 'endAt' },
+        { order: '참여순', sortKey: 'answers' }
       ]
     }
   },
   created () {
-    this.fetchData(0, 10, this.$route.query.searchKey, this.$route.query.searchValue)
+    this.fetchData(0, 10, this.$route.query.searchKey, this.$route.query.searchValue, this.$route.query.sortKey)
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
@@ -290,8 +201,10 @@ export default {
       let url = ''
       if (searchKey && searchValue) {
         url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&searchKey=' + searchKey + '&searchValue=' + searchValue
+      } else if (sortKey === 'endAt') {
+        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&sortKey=' + sortKey + '&isDesc=false'
       } else if (sortKey) {
-        url = 'https://api.govey.app/users/v1/surveys/?sortKey=' + sortKey
+        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&sortKey=' + sortKey
       } else {
         url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit
       }
@@ -333,6 +246,8 @@ export default {
         }
         this.ongoingSurveyData = ongoingSurveyData
         this.endedSurveyData = endedSurveyData
+        this.surveyDataArr.push(this.ongoingSurveyData)
+        this.surveyDataArr.push(this.endedSurveyData)
       }).catch((error) => {
         console.log(error)
       })
@@ -349,8 +264,8 @@ export default {
 
 <style scoped>
 .thumbnail {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background-color: #eeeeee;
   border-radius: 10px;
 }
