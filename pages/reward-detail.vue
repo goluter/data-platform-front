@@ -1,59 +1,102 @@
 <template>
-<div>
+  <div>
     <div class="d-flex justify-center pt-5">
-        <div>
-            <img class="profileimg" src="../assets/man.png" align="middle" />
-        </div>
+      <div>
+        <img class="profileimg" src="../assets/man.png" align="middle" />
+      </div>
     </div>
     <div class="d-flex justify-center pt-5">
-        <div>
-            <b>{{reward.name}}</b>
-        </div>
+      <div>
+        <b>{{ reward.name }}</b>
+      </div>
     </div>
-    <div class="d-flex justify-center pt-5">
-        <div>
-            <b>{{reward.requirements}}</b>
-        </div>
+    <div class="d-flex justify-center pt-5 pb-8">
+      <div>
+        <b>{{ reward.requirements }}</b>
+      </div>
     </div>
-
-    <hr>
-</div>
-
-
+    <hr />
+    <div class="pt-4 pl-4">
+      <b>획득 유저</b>
+    </div>
+    <div>
+      <v-tabs fixed-tabs>
+        <v-tab
+          @click="
+            Tab1 = true
+            Tab2 = false
+          "
+        >
+          <b>최근획득</b>
+        </v-tab>
+        <v-tab
+          @click="
+            Tab1 = false
+            Tab2 = true
+          "
+        >
+          <b>누적</b>
+        </v-tab>
+      </v-tabs>
+    </div>
+    <div v-if="Tab1 == true">
+      <div v-for="(a, i) in list" :key="a" class="contents">
+        <img class="profileimg2" src="../assets/man.png" align="middle" />
+        <span>{{ list[i].user.nickname }}</span>
+        <div class="point2">
+          {{ list[i].createdAt | yyyyMMdd }}
+        </div>
+      </div>
+    </div>
+    <div v-if="Tab2 == true">
+      <div v-for="(a, i) in list" :key="a" class="contents">
+        <img class="profileimg2" src="../assets/man.png" align="middle" />
+        <span>{{ list[i].user.nickname }}</span>
+        <div class="point2">
+          {{ list[i].createdAt | yyyyMMdd }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'EventList',
   layout: 'default',
   data() {
     return {
-      reward:[]
+      reward: [],
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', ' 업적 상세')
   },
-  created(){
+  created() {
     this.fetchData(this.$route.query.id)
   },
-   methods: {
-    fetchData (id) {
-      axios.get(
-        'https://api.govey.app/users/v1/rewards/'+
-        id 
-          
-      )
-      .then((res) => {
-        this.reward = res.data
-      })
-      .catch((err) =>{
-        console.log(err)
-      })
-    }
-  }
+  methods: {
+    fetchData(id) {
+      axios
+        .all([
+          axios.get('/users/v1/rewards/' + id),
+          axios.get(
+            '/users/v1/rewards/' + id + '/users?page=0&limit=20&isDesc=true'
+          ),
+        ])
+        .then(
+          axios.spread((res1, res2) => {
+            this.reward = res1.data
+            this.list = res2.data.content
+          })
+        )
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
 }
 </script>
 
@@ -118,18 +161,18 @@ export default {
 .v-tab {
   font-size: 18px;
 }
-.point-box{
+.point-box {
   background-color: #1087f4;
   height: 80px;
-  color:white;
+  color: white;
 }
-.click-box{
+.click-box {
   background-color: white;
-  color:black;
+  color: black;
   border-radius: 1rem;
 }
-.profileimg{
-    height: 100px;
-    width: 100px;
+.profileimg {
+  height: 100px;
+  width: 100px;
 }
 </style>

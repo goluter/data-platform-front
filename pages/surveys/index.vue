@@ -35,8 +35,8 @@
                     dense
                     append-icon="mdi-magnify"
                     style="height: 40px; border-radius: 45px"
-                    @click:append="search"
-                    @keyup.enter="search"
+                    @click:append="search(searchValue)"
+                    @keyup.enter="search(searchValue)"
                   />
                 </v-col>
                 <v-col cols="4" md="2">
@@ -68,7 +68,7 @@
               flat
               dense
               single-line
-              @change="sort"
+              @change="sort(sortKey)"
             />
           </v-col>
         </v-row>
@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   data () {
@@ -216,15 +216,47 @@ export default {
   // },
   methods: {
     async fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
+    fetchData (
+      page = 0,
+      limit = 10,
+      searchKey = false,
+      searchValue = false,
+      sortKey = false
+    ) {
       let url = ''
       if (searchKey && searchValue) {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&searchKey=' + searchKey + '&searchValue=' + searchValue
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit +
+          '&searchKey=' +
+          searchKey +
+          '&searchValue=' +
+          searchValue
       } else if (sortKey === 'endAt') {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&sortKey=' + sortKey + '&isDesc=false'
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit +
+          '&sortKey=' +
+          sortKey +
+          '&isDesc=false'
       } else if (sortKey) {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit + '&sortKey=' + sortKey
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit +
+          '&sortKey=' +
+          sortKey
       } else {
-        url = 'https://api.govey.app/users/v1/surveys/?page=' + page + '&limit=' + limit
+        url =
+          '/users/v1/surveys/?page=' +
+          page +
+          '&limit=' +
+          limit
       }
       await axios.get(url
       ).then(async (response) => {
@@ -269,6 +301,54 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
+      axios
+        .get(url)
+        .then(async (response) => {
+          const dataWithRewards = response.data.content.map(async (survey) => {
+            const rewards = await axios
+              .get(
+                '/users/v1/surveys/' +
+                  survey.id +
+                  '/rewards/'
+              )
+              .then((response) => {
+                const rewardsData = []
+                for (let i = 0; i < response.data.length; i++) {
+                  const dic = {
+                    type: response.data[i].type,
+                    value: response.data[i].value
+                  }
+                  rewardsData.push(dic)
+                }
+                return rewardsData
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+            const mix = Object.assign({}, survey, { rewards })
+            return mix
+          })
+          const data = await Promise.all(dataWithRewards)
+          response.data.content = data
+          this.surveyData = response.data.content
+          const ongoingSurveyData = []
+          const endedSurveyData = []
+          const temp = this.surveyData
+          for (let i = 0; i < temp.length; i++) {
+            if (temp[i].status === 'ongoing') {
+              ongoingSurveyData.push(temp[i])
+            } else {
+              endedSurveyData.push(temp[i])
+            }
+          }
+          this.ongoingSurveyData = ongoingSurveyData
+          this.endedSurveyData = endedSurveyData
+          this.surveyDataArr.push(this.ongoingSurveyData)
+          this.surveyDataArr.push(this.endedSurveyData)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     search () {
       this.returnedSearchValue = this.searchValue

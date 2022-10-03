@@ -55,7 +55,7 @@
                         {{ mysurveydata[i].subject }}
                       </span>
                       <span class="survey-left-time">
-                        {{ mysurveydata[i].endAt }}에 종류
+                        {{ mysurveydata[i].endAt }}에 종료
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
@@ -82,7 +82,7 @@
                 <NuxtLink
                   :to="{
                     path: '/surveys/view',
-                    query: { id: partisurveydata[i].id },
+                    query: { id: partisurveydata[i].survey.id },
                   }"
                 >
                   <v-row>
@@ -98,7 +98,7 @@
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
-                          {{ partisurveydata[i].survey.hits }}명이 참여 중
+                          {{ partisurveydata[i].survey.answers }}명이 참여 중
                         </span>
                         <span v-for="tags in item.tags" class="survey-tags">
                           <a href="">#{{ partisurveydata[i].survey.tag }}</a>
@@ -117,7 +117,7 @@
                 <v-list-item
                   v-for="(link, i) in item.item"
                   :key="i"
-                  :to="link.to"
+                  @click.native="() => handleItemClick($router, link)"
                 >
                   {{ link.title }}
                 </v-list-item>
@@ -131,15 +131,17 @@
 </template>
 
 <script>
+import axios from 'govey/src/libs/http-client'
+import { signOut } from 'govey/src/libs/auth'
 import SurveyCard from '../../components/SurveyCard.vue'
-import axios from 'axios'
 
 export default {
   name: 'MyPage',
   components: { SurveyCard },
   layout: 'main',
-  data() {
+  data(context) {
     return {
+      routerO: context.router,
       page: 0,
       limit: 10,
       mysurveydata: null,
@@ -169,17 +171,17 @@ export default {
         {
           subheader: '보상',
           item: [
-
             { title: '내 포인트', to: '/point-list/' },
-            { title: '구매내역', to: '' }
-          ]
-
+            { title: '내 칭호', to: '/mypage/my-title-list/' },
+            { title: '내 업적', to: '/mypage/my-reward-list/' },
+            { title: '구매내역', to: '' },
+          ],
         },
         {
           subheader: '기타',
           item: [
-            { title: '로그아웃', to: '' },
-            { title: '회원탈퇴', to: '' },
+            { title: '로그아웃', to: 'logout' },
+            // { title: '회원탈퇴', to: '' },
           ],
         },
       ],
@@ -188,11 +190,23 @@ export default {
   mounted() {
     this.$store.commit('setPageTitle', this.username)
   },
+  created() {
+    this.fetchData(this.pageNum)
+  },
   methods: {
+    handleItemClick: ($router, link) => {
+      console.log('link.to', link.to)
+      if (link.to === 'logout') {
+        signOut($router)
+      } else {
+        console.log('gogo~')
+        $router.push(link.to)
+      }
+    },
     fetchData(page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/registrations?' +
+          '/users/v1/self/surveys/registrations?' +
             this.page +
             '&limit=' +
             this.limit
@@ -205,10 +219,7 @@ export default {
         })
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/answers?' +
-            this.page +
-            '&limit=' +
-            this.limit
+          '/users/v1/self/surveys/answers?' + this.page + '&limit=' + this.limit
         )
         .then((res) => {
           this.partisurveydata = res.data.content
@@ -217,7 +228,7 @@ export default {
           console.log(err)
         })
       axios
-        .get('https://api.govey.app/users/v1/self/info')
+        .get('/users/v1/self/info')
         .then((res) => {
           this.userinfo = res.data
         })
@@ -225,12 +236,7 @@ export default {
           console.log(err)
         })
       axios
-        .get(
-          'https://api.govey.app/users/v1/self/timelines?' +
-            this.page +
-            '&limit=' +
-            this.limit
-        )
+        .get('/users/v1/self/timelines?' + this.page + '&limit=' + this.limit)
         .then((res) => {
           this.timelinedata = res.data.content
         })
@@ -238,9 +244,6 @@ export default {
           console.log(err)
         })
     },
-  },
-  created() {
-    this.fetchData(this.pageNum)
   },
 }
 </script>

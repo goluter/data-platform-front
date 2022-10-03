@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 import Carousels from '../components/Carousels.vue'
 import Banner from '../components/Banner.vue'
 import SurveyBanner from '../components/SurveyBanner.vue'
@@ -96,15 +96,11 @@ export default {
   methods: {
     fetchData() {
       axios
-        .get('https://api.govey.app/users/v1/surveys/curations?type=popular')
+        .get('/users/v1/surveys/curations?type=popular')
         .then(async (response) => {
           const dataWithRewards = response.data.map(async (survey) => {
             const rewards = await axios
-              .get(
-                'https://api.govey.app/users/v1/surveys/' +
-                  survey.id +
-                  '/rewards/'
-              )
+              .get('/users/v1/surveys/' + survey.id + '/rewards/')
               .then((response) => {
                 const rewardsData = []
                 for (let i = 0; i < response.data.length; i++) {
@@ -130,9 +126,7 @@ export default {
         })
 
       axios
-        .get(
-          'https://api.govey.app/users/v1/surveys/curations?type=recommended'
-        )
+        .get('/users/v1/surveys/curations?type=recommended')
         .then((response) => {
           const cr = response.data
           const colors = [

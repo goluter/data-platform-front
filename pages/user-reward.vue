@@ -1,28 +1,46 @@
 <template>
   <div>
-    <div v-for="(item, i) in point" :key="i" class="contents">
-      <NuxtLink
-        :to="{ path: '/point-detail', query: { id: item.id } }"
-        style="text-decoration: none; color: initial"
+    <div class="point-box">
+      <div class="pt-3 pb-3  d-flex justify-space-between">
+        <div class="pl-3 pt-2">
+          업적 어떻게 해야 얻을 수 있지?
+        </div>
+        <div class="mr-3 pa-2 click-box">
+          <NuxtLink to="/title-list" style="color: black; text-decoration-line: none">
+            <button>궁금하면 클릭!</button>
+          </NuxtLink>
+        </div>
+      </div>
+      <div
+        v-for="(item, i) in reward"
+        :key="i"
+        class="contents"
       >
-        <span>{{ item.createdAt | yyyyMMdd }}</span>
-        <span>{{ item.title }}</span>
-        <span>{{ item.content }}</span>
-        <div class="point">+{{ item.amount }} P</div>
-      </NuxtLink>
+        <!-- <NuxtLink
+          :to="{path: '/reward-detail', query: { id: item.reward.id }}"
+          style="text-decoration: none; color: initial;"> -->
+        <img class="profileimg" src="../assets/Male User.png" align="middle">
+        <span>{{ item.reward.name }}</span>
+
+        <div class="point pr-4">
+          {{ item.reward.count }} 회 <br> {{ item.reward.createdAt | yyyyMMdd }}
+        </div>
+
+      <!-- </NuxtLink> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'govey/src/libs/http-client'
+
 export default {
-  name: 'PointList',
+  name: 'EventList',
   filters: {
+
     yyyyMMdd: function (value) {
-      if (value == '') {
-        return ''
-      }
+      if (value == '') { return '' }
 
       const js_date = new Date(value)
 
@@ -31,53 +49,53 @@ export default {
       let day = js_date.getDate()
 
       if (month < 10) {
-        month = '0' + month
+          	month = '0' + month
       }
 
       if (day < 10) {
-        day = '0' + day
+          	day = '0' + day
       }
 
       return year + '-' + month + '-' + day
-    },
+    }
   },
   layout: 'default',
-  data() {
+  data () {
     return {
       page: 0,
       limit: 10,
-      point: [],
+      type: '업적',
+      category: '포인트',
+      reward: []
     }
   },
-  mounted() {
-    this.$store.commit('setPageTitle', '  포인트 이력')
+  mounted () {
+    this.$store.commit('setPageTitle', '유저 업적')
   },
-  created() {
-    this.fetchData(this.page, this.limit)
+  created () {
+    this.fetchData(this.$route.query.id)
   },
   methods: {
-    fetchData(page, limit) {
-      axios
-        .get('/users/v1/self/points?page=' + this.page + '&limit=' + this.limit)
+    fetchData (id) {
+      axios.get(
+        '/users/v1/userd/' +
+            id +
+            '/rewards?type=업적&page=0&limit=10'
+      )
         .then((res) => {
-          this.point = res.data.content
+          this.reward = res.data.content
         })
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
+    }
+  }
+
 }
+</script>
 </script>
 
 <style scoped>
-.Ellipse-21 {
-  width: 74px;
-  height: 74px;
-  flex-grow: 0;
-  margin: 0 59px 23px 58px;
-  background-color: #c4c4c4;
-}
 .point2 {
   float: right;
   margin: 4px 12px 0px 0px;
@@ -92,7 +110,7 @@ export default {
 }
 .point {
   float: right;
-  margin: 6px 12px 0px 0px;
+
   flex-grow: 0;
   font-size: 13px;
   font-weight: 500;
@@ -101,6 +119,7 @@ export default {
   line-height: normal;
   letter-spacing: -0.65px;
   text-align: left;
+  color: black;
 }
 .profileimg {
   width: 24px;
@@ -131,18 +150,14 @@ export default {
 .v-tab {
   font-size: 18px;
 }
-.point-box {
+.point-box{
   background-color: #1087f4;
-  height: 80px;
-  color: white;
-}
-.click-box {
-  background-color: white;
-  color: black;
-  border-radius: 1rem;
-}
-.profileimg {
   height: 100px;
-  width: 100px;
+  color:white;
+}
+.click-box{
+  background-color: white;
+  color:black;
+  border-radius: 1rem;
 }
 </style>

@@ -1,20 +1,32 @@
 <template>
   <div>
-    <div
-      v-for="(item, i) in title"
-      :key="i"
-      class="contents"
-    >
-      <NuxtLink
-        :to="{path: 'title-detail', query: { id: item.id }}"
-        style="text-decoration: none; color: initial;"
-      >
-        <img class="profileimg" src="../assets/Male User.png" align="middle">
-        <span>{{ item.name }}</span>
-        <div class="point">
-          {{ item.count }} 회
+    <div class="point-box">
+      <div class="pt-3 pb-3  d-flex justify-space-between">
+        <div class="pl-3 pt-2">
+          칭호 어떻게 해야 얻을 수 있지?
         </div>
-      </NuxtLink>
+        <div class="mr-3 pa-2 click-box">
+          <NuxtLink to="/title-list" style="color: black; text-decoration-line: none">
+            <button>궁금하면 클릭!</button>
+          </NuxtLink>
+        </div>
+      </div>
+      <div
+        v-for="(item, i) in title"
+        :key="i"
+        class="contents"
+      >
+        <NuxtLink
+          :to="{path: '/title-detail', query: { id: item.reward.id }}"
+          style="text-decoration: none; color: initial;"
+        >
+          <img class="profileimg" src="../../assets/Male User.png" align="middle">
+          <span>{{ item.name }}</span>
+          <div class="point">
+            {{ item.createdAt | yyyyMMdd }}
+          </div>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +36,28 @@ import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'EventList',
+  filters: {
+
+    yyyyMMdd: function (value) {
+      if (value == '') { return '' }
+
+      const js_date = new Date(value)
+
+      const year = js_date.getFullYear()
+      let month = js_date.getMonth() + 1
+      let day = js_date.getDate()
+
+      if (month < 10) {
+          	month = '0' + month
+      }
+
+      if (day < 10) {
+          	day = '0' + day
+      }
+
+      return year + '-' + month + '-' + day
+    }
+  },
   layout: 'default',
   data () {
     return {
@@ -35,31 +69,30 @@ export default {
     }
   },
   mounted () {
-    this.$store.commit('setPageTitle', ' 칭호')
+    this.$store.commit('setPageTitle', '내 칭호')
   },
   created () {
     this.fetchData(this.page, this.limit, this.type, this.category)
   },
   methods: {
-    fetchData (page, limit, type, category) {
+    fetchData (page, limit, type) {
       axios.get(
-        '/users/v1/rewards/page?page=' +
+        '/users/v1/self/rewards?type=' +
+            this.type +
+            '&page=' +
             this.page +
             '&limit=' +
-            this.limit +
-            '&type=' +
-            this.type +
-            '&category=' +
-            this.category
+            this.limit
       )
         .then((res) => {
-          this.title = res.data.content
+          this.reward = res.data.content
         })
         .catch((err) => {
           console.log(err)
         })
     }
   }
+
 }
 </script>
 </script>
@@ -88,6 +121,7 @@ export default {
   line-height: normal;
   letter-spacing: -0.65px;
   text-align: left;
+  color: black;
 }
 .profileimg {
   width: 24px;
@@ -120,7 +154,7 @@ export default {
 }
 .point-box{
   background-color: #1087f4;
-  height: 80px;
+  height: 100px;
   color:white;
 }
 .click-box{
