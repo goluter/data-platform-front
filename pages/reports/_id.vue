@@ -128,7 +128,7 @@
                     </v-row>
                     <v-row>
                       <v-col cols="auto" style="font-size: 10px">
-                        {{ users.survey.hits | comma }}명이 참여 중
+                        {{ users.survey.answers | comma }}명이 참여 중
                       </v-col>
                       <v-col
                         class="ml-auto pr-0"

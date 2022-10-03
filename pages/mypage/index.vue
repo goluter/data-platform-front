@@ -55,7 +55,7 @@
                         {{ mysurveydata[i].subject }}
                       </span>
                       <span class="survey-left-time">
-                        {{ mysurveydata[i].endAt }}에 종류
+                        {{ mysurveydata[i].endAt }}에 종료
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
@@ -82,7 +82,7 @@
                 <NuxtLink
                   :to="{
                     path: '/surveys/view',
-                    query: { id: partisurveydata[i].id },
+                    query: { id: partisurveydata[i].survey.id },
                   }"
                 >
                   <v-row>
@@ -98,7 +98,7 @@
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
-                          {{ partisurveydata[i].survey.hits }}명이 참여 중
+                          {{ partisurveydata[i].survey.answers }}명이 참여 중
                         </span>
                         <span v-for="tags in item.tags" class="survey-tags">
                           <a href="">#{{ partisurveydata[i].survey.tag }}</a>
