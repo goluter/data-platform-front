@@ -1,86 +1,72 @@
 <template>
-<div>
-    <div
-        v-for="(item, i) in point"
-        :key="i"
-        class="contents"
+  <div>
+    <div v-for="(item, i) in point" :key="i" class="contents">
+      <NuxtLink
+        :to="{ path: '/point-detail', query: { id: item.id } }"
+        style="text-decoration: none; color: initial"
       >
-      <NuxtLink 
-          :to="{path: '/point-detail', query: { id: item.id }}" 
-          style="text-decoration: none; color: initial;">
-      <span>{{ item.createdAt | yyyyMMdd}}</span>
+        <span>{{ item.createdAt | yyyyMMdd }}</span>
         <span>{{ item.title }}</span>
         <span>{{ item.content }}</span>
         <div class="point">+{{ item.amount }} P</div>
       </NuxtLink>
-      </div>
-      
-</div>
-
-
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 export default {
   name: 'PointList',
+  filters: {
+    yyyyMMdd: function (value) {
+      if (value == '') {
+        return ''
+      }
+
+      const js_date = new Date(value)
+
+      const year = js_date.getFullYear()
+      let month = js_date.getMonth() + 1
+      let day = js_date.getDate()
+
+      if (month < 10) {
+        month = '0' + month
+      }
+
+      if (day < 10) {
+        day = '0' + day
+      }
+
+      return year + '-' + month + '-' + day
+    },
+  },
   layout: 'default',
   data() {
     return {
-        page :0,
-        limit :10,
-        point:[]
+      page: 0,
+      limit: 10,
+      point: [],
     }
   },
   mounted() {
     this.$store.commit('setPageTitle', '  포인트 이력')
   },
- created(){
-    this.fetchData(this.page,this.limit)
+  created() {
+    this.fetchData(this.page, this.limit)
   },
-  methods:{
-    fetchData(page,limit){
-        axios.get(
-            'https://api.govey.app/users/v1/self/points?page='+
-            this.page +
-            '&limit=' +
-            this.limit 
-        )
-        .then((res) =>{
-            this.point = res.data.content
+  methods: {
+    fetchData(page, limit) {
+      axios
+        .get('/users/v1/self/points?page=' + this.page + '&limit=' + this.limit)
+        .then((res) => {
+          this.point = res.data.content
         })
-        .catch((err)=>{
-            console.log(err)
+        .catch((err) => {
+          console.log(err)
         })
-    }
+    },
   },
-  filters : {  
-        
-	yyyyMMdd : function(value){ 
-          
-          if(value == '') return '';
-      
-          
-          var js_date = new Date(value);
-
-          
-          var year = js_date.getFullYear();
-          var month = js_date.getMonth() + 1;
-          var day = js_date.getDate();
-
-          
-          if(month < 10){
-          	month = '0' + month;
-          }
-
-          if(day < 10){
-          	day = '0' + day;
-          }
-
-          
-          return year + '-' + month + '-' + day;
-	}
-}
 }
 </script>
 
@@ -145,18 +131,18 @@ export default {
 .v-tab {
   font-size: 18px;
 }
-.point-box{
+.point-box {
   background-color: #1087f4;
   height: 80px;
-  color:white;
+  color: white;
 }
-.click-box{
+.click-box {
   background-color: white;
-  color:black;
+  color: black;
   border-radius: 1rem;
 }
-.profileimg{
-    height: 100px;
-    width: 100px;
+.profileimg {
+  height: 100px;
+  width: 100px;
 }
 </style>

@@ -26,24 +26,27 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 export default {
   name: 'Notice',
-  data() {
+  data () {
     return {
       num: 0,
       category: '공지',
       page: 0,
       limit: 10,
       users: null,
-      linknum: 0,
+      linknum: 0
     }
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', '공지사항')
   },
+  created () {
+    this.fetchData(this.pageNum)
+  },
   methods: {
-    fetchData(category, page, limit) {
+    fetchData (category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/page?category=' +
@@ -59,11 +62,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
-  created() {
-    this.fetchData(this.pageNum)
-  },
+    }
+  }
 }
 </script>
 

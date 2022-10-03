@@ -26,11 +26,11 @@
                 :value="getURL()"
                 class="ma-auto pa-3"
                 style="height: 80px"
-              ></v-text-field>
+              />
               <v-card-text class="pt-0 pb-3">
                 <v-icon>mdi-check</v-icon>
-                클립보드에 복사되었습니다!</v-card-text
-              >
+                클립보드에 복사되었습니다!
+              </v-card-text>
             </v-card>
           </v-menu>
           <v-dialog v-model="bookmark" max-width="600px">
@@ -102,17 +102,17 @@
 </template>
 
 <script>
+import axios from 'govey/src/libs/http-client'
 import SurveyCardSingle from '../components/SurveyCardSingle.vue'
-import axios from 'axios'
 
 export default {
   components: { SurveyCardSingle },
   props: {
     reportData: {
-      type: Array,
-    },
+      type: Array
+    }
   },
-  data() {
+  data () {
     return {
       bookmark: false,
       url: '',
@@ -120,26 +120,26 @@ export default {
       page: 0,
       limit: 10,
       id: null,
-      users: null,
+      users: null
     }
   },
   methods: {
-    back() {
+    back () {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
-    getURL() {
+    getURL () {
       this.url = 'https://govey.app/surveys/view/?id=' + this.reportData.id
       return this.url
     },
-    async copyURL(url) {
+    async copyURL (url) {
       try {
         await navigator.clipboard.writeText(url)
       } catch ($e) {}
     },
-    fetchData(page, limit) {
+    fetchData (page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/reports/page?' +
+          '/users/v1/reports/page?' +
             'page=' +
             this.page +
             '&limit=' +
@@ -152,7 +152,7 @@ export default {
           console.log(err)
         })
     },
-    fetch() {
+    fetch () {
       axios
         .post(
           'https://api-stage.govey.app/users/v1/posts/page?category=공지&page=0&limit=10'
@@ -164,8 +164,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
+    }
+  }
 }
 </script>
 

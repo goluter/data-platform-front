@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 import { signOut } from 'govey/src/libs/auth'
 import SurveyCard from '../../components/SurveyCard.vue'
 
@@ -206,7 +206,7 @@ export default {
     fetchData(page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/registrations?' +
+          '/users/v1/self/surveys/registrations?' +
             this.page +
             '&limit=' +
             this.limit
@@ -219,10 +219,7 @@ export default {
         })
       axios
         .get(
-          'https://api.govey.app/users/v1/self/surveys/answers?' +
-            this.page +
-            '&limit=' +
-            this.limit
+          '/users/v1/self/surveys/answers?' + this.page + '&limit=' + this.limit
         )
         .then((res) => {
           this.partisurveydata = res.data.content
@@ -231,7 +228,7 @@ export default {
           console.log(err)
         })
       axios
-        .get('https://api.govey.app/users/v1/self/info')
+        .get('/users/v1/self/info')
         .then((res) => {
           this.userinfo = res.data
         })
@@ -239,12 +236,7 @@ export default {
           console.log(err)
         })
       axios
-        .get(
-          'https://api.govey.app/users/v1/self/timelines?' +
-            this.page +
-            '&limit=' +
-            this.limit
-        )
+        .get('/users/v1/self/timelines?' + this.page + '&limit=' + this.limit)
         .then((res) => {
           this.timelinedata = res.data.content
         })

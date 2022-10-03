@@ -17,25 +17,28 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'govey/src/libs/http-client'
 
 export default {
   name: 'Planneddetail',
   layout: 'default',
-  data() {
+  data () {
     return {
       selectnum: 0,
       users: null,
       category: '이벤트',
       page: 0,
-      limit: 10,
+      limit: 10
     }
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', '이벤트')
   },
+  created () {
+    this.fetchData(this.pageNum)
+  },
   methods: {
-    fetchData(category, page, limit) {
+    fetchData (category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/' + this.$route.params.id
@@ -46,11 +49,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
-  created() {
-    this.fetchData(this.pageNum)
-  },
+    }
+  }
 }
 </script>
 
