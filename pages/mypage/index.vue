@@ -117,7 +117,7 @@
                 <v-list-item
                   v-for="(link, i) in item.item"
                   :key="i"
-                  :to="link.to"
+                  @click.native="() => handleItemClick($router, link)"
                 >
                   {{ link.title }}
                 </v-list-item>
@@ -131,15 +131,17 @@
 </template>
 
 <script>
-import SurveyCard from '../../components/SurveyCard.vue'
 import axios from 'axios'
+import { signOut } from 'govey/src/libs/auth'
+import SurveyCard from '../../components/SurveyCard.vue'
 
 export default {
   name: 'MyPage',
   components: { SurveyCard },
   layout: 'main',
-  data() {
+  data(context) {
     return {
+      routerO: context.router,
       page: 0,
       limit: 10,
       mysurveydata: null,
@@ -170,14 +172,16 @@ export default {
           subheader: '보상',
           item: [
             { title: '내 포인트', to: '/point-list/' },
+            { title: '내 칭호', to: '/mypage/my-title-list/' },
+            { title: '내 업적', to: '/mypage/my-reward-list/' },
             { title: '구매내역', to: '' },
           ],
         },
         {
           subheader: '기타',
           item: [
-            { title: '로그아웃', to: '' },
-            { title: '회원탈퇴', to: '' },
+            { title: '로그아웃', to: 'logout' },
+            // { title: '회원탈퇴', to: '' },
           ],
         },
       ],
@@ -186,8 +190,19 @@ export default {
   mounted() {
     this.$store.commit('setPageTitle', this.username)
   },
-
+  created() {
+    this.fetchData(this.pageNum)
+  },
   methods: {
+    handleItemClick: ($router, link) => {
+      console.log('link.to', link.to)
+      if (link.to === 'logout') {
+        signOut($router)
+      } else {
+        console.log('gogo~')
+        $router.push(link.to)
+      }
+    },
     fetchData(page, limit) {
       axios
         .get(
@@ -237,9 +252,6 @@ export default {
           console.log(err)
         })
     },
-  },
-  created() {
-    this.fetchData(this.pageNum)
   },
 }
 </script>
