@@ -30,10 +30,8 @@
               <p class="report-title">
                 <b>{{ surveyData.subject }}</b>
               </p>
-              <span class="report-created"
-                >설문기간: {{ surveyData.startAt | date }} ~
-                {{ surveyData.endAt | date }}</span
-              >
+              <span class="report-created">설문기간: {{ surveyData.startAt | date }} ~
+                {{ surveyData.endAt | date }}</span>
             </v-col>
           </v-row>
           <v-row>
@@ -45,7 +43,9 @@
                 {{ surveyData.answers }}
               </div>
               <div class="d-inline text-no-wrap">
-                <v-icon small> mdi-thumb-up </v-icon>
+                <v-icon small>
+                  mdi-thumb-up
+                </v-icon>
                 {{ surveyData.goods | comma }}
               </div>
               <!--                <div>-->
@@ -73,7 +73,9 @@
       </v-row>
       <v-row>
         <v-col class="py-5" cols="12" style="font-size: 12px">
-          <v-icon left> mdi-account-circle </v-icon>{{ surveyData.author }}
+          <v-icon left>
+            mdi-account-circle
+          </v-icon>{{ surveyData.author }}
         </v-col>
       </v-row>
       <v-row>
@@ -95,7 +97,9 @@
         <v-col class="pa-2 pt-0" cols="12">
           <button class="survey-more" @click="survVisible = !survVisible">
             <span class="survey-more-text">자세히 보기</span>
-            <v-icon class="ml-auto"> mdi-chevron-right </v-icon>
+            <v-icon class="ml-auto">
+              mdi-chevron-right
+            </v-icon>
           </button>
         </v-col>
       </v-row>
@@ -143,48 +147,67 @@
                       cols="12"
                       style="border: 1px solid black; border-radius: 10px"
                     >
-                      <div>
-                        <span class="survey-q ma-auto">
-                          {{ i + 1 }}. {{ item.subject }}
-                        </span>
-                      </div>
+                      <v-dialog v-model="pollTransit[i]">
+                        <template #activator="{ on, attrs }">
+                          <v-btn v-bind="attrs" v-on="on" @click="pollTransit[i] = !pollTransit[i]">
+                            <span class="survey-q ma-auto">
+                              {{ item.subject }}
+                            </span>
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          {{ item.groups }}
+                        </v-card>
+                      </v-dialog>
                     </v-col>
                   </v-row>
-                  <v-expand-transition>
-                    <v-row
-                      v-for="(item, i) in pollData.slice(4)"
-                      v-show="visible"
-                      :key="i"
-                    >
-                      <v-col
-                        class="my-1 pa-2 elevation-1"
-                        cols="12"
-                        style="border: 1px solid black; border-radius: 10px"
-                      >
-                        <div>
-                          <span class="survey-q ma-auto">
-                            {{ i + 5 }}. {{ item.subject }}
-                          </span>
-                        </div>
-                      </v-col>
-                    </v-row>
-                  </v-expand-transition>
-                  <v-row v-if="pollData.length > 4">
-                    <v-col cols="12" class="pa-0">
-                      <v-card-actions class="pa-0 mt-5" style="width: 100%">
-                        <button
-                          class="survey-q-more"
-                          style="width: 100%"
-                          @click="visible = !visible"
+                  <v-row>
+                    <v-col>
+                      <v-expand-transition>
+                        <v-row
+                          v-for="(item, i) in pollData.slice(4)"
+                          v-show="visible"
+                          :key="i"
                         >
-                          <div class="survey-more-text">
-                            <span> 설문 항목 전체 보기 </span>
-                          </div>
-                          <div class="survey-more-btn ml-auto">
-                            <v-icon>mdi-chevron-right</v-icon>
-                          </div>
-                        </button>
-                      </v-card-actions>
+                          <v-col
+                            class="my-1 pa-2 elevation-1"
+                            cols="12"
+                            style="border: 1px solid black; border-radius: 10px"
+                          >
+                            <v-dialog v-model="pollTransit[i+4]">
+                              <template #activator="{ on, attrs }">
+                                <v-btn v-bind="attrs" v-on="on" @click="pollTransit[i+4] = !pollTransit[i+4]">
+                                  <span class="">
+                                    {{ item.subject }}
+                                  </span>
+                                </v-btn>
+                              </template>
+                              <v-card>
+                                {{ item.groups }}
+<!--                                <PieChart :chart-data="fillPie(pollGroupsData[i])" :options="pie_options"></PieChart>-->
+                              </v-card>
+                            </v-dialog>
+                          </v-col>
+                        </v-row>
+                      </v-expand-transition>
+                      <v-row v-if="pollData.length > 4">
+                        <v-col cols="12" class="pa-0">
+                          <v-card-actions class="pa-0 mt-2" style="width: 100%">
+                            <button
+                                class="survey-q-more"
+                                style="width: 100%"
+                                @click="visible = !visible"
+                            >
+                              <div class="survey-more-text">
+                                <span> 설문 항목 전체 보기 </span>
+                              </div>
+                              <div class="survey-more-btn ml-auto">
+                                <v-icon>mdi-chevron-right</v-icon>
+                              </div>
+                            </button>
+                          </v-card-actions>
+                        </v-col>
+                      </v-row>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -194,11 +217,9 @@
                   <v-col v-if="surveyData.rewardsData" cols="12">
                     <v-row>
                       <v-col cols="12">
-                        <span class="survey-rewards-title"
-                          >이 설문에는 총
+                        <span class="survey-rewards-title">이 설문에는 총
                           <b>{{ surveyData.rewardsData.length }}개</b>의 보상이
-                          있습니다!</span
-                        >
+                          있습니다!</span>
                       </v-col>
                     </v-row>
                     <v-row
@@ -223,7 +244,9 @@
                         style="display: flex; align-items: center"
                         class="survey-rewards-box"
                       >
-                        <v-icon color="red" class="mr-2"> mdi-gift </v-icon>
+                        <v-icon color="red" class="mr-2">
+                          mdi-gift
+                        </v-icon>
                         {{ item.value }} 기프티콘
                       </v-col>
                     </v-row>
@@ -260,7 +283,9 @@
               <v-icon> mdi-thumb-up-outline </v-icon>
             </v-btn>
             <NuxtLink class="ml-auto" :to="'/surveys/join?id=' + surveyData.id">
-              <div class="part-btn">설문 참여하기</div>
+              <div class="part-btn">
+                설문 참여하기
+              </div>
             </NuxtLink>
           </div>
         </v-col>
@@ -273,11 +298,12 @@
 import axios from 'axios'
 import Report from '../../layouts/report.vue'
 import Banner from '../../components/Banner.vue'
+import PieChart from '../../components/PieChart.vue'
 
 export default {
-  components: { Banner, Report },
+  components: { PieChart, Banner, Report },
   layout: 'empty',
-  data() {
+  data () {
     return {
       tab: null,
       tabs: ['질문', '보상'],
@@ -287,19 +313,25 @@ export default {
       surveyContent: '',
       surveyContentArr: [],
       pollData: [],
+      pollGroupsData: [],
+      pollTransit: [],
       surveyStats: [],
       bannerData: [
-        { icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' },
+        { icon: 'mdi-vote', title: '임시 배너', msg: '임시 메시지', to: '/' }
       ],
+      pie_options: { responsive: true },
+      pieData: {}
     }
   },
   computed: {},
-  created() {
+  mounted () {
+  },
+  created () {
     this.fetchData(this.$route.query.id)
     this.fetchPollData(this.$route.query.id)
   },
   methods: {
-    fetchData(id) {
+    fetchData (id) {
       axios
         .get('https://api.govey.app/users/v1/surveys/' + id)
         .then(async (response) => {
@@ -309,7 +341,6 @@ export default {
           if (response.data.hits === null) {
             response.data.hits = 0
           }
-          this.surveyData = response.data
           this.surveyContent = response.data.content
           this.surveyContentArr.push(this.surveyContent)
           const rewardsData = await axios
@@ -327,28 +358,71 @@ export default {
             .catch((error) => {
               console.log(error)
             })
-          const mix = Object.assign({}, this.surveyData, { rewardsData })
+          const mix = Object.assign({}, response.data, { rewardsData })
           this.surveyData = mix
         })
         .catch((error) => {
           console.log(error)
         })
     },
-    fetchPollData(id) {
+    fetchPollData (id) {
       axios
-        .get('https://api.govey.app/users/v1/surveys/' + id + '/polls/')
+        .get('https://api.govey.app/users/v1/surveys/' + id + '/statistics/')
         .then((response) => {
           this.pollData = response.data
           const arr = {}
           arr.type = '설문 항목'
           arr.val = this.pollData.length
           this.surveyStats.push(arr)
+
+          const pollGroups = []
+          const pollTransit = []
+          response.data.map((poll) => {
+            pollTransit.push(false)
+            const dic = {}
+            dic.id = poll.id
+            dic.groups = poll.groups
+            pollGroups.push(dic)
+          })
+          this.pollGroupsData = pollGroups
+          this.pollTransit = pollTransit
+
+          const pieData = {}
+          const temp = []
+          for (let i = 0; i < pollGroups.length; i++) {
+            const labels = []
+            const data = []
+            for (let j = 0; j < pollGroups[i].groups.length; j++) {
+              labels.push(pollGroups[i].groups[j].name)
+              data.push(pollGroups[i].groups[j].count)
+            }
+            const datasets = []
+            const temp2 = Object.assign({}, {data})
+            const temp3 = Object.assign({}, temp2)
+            Object.assign(datasets, temp3)
+            temp.push({labels, datasets})
+          }
+          this.pieData = pieData
+          console.log(temp[0])
         })
         .catch((error) => {
           console.log(error)
         })
     },
-  },
+    fillPie (groups) {
+      const pieData = []
+      const labels = []
+      const dataset = []
+
+      for (let i = 0; i < groups.length; i++) {
+        labels.push(groups[i].name)
+        dataset.push(groups[i].count)
+      }
+      pieData.push(labels, dataset)
+      this.pieData = pieData
+      console.log(this.pieData)
+    }
+  }
 }
 </script>
 
