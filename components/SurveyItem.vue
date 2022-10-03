@@ -9,7 +9,7 @@
           <v-row>
             <v-col cols="12">
               <v-row>
-                <v-col class="pb-0" cols="12" style="font-size: 12px;">
+                <v-col class="pb-0" cols="12" style="font-size: 12px">
                   {{ surveyData.title }}
                 </v-col>
               </v-row>
@@ -23,11 +23,15 @@
                   {{ surveyData.count | comma }}명이 참여 중
                 </v-col>
                 <v-col class="ml-auto pr-0" cols="auto" style="font-size: 10px">
-                  <span
-                    v-for="(item, i) in surveyData.tags"
-                    :key="i"
-                  >
-                    <NuxtLink to="" style="text-decoration: none; color: rgba(37, 144, 222, 0.87)">#{{ item }} </NuxtLink>
+                  <span v-for="(item, i) in surveyData.tags" :key="i">
+                    <NuxtLink
+                      to=""
+                      style="
+                        text-decoration: none;
+                        color: rgba(37, 144, 222, 0.87);
+                      "
+                      >#{{ item }}
+                    </NuxtLink>
                   </span>
                 </v-col>
               </v-row>
@@ -43,9 +47,9 @@
 export default {
   props: {
     surveyData: {
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 }
 </script>
 

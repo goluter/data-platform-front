@@ -9,7 +9,7 @@
         </div>
         <div v-for="(a, i) in users" v-if="users" :key="i" class="contents">
           <NuxtLink
-            :to="{ name: 'notices-id', params: { id: i } }"
+            :to="{ name: 'notices-id', params: { id: users[i].id } }"
             style="color: black; text-decoration-line: none"
           >
             <div class="noticetitle">

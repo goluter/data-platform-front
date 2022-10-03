@@ -15,7 +15,7 @@
       <v-col cols="12" style="height: 20px" />
     </v-row>
 
-<!--    <Banner :banner-data="bannerData[0]" />-->
+    <!--    <Banner :banner-data="bannerData[0]" />-->
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
         <h1 class="section-title">인기 설문</h1>
@@ -70,7 +70,7 @@ export default {
   name: 'IndexPage',
   components: { NoticeBanner, EventBanner, SurveyBanner, Banner, Carousels },
   layout: 'main',
-  data () {
+  data() {
     return {
       carouselData: [],
       surveyData: [],
@@ -90,56 +90,67 @@ export default {
       ],
     }
   },
-  created () {
+  created() {
     this.fetchData()
   },
   methods: {
-    fetchData () {
-      axios.get(
-        'https://api.govey.app/users/v1/surveys/curations?type=popular'
-      ).then(async (response) => {
-        const dataWithRewards = response.data.map(async (survey) => {
-          const rewards = await axios.get(
-            'https://api.govey.app/users/v1/surveys/' +
-              survey.id +
-              '/rewards/'
-          ).then((response) => {
-            const rewardsData = []
-            for (let i = 0; i < response.data.length; i++) {
-              const dic = {
-                type: response.data[i].type,
-                value: response.data[i].value
-              }
-              rewardsData.push(dic)
-            }
-            return rewardsData
-          }).catch((error) => {
-            console.log(error)
+    fetchData() {
+      axios
+        .get('https://api.govey.app/users/v1/surveys/curations?type=popular')
+        .then(async (response) => {
+          const dataWithRewards = response.data.map(async (survey) => {
+            const rewards = await axios
+              .get(
+                'https://api.govey.app/users/v1/surveys/' +
+                  survey.id +
+                  '/rewards/'
+              )
+              .then((response) => {
+                const rewardsData = []
+                for (let i = 0; i < response.data.length; i++) {
+                  const dic = {
+                    type: response.data[i].type,
+                    value: response.data[i].value,
+                  }
+                  rewardsData.push(dic)
+                }
+                return rewardsData
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+            const mix = Object.assign({}, survey, { rewards })
+            return mix
           })
-          const mix = Object.assign({}, survey, { rewards })
-          return mix
+          const finalData = await Promise.all(dataWithRewards)
+          this.surveyData = finalData
         })
-        const finalData = await Promise.all(dataWithRewards)
-        this.surveyData = finalData
-      }).catch((error) => {
-        console.log(error)
-      })
+        .catch((error) => {
+          console.log(error)
+        })
 
-      axios.get(
-        'https://api.govey.app/users/v1/surveys/curations?type=recommended'
-      ).then((response) => {
-        const cr = response.data
-        const colors = [{ color: 'indigo accent-4' }, { color: '#ed2121' }, { color: 'pink accent-2' }]
-        const slicedCr = cr.slice(0, 3).map((card, i) => {
-          const mix = Object.assign({}, card, colors[i])
-          return mix
+      axios
+        .get(
+          'https://api.govey.app/users/v1/surveys/curations?type=recommended'
+        )
+        .then((response) => {
+          const cr = response.data
+          const colors = [
+            { color: 'indigo accent-4' },
+            { color: '#ed2121' },
+            { color: 'pink accent-2' },
+          ]
+          const slicedCr = cr.slice(0, 3).map((card, i) => {
+            const mix = Object.assign({}, card, colors[i])
+            return mix
+          })
+          this.carouselData = slicedCr
         })
-        this.carouselData = slicedCr
-      }).catch((error) => {
-        console.log(error)
-      })
-    }
-  }
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+  },
 }
 </script>
 
