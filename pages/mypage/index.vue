@@ -82,7 +82,7 @@
                 <NuxtLink
                   :to="{
                     path: '/surveys/view',
-                    query: { id: partisurveydata[i].id },
+                    query: { id: partisurveydata[i].survey.id },
                   }"
                 >
                   <v-row>
@@ -186,6 +186,7 @@ export default {
   mounted() {
     this.$store.commit('setPageTitle', this.username)
   },
+
   methods: {
     fetchData(page, limit) {
       axios
