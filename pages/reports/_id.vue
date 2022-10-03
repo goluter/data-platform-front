@@ -10,6 +10,7 @@
             class="title-text pa-0"
             style="font-size: 14px; font-weight: 600"
           >
+            {{ users.subject }}
           </v-toolbar-title>
           <v-spacer />
           <div class="d-flex justify-content-between">
