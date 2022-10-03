@@ -37,8 +37,8 @@
           <v-row>
             <NuxtLink
               :to="{
-                name: 'reports-id',
-                params: { id: users[i].report.id },
+                path: '/surveys/view',
+                query: { id: users[i].id },
               }"
               style="text-decoration: none; color: initial"
             >
@@ -54,13 +54,12 @@
                       <v-row>
                         <NuxtLink
                           :to="{
-                            name: 'reports-id',
-                            params: { id: users[i].report.id },
+                            path: '/surveys/view',
+                            query: { id: users[i].id },
                           }"
-                          style="text-decoration: none; color: initial"
                         >
                           <v-col class="report-title" cols="auto">
-                            {{ users[i].report.subject }}
+                            {{ users[i].subject }}
                           </v-col>
                         </NuxtLink>
                         <v-col class="ml-auto py-0 pt-2" cols="auto">
@@ -72,6 +71,7 @@
                             </template>
                             <v-list style="font-size: 12px">
                               <v-list-item-group>
+                                <v-list-item> 수정 </v-list-item>
                                 <v-list-item> 삭제 </v-list-item>
                               </v-list-item-group>
                             </v-list>
@@ -84,7 +84,7 @@
                     <v-col class="report-stat d-flex" cols="12">
                       <div class="report-likes mr-2">
                         <v-icon small> mdi-thumb-up </v-icon>
-                        {{ users[i].report.goods }}
+                        {{ users[i].goods }}
                       </div>
                       <!-- <div class="report-comments">
                         <v-icon small> mdi-comment-processing </v-icon>
@@ -92,7 +92,7 @@
                       </div> -->
                       <div class="report-surveyor ml-auto">
                         <v-icon small> mdi-account-circle </v-icon>
-                        {{ users[i].report.author }}
+                        {{ users[i].author }}
                       </div>
                     </v-col>
                   </v-row>
@@ -116,24 +116,38 @@ export default {
       page: 0,
       limit: 10,
       sort: ['최신순', '추천순', '댓글순'],
+      reportData: [
+        {
+          title: '상명대 학생들에 대한 고찰',
+          likes: 14423,
+          comments: 14423,
+          surveyor: '상명대학교',
+          icon: 'mdi-account-circle',
+        },
+        {
+          title: '대학생 탐구 리포트',
+          likes: 13211,
+          comments: 9654,
+          surveyor: '상명대학교',
+          icon: 'mdi-account-circle',
+        },
+      ],
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '북마크한 리포트')
+    this.$store.commit('setPageTitle', '내 설문')
   },
   methods: {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/self/reports/bookmarks?' +
-            'page=' +
+          'https://api.govey.app/users/v1/self/surveys/registrations?' +
             this.page +
             '&limit=' +
             this.limit
         )
         .then((res) => {
           this.users = res.data.content
-          console.log(this.users)
         })
         .catch((err) => {
           console.log(err)

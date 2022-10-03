@@ -15,7 +15,7 @@
       <v-col cols="12" style="height: 20px" />
     </v-row>
 
-    <Banner :banner-data="bannerData[0]" />
+    <!--    <Banner :banner-data="bannerData[0]" />-->
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
         <h1 class="section-title">인기 설문</h1>
@@ -30,7 +30,7 @@
       </v-col>
     </v-row>
     <SurveyBanner :survey-data="surveyData" />
-    <Banner :banner-data="bannerData[1]" />
+    <Banner :banner-data="bannerData[0]" />
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
         <h1 class="section-title">이벤트</h1>
@@ -48,7 +48,7 @@
         <h1 class="section-title">공지사항</h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/notice/"> 더보기 </NuxtLink>
+        <NuxtLink class="section-more" to="/notices/"> 더보기 </NuxtLink>
       </v-col>
     </v-row>
     <v-row class="section-desc">
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Carousels from '../components/Carousels.vue'
 import Banner from '../components/Banner.vue'
 import SurveyBanner from '../components/SurveyBanner.vue'
@@ -71,33 +72,15 @@ export default {
   layout: 'main',
   data() {
     return {
-      carouselData: [
-        {
-          target: '2022 대학생들에게 묻습니다!',
-          surveyor: '상명대학교',
-          count: 1234,
-          color: 'indigo accent-4',
-        },
-        {
-          target: '2022 직장인들에게 묻습니다!',
-          surveyor: '상명대학교',
-          count: 2345,
-          color: '#ed2121',
-        },
-        {
-          target: '2022 구직자들에게 물어봅니다!',
-          surveyor: '상명대학교',
-          count: 3456,
-          color: 'pink accent-2',
-        },
-      ],
+      carouselData: [],
+      surveyData: [],
       bannerData: [
-        {
-          title: '설문 등록',
-          msg: '지금 등록하시면 1000P 를 바로 적립해드려요!',
-          icon: 'mdi-vote',
-          to: '/survey-maker',
-        },
+        // {
+        //   title: '설문 등록',
+        //   msg: '지금 등록하시면 1000P 를 바로 적립해드려요!',
+        //   icon: 'mdi-vote',
+        //   to: '/survey-maker',
+        // },
         {
           title: '가이드',
           msg: '더 재미있게 즐기실 수 있도록 가이드를 모아봤어요!',
@@ -105,69 +88,68 @@ export default {
           to: '/service-center/',
         },
       ],
-      surveyData: [
-        {
-          id: 1,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-        {
-          id: 3,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-        {
-          id: 4,
-          title: '대학생들에게 묻습니다',
-          left: '4',
-          count: '114,300',
-          tags: ['대학생', '새내기', '축제'],
-          rewards: [
-            { title: '스타벅스', icon: 'mdi-gift', color: 'red' },
-            {
-              title: '100P',
-              icon: 'mdi-circle-multiple',
-              color: 'yellow darken-3',
-            },
-          ],
-        },
-      ],
     }
+  },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      axios
+        .get('https://api.govey.app/users/v1/surveys/curations?type=popular')
+        .then(async (response) => {
+          const dataWithRewards = response.data.map(async (survey) => {
+            const rewards = await axios
+              .get(
+                'https://api.govey.app/users/v1/surveys/' +
+                  survey.id +
+                  '/rewards/'
+              )
+              .then((response) => {
+                const rewardsData = []
+                for (let i = 0; i < response.data.length; i++) {
+                  const dic = {
+                    type: response.data[i].type,
+                    value: response.data[i].value,
+                  }
+                  rewardsData.push(dic)
+                }
+                return rewardsData
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+            const mix = Object.assign({}, survey, { rewards })
+            return mix
+          })
+          const finalData = await Promise.all(dataWithRewards)
+          this.surveyData = finalData
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+
+      axios
+        .get(
+          'https://api.govey.app/users/v1/surveys/curations?type=recommended'
+        )
+        .then((response) => {
+          const cr = response.data
+          const colors = [
+            { color: 'indigo accent-4' },
+            { color: '#ed2121' },
+            { color: 'pink accent-2' },
+          ]
+          const slicedCr = cr.slice(0, 3).map((card, i) => {
+            const mix = Object.assign({}, card, colors[i])
+            return mix
+          })
+          this.carouselData = slicedCr
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
   },
 }
 </script>

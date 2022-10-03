@@ -9,7 +9,7 @@
         sm="5"
         md="5"
       >
-        <NuxtLink :to="'/surveys/' + item.id">
+        <NuxtLink :to="'/surveys/view?id=' + item.id">
           <v-row class="survey-box rounded-xl elevation-3">
             <v-col class="pl-2" cols="auto">
               <div class="banner-img-box" />
@@ -17,23 +17,21 @@
             <v-col class="pl-0 pr-1 grow" cols="auto">
               <v-row class="banner-title">
                 <v-col class="" cols="12">
-                  {{ item.title }}
+                  {{ item.subject }}
                 </v-col>
               </v-row>
               <v-row class="mt-0 pl-0">
                 <v-col cols="1" />
                 <v-col class="ml-auto pt-0 pb-0" cols="auto">
-                  <span class="banner-left-time"> {{ item.left }}일 남음 </span>
+                  <span class="banner-left-time"> {{ diffDate(item.createdAt, item.endAt) }}일 남음 </span>
                 </v-col>
               </v-row>
               <v-row class="banner-count-tags">
                 <v-col class="pt-0 pb-0" cols="auto">
-                  {{ item.count }}명이 참여 중
+                  {{ item.answers }}명 참여중!
                 </v-col>
                 <v-col class="ml-auto pt-0 pb-0" cols="auto">
-                  <a v-for="(tags, i) in item.tags" :key="i" class="banner-tags" href="/">
-                    #{{ tags }}
-                  </a>
+                    {{ item.tag }}
                 </v-col>
               </v-row>
             </v-col>
@@ -52,11 +50,17 @@
                 cols="auto"
                 class="reward-item-box pa-1 rounded-x1"
               >
-                <div>
-                  <v-icon small :color="reward.color">
-                    {{ reward.icon }}
+                <div v-if="reward.type === 'point'">
+                  <v-icon small color="yellow darken-3">
+                    mdi-circle-multiple
                   </v-icon>
-                  <span>{{ reward.title }}</span>
+                  <span>{{ reward.value }}</span>
+                </div>
+                <div v-if="reward.type === 'giftcon'">
+                  <v-icon small color="red">
+                    mdi-gift
+                  </v-icon>
+                  <span>{{ reward.value }}</span>
                 </div>
               </v-col>
             </v-col>
@@ -68,11 +72,22 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   name: 'SurveyBox',
   props: {
     surveyData: {
       type: Array
+    }
+  },
+  methods: {
+    diffDate(date1, date2) {
+      const d1 = moment(date1)
+      const d2 = moment(date2)
+      const dur = moment.duration(d2.diff(d1))
+      const days = dur.asDays()
+      return Math.round(days)
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <div class="asd" style="">
+      <!-- <div class="asd" style="">
         <img src="../assets/magnify.png" class="mag" />
         <input placeholder="검색어를 입력해주세요" class="search" />
-      </div>
+      </div> -->
     </div>
     <div>
       <v-tabs fixed-tabs color="#1cddb7">
@@ -69,7 +69,7 @@
       </div>
     </div>
     <div v-if="onebyone == true">
-      <div align="right">
+      <!-- <div align="right">
         <NuxtLink
           to="/Inquiry-Page"
           style="color: black; text-decoration-line: none"
@@ -87,7 +87,7 @@
             문의하기
           </v-btn>
         </NuxtLink>
-      </div>
+      </div> -->
 
       <div v-for="(a, i) in InquiryData" :key="i" class="onemain">
         <nuxt-link

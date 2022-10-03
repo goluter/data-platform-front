@@ -54,8 +54,8 @@
                       <v-row>
                         <NuxtLink
                           :to="{
-                            name: 'reports-id',
-                            params: { id: users[i].report.id },
+                            path: '/surveys/view',
+                            query: { id: users[i].id },
                           }"
                           style="text-decoration: none; color: initial"
                         >
@@ -119,13 +119,13 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('setPageTitle', '북마크한 리포트')
+    this.$store.commit('setPageTitle', '북마크한 설문')
   },
   methods: {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api.govey.app/users/v1/self/reports/bookmarks?' +
+          'https://api.govey.app/users/v1/self/surveys/bookmarks?' +
             'page=' +
             this.page +
             '&limit=' +

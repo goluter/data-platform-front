@@ -4,15 +4,15 @@
       <v-col cols="12">
         <div style="border-bottom: 1px solid #d3d3d3">
           <div class="noticetitle">
-            {{ users[$route.params.id].subject }}
+            {{ users.subject }}
           </div>
           <div class="date">
-            {{ users[$route.params.id].createdAt }}
+            {{ users.createdAt }}
           </div>
         </div>
         <div>
           <div class="noticemain">
-            {{ users[$route.params.id].content }}
+            {{ users.content }}
           </div>
         </div>
       </v-col>
@@ -41,15 +41,10 @@ export default {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/page?category=' +
-            this.category +
-            '&page=' +
-            this.page +
-            '&limit=' +
-            this.limit
+          'https://api-stage.govey.app/users/v1/posts/' + this.$route.params.id
         )
         .then((res) => {
-          this.users = res.data.content
+          this.users = res.data
         })
         .catch((err) => {
           console.log(err)
@@ -94,9 +89,7 @@ export default {
   color: #000;
   width: 200px;
 }
-.container {
-  padding: 0px;
-}
+
 .banner {
   background-color: #eee;
   height: 96px;
@@ -134,7 +127,6 @@ export default {
 }
 
 .date {
-  width: 100px;
   height: 14px;
   flex-grow: 0;
   margin: 13px 0px 19px 18px;
