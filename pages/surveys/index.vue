@@ -137,7 +137,9 @@
                                 class="reward-item-box pa-1 rounded-x1"
                               >
                                 <div v-if="reward.type === 'giftcon'">
-                                  <v-icon small color="red"> mdi-gift </v-icon>
+                                  <v-icon small color="red">
+                                    mdi-gift
+                                  </v-icon>
                                   <span>{{ reward.value }}</span>
                                 </div>
                                 <div v-if="reward.type === 'point'">
@@ -167,7 +169,7 @@
 import axios from 'govey/src/libs/http-client'
 
 export default {
-  data() {
+  data () {
     return {
       surveyDataArr: [],
       searchKey: '',
@@ -183,25 +185,25 @@ export default {
       endedSurveyData: [],
       rewardsFilter: ['기프티콘', '포인트'],
       sortOrder: [
-        {order: '최신순', sortKey: 'createdAt'},
-        {order: '추천순', sortKey: 'goods'},
-        {order: '마감순', sortKey: 'endAt'},
-        {order: '참여순', sortKey: 'answers'},
-      ],
+        { order: '최신순', sortKey: 'createdAt' },
+        { order: '추천순', sortKey: 'goods' },
+        { order: '마감순', sortKey: 'endAt' },
+        { order: '참여순', sortKey: 'answers' }
+      ]
     }
   },
   watch: {
-    returnedSearchValue(newD, oldD) {
+    returnedSearchValue (newD, oldD) {
       this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
     },
-    returnedSortKey(newD, oldD) {
+    returnedSortKey (newD, oldD) {
       this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
-    },
+    }
   },
-  created() {
+  created () {
     this.fetchData(0, 10)
   },
-  mounted() {
+  mounted () {
     this.$store.commit('setPageTitle', '설문')
   },
   // computed: {
@@ -213,12 +215,12 @@ export default {
   //   }
   // },
   methods: {
-    fetchData(
-        page = 0,
-        limit = 10,
-        searchKey = false,
-        searchValue = false,
-        sortKey = false
+    fetchData (
+      page = 0,
+      limit = 10,
+      searchKey = false,
+      searchValue = false,
+      sortKey = false
     ) {
       let url = ''
       if (searchKey && searchValue) {
@@ -265,7 +267,7 @@ export default {
                 for (let i = 0; i < response.data.length; i++) {
                   const dic = {
                     type: response.data[i].type,
-                    value: response.data[i].value,
+                    value: response.data[i].value
                   }
                   rewardsData.push(dic)
                 }
@@ -274,7 +276,7 @@ export default {
               .catch((error) => {
                 console.log(error)
               })
-            const mix = Object.assign({}, survey, {rewards})
+            const mix = Object.assign({}, survey, { rewards })
             return mix
           })
         const data = await Promise.all(dataWithRewards)
@@ -299,13 +301,13 @@ export default {
           console.log(error)
         })
     },
-    search() {
+    search () {
       this.returnedSearchValue = this.searchValue
     },
-    sort() {
+    sort () {
       this.returnedSortKey = this.sortKey
-    },
-  },
+    }
+  }
 }
 </script>
 
