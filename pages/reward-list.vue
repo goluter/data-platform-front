@@ -28,6 +28,7 @@ export default {
       page :0,
       limit :10,
       type:"업적",
+      category:"포인트",
       reward:[]
     }
   },
@@ -35,17 +36,19 @@ export default {
     this.$store.commit('setPageTitle', ' 업적')
   },
   created(){
-    this.fetchData(this.page,this.limit,this.type)
+    this.fetchData(this.page,this.limit,this.type,this.category)
   },
   methods:{
-    fetchData(page,limit,type){
+    fetchData(page,limit,type,catagory){
         axios.get(
             'https://api.govey.app/users/v1/rewards/page?page='+
             this.page +
             '&limit=' +
             this.limit +
             "&type=" +
-            this.type
+            this.type +
+            "&category="+
+            this.category
         )
         .then((res) =>{
             this.reward = res.data.content
