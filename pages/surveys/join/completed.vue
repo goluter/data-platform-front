@@ -3,7 +3,7 @@
     <div class="green-box rounded-t-lg" />
     <div class="title-box rounded-b-lg">
       <div class="pa-5">
-        <b>상명대 대학생 설문조사</b>
+        <b>설문 응답 완료!</b>
       </div>
     </div>
     <div class="pt-5 pl-3">소중한 의견 정말 감사드립니다!</div>
@@ -48,10 +48,12 @@ export default {
 }
 .response-box {
   background-color: #68c9ff;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   height: 60px;
   font-size: 20px;
-  width: 95%;
+  width: 100%;
 }
 </style>
