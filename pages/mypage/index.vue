@@ -171,6 +171,8 @@ export default {
           item: [
 
             { title: '내 포인트', to: '/point-list/' },
+            { title: '내 칭호', to: '/mypage/my-title-list/' },
+            { title: '내 업적', to: '/mypage/my-reward-list/' },
             { title: '구매내역', to: '' }
           ]
 
