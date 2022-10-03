@@ -60,7 +60,7 @@
             <v-tab-item>
               <v-container class="pa-0">
                 <v-row class="ma-0" justify="end" style="height: 60px">
-                  <v-col cols="4">
+                  <v-col cols="4" md="2">
                     <v-select
                       v-model="sortKey"
                       :items="sortOrder"
