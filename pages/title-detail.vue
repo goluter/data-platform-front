@@ -27,7 +27,7 @@
           </v-col>
         </v-row>
       </v-container>
-    <hr>
+    
     <div class="pt-4 pl-4">
       <b>획득 유저</b>
     </div>
