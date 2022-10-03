@@ -284,6 +284,9 @@ export default {
   mounted () {
     this.$store.commit('setPageTitle', '설문')
   },
+  watch: {
+    '$route.params': 'functionToRunWhenParamsChange'
+  },
   methods: {
     fetchData (page = 0, limit = 10, searchKey = false, searchValue = false, sortKey = false) {
       let url = ''
@@ -338,11 +341,9 @@ export default {
     },
     search (searchValue) {
       this.$router.push({ path: '/surveys/', query: { searchKey: 'subject', searchValue } }).catch(() => {})
-      this.$router.replace(this.$router.currentRoute.fullPath)
     },
     sort (sortKey) {
       this.$router.push({ path: '/surveys/', query: { sortKey } }).catch(() => {})
-      this.$router.replace(this.$router.currentRoute.fullPath)
     }
   }
 }
