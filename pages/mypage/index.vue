@@ -136,7 +136,7 @@ export default {
         {
           subheader: '보상',
           item: [
-            { title: '내 포인트', to: '/point/' },
+            { title: '내 포인트', to: '/point-list/' },
             { title: '구매내역', to: '' }
           ]
         },
