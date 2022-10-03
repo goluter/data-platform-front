@@ -10,13 +10,55 @@
             <b>{{reward.name}}</b>
         </div>
     </div>
-    <div class="d-flex justify-center pt-5">
+    <div class="d-flex justify-center pt-5 pb-8">
         <div>
             <b>{{reward.requirements}}</b>
         </div>
     </div>
-
     <hr>
+    <div class="pt-4 pl-4">
+      <b>획득 유저</b>
+    </div>
+    <div>
+      <v-tabs fixed-tabs >
+        <v-tab
+         @click="
+          Tab1 = true
+          Tab2 = false">
+          <b>최근획득</b>
+        </v-tab>
+        <v-tab
+          @click="
+          Tab1 = false
+          Tab2 = true">
+          <b>누적</b>
+        </v-tab>
+      </v-tabs>
+    </div>
+    <div v-if="Tab1 == true">
+      <div
+      v-for="(a, i) in list"
+      :key="a"
+      
+      class="contents"
+    >
+      <img class="profileimg2" src="../assets/man.png" align="middle" />
+      <span>{{ list[i].user.nickname }}</span>
+      <div class="point2">{{ list[i].createdAt | yyyyMMdd }} </div>
+    </div>
+    </div>
+    <div v-if="Tab2 == true">
+      <div
+      v-for="(a, i) in list"
+      :key="a"
+      
+      class="contents"
+    >
+      <img class="profileimg2" src="../assets/man.png" align="middle" />
+      <span>{{ list[i].user.nickname }}</span>
+      <div class="point2">{{ list[i].createdAt | yyyyMMdd }} </div>
+    </div>
+    </div>
 </div>
 
 
@@ -40,15 +82,24 @@ export default {
     this.fetchData(this.$route.query.id)
   },
    methods: {
-    fetchData (id) {
-      axios.get(
+    fetchData (id){
+      axios
+      .all([
+        axios.get(
         'https://api.govey.app/users/v1/rewards/'+
-        id 
-          
+        id  
+      ),
+        axios.get(
+        'https://api.govey.app/users/v1/rewards/'+
+        id +
+        '/users?page=0&limit=20&isDesc=true' 
+      ),
+      ])
+      .then(axios.spread((res1,res2) =>{
+        this.reward = res1.data
+        this.list = res2.data.content
+        })
       )
-      .then((res) => {
-        this.reward = res.data
-      })
       .catch((err) =>{
         console.log(err)
       })

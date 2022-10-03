@@ -7,16 +7,70 @@
     </div>
     <div class="d-flex justify-center pt-5">
         <div>
-            <b>{{reward.name}}</b>
+            <b>{{title.name}}</b>
         </div>
     </div>
-    <div class="d-flex justify-center pt-5">
+    <div class="d-flex justify-center pt-5 pb-8">
         <div>
-            <b>{{reward.requirements}}</b>
+            <b>{{title.requirements}}</b>
         </div>
     </div>
-
+    <v-container>
+        <v-row>
+          <v-col
+            class="d-flex justify-center"
+            cols="12"
+            style="background-color: #1a9efe; color:white;"
+            @click ="acbtn"
+          >
+              <b style="color: white">획득하기</b>
+          </v-col>
+        </v-row>
+      </v-container>
     <hr>
+    <div class="pt-4 pl-4">
+      <b>획득 유저</b>
+    </div>
+    <div>
+      <v-tabs fixed-tabs >
+        <v-tab
+         @click="
+          Tab1 = true
+          Tab2 = false">
+          <b>최근획득</b>
+        </v-tab>
+        <v-tab
+          @click="
+          Tab1 = false
+          Tab2 = true">
+          <b>누적</b>
+        </v-tab>
+      </v-tabs>
+    </div>
+    <div v-if="Tab1 == true">
+      <div
+      v-for="(a, i) in list"
+      :key="a"
+      
+      class="contents"
+    >
+      <img class="profileimg2" src="../assets/man.png" align="middle" />
+      <span>{{ list[i].user.nickname }}</span>
+      <div class="point2">{{ list[i].createdAt | yyyyMMdd }} </div>
+    </div>
+    </div>
+    <div v-if="Tab2 == true">
+      <div
+      v-for="(a, i) in list"
+      :key="a"
+      
+      class="contents"
+    >
+      <img class="profileimg2" src="../assets/man.png" align="middle" />
+      <span>{{ list[i].user.nickname }}</span>
+      <div class="point2">{{ list[i].createdAt | yyyyMMdd }} </div>
+    </div>
+    </div>
 </div>
 
 
@@ -30,7 +84,10 @@ export default {
   layout: 'default',
   data() {
     return {
-      reward:[]
+      title:[],
+      list:[],
+      Tab1:true,
+      Tab2:false
     }
   },
   mounted() {
@@ -38,22 +95,74 @@ export default {
   },
   created(){
     this.fetchData(this.$route.query.id)
+    
   },
    methods: {
-    fetchData (id) {
-      axios.get(
+    fetchData (id){
+      axios
+      .all([
+        axios.get(
         'https://api.govey.app/users/v1/rewards/'+
-        id 
-          
+        id  
+      ),
+        axios.get(
+        'https://api.govey.app/users/v1/rewards/'+
+        id +
+        '/users?page=0&limit=20&isDesc=true' 
+      ),
+      ])
+      .then(axios.spread((res1,res2) =>{
+        this.title = res1.data
+        this.list = res2.data.content
+        })
       )
-      .then((res) => {
-        this.reward = res.data
-      })
       .catch((err) =>{
         console.log(err)
       })
+    },  
+   
+
+    acbtn(event){
+      axios.post(
+        'https://api.govey.app/users/v1/rewards/'+
+        this.reward.id +
+        '/users/'
+      )
+      .then((res) => {
+        alert("획득하셨습니다.")
+      })
+      .catch((err) =>{
+        alert("이미 획득하셨습니다.")
+      })
     }
-  }
+  },
+  filters : {  
+        
+	yyyyMMdd : function(value){ 
+          
+          if(value == '') return '';
+      
+          
+          var js_date = new Date(value);
+
+          
+          var year = js_date.getFullYear();
+          var month = js_date.getMonth() + 1;
+          var day = js_date.getDate();
+
+          
+          if(month < 10){
+          	month = '0' + month;
+          }
+
+          if(day < 10){
+          	day = '0' + day;
+          }
+
+          
+          return year + '-' + month + '-' + day;
+	}
+}
 }
 </script>
 
@@ -92,6 +201,11 @@ export default {
 .profileimg {
   width: 24px;
   height: 24px;
+  vertical-align: middle;
+}
+.profileimg2 {
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
 }
 .contents {
