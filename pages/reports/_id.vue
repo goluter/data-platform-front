@@ -28,7 +28,7 @@
                 mdi-bookmark-outline
               </v-icon>
             </v-btn>
-            <v-menu offset-y>
+            <!-- <v-menu offset-y>
               <template #activator="{ on, attrs }">
                 <v-btn icon small v-bind="attrs" v-on="on">
                   <v-icon>mdi-dots-vertical</v-icon>
@@ -39,7 +39,7 @@
                   <v-list-item-title>삭제</v-list-item-title>
                 </v-list-item>
               </v-list>
-            </v-menu>
+            </v-menu> -->
           </div>
         </v-app-bar>
       </v-col>
@@ -224,6 +224,7 @@
 import axios from 'govey/src/libs/http-client'
 import Report from '../../layouts/report.vue'
 import SurveyCard from '../../components/SurveyCard.vue'
+import { isLogin } from 'govey/src/libs/auth/index.js'
 
 export default {
   components: { SurveyCard, Report },
@@ -242,6 +243,7 @@ export default {
       type: null,
     }
   },
+
   created() {
     this.fetchData(this.pageNum)
   },
@@ -258,18 +260,23 @@ export default {
     },
     bookmark1() {
       const body = {}
-      axios
-        .post('/users/v1/reports/' + this.id + '/bookmark', body)
-        .then((res) => {
-          console.log('success')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => {
-          alert('북마크에 추가되었습니다')
-        })
+      if (!isLogin()) {
+        alert('로그인 후 이용하세요')
+      } else {
+        axios
+          .post('/users/v1/reports/' + this.id + '/bookmark', body)
+          .then((res) => {
+            console.log('success')
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+          .finally(() => {
+            alert('북마크에 추가되었습니다')
+          })
+      }
     },
+
     back() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
