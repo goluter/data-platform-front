@@ -63,7 +63,9 @@
                         {{ mysurveydata[i].subject }}
                       </span>
                       <span class="survey-left-time">
-                        {{ mysurveydata[i].endAt }}에 종료
+                        {{
+                          mysurveydata[i].endAt | moment('YYYY-MM-DD hh:mm')
+                        }}에 종료
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
@@ -109,7 +111,10 @@
                         {{ partisurveydata[i].survey.subject }}
                       </span>
                       <span class="survey-left-time">
-                        {{ partisurveydata[i].survey.endAt }}에 종료
+                        {{
+                          partisurveydata[i].survey.endAt
+                            | moment('YYYY-MM-DD hh:mm')
+                        }}에 종료
                       </span>
                       <div class="survey-count-tags">
                         <span class="survey-count">
@@ -156,7 +161,9 @@
 import axios from 'govey/src/libs/http-client'
 import { signOut } from 'govey/src/libs/auth'
 import SurveyCard from '../../components/SurveyCard.vue'
-
+import vueMoment from 'vue-moment'
+import Vue from 'vue'
+Vue.use(vueMoment)
 export default {
   name: 'MyPage',
   components: { SurveyCard },
