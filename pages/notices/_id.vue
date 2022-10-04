@@ -10,6 +10,9 @@
             {{ users.createdAt | moment('YYYY-MM-DD hh:mm') }}
           </div>
         </div>
+        <div v-if="users.imageUrl != null">
+          <img style="width: 100%; padding: 8px" :src="users.imageUrl" />
+        </div>
         <div>
           <div class="noticemain">
             {{ users.content }}

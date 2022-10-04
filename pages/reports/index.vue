@@ -47,7 +47,14 @@
           <v-col cols="12">
             <v-row>
               <v-col cols="auto">
-                <div class="thumbnail" />
+                <div class="thumbnail">
+                  <div v-if="users.imageUrl != null">
+                    <img
+                      style="width: 100%; padding: 8px"
+                      :src="users.imageUrl"
+                    />
+                  </div>
+                </div>
               </v-col>
               <v-col class="grow" cols="auto">
                 <v-row>
@@ -128,7 +135,7 @@ export default {
 .thumbnail {
   width: 60px;
   height: 60px;
-  background-color: #eeeeee;
+
   border-radius: 10px;
 }
 .report-title {

@@ -8,6 +8,9 @@
         {{ users.createdAt | moment('YYYY-MM-DD hh:mm') }}
       </div>
     </div>
+    <div v-if="users.imageUrl != null">
+      <img style="width: 100%; padding: 8px" :src="users.imageUrl" />
+    </div>
     <div>
       <div class="noticemain">
         {{ users.content }}
@@ -47,6 +50,7 @@ export default {
         )
         .then((res) => {
           this.users = res.data
+          console.log(this.users)
         })
         .catch((err) => {
           console.log(err)
@@ -59,7 +63,7 @@ export default {
 <style scoped>
 .noticemain {
   height: 16px;
-  margin: 32px 18px 0px 18px;
+  margin: 0px 18px 0px 18px;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;

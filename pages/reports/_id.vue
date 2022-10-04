@@ -63,7 +63,10 @@
               <p class="report-title">
                 <b>{{ users.subject }}</b>
               </p>
-              <span class="report-created">작성일: {{ users.createdAt }}</span>
+              <span class="report-created"
+                >작성일:
+                {{ users.createdAt | moment('YYYY-MM-DD hh:mm') }}</span
+              >
             </v-col>
           </v-row>
           <v-row>
@@ -111,7 +114,12 @@
           <v-col cols="12">
             <v-row>
               <v-col class="d-flex pr-0" cols="auto">
-                <div class="survey-img" />
+                <div v-if="users.survey.imageUrl != null" class="survey-img">
+                  <img
+                    style="width: 100%; padding: 8px"
+                    :src="users.survey.imageUrl"
+                  />
+                </div>
               </v-col>
               <v-col class="d-flex" cols="auto" style="align-self: center">
                 <v-row>
@@ -123,8 +131,9 @@
                     </v-row>
                     <v-row>
                       <v-col class="py-0" cols="12" style="font-size: 10px">
-                        {{ users.survey.startAt }} ~
-                        {{ users.survey.endAt }}
+                        {{ users.survey.startAt | moment('YYYY-MM-DD hh:mm') }}
+                        ~
+                        {{ users.survey.endAt | moment('YYYY-MM-DD hh:mm') }}
                       </v-col>
                     </v-row>
                     <v-row>
@@ -224,7 +233,9 @@
 import axios from 'govey/src/libs/http-client'
 import Report from '../../layouts/report.vue'
 import SurveyCard from '../../components/SurveyCard.vue'
-
+import vueMoment from 'vue-moment'
+import Vue from 'vue'
+Vue.use(vueMoment)
 export default {
   components: { SurveyCard, Report },
   layout: 'empty',
