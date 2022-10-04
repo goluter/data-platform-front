@@ -114,11 +114,8 @@
           <v-col cols="12">
             <v-row>
               <v-col class="d-flex pr-0" cols="auto">
-                <div v-if="users.survey.imageUrl != null" class="survey-img">
-                  <img
-                    style="width: 100%; padding: 8px"
-                    :src="users.survey.imageUrl"
-                  />
+                <div v-if="users.survey.imageUrl != null">
+                  <img class="survey-img" :src="users.survey.imageUrl" />
                 </div>
               </v-col>
               <v-col class="d-flex" cols="auto" style="align-self: center">
