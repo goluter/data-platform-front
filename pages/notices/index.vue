@@ -7,6 +7,13 @@
             고베이 공지사항을 확인해보세요!
           </div>
         </div>
+        <div
+          v-if="!users || users.length === 0"
+          style="height: 150px"
+          class="ma-2 pt-3 d-flex justify-center align-center"
+        >
+          <p>아직 데이터가 없습니다!</p>
+        </div>
         <div v-for="(a, i) in users" v-if="users" :key="i" class="contents">
           <NuxtLink
             :to="{ name: 'notices-id', params: { id: users[i].id } }"
@@ -29,24 +36,24 @@
 import axios from 'govey/src/libs/http-client'
 export default {
   name: 'Notice',
-  data () {
+  data() {
     return {
       num: 0,
       category: '공지',
       page: 0,
       limit: 10,
       users: null,
-      linknum: 0
+      linknum: 0,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '공지사항')
   },
-  created () {
+  created() {
     this.fetchData(this.pageNum)
   },
   methods: {
-    fetchData (category, page, limit) {
+    fetchData(category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/page?category=' +
@@ -62,8 +69,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -78,6 +78,13 @@
                 </NuxtLink>
               </div>
             </div>
+            <div
+              v-if="!mysurveydata || mysurveydata.length === 0"
+              style="height: 150px"
+              class="ma-2 pt-3 d-flex justify-center align-center"
+            >
+              <p>아직 데이터가 없습니다!</p>
+            </div>
           </v-tab-item>
 
           <v-tab-item class="pa-2 pt-0">
@@ -116,6 +123,13 @@
                   </v-row>
                 </NuxtLink>
               </div>
+            </div>
+            <div
+              v-if="!partisurveydata || partisurveydata.length === 0"
+              style="height: 150px"
+              class="ma-2 pt-3 d-flex justify-center align-center"
+            >
+              <p>아직 데이터가 없습니다!</p>
             </div>
           </v-tab-item>
           <v-tab-item>
