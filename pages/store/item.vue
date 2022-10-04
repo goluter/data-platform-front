@@ -14,7 +14,7 @@
       <v-container>
         <v-row>
           <v-col class="pa-0" cols="12">
-            <img :src="item.imageUrl" width="100%" />
+            <img :src="item.imageUrl" width="100%" class="imgcheck" />
           </v-col>
         </v-row>
         <v-row style="background-color: white">
@@ -118,4 +118,8 @@ export default {
   white-space: pre-wrap;
   font-size: 12px;
 }
+/* .imgcheck{
+  max-width: 300px;
+} */
+
 </style>

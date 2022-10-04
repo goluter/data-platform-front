@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-container>
-      <v-row>
+      <!-- <v-row>
         <v-col />
         <v-col class="ml-auto" cols="auto">
           <span class="purchase-history">구매내역</span>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row>
         <v-col
           class="d-flex"
