@@ -3,7 +3,7 @@
     <v-row style="height: 95px; background-color: #f8f8f8">
       <v-col cols="12" align-self="center">
         <v-icon x-large left> mdi-account-circle </v-icon>
-        <span class="username">{{ userinfo.username }}</span>
+        <span class="username">{{ userinfo.nickname }}</span>
         <p style="margin-top: 8px; font-size: 14px">
           남은 포인트: {{ userinfo.point }}
         </p>
@@ -104,7 +104,12 @@
                 >
                   <v-row>
                     <v-col class="survey-img-box col-3">
-                      <div class="survey-img" />
+                      <div v-if="partisurveydata[i].survey.imageUrl != null">
+                        <img
+                          style="width: 100%; padding: 8px"
+                          :src="partisurveydata[i].survey.imageUrl"
+                        />
+                      </div>
                     </v-col>
                     <v-col class="survey-content col-9">
                       <span class="survey-title">

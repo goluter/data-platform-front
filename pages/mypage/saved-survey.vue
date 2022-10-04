@@ -43,8 +43,8 @@
           <v-row>
             <NuxtLink
               :to="{
-                name: 'reports-id',
-                params: { id: users[i].report.id },
+                name: 'surveys-id',
+                params: { id: users[i].survey.id },
               }"
               style="text-decoration: none; color: initial"
             >
@@ -66,7 +66,7 @@
                           style="text-decoration: none; color: initial"
                         >
                           <v-col class="report-title" cols="auto">
-                            {{ users[i].report.subject }}
+                            {{ users[i].survey.subject }}
                           </v-col>
                         </NuxtLink>
                         <v-col class="ml-auto py-0 pt-2" cols="auto">
@@ -90,7 +90,7 @@
                     <v-col class="report-stat d-flex" cols="12">
                       <div class="report-likes mr-2">
                         <v-icon small> mdi-thumb-up </v-icon>
-                        {{ users[i].report.goods }}
+                        {{ users[i].survey.goods }}
                       </div>
                       <!-- <div class="report-comments">
                         <v-icon small> mdi-comment-processing </v-icon>
@@ -98,7 +98,7 @@
                       </div> -->
                       <div class="report-surveyor ml-auto">
                         <v-icon small> mdi-account-circle </v-icon>
-                        {{ users[i].report.author }}
+                        {{ users[i].survey.author }}
                       </div>
                     </v-col>
                   </v-row>
@@ -144,6 +144,8 @@ export default {
         .then((res) => {
           this.users = res.data.content
           this.all = res.data
+          console.log(this.users)
+          console.log(this.all)
         })
         .catch((err) => {
           console.log(err)
