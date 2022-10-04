@@ -35,12 +35,10 @@
               </v-card-text>
             </v-card>
           </v-menu>
+          <v-btn icon small @click="checkL">
+            <v-icon>mdi-bookmark-outline</v-icon>
+          </v-btn>
           <v-dialog v-model="bookmark" max-width="600px">
-            <template #activator="{ on, attrs }">
-              <v-btn icon small v-bind="attrs" v-on="on">
-                <v-icon>mdi-bookmark-outline</v-icon>
-              </v-btn>
-            </template>
             <v-card style="border-radius: 10px">
               <div class="d-flex">
                 <span class="bookmark-title ma-auto my-3">북마크</span>
@@ -65,12 +63,7 @@
                           저장
                         </v-btn>
                       </div>
-                      <div v-if="saved || err" class="pt-3" style="display: flex; justify-content: flex-end">
-                        <div v-if="saved">
-                          <v-icon color="#30cdae">
-                            mdi-check
-                          </v-icon> 저장되었습니다!
-                        </div>
+                      <div v-if="err" class="pt-3" style="display: flex; justify-content: flex-end">
                         <div v-if="err !== ''">
                           <v-icon color="red">
                             mdi-close
@@ -116,6 +109,7 @@
 <script>
 import axios from 'govey/src/libs/http-client'
 import SurveyCardSingle from '../components/SurveyCardSingle.vue'
+import { isLogin } from '../src/libs/auth/index.js'
 
 export default {
   components: { SurveyCardSingle },
@@ -136,6 +130,8 @@ export default {
       saved: false,
       err: ''
     }
+  },
+  computed: {
   },
   methods: {
     back () {
@@ -163,7 +159,7 @@ export default {
           priority: 0
         }
       ).then(() => {
-        this.saved = true
+        this.bookmark = false
       }).catch((err) => {
         if (err.response) {
           this.err = err.response.data.message
@@ -171,6 +167,13 @@ export default {
       }).finally(() => {
         this.saved = false
       })
+    },
+    checkL () {
+      if (isLogin()) {
+        this.bookmark = true
+      } else {
+        alert('북마크하려면 로그인이 필요합니다.')
+      }
     }
   }
 }
