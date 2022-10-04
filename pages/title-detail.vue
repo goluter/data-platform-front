@@ -76,6 +76,7 @@
 
 <script>
 import axios from 'govey/src/libs/http-client'
+import { isLogin } from 'govey/src/libs/auth'
 
 export default {
   name: 'EventList',
@@ -149,7 +150,8 @@ export default {
     },
     
     acbtn(event) {
-      axios
+      if(isLogin()){
+        axios
         .post('/users/v1/rewards/' + this.$route.query.id + '/users?id=' + this.userinfo.id)
         .then((res) => {
           alert('획득하셨습니다.')
@@ -157,6 +159,10 @@ export default {
         .catch((err) => {
           alert('이미 획득하셨습니다.')
         })
+        }
+      else{
+        alert('획득하시려면 로그인을 하셔야 합니다')
+      }
     },
   },
 }

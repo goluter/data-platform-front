@@ -14,8 +14,13 @@
           style="height: 65px; background-color: #d7f5ff"
         >
           <div class="guide">
-            <span>적립 방법 알아보기</span>
-            <v-icon> mdi-chevron-right </v-icon>
+            <NuxtLink
+              to="/service-center/"
+              style="text-decoration: none; color: initial"
+            >
+              <span>적립 방법 알아보기</span>
+              <v-icon> mdi-chevron-right </v-icon>
+            </NuxtLink>
           </div>
         </v-col>
       </v-row>

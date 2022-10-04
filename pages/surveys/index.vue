@@ -17,65 +17,70 @@
           </template>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col class="py-0" cols="12">
-          <v-row class="my-0 py-2" style="background-color: #eeeeee">
-            <v-col
-              class=""
-              cols="12"
-              style="display: flex; align-items: center"
-            >
-              <v-row style="background-color: white">
-                <v-col class="" cols="4" md="2">
-                  <v-text-field
-                    v-model="searchValue"
-                    label="검색"
-                    single-line
-                    clearable
-                    outlined
-                    dense
-                    append-icon="mdi-magnify"
-                    style="height: 40px; border-radius: 45px"
-                    @click:append="search"
-                    @keyup.enter="search"
-                  />
-                </v-col>
-                <v-col cols="4" md="2">
-                  <v-select
-                    :items="rewardsFilter"
-                    label="보상 종류"
-                    single-line
-                    clearable
-                    outlined
-                    dense
-                    style="height: 40px; border-radius: 45px"
-                  />
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
+      <!--      <v-row>-->
+      <!--        <v-col class="py-0" cols="12">-->
+      <!--          <v-row class="my-0 py-2" style="background-color: #eeeeee">-->
+      <!--            <v-col-->
+      <!--              class=""-->
+      <!--              cols="12"-->
+      <!--              style="display: flex; align-items: center"-->
+      <!--            >-->
+      <!--              <v-row style="background-color: white">-->
+      <!--                <v-col class="" cols="4" md="2">-->
+      <!--                  <v-text-field-->
+      <!--                    v-model="searchValue"-->
+      <!--                    label="검색"-->
+      <!--                    single-line-->
+      <!--                    clearable-->
+      <!--                    outlined-->
+      <!--                    dense-->
+      <!--                    append-icon="mdi-magnify"-->
+      <!--                    style="height: 40px; border-radius: 45px"-->
+      <!--                    @click:append="search"-->
+      <!--                    @keyup.enter="search"-->
+      <!--                  />-->
+      <!--                </v-col>-->
+      <!--                <v-col cols="4" md="2">-->
+      <!--                  <v-select-->
+      <!--                    :items="rewardsFilter"-->
+      <!--                    label="보상 종류"-->
+      <!--                    single-line-->
+      <!--                    clearable-->
+      <!--                    outlined-->
+      <!--                    dense-->
+      <!--                    style="height: 40px; border-radius: 45px"-->
+      <!--                  />-->
+      <!--                </v-col>-->
+      <!--              </v-row>-->
+      <!--            </v-col>-->
+      <!--          </v-row>-->
+      <!--        </v-col>-->
+      <!--      </v-row>-->
+      <!--      <v-container class="pa-0">-->
+      <!--        <v-row class="pa-2 pr-0" justify="end" style="height: 60px">-->
+      <!--          <v-col class="pr-0 py-2" cols="4" md="2" lg="2" xl="2">-->
+      <!--            <v-select-->
+      <!--              v-model="sortKey"-->
+      <!--              :items="sortOrder"-->
+      <!--              item-text="order"-->
+      <!--              item-value="sortKey"-->
+      <!--              label="정렬"-->
+      <!--              solo-->
+      <!--              flat-->
+      <!--              dense-->
+      <!--              single-line-->
+      <!--              @change="sort"-->
+      <!--            />-->
+      <!--          </v-col>-->
+      <!--        </v-row>-->
+      <!--      </v-container>-->
+      <v-row v-if="surveyDataArr.length < 1">
+        <v-col cols="12" style="padding-top: 100px; display: flex; justify-content: center">
+          <v-progress-circular indeterminate :size="100" color="teal accent-3" />
         </v-col>
       </v-row>
-      <v-container class="pa-0">
-        <v-row class="pa-2 pr-0" justify="end" style="height: 60px">
-          <v-col class="pr-0 py-2" cols="4" md="2" lg="2" xl="2">
-            <v-select
-              v-model="sortKey"
-              :items="sortOrder"
-              item-text="order"
-              item-value="sortKey"
-              label="정렬"
-              solo
-              flat
-              dense
-              single-line
-              @change="sort"
-            />
-          </v-col>
-        </v-row>
-      </v-container>
       <v-row>
-        <v-col class="pa-0">
+        <v-col class="pa-0 pt-3">
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="(data, i) in surveyDataArr" :key="i">
               <v-container class="mb-5">
@@ -90,7 +95,9 @@
                       <v-col class="pb-0" cols="12">
                         <v-row>
                           <v-col cols="auto" class="pr-1">
-                            <div class="thumbnail" />
+                            <div class="thumbnail">
+                              <img v-if="item.imageUrl" :src="item.imageUrl" width="80" height="80" style="border-radius: 10px">
+                            </div>
                           </v-col>
                           <v-col class="grow" cols="auto">
                             <v-row>
@@ -193,12 +200,6 @@ export default {
     }
   },
   watch: {
-    returnedSearchValue (newD, oldD) {
-      this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
-    },
-    returnedSortKey (newD, oldD) {
-      this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
-    }
   },
   created () {
     this.fetchData(0, 10)

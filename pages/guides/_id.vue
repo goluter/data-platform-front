@@ -5,22 +5,23 @@
         {{ users[$route.params.id].subject }}
       </div>
       <div class="date">
-        {{ users[$route.params.id].createdAt }}
+        {{ users[$route.params.id].createdAt | moment('YYYY-MM-DD hh:mm') }}
       </div>
     </div>
     <div v-if="users.imageUrl != null">
       <img style="width: 100%; padding: 8px" :src="users.imageUrl" />
     </div>
     <div>
-      <div class="noticemain">
-        {{ users[$route.params.id].content }}
-      </div>
+      <div class="noticemain" v-html="users[$route.params.id].content" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'govey/src/libs/http-client'
+import vueMoment from 'vue-moment'
+import Vue from 'vue'
+Vue.use(vueMoment)
 
 export default {
   name: 'Guide',
@@ -45,7 +46,7 @@ export default {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/page?category=' +
+          '/users/v1/posts/page?category=' +
             this.category +
             '&page=' +
             this.page +

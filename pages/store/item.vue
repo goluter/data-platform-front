@@ -1,8 +1,15 @@
 <template>
   <div class="wrapper">
+    <div
+      v-if="posting === true"
+      class="ma-2 pt-3 d-flex justify-center align-center"
+    >
+      <v-progress-circular :size="50" color="primary" indeterminate />
+    </div>
     <v-container
       class="fill-height d-flex pa-0 align-content-space-between"
       style="background-color: #f0f0f0"
+      v-if="posting === false"
     >
       <v-container>
         <v-row>
@@ -56,11 +63,13 @@
 </template>
 <script>
 import axios from 'govey/src/libs/http-client'
+import { isLogin } from 'govey/src/libs/auth'
 
 export default {
   data() {
     return {
       item: {},
+      posting:true
     }
   },
   mounted() {
@@ -75,13 +84,19 @@ export default {
         .get('/users/v1/store-items/' + id)
         .then((res) => {
           this.item = res.data
+          this.posting = false
         })
         .catch((err) => {
           console.log(err)
         })
     },
     check(event) {
-      alert('포인트가 부족합니다.')
+      if(isLogin()){
+        alert('포인트가 부족합니다.')
+      }
+      else{
+        alert('구매하시려면 로그인이 필요합니다.')
+      }
     },
   },
 }

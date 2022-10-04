@@ -14,9 +14,7 @@
           <img style="width: 100%; padding: 8px" :src="users.imageUrl" />
         </div>
         <div>
-          <div class="noticemain">
-            {{ users.content }}
-          </div>
+          <div class="noticemain" v-html="users.content" />
         </div>
       </v-col>
     </v-row>
@@ -51,9 +49,7 @@ export default {
   methods: {
     fetchData(category, page, limit) {
       axios
-        .get(
-          'https://api-stage.govey.app/users/v1/posts/' + this.$route.params.id
-        )
+        .get('/users/v1/posts/' + this.$route.params.id)
         .then((res) => {
           this.users = res.data
         })
@@ -86,7 +82,7 @@ export default {
 }
 .noticetitle {
   flex-grow: 0;
-  margin: 24px 0px 0px 18px;
+  margin: 12px 0px 0px 18px;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -95,7 +91,6 @@ export default {
   letter-spacing: -0.7px;
   text-align: left;
   color: #000;
-  width: 200px;
 }
 
 .banner {
