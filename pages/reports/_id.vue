@@ -169,7 +169,7 @@
       </v-row>
       <v-row>
         <v-col class="py-5" col="12">
-          {{ users.content }}
+          <div v-html="users.content" />
         </v-col>
       </v-row>
       <v-row>
@@ -228,12 +228,12 @@
 
 <script>
 import axios from 'govey/src/libs/http-client'
-import Report from '../../layouts/report.vue'
-import SurveyCard from '../../components/SurveyCard.vue'
 import { isLogin } from 'govey/src/libs/auth/index.js'
 
 import vueMoment from 'vue-moment'
 import Vue from 'vue'
+import SurveyCard from '../../components/SurveyCard.vue'
+import Report from '../../layouts/report.vue'
 Vue.use(vueMoment)
 export default {
   components: { SurveyCard, Report },
