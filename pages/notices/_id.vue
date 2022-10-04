@@ -7,7 +7,7 @@
             {{ users.subject }}
           </div>
           <div class="date">
-            {{ users.createdAt }}
+            {{ users.createdAt | moment('YYYY-MM-DD hh:mm') }}
           </div>
         </div>
         <div>
@@ -22,26 +22,31 @@
 
 <script>
 import axios from 'govey/src/libs/http-client'
+
+import vueMoment from 'vue-moment'
+import Vue from 'vue'
+Vue.use(vueMoment)
+
 export default {
   name: 'Notice',
   layout: 'default',
-  data () {
+  data() {
     return {
       selectnum: 0,
       category: '공지',
       page: 0,
       limit: 10,
-      users: null
+      users: null,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '공지사항')
   },
-  created () {
+  created() {
     this.fetchData(this.pageNum)
   },
   methods: {
-    fetchData (category, page, limit) {
+    fetchData(category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/' + this.$route.params.id
@@ -52,8 +57,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
