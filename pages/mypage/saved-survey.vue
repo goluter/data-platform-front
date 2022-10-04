@@ -1,5 +1,5 @@
 <template>
-  <div v-if="users" class="wrapper">
+  <div v-if="users && all" class="wrapper">
     <!-- <v-container>
       <v-row style="padding: 10px 0; background-color: #eeeeee">
         <v-col cols="12">
@@ -31,6 +31,12 @@
     <v-container class="pa-0">
       <v-divider />
     </v-container>
+    <div
+      v-if="all.totalElements == 0"
+      style="text-align: center; padding: 10px"
+    >
+      북마크한 설문이 아직 없어요
+    </div>
     <v-container>
       <v-row v-for="(item, i) in users" :key="i">
         <v-col cols="12">
@@ -113,6 +119,7 @@ export default {
   data() {
     return {
       users: null,
+      all: null,
       page: 0,
       limit: 10,
       sort: ['최신순', '추천순', '댓글순'],
@@ -136,7 +143,7 @@ export default {
         )
         .then((res) => {
           this.users = res.data.content
-          console.log(this.users)
+          this.all = res.data
         })
         .catch((err) => {
           console.log(err)
