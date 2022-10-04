@@ -15,7 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [process.env.API_HOST === '' ? { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' } : { rel: 'icon', type: 'image/x-icon', href: '/favicon-stage.png' }]
+    link: [process.env.API_HOST === 'https://api.govey.app/' ? { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' } : { rel: 'icon', type: 'image/x-icon', href: '/favicon-stage.png' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
