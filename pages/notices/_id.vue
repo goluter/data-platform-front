@@ -52,7 +52,7 @@ export default {
     fetchData(category, page, limit) {
       axios
         .get(
-          'https://api-stage.govey.app/users/v1/posts/' + this.$route.params.id
+          '/users/v1/posts/' + this.$route.params.id
         )
         .then((res) => {
           this.users = res.data
