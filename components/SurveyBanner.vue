@@ -9,12 +9,14 @@
         sm="5"
         md="5"
       >
-        <NuxtLink :to="'/surveys/view?id=' + item.id">
-          <v-row class="survey-box rounded-xl elevation-3">
+        <NuxtLink class="survey-box rounded-xl elevation-3" :to="'/surveys/view?id=' + item.id">
+          <v-row class="">
             <v-col class="pl-2" cols="auto">
-              <div class="banner-img-box" />
+              <div class="banner-img-box">
+                <img v-if="item.imageUrl" :src="item.imageUrl" width="60" height="60" style="border-radius: 14px;">
+              </div>
             </v-col>
-            <v-col class="pl-0 pr-1 grow" cols="auto">
+            <v-col class="pl-0 pr-2 grow" cols="auto">
               <v-row class="banner-title">
                 <v-col class="" cols="12">
                   {{ item.subject }}
@@ -30,37 +32,36 @@
                 <v-col class="pt-0 pb-0" cols="auto">
                   {{ item.answers }}명 참여중!
                 </v-col>
-                <v-col class="ml-auto pt-0 pb-0" cols="auto">
-                    {{ item.tag }}
+                <v-col class="ml-auto pt-0 pb-0 banner-tags" cols="auto">
+                  {{ item.tag }}
                 </v-col>
               </v-row>
             </v-col>
           </v-row>
-          <v-row class="survey-box-bottom rounded-xl elevation-3">
-            <v-col />
-            <v-col />
+          <v-row class="rounded-xl elevation-3">
             <v-col
-              class="reward-box pl-2 pb-1 d-flex"
+              class="pl-2 d-flex"
               cols="12"
               style="align-items: flex-end"
             >
+              <v-icon>mdi-arrow-right-bottom</v-icon>
               <v-col
                 v-for="(reward, i) in item.rewards"
                 :key="i"
                 cols="auto"
-                class="reward-item-box pa-1 rounded-x1"
+                class="reward-item-box pa-1"
               >
-                <div v-if="reward.type === 'point'">
+                <div v-if="reward.type === 'point'" class="reward">
                   <v-icon small color="yellow darken-3">
                     mdi-circle-multiple
                   </v-icon>
-                  <span>{{ reward.value }}</span>
+                  <b>{{ reward.value.substring(0, 3) }}</b>
                 </div>
                 <div v-if="reward.type === 'giftcon'">
                   <v-icon small color="red">
                     mdi-gift
                   </v-icon>
-                  <span>{{ reward.value }}</span>
+                  <b>{{ reward.value.substring(0, 3) }}</b>
                 </div>
               </v-col>
             </v-col>
@@ -72,7 +73,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import moment from 'moment'
 
 export default {
   name: 'SurveyBox',
@@ -82,7 +83,7 @@ export default {
     }
   },
   methods: {
-    diffDate(date1, date2) {
+    diffDate (date1, date2) {
       const d1 = moment(date1)
       const d2 = moment(date2)
       const dur = moment.duration(d2.diff(d1))
@@ -130,19 +131,19 @@ export default {
   position: relative;
   flex-direction: column;
   justify-content: flex-end;
-  top: -45%;
   border: 1px solid;
   background-color: #494949;
   z-index: 0;
 }
-.reward-box {
-}
 .reward-item-box {
   display: inline;
   align-items: center;
-  margin: 0 7px 0 0;
   background-color: white;
   border-radius: 24px;
   font-size: 10px;
+}
+.reward {
+  display: flex;
+  align-items: center;
 }
 </style>

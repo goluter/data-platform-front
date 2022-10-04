@@ -149,10 +149,12 @@ export default {
           const cr = response.data
           const colors = [
             { color: 'indigo accent-4' },
-            { color: '#ed2121' },
-            { color: 'pink accent-2' }
+            { color: 'red darken-2' },
+            { color: 'pink accent-2' },
+            { color: 'purple darken-1' },
+            { color: 'light-green darken-2' }
           ]
-          const slicedCr = cr.slice(0, 3).map((card, i) => {
+          const slicedCr = cr.slice(0, 5).map((card, i) => {
             const mix = Object.assign({}, card, colors[i])
             return mix
           })
