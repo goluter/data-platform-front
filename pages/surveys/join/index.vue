@@ -25,6 +25,9 @@
             <span v-if="!!poll.mandatory" class="ml-3 pb-3 hide-box">*</span>
           </h3>
         </div>
+        <h6 v-if="!!poll.content" style="margin: 0px 12px">
+          {{ poll.content }}
+        </h6>
         <v-text-field
           :ref="poll.answerValue"
           v-model="poll.answerValue"
@@ -93,17 +96,15 @@
 
 <script>
 import axios from 'govey/src/libs/http-client'
+import { isLogin } from 'govey/src/libs/auth'
 
 export default {
   name: 'SurveyJoinPage',
   layout: 'empty',
   data() {
     return {
-      title: [
-        '상명대 축제에 싸이 오는 것에 찬성하시나요?',
-        '축제가 오후 6시에 시작하는 것에 찬성하시나요?',
-      ],
-      answer: ['찬성', '반대'],
+      title: [],
+      answer: [],
       check1: null,
       check2: null,
       surveyData: undefined,
@@ -155,8 +156,27 @@ export default {
 
       this.isPosting = true
       Promise.all(answeredPolls)
-        .then((r) => {
-          this.$router.replace('/surveys/join/completed')
+        .then(async (r) => {
+          if (isLogin()) {
+            axios
+              .post('/users/v1/surveys/' + this.surveyData.id + '/users', {})
+              .catch((e) => {
+                if (e?.response?.data.message) {
+                  if (e?.response?.data.message === '이미 참여하셨습니다.') {
+                    alert('기존에 제출하셨던 답변을 업데이트했어요!')
+                  }
+                } else {
+                  alert(
+                    '알 수 없는 에러가 발생했습니다. 관리자에게 문의해주세요.'
+                  )
+                }
+              })
+              .finally(() => {
+                this.$router.replace('/surveys/join/completed')
+              })
+          } else {
+            this.$router.replace('/surveys/join/completed')
+          }
         })
         .catch((e) => {})
         .finally(() => {

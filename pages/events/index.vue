@@ -36,6 +36,13 @@
             마감
           </v-tab>
         </v-tabs> -->
+        <div
+          v-if="!users || users.length === 0"
+          style="height: 150px"
+          class="ma-2 pt-3 d-flex justify-center align-center"
+        >
+          <p>아직 데이터가 없습니다!</p>
+        </div>
         <div v-for="(a, i) in users" v-if="users" :key="a" class="contents">
           <NuxtLink
             :to="{ name: 'events-id', params: { id: users[i].id } }"
@@ -96,7 +103,7 @@ import axios from 'govey/src/libs/http-client'
 export default {
   name: 'EventList',
   layout: 'default',
-  data () {
+  data() {
     return {
       num: 0,
       planned: true,
@@ -107,17 +114,17 @@ export default {
       totalpage: null,
       category: '이벤트',
       page: 0,
-      limit: 10
+      limit: 10,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '이벤트')
   },
-  created () {
+  created() {
     this.fetchData(this.pageNum)
   },
   methods: {
-    fetchData (category, page, limit) {
+    fetchData(category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/page?category=' +
@@ -133,8 +140,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

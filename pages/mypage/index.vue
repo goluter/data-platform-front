@@ -3,9 +3,10 @@
     <v-row style="height: 95px; background-color: #f8f8f8">
       <v-col cols="12" align-self="center">
         <v-icon x-large left> mdi-account-circle </v-icon>
-        <span class="username"
-          >{{ userinfo.username }}<br />남은 포인트: {{ userinfo.point }}P</span
-        >
+        <span class="username">{{ userinfo.username }}</span>
+        <p style="margin-top: 8px; font-size: 14px">
+          남은 포인트: {{ userinfo.point }}
+        </p>
       </v-col>
     </v-row>
     <v-row>
@@ -30,6 +31,13 @@
                 </div>
                 <v-divider />
               </h5>
+            </div>
+            <div
+              v-if="!timelinedata || timelinedata.length === 0"
+              style="height: 150px"
+              class="ma-2 pt-3 d-flex justify-center align-center"
+            >
+              <p>아직 데이터가 없습니다!</p>
             </div>
           </v-tab-item>
 
@@ -70,6 +78,13 @@
                 </NuxtLink>
               </div>
             </div>
+            <div
+              v-if="!mysurveydata || mysurveydata.length === 0"
+              style="height: 150px"
+              class="ma-2 pt-3 d-flex justify-center align-center"
+            >
+              <p>아직 데이터가 없습니다!</p>
+            </div>
           </v-tab-item>
 
           <v-tab-item class="pa-2 pt-0">
@@ -108,6 +123,13 @@
                   </v-row>
                 </NuxtLink>
               </div>
+            </div>
+            <div
+              v-if="!partisurveydata || partisurveydata.length === 0"
+              style="height: 150px"
+              class="ma-2 pt-3 d-flex justify-center align-center"
+            >
+              <p>아직 데이터가 없습니다!</p>
             </div>
           </v-tab-item>
           <v-tab-item>
@@ -165,7 +187,6 @@ export default {
             { title: '내 리포트', to: '/mypage/reports/' },
             { title: '북마크한 리포트', to: '/mypage/saved-reports/' },
             { title: '북마크한 설문', to: '/mypage/saved-survey' },
-            { title: '다운로드 기록', to: '/mypage/download/' },
           ],
         },
         {

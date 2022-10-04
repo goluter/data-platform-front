@@ -29,6 +29,13 @@
       </v-row>
     </v-container> -->
     <v-divider />
+    <div
+      v-if="!users || users.length === 0"
+      style="height: 150px"
+      class="ma-2 pt-3 d-flex justify-center align-center"
+    >
+      <p>아직 데이터가 없습니다!</p>
+    </div>
     <v-container v-if="users">
       <NuxtLink
         v-for="(item, i) in users"
