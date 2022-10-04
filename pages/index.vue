@@ -1,5 +1,5 @@
 <template>
-  <v-container class="container ml-auto mb-10">
+  <v-container class="container ml-auto mb-13">
     <v-row class="section" style="margin-top: 0">
       <v-col class="section-title-box pb-0" cols="12">
         <h1 class="section-title">
