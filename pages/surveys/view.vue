@@ -43,7 +43,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="likes-comments">
-              <div class="d-inline text-no-wrap mr-5">
+              <div class="d-inline text-no-wrap">
                 <v-icon small>
                   mdi-account
                 </v-icon>
@@ -67,6 +67,22 @@
               <!--                  </v-icon>-->
               <!--                  {{ surveyData.comments | comma }}-->
               <!--                </div>-->
+              <div class="d-inline ml-auto">
+                <v-btn @click="toCSV(surveyData.id)">
+                  <v-icon small>
+                    mdi-download
+                  </v-icon>
+                  다운로드
+                </v-btn>
+                <!--                <JsonCSV :data="toCSV(surveyData.id)">-->
+                <!--                  <v-btn>-->
+                <!--                    <v-icon small>-->
+                <!--                      mdi-download-->
+                <!--                    </v-icon>-->
+                <!--                    다운로드-->
+                <!--                  </v-btn>-->
+                <!--                </JsonCSV>-->
+              </div>
             </v-col>
           </v-row>
         </v-col>
@@ -422,6 +438,34 @@ export default {
         }
       }
       return pieData
+    },
+    toCSV (id) {
+      const data = []
+      axios.get('/users/v1/surveys/' +
+          id +
+          '/polls'
+      ).then((response) => {
+        response.data.map((poll) => {
+          axios.get('users/v1/polls/' +
+              poll.id +
+              '/poll-users'
+          ).then((response) => {
+            response.data.map((pa) => {
+              const ud = {}
+              ud.user = 'user'
+              ud.subject = pa.poll.subject
+              ud.value = pa.value
+              Object.assign(data, data, ud)
+            })
+          }).catch((err) => {
+            console.log(err)
+          })
+        })
+      }).catch((err) => {
+        console.log(err)
+      })
+      console.log(data)
+      return data
     }
   }
 }
@@ -436,6 +480,7 @@ export default {
   font-size: 12px;
 }
 .likes-comments {
+  display: flex;
   justify-content: space-between;
   font-size: 10px;
 }
