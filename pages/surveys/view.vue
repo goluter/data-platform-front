@@ -1,6 +1,6 @@
 <template>
   <div class="ma-auto" style="max-width: 960px; margin-bottom: 54px">
-    <report :report-data="surveyData" />
+    <survey :survey-data="surveyData" />
     <v-container>
       <v-row>
         <v-col class="my-2" cols="12" style="font-size: 13px">
@@ -149,7 +149,7 @@
                     >
                       <v-dialog v-model="pollTransit[i]">
                         <template #activator="{ on, attrs }">
-                          <v-btn text class="pl-0" v-bind="attrs" v-on="on" @click="pollTransit[i] = !pollTransit[i]">
+                          <v-btn text class="pl-0 pr-0" v-bind="attrs" v-on="on" @click="pollTransit[i] = !pollTransit[i]">
                             <span class="survey-q ma-auto">
                               {{ i+1 }}. {{ item.subject }}
                             </span>
@@ -178,7 +178,7 @@
                           >
                             <v-dialog v-model="pollTransit[i+4]">
                               <template #activator="{ on, attrs }">
-                                <v-btn text class="pl-0" v-bind="attrs" v-on="on" @click="pollTransit[i+4] = !pollTransit[i+4]">
+                                <v-btn text class="pl-0 pr-0" v-bind="attrs" v-on="on" @click="pollTransit[i+4] = !pollTransit[i+4]">
                                   <span class="">
                                     {{ i+5 }}. {{ item.subject }}
                                   </span>
@@ -292,6 +292,7 @@
         </v-col>
       </v-row>
     </v-container>
+    </survey>
   </div>
 </template>
 
@@ -300,9 +301,10 @@ import axios from 'govey/src/libs/http-client'
 import { GChart } from 'vue-google-charts'
 import Report from '../../layouts/report.vue'
 import Banner from '../../components/Banner.vue'
+import Survey from '../../layouts/survey.vue'
 
 export default {
-  components: { GChart, Banner, Report },
+  components: { Survey, GChart, Banner, Report },
   layout: 'empty',
   data () {
     return {
