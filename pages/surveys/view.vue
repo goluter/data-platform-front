@@ -49,12 +49,12 @@
                 </v-icon>
                 {{ surveyData.answers }}
               </div>
-              <div class="d-inline text-no-wrap">
-                <v-icon small>
-                  mdi-thumb-up
-                </v-icon>
-                {{ surveyData.goods | comma }}
-              </div>
+              <!--              <div class="d-inline text-no-wrap">-->
+              <!--                <v-icon small>-->
+              <!--                  mdi-thumb-up-->
+              <!--                </v-icon>-->
+              <!--                {{ surveyData.goods | comma }}-->
+              <!--              </div>-->
               <!--                <div>-->
               <!--                  <v-icon small>-->
               <!--                    mdi-comment-processing-->
@@ -120,7 +120,7 @@
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
         </v-row>
         <v-row>
-          <v-col class="pa-1" cols="12">
+          <v-col class="pa-0" cols="12">
             <template>
               <v-tabs v-model="tab" slider-color="teal accent-3" grow>
                 <v-tab
@@ -267,9 +267,11 @@
       </v-container>
       <v-container>
         <v-row>
-          <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="border-radius: 10px; background-color: #eeeeee">
+          <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="">
             <!--            <Banner :banner-data="bannerData[0]" />-->
-            <v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" />
+            <div class="pa-2" style="width: 100%; border-radius: 10px; background-color: #eeeeee">
+              <a href="https://govey.app/events/6aa02464-6151-4511-8003-feba2e828795"><v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" /></a>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -286,7 +288,7 @@
           background-color: white;
         "
       >
-        <v-col cols="12">
+        <v-col class="pr-2" cols="12">
           <div class="d-flex">
             <!--            <v-btn icon small>-->
             <!--              <v-icon> mdi-thumb-up-outline </v-icon>-->
