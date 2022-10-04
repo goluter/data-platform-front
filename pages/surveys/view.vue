@@ -149,15 +149,15 @@
                     >
                       <v-dialog v-model="pollTransit[i]">
                         <template #activator="{ on, attrs }">
-                          <v-btn v-bind="attrs" v-on="on" @click="pollTransit[i] = !pollTransit[i]">
+                          <v-btn text class="pl-0" v-bind="attrs" v-on="on" @click="pollTransit[i] = !pollTransit[i]">
                             <span class="survey-q ma-auto">
-                              {{ item.subject }}
+                              {{ i+1 }}. {{ item.subject }}
                             </span>
                           </v-btn>
                         </template>
                         <v-card>
                           <v-card>
-                            <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions"></GChart>
+                            <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" />
                           </v-card>
                         </v-card>
                       </v-dialog>
@@ -178,14 +178,14 @@
                           >
                             <v-dialog v-model="pollTransit[i+4]">
                               <template #activator="{ on, attrs }">
-                                <v-btn v-bind="attrs" v-on="on" @click="pollTransit[i+4] = !pollTransit[i+4]">
+                                <v-btn text class="pl-0" v-bind="attrs" v-on="on" @click="pollTransit[i+4] = !pollTransit[i+4]">
                                   <span class="">
-                                    {{ item.subject }}
+                                    {{ i+5 }}. {{ item.subject }}
                                   </span>
                                 </v-btn>
                               </template>
                               <v-card>
-                                <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions"></GChart>
+                                <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" />
                               </v-card>
                             </v-dialog>
                           </v-col>
@@ -322,7 +322,7 @@ export default {
       ],
       pieOptions: {
         title: '답변 분포',
-        pieHole: 0.4
+        pieHole: 0.3
       },
       pieData: []
     }
