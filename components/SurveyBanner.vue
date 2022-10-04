@@ -18,18 +18,17 @@
             </v-col>
             <v-col class="pl-0 pr-2 pb-1 grow" cols="9">
               <v-row class="banner-title">
-                <v-col class="text-truncate" cols="10" style="display: block">
+                <v-col class="pl-0 text-truncate" cols="10" style="display: block">
                   {{ item.subject }}
                 </v-col>
               </v-row>
               <v-row class="mt-0 pl-0">
-                <v-col cols="1" />
-                <v-col class="ml-auto pt-0 pb-1" cols="auto">
+                <v-col class="ml-auto pt-1 pb-0" cols="auto">
                   <span class="banner-left-time"> {{ diffDate(item.createdAt, item.endAt) }}일 남음 </span>
                 </v-col>
               </v-row>
               <v-row class="banner-count-tags">
-                <v-col class="pt-0 pb-0" cols="auto">
+                <v-col class="pl-0 pt-0 pb-0" cols="auto">
                   {{ item.answers }}명 참여중!
                 </v-col>
                 <v-col class="ml-auto pt-0 pb-0 banner-tags" cols="auto">
@@ -52,16 +51,16 @@
                 class="reward-item-box pa-1"
               >
                 <div v-if="reward.type === 'point'" class="reward">
-                  <v-icon small color="yellow darken-3">
+                  <v-icon class="pr-1" small color="yellow darken-3">
                     mdi-circle-multiple
                   </v-icon>
-                  <b>{{ reward.value.substring(0, 3) }}</b>
+                  <b>{{ reward.value }}</b>
                 </div>
-                <div v-if="reward.type === 'giftcon'">
-                  <v-icon small color="red">
+                <div v-if="reward.type === 'giftcon'" class="reward">
+                  <v-icon class="pr-1" small color="red">
                     mdi-gift
                   </v-icon>
-                  <b>{{ reward.value.substring(0, 3) }}</b>
+                  <b>{{ reward.value }}</b>
                 </div>
               </v-col>
             </v-col>
