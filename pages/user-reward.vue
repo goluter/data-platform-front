@@ -16,9 +16,9 @@
         :key="i"
         class="contents"
       >
-        <!-- <NuxtLink
+        <NuxtLink
           :to="{path: '/reward-detail', query: { id: item.reward.id }}"
-          style="text-decoration: none; color: initial;"> -->
+          style="text-decoration: none; color: initial;">
         <img class="profileimg" src="../assets/Male User.png" align="middle">
         <span>{{ item.reward.name }}</span>
 
@@ -26,7 +26,7 @@
           {{ item.reward.count }} 회 <br> {{ item.reward.createdAt | yyyyMMdd }}
         </div>
 
-      <!-- </NuxtLink> -->
+      </NuxtLink>
       </div>
     </div>
   </div>
