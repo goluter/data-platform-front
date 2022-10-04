@@ -3,7 +3,7 @@
     <v-row style="height: 95px; background-color: #f8f8f8">
       <v-col cols="12" align-self="center">
         <v-icon x-large left> mdi-account-circle </v-icon>
-        <span class="username">{{ userinfo.username }}</span>
+        <span class="username">{{ userinfo.nickname }}</span>
         <p style="margin-top: 8px; font-size: 14px">
           남은 포인트: {{ userinfo.point }}
         </p>
