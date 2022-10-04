@@ -151,7 +151,7 @@ export default {
     //   })
     // },
     fetchData(page, limit) {
-      axios
+      Promise
         .all([
           axios.get(
             '/users/v1/users/?page=' +
@@ -172,15 +172,15 @@ export default {
               this.page +
               '&limit=' +
               this.limit +
-              '&type=업적&catagory=정보인증'
+              '&type=업적&catagory=포인트'
           ),
         ])
         .then(
-          axios.spread((res1, res2, res3) => {
+          ([res1, res2, res3]) => {
             this.pointData = res1.data.content
             this.titleData = res2.data.content
             this.rewardData = res3.data.content
-          })
+          }
         )
         .catch((err) => {
           console.log(err)

@@ -21,9 +21,9 @@
           style="text-decoration: none; color: initial;"
         >
           <img class="profileimg" src="../../assets/Male User.png" align="middle">
-          <span>{{ item.name }}</span>
+          <span>{{ item.reward.name }}</span>
           <div class="point">
-            {{ item.createdAt | yyyyMMdd }}
+            {{ item.reward.createdAt | yyyyMMdd }}
           </div>
         </NuxtLink>
       </div>
@@ -85,7 +85,7 @@ export default {
             this.limit
       )
         .then((res) => {
-          this.reward = res.data.content
+          this.title = res.data.content
         })
         .catch((err) => {
           console.log(err)
