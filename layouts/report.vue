@@ -155,7 +155,7 @@ export default {
     fetch () {
       axios
         .post(
-          'https://api-stage.govey.app/users/v1/posts/page?category=공지&page=0&limit=10'
+          '/users/v1/posts/page?category=공지&page=0&limit=10'
         )
         .then((res) => {
           this.users2 = res.data.content
