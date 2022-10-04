@@ -58,7 +58,7 @@
       </v-row>
       <v-container class="pa-0">
         <v-row class="pa-2 pr-0" justify="end" style="height: 60px">
-          <v-col class="pr-0" cols="4" md="2">
+          <v-col class="pr-0 py-2" cols="4" md="2" lg="2" xl="2">
             <v-select
               v-model="sortKey"
               :items="sortOrder"
