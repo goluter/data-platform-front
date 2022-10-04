@@ -1,7 +1,14 @@
 <template>
   <div class="ma-auto" style="max-width: 960px; margin-bottom: 54px">
-    <survey :survey-data="surveyData" />
-    <v-container>
+    <survey v-if="isLoad" :survey-data="surveyData" />
+    <v-container v-if="!isLoad">
+      <v-row>
+        <v-col cols="12" style="padding-top: 100px; display: flex; justify-content: center">
+          <v-progress-circular indeterminate :size="100" color="teal accent-3" />
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container v-if="isLoad">
       <v-row>
         <v-col class="my-2" cols="12" style="font-size: 13px">
           <v-row>
@@ -65,7 +72,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-container>
+    <v-container v-if="isLoad">
       <v-row>
         <v-col class="pt-4 pb-1" cols="12" style="background-color: #eeeeee">
           <span class="section-title">설문자</span>
@@ -107,7 +114,7 @@
         <v-col class="pa-4" cols="12" style="background-color: #eeeeee" />
       </v-row>
     </v-container>
-    <div class="mb-8">
+    <div v-if="isLoad" class="mb-8">
       <v-container>
         <v-row>
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
@@ -266,7 +273,7 @@
         </v-row>
       </v-container>
     </div>
-    <v-container>
+    <v-container v-if="isLoad">
       <v-row
         style="
           max-width: 960px;
@@ -280,9 +287,9 @@
       >
         <v-col cols="12">
           <div class="d-flex">
-            <v-btn icon small>
-              <v-icon> mdi-thumb-up-outline </v-icon>
-            </v-btn>
+            <!--            <v-btn icon small>-->
+            <!--              <v-icon> mdi-thumb-up-outline </v-icon>-->
+            <!--            </v-btn>-->
             <NuxtLink class="ml-auto" :to="'/surveys/join?id=' + surveyData.id">
               <div class="part-btn">
                 설문 참여하기
@@ -292,22 +299,21 @@
         </v-col>
       </v-row>
     </v-container>
-    </survey>
   </div>
 </template>
 
 <script>
 import axios from 'govey/src/libs/http-client'
 import { GChart } from 'vue-google-charts'
-import Report from '../../layouts/report.vue'
 import Banner from '../../components/Banner.vue'
 import Survey from '../../layouts/survey.vue'
 
 export default {
-  components: { Survey, GChart, Banner, Report },
+  components: { Survey, GChart, Banner },
   layout: 'empty',
   data () {
     return {
+      isLoad: false,
       tab: null,
       tabs: ['질문', '보상'],
       survVisible: false,
@@ -392,6 +398,7 @@ export default {
           })
           this.pollGroupsData = pollGroups
           this.pollTransit = pollTransit
+          this.isLoad = true
         })
         .catch((error) => {
           console.log(error)
