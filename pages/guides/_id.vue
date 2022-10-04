@@ -12,9 +12,7 @@
       <img style="width: 100%; padding: 8px" :src="users.imageUrl" />
     </div>
     <div>
-      <div class="noticemain">
-        {{ users[$route.params.id].content }}
-      </div>
+      <div class="noticemain" v-html="users[$route.params.id].content" />
     </div>
   </div>
 </template>
