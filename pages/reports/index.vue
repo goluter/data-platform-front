@@ -47,8 +47,13 @@
           <v-col cols="12">
             <v-row>
               <v-col cols="auto">
-                <div v-if="users.imageUrl != 0">
-                  <img class="thumbnail" :src="users[i].imageUrl" />
+                <div class="thumbnail">
+                  <div v-if="users.imageUrl != null">
+                    <img
+                      style="width: 100%; padding: 8px"
+                      :src="users.imageUrl"
+                    />
+                  </div>
                 </div>
               </v-col>
               <v-col class="grow" cols="auto">

@@ -26,6 +26,8 @@
           <b style="color: white">획득하기</b>
         </v-col>
       </v-row>
+
+      
     </v-container>
 
     <div class="pt-4 pl-4">
@@ -107,6 +109,8 @@ export default {
       list: [],
       Tab1: true,
       Tab2: false,
+      userinfo: [],
+      id: null
     }
   },
   mounted() {
@@ -118,6 +122,14 @@ export default {
   methods: {
     fetchData(id) {
       axios
+        .get('/users/v1/self/info')
+        .then((res) => {
+          this.userinfo = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      Promise
         .all([
           axios.get('/users/v1/rewards/' + id),
           axios.get(
@@ -125,19 +137,20 @@ export default {
           ),
         ])
         .then(
-          axios.spread((res1, res2) => {
+          ([res1, res2]) => {
             this.title = res1.data
             this.list = res2.data.content
-          })
+            
+          }
         )
         .catch((err) => {
           console.log(err)
         })
     },
-
+    
     acbtn(event) {
       axios
-        .post('/users/v1/rewards/' + this.title.id + '/users/')
+        .post('/users/v1/rewards/' + this.$route.query.id + '/users?id=' + this.userinfo.id)
         .then((res) => {
           alert('획득하셨습니다.')
         })
