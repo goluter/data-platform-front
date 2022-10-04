@@ -36,8 +36,8 @@
                     dense
                     append-icon="mdi-magnify"
                     style="height: 40px; border-radius: 45px"
-                    @click:append="search(searchValue)"
-                    @keyup.enter="search(searchValue)"
+                    @click:append="search"
+                    @keyup.enter="search"
                   />
                 </v-col>
                 <v-col cols="4" md="2">
@@ -69,7 +69,7 @@
               flat
               dense
               single-line
-              @change="sort(sortKey)"
+              @change="sort"
             />
           </v-col>
         </v-row>
@@ -174,7 +174,9 @@ export default {
       surveyDataArr: [],
       searchKey: '',
       searchValue: '',
+      returnedSearchValue: '',
       sortKey: '',
+      returnedSortKey: '',
       tab: null,
       bool: true,
       surveyTab: ['진행중', '마감'],
@@ -190,18 +192,28 @@ export default {
       ]
     }
   },
+  watch: {
+    returnedSearchValue (newD, oldD) {
+      this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
+    },
+    returnedSortKey (newD, oldD) {
+      this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
+    }
+  },
   created () {
-    this.fetchData(
-      0,
-      10,
-      this.$route.query.searchKey,
-      this.$route.query.searchValue,
-      this.$route.query.sortKey
-    )
+    this.fetchData(0, 10)
   },
   mounted () {
     this.$store.commit('setPageTitle', '설문')
   },
+  // computed: {
+  //   search () {
+  //     return this.fetchData(0, 10, 'subject', this.searchKey)
+  //   },
+  //   sort () {
+  //     return this.fetchData(0, 10, '', '', this.sortKey)
+  //   }
+  // },
   methods: {
     fetchData (
       page = 0,
@@ -239,21 +251,16 @@ export default {
           '&sortKey=' +
           sortKey
       } else {
-        url =
-          '/users/v1/surveys/?page=' +
-          page +
-          '&limit=' +
-          limit
+        url = '/users/v1/surveys/?page=' + page + '&limit=' + limit
       }
-      axios
-        .get(url)
-        .then(async (response) => {
-          const dataWithRewards = response.data.content.map(async (survey) => {
+      axios.get(url).then(async (response) => {
+        const dataWithRewards = response.data.content
+          .map(async (survey) => {
             const rewards = await axios
               .get(
                 '/users/v1/surveys/' +
-                  survey.id +
-                  '/rewards/'
+                      survey.id +
+                      '/rewards/'
               )
               .then((response) => {
                 const rewardsData = []
@@ -272,40 +279,33 @@ export default {
             const mix = Object.assign({}, survey, { rewards })
             return mix
           })
-          const data = await Promise.all(dataWithRewards)
-          response.data.content = data
-          this.surveyData = response.data.content
-          const ongoingSurveyData = []
-          const endedSurveyData = []
-          const temp = this.surveyData
-          for (let i = 0; i < temp.length; i++) {
-            if (temp[i].status === 'ongoing') {
-              ongoingSurveyData.push(temp[i])
-            } else {
-              endedSurveyData.push(temp[i])
-            }
+        const data = await Promise.all(dataWithRewards)
+        response.data.content = data
+        this.surveyData = response.data.content
+        const ongoingSurveyData = []
+        const endedSurveyData = []
+        const temp = this.surveyData
+        for (let i = 0; i < temp.length; i++) {
+          if (temp[i].status === 'ongoing') {
+            ongoingSurveyData.push(temp[i])
+          } else {
+            endedSurveyData.push(temp[i])
           }
-          this.ongoingSurveyData = ongoingSurveyData
-          this.endedSurveyData = endedSurveyData
-          this.surveyDataArr.push(this.ongoingSurveyData)
-          this.surveyDataArr.push(this.endedSurveyData)
-        })
+        }
+        this.ongoingSurveyData = ongoingSurveyData
+        this.endedSurveyData = endedSurveyData
+        this.surveyDataArr.push(this.ongoingSurveyData)
+        this.surveyDataArr.push(this.endedSurveyData)
+      })
         .catch((error) => {
           console.log(error)
         })
     },
-    search (searchValue) {
-      this.$router
-        .push({
-          path: '/surveys/',
-          query: { searchKey: 'subject', searchValue }
-        })
-        .catch(() => {})
+    search () {
+      this.returnedSearchValue = this.searchValue
     },
-    sort (sortKey) {
-      this.$router
-        .push({ path: '/surveys/', query: { sortKey } })
-        .catch(() => {})
+    sort () {
+      this.returnedSortKey = this.sortKey
     }
   }
 }
