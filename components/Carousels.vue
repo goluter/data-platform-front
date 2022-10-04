@@ -13,18 +13,25 @@
           <NuxtLink :to="'/surveys/view?id=' + item.id">
             <v-sheet class="survey-sheet elevation-5" :color="item.color">
               <div class="play-icon-box">
-                <img class="play-icon" src="../assets/play_index.png" />
+                <img class="play-icon" src="../assets/play_index.png">
               </div>
               <div class="count-box">
                 <span class="survey-participate-count">
                   {{ item.answers }}명이 참여중이에요!
                 </span>
               </div>
-              <div class="target-box">
-                <span class="surveyor"> 설문자: {{ item.author }} </span>
-                <span class="survey-target">
-                  {{ item.subject }}
-                </span>
+              <div class="target-box pl-2">
+                <div class="pt-2">
+                  <img :src="item.imageUrl" height="50" width="50" style="border-radius: 17px;">
+                </div>
+                <div class="pl-3">
+                  <div class="survey-target">
+                    {{ item.subject }}
+                  </div>
+                  <div class="surveyor">
+                    {{ item.author }}
+                  </div>
+                </div>
               </div>
             </v-sheet>
           </NuxtLink>
@@ -39,13 +46,13 @@ import { Flicking } from '@egjs/vue-flicking'
 
 export default {
   components: {
-    Flicking,
+    Flicking
   },
   props: {
     carouselData: {
-      type: Array,
-    },
-  },
+      type: Array
+    }
+  }
 }
 </script>
 
@@ -79,9 +86,8 @@ export default {
 }
 .target-box {
   display: flex;
-  flex-direction: column-reverse;
-  position: relative;
   justify-content: flex-start;
+  align-items: center;
   width: 100%;
   bottom: 10px;
   left: 10px;
@@ -92,6 +98,7 @@ export default {
   font-size: 18px;
 }
 .surveyor {
+  font-size: 14px;
   color: #d1d5db;
 }
 </style>
