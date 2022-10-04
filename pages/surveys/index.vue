@@ -90,7 +90,9 @@
                       <v-col class="pb-0" cols="12">
                         <v-row>
                           <v-col cols="auto" class="pr-1">
-                            <div class="thumbnail" />
+                            <div class="thumbnail">
+                              <img v-if="item.imageUrl" :src="item.imageUrl" width="80" height="80" style="border-radius: 10px">
+                            </div>
                           </v-col>
                           <v-col class="grow" cols="auto">
                             <v-row>
@@ -193,12 +195,6 @@ export default {
     }
   },
   watch: {
-    returnedSearchValue (newD, oldD) {
-      this.surveyDataArr = this.fetchData(0, 10, 'subject', newD)
-    },
-    returnedSortKey (newD, oldD) {
-      this.surveyDataArr = this.fetchData(0, 10, '', '', newD)
-    }
   },
   created () {
     this.fetchData(0, 10)

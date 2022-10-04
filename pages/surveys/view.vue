@@ -17,7 +17,7 @@
               v-if="surveyData.status === 'end'"
               class="pb-0"
               cols="auto"
-              style="color: #30cdae; font-weight: 600"
+              style="color: #eeeeee; font-weight: 600"
             >
               마감된 설문
             </v-col>
@@ -292,7 +292,6 @@
         </v-col>
       </v-row>
     </v-container>
-    </survey>
   </div>
 </template>
 
@@ -304,7 +303,7 @@ import Banner from '../../components/Banner.vue'
 import Survey from '../../layouts/survey.vue'
 
 export default {
-  components: { Survey, GChart, Banner, Report },
+  components: { Survey, GChart, Banner },
   layout: 'empty',
   data () {
     return {
