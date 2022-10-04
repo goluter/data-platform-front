@@ -94,16 +94,16 @@
                     <v-row>
                       <v-col class="pb-0" cols="12">
                         <v-row>
-                          <v-col cols="auto" class="pr-1">
+                          <v-col class="pr-1" cols="3" sm="auto" md="auto">
                             <div class="thumbnail">
                               <img v-if="item.imageUrl" :src="item.imageUrl" width="80" height="80" style="border-radius: 10px">
                             </div>
                           </v-col>
-                          <v-col class="grow" cols="auto">
+                          <v-col class="grow" cols="9" sm="auto" md="auto">
                             <v-row>
                               <v-col cols="12">
                                 <v-row>
-                                  <v-col class="survey-title pb-0" cols="12">
+                                  <v-col class="survey-title text-truncate pb-0" cols="11">
                                     {{ item.subject }}
                                   </v-col>
                                 </v-row>

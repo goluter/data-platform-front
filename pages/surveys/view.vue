@@ -43,18 +43,18 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="likes-comments">
-              <div class="d-inline text-no-wrap mr-5">
+              <div class="d-inline text-no-wrap">
                 <v-icon small>
                   mdi-account
                 </v-icon>
                 {{ surveyData.answers }}
               </div>
-              <div class="d-inline text-no-wrap">
-                <v-icon small>
-                  mdi-thumb-up
-                </v-icon>
-                {{ surveyData.goods | comma }}
-              </div>
+              <!--              <div class="d-inline text-no-wrap">-->
+              <!--                <v-icon small>-->
+              <!--                  mdi-thumb-up-->
+              <!--                </v-icon>-->
+              <!--                {{ surveyData.goods | comma }}-->
+              <!--              </div>-->
               <!--                <div>-->
               <!--                  <v-icon small>-->
               <!--                    mdi-comment-processing-->
@@ -67,6 +67,22 @@
               <!--                  </v-icon>-->
               <!--                  {{ surveyData.comments | comma }}-->
               <!--                </div>-->
+              <!--              <div class="d-inline ml-auto">-->
+              <!--                <v-btn @click="toCSV(surveyData.id)">-->
+              <!--                  <v-icon small>-->
+              <!--                    mdi-download-->
+              <!--                  </v-icon>-->
+              <!--                  다운로드-->
+              <!--                </v-btn>-->
+              <!--                <JsonCSV :data="toCSV(surveyData.id)">-->
+              <!--                  <v-btn>-->
+              <!--                    <v-icon small>-->
+              <!--                      mdi-download-->
+              <!--                    </v-icon>-->
+              <!--                    다운로드-->
+              <!--                  </v-btn>-->
+              <!--                </JsonCSV>-->
+              <!--              </div>-->
             </v-col>
           </v-row>
         </v-col>
@@ -120,7 +136,7 @@
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
         </v-row>
         <v-row>
-          <v-col class="pa-1" cols="12">
+          <v-col class="pa-0" cols="12">
             <template>
               <v-tabs v-model="tab" slider-color="teal accent-3" grow>
                 <v-tab
@@ -267,9 +283,11 @@
       </v-container>
       <v-container>
         <v-row>
-          <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="border-radius: 10px; background-color: #eeeeee">
+          <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="">
             <!--            <Banner :banner-data="bannerData[0]" />-->
-            <v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" />
+            <div class="pa-2" style="width: 100%; border-radius: 10px; background-color: #eeeeee">
+              <a href="https://govey.app/events/6aa02464-6151-4511-8003-feba2e828795"><v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" /></a>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -286,7 +304,7 @@
           background-color: white;
         "
       >
-        <v-col cols="12">
+        <v-col class="pr-2" cols="12">
           <div class="d-flex">
             <!--            <v-btn icon small>-->
             <!--              <v-icon> mdi-thumb-up-outline </v-icon>-->
@@ -420,6 +438,34 @@ export default {
         }
       }
       return pieData
+    },
+    toCSV (id) {
+      const data = []
+      axios.get('/users/v1/surveys/' +
+          id +
+          '/polls'
+      ).then((response) => {
+        response.data.map((poll) => {
+          axios.get('users/v1/polls/' +
+              poll.id +
+              '/poll-users'
+          ).then((response) => {
+            response.data.map((pa) => {
+              const ud = {}
+              ud.user = 'user'
+              ud.subject = pa.poll.subject
+              ud.value = pa.value
+              Object.assign(data, data, ud)
+            })
+          }).catch((err) => {
+            console.log(err)
+          })
+        })
+      }).catch((err) => {
+        console.log(err)
+      })
+      console.log(data)
+      return data
     }
   }
 }
@@ -434,6 +480,7 @@ export default {
   font-size: 12px;
 }
 .likes-comments {
+  display: flex;
   justify-content: space-between;
   font-size: 10px;
 }

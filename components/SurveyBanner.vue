@@ -11,20 +11,20 @@
       >
         <NuxtLink class="survey-box rounded-xl elevation-3" :to="'/surveys/view?id=' + item.id">
           <v-row class="">
-            <v-col class="pl-2" cols="auto">
+            <v-col class="pl-2 pr-0 pb-1" cols="3">
               <div class="banner-img-box">
                 <img v-if="item.imageUrl" :src="item.imageUrl" width="60" height="60" style="border-radius: 14px;">
               </div>
             </v-col>
-            <v-col class="pl-0 pr-2 grow" cols="auto">
+            <v-col class="pl-0 pr-2 pb-1 grow" cols="9">
               <v-row class="banner-title">
-                <v-col class="" cols="12">
+                <v-col class="text-truncate" cols="10" style="display: block">
                   {{ item.subject }}
                 </v-col>
               </v-row>
               <v-row class="mt-0 pl-0">
                 <v-col cols="1" />
-                <v-col class="ml-auto pt-0 pb-0" cols="auto">
+                <v-col class="ml-auto pt-0 pb-1" cols="auto">
                   <span class="banner-left-time"> {{ diffDate(item.createdAt, item.endAt) }}일 남음 </span>
                 </v-col>
               </v-row>
@@ -126,14 +126,6 @@ export default {
 .banner-tags {
   text-decoration: none;
   color: rgba(48, 205, 174, 0.87);
-}
-.survey-box-bottom {
-  position: relative;
-  flex-direction: column;
-  justify-content: flex-end;
-  border: 1px solid;
-  background-color: #494949;
-  z-index: 0;
 }
 .reward-item-box {
   display: inline;

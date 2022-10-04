@@ -16,7 +16,7 @@
           <v-menu offset-y :close-on-content-click="false" :nudge-width="300">
             <template #activator="{ on, attrs }">
               <v-btn icon small v-bind="attrs" v-on="on" @click="copyURL(url)">
-                <v-icon>mdi-export-variant</v-icon>
+                <v-icon>mdi-share</v-icon>
               </v-btn>
             </template>
             <v-card>
