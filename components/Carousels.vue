@@ -20,17 +20,17 @@
                   {{ item.answers }}명이 참여중이에요!
                 </span>
               </div>
-              <div class="target-box pl-2">
-                <div class="pt-2">
-                  <img :src="item.imageUrl" height="50" width="50" style="border-radius: 17px;">
-                </div>
-                <div class="pl-3">
-                  <div class="survey-target">
+              <div class="target-box pl-1 pb-1" style="height: 60px;">
+                <div class="pl-2 pr-3" style="height: 50px;">
+                  <div class="survey-target text-truncate">
                     {{ item.subject }}
                   </div>
-                  <div class="surveyor">
+                  <div class="surveyor text-truncate">
                     {{ item.author }}
                   </div>
+                </div>
+                <div v-if="item.imageUrl" class="ml-auto" style="width: 60px;">
+                  <img :src="item.imageUrl" height="50" width="50" style="border-radius: 17px;">
                 </div>
               </div>
             </v-sheet>
@@ -89,13 +89,15 @@ export default {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  max-height: 300px;
   bottom: 10px;
   left: 10px;
   color: white;
 }
 .survey-target {
+  width: 200px;
   bottom: 0;
-  font-size: 18px;
+  font-size: 16px;
 }
 .surveyor {
   font-size: 14px;
