@@ -1,10 +1,15 @@
 <template>
+
   <div class="wrapper">
+    <div v-if="logcheck = false">
+      <v-progress-circular :size="50" color="primary" indeterminate />
+    </div>
     <v-container
       class="fill-height d-flex pa-0 align-content-space-between"
       style="background-color: #f0f0f0"
     >
-      <v-container>
+    
+      <v-container v-if="logcheck = true">
         <v-row>
           <v-col class="pa-0" cols="12">
             <img :src="item.imageUrl" width="100%" />
@@ -56,11 +61,14 @@
 </template>
 <script>
 import axios from 'govey/src/libs/http-client'
+import { isLogin } from 'govey/src/libs/auth'
 
 export default {
   data() {
     return {
       item: {},
+      isLoading: true,
+      logcheck:false
     }
   },
   mounted() {
@@ -75,13 +83,20 @@ export default {
         .get('/users/v1/store-items/' + id)
         .then((res) => {
           this.item = res.data
+          this.logcheck = true
         })
         .catch((err) => {
           console.log(err)
         })
     },
     check(event) {
-      alert('포인트가 부족합니다.')
+      if(isLogin()){
+        alert('포인트가 부족합니다.')
+      }
+      else{
+        alert('구매하시려면 로그인이 필요합니다.')
+      }
+      
     },
   },
 }
