@@ -1,8 +1,10 @@
 <template>
-  <v-container class="container ml-auto mb-15">
+  <v-container class="container ml-auto mb-10">
     <v-row class="section" style="margin-top: 0">
       <v-col class="section-title-box pb-0" cols="12">
-        <h1 class="section-title">추천 설문</h1>
+        <h1 class="section-title">
+          추천 설문
+        </h1>
       </v-col>
     </v-row>
     <v-row class="section-desc">
@@ -18,10 +20,14 @@
     <!--    <Banner :banner-data="bannerData[0]" />-->
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
-        <h1 class="section-title">인기 설문</h1>
+        <h1 class="section-title">
+          인기 설문
+        </h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/surveys/"> 더보기 </NuxtLink>
+        <NuxtLink class="section-more" to="/surveys/">
+          더보기
+        </NuxtLink>
       </v-col>
     </v-row>
     <v-row class="section-desc mb-1">
@@ -33,26 +39,38 @@
     <Banner :banner-data="bannerData[0]" />
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
-        <h1 class="section-title">이벤트</h1>
+        <h1 class="section-title">
+          이벤트
+        </h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/events/"> 더보기 </NuxtLink>
+        <NuxtLink class="section-more" to="/events/">
+          더보기
+        </NuxtLink>
       </v-col>
     </v-row>
     <v-row class="section-desc">
-      <v-col class="pt-0" cols="12"> 다양한 이벤트를 진행중이에요! </v-col>
+      <v-col class="pt-0" cols="12">
+        다양한 이벤트를 진행중이에요!
+      </v-col>
     </v-row>
     <EventBanner />
     <v-row class="section">
       <v-col class="section-title-box pb-0" cols="9">
-        <h1 class="section-title">공지사항</h1>
+        <h1 class="section-title">
+          공지사항
+        </h1>
       </v-col>
       <v-col class="ml-auto" cols="auto">
-        <NuxtLink class="section-more" to="/notices/"> 더보기 </NuxtLink>
+        <NuxtLink class="section-more" to="/notices/">
+          더보기
+        </NuxtLink>
       </v-col>
     </v-row>
     <v-row class="section-desc">
-      <v-col class="pt-0 pb-0" cols="12"> 새로운 소식을 살펴보세요. </v-col>
+      <v-col class="pt-0 pb-0" cols="12">
+        새로운 소식을 살펴보세요.
+      </v-col>
     </v-row>
     <NoticeBanner />
   </v-container>
@@ -70,7 +88,7 @@ export default {
   name: 'IndexPage',
   components: { NoticeBanner, EventBanner, SurveyBanner, Banner, Carousels },
   layout: 'main',
-  data() {
+  data () {
     return {
       carouselData: [],
       surveyData: [],
@@ -85,16 +103,16 @@ export default {
           title: '가이드',
           msg: '더 재미있게 즐기실 수 있도록 가이드를 모아봤어요!',
           icon: 'mdi-bookmark-box-multiple',
-          to: '/service-center/',
-        },
-      ],
+          to: '/service-center/'
+        }
+      ]
     }
   },
-  created() {
+  created () {
     this.fetchData()
   },
   methods: {
-    fetchData() {
+    fetchData () {
       axios
         .get('/users/v1/surveys/curations?type=popular')
         .then(async (response) => {
@@ -106,7 +124,7 @@ export default {
                 for (let i = 0; i < response.data.length; i++) {
                   const dic = {
                     type: response.data[i].type,
-                    value: response.data[i].value,
+                    value: response.data[i].value
                   }
                   rewardsData.push(dic)
                 }
@@ -132,7 +150,7 @@ export default {
           const colors = [
             { color: 'indigo accent-4' },
             { color: '#ed2121' },
-            { color: 'pink accent-2' },
+            { color: 'pink accent-2' }
           ]
           const slicedCr = cr.slice(0, 3).map((card, i) => {
             const mix = Object.assign({}, card, colors[i])
@@ -143,8 +161,8 @@ export default {
         .catch((error) => {
           console.log(error)
         })
-    },
-  },
+    }
+  }
 }
 </script>
 
