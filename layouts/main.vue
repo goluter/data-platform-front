@@ -193,7 +193,7 @@ export default {
       this.$store.commit('setPageTitle', title)
     },
     checkL () {
-      if (isLogin) {
+      if (isLogin()) {
         this.login = true
       }
     }
