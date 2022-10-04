@@ -267,8 +267,9 @@
       </v-container>
       <v-container>
         <v-row>
-          <v-col class="pa-2 py-3" cols="12" style="background-color: #eeeeee">
-            <Banner :banner-data="bannerData[0]" />
+          <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="border-radius: 10px; background-color: #eeeeee">
+            <!--            <Banner :banner-data="bannerData[0]" />-->
+            <v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" />
           </v-col>
         </v-row>
       </v-container>
@@ -305,11 +306,10 @@
 <script>
 import axios from 'govey/src/libs/http-client'
 import { GChart } from 'vue-google-charts'
-import Banner from '../../components/Banner.vue'
 import Survey from '../../layouts/survey.vue'
 
 export default {
-  components: { Survey, GChart, Banner },
+  components: { Survey, GChart },
   layout: 'empty',
   data () {
     return {
