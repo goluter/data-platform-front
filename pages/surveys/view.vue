@@ -67,22 +67,22 @@
               <!--                  </v-icon>-->
               <!--                  {{ surveyData.comments | comma }}-->
               <!--                </div>-->
-              <div class="d-inline ml-auto">
-                <v-btn @click="toCSV(surveyData.id)">
-                  <v-icon small>
-                    mdi-download
-                  </v-icon>
-                  다운로드
-                </v-btn>
-                <!--                <JsonCSV :data="toCSV(surveyData.id)">-->
-                <!--                  <v-btn>-->
-                <!--                    <v-icon small>-->
-                <!--                      mdi-download-->
-                <!--                    </v-icon>-->
-                <!--                    다운로드-->
-                <!--                  </v-btn>-->
-                <!--                </JsonCSV>-->
-              </div>
+              <!--              <div class="d-inline ml-auto">-->
+              <!--                <v-btn @click="toCSV(surveyData.id)">-->
+              <!--                  <v-icon small>-->
+              <!--                    mdi-download-->
+              <!--                  </v-icon>-->
+              <!--                  다운로드-->
+              <!--                </v-btn>-->
+              <!--                <JsonCSV :data="toCSV(surveyData.id)">-->
+              <!--                  <v-btn>-->
+              <!--                    <v-icon small>-->
+              <!--                      mdi-download-->
+              <!--                    </v-icon>-->
+              <!--                    다운로드-->
+              <!--                  </v-btn>-->
+              <!--                </JsonCSV>-->
+              <!--              </div>-->
             </v-col>
           </v-row>
         </v-col>
