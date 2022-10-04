@@ -65,7 +65,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-divider v-if="!login" />
-            <v-list-item-group v-model="group" active-class="text--accent-4">
+            <v-list-item-group v-model="group" active-class="text--accent-4" class="mt-2">
               <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
