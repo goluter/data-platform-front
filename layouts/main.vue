@@ -56,15 +56,15 @@
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app temporary>
           <v-list nav dense>
-            <!-- <v-list-item to="/login">
+            <v-list-item v-if="!login" to="/login">
               <v-list-item-avatar>
-                <img src="../assets/premium-icon-person-2815428.png" />
+                <img src="../assets/premium-icon-person-2815428.png">
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>로그인</v-list-item-title>
               </v-list-item-content>
-            </v-list-item> -->
-            <v-divider />
+            </v-list-item>
+            <v-divider v-if="!login" />
             <v-list-item-group v-model="group" active-class="text--accent-4">
               <v-list-item
                 v-for="(item, i) in items"
@@ -118,7 +118,7 @@
       <div v-if="!$vuetify.breakpoint.mobile">
         <v-container style="max-width: 960px">
           <v-row>
-            <v-col class="footer-pc">
+            <v-col class="footer-pc mb-3 pt-0">
               <div style="display: flex; justify-content: space-between; width: 250px;">
                 <NuxtLink v-for="(item, i) in pcfitems" :key="i" :to="item.to">
                   <span>{{ item.page }}</span>
@@ -144,9 +144,12 @@
 </template>
 
 <script>
+import { isLogin } from '../src/libs/auth/index.js'
+
 export default {
   data () {
     return {
+      login: false,
       menu: [
         { page: '설문', to: '/surveys/' },
         { page: '리포트', to: '/reports/' },
@@ -182,9 +185,17 @@ export default {
       this.drawer = false
     }
   },
+  created () {
+    this.checkL()
+  },
   methods: {
     commitTitle (title) {
       this.$store.commit('setPageTitle', title)
+    },
+    checkL () {
+      if (isLogin) {
+        this.login = true
+      }
     }
   }
 }
@@ -218,7 +229,7 @@ export default {
   z-index: 5;
 }
 .footer-pc {
-  height: 80px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
