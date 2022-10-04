@@ -52,7 +52,7 @@
               {{ users[i].subject }}
             </div>
             <div class="date">
-              {{ users[i].createdAt }}
+              {{ users[i].createdAt | moment('YYYY-MM-DD hh:mm') }}
             </div>
           </NuxtLink>
         </div>
@@ -99,7 +99,9 @@
 
 <script>
 import axios from 'govey/src/libs/http-client'
-
+import vueMoment from 'vue-moment'
+import Vue from 'vue'
+Vue.use(vueMoment)
 export default {
   name: 'EventList',
   layout: 'default',
