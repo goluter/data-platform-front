@@ -9,7 +9,7 @@
     </v-row>
     <v-row class="section-desc">
       <v-col class="pt-0 pb-0" cols="12">
-        홍길동님이 좋아하실만한 설문을 준비했어요!
+        좋아하실만한 설문을 준비했어요!
       </v-col>
     </v-row>
     <Carousels :carousel-data="carouselData" />
