@@ -10,6 +10,15 @@
       <v-tabs fixed-tabs color="#1cddb7">
         <v-tab
           @click="
+            faq = false
+            onebyone = false
+            guide = true
+          "
+        >
+          가이드
+        </v-tab>
+        <v-tab
+          @click="
             faq = true
             onebyone = false
             guide = false
@@ -26,23 +35,12 @@
         >
           1대1 문의
         </v-tab>
-        <v-tab
-          @click="
-            faq = false
-            onebyone = false
-            guide = true
-          "
-        >
-          가이드
-        </v-tab>
       </v-tabs>
     </div>
     <div v-for="(a, i) in FaqData" v-if="faq == true" :key="i">
       <div class="box1">
         {{ FaqData[i].title }}
-        <div style="display: none">
-          {{ selectnum }} {{ chevrondown[i] }}
-        </div>
+        <div style="display: none">{{ selectnum }} {{ chevrondown[i] }}</div>
         <img
           v-if="chevrondown[i] == true"
           class="chevron"
@@ -53,7 +51,7 @@
             chevronup[i] = true
             showanswer[i] = true
           "
-        >
+        />
         <img
           v-if="chevronup[i] == true"
           class="chevron"
@@ -64,7 +62,7 @@
             chevronup[i] = false
             showanswer[i] = false
           "
-        >
+        />
       </div>
       <div v-if="showanswer[i] == true" class="box2">
         {{ FaqData[i].answer }}
@@ -91,18 +89,12 @@
         </NuxtLink>
       </div> -->
 
-      <div v-for="(a, i) in InquiryData" :key="i" class="onemain">
-        <nuxt-link
-          style="color: black; text-decoration-line: none"
-          :to="InquiryData[i].userurl"
-        >
-          <div class="onetitle">
-            {{ InquiryData[i].question }}
-          </div>
-          <div class="time">
-            {{ InquiryData[i].check }}
-          </div>
-        </nuxt-link>
+      <img src="../static/inquery_banner.png" width="100%" />
+
+      <div style="padding: 12px 12px">
+        <a href="https://open.kakao.com/o/guYwzDFe" target="_blank">
+          오픈 익명 채팅방 접속하기 https://open.kakao.com/o/guYwzDFe
+        </a>
       </div>
     </div>
     <div
@@ -132,12 +124,12 @@ import InquiryData from '../assets/data/Inquirydata.js'
 export default {
   name: 'ServiceCenter',
   layout: 'default',
-  data () {
+  data() {
     return {
       selectnum: -1,
-      faq: true,
+      faq: false,
       onebyone: false,
-      guide: false,
+      guide: true,
       chevronup: [false, false, false, false],
       chevrondown: [true, true, true, true],
       showanswer: [false, false, false, false],
@@ -148,17 +140,17 @@ export default {
       totalpage: null,
       category: '가이드',
       page: 0,
-      limit: 10
+      limit: 10,
     }
   },
-  mounted () {
+  mounted() {
     this.$store.commit('setPageTitle', '고객센터')
   },
-  created () {
+  created() {
     this.fetchData(this.pageNum)
   },
   methods: {
-    fetchData (category, page, limit) {
+    fetchData(category, page, limit) {
       axios
         .get(
           'https://api-stage.govey.app/users/v1/posts/page?category=' +
@@ -174,8 +166,8 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
