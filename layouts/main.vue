@@ -12,14 +12,14 @@
               <v-tabs hide-slider style="font-size: 20px">
                 <v-tab class="pa-0 pt-1">
                   <NuxtLink to="/">
-                    <img src="../static/govey.svg" width="120" height="38" />
+                    <img src="../static/govey.svg" width="120" height="38">
                   </NuxtLink>
                 </v-tab>
                 <v-tab
                   v-for="menu in menu"
                   :key="menu"
                   :href="menu.to"
-                  class="pa-0"
+                  class="pa-0 px-5"
                   style="font-size: 20px; font-weight: 600"
                 >
                   {{ menu.page }}
@@ -40,7 +40,7 @@
           <v-spacer />
           <v-toolbar-title style="height: 22px">
             <NuxtLink to="/" style="color: black; text-decoration-line: none">
-              <img src="../static/govey.svg" />
+              <img src="../static/govey.svg">
             </NuxtLink>
           </v-toolbar-title>
           <v-spacer />
@@ -49,7 +49,9 @@
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
             <!-- 알림창 버튼(였던것) -->
-            <v-icon style="opacity: 0">mdi-bell</v-icon>
+            <v-icon style="opacity: 0">
+              mdi-bell
+            </v-icon>
           </div>
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app temporary>
@@ -82,28 +84,30 @@
                 <a
                   target="_blank"
                   href="https://www.youtube.com/channel/UCpj4Mj4OFgl5T0kTk1T3L_w"
-                  ><img class="sns-icon" src="../static/image 4.png"
-                /></a>
+                ><img
+                  class="sns-icon"
+                  src="../static/image 4.png"
+                ></a>
               </v-col>
               <v-col>
                 <a
                   target="_blank"
                   href="https://www.instagram.com/govey_official/?hl=ko"
-                  ><img
-                    class="sns-icon"
-                    style="margin-top: 6px; width: 50px; height: 50px"
-                    src="../static/image 5.png"
-                /></a>
+                ><img
+                  class="sns-icon"
+                  style="margin-top: 6px; width: 50px; height: 50px"
+                  src="../static/image 5.png"
+                ></a>
               </v-col>
               <v-col>
                 <a
                   target="_blank"
                   href="https://www.facebook.com/고베이-104289228923939"
-                  ><img
-                    class="sns-icon"
-                    style="margin-top: 6px; width: 50px; height: 50px"
-                    src="../static/image 6.png"
-                /></a>
+                ><img
+                  class="sns-icon"
+                  style="margin-top: 6px; width: 50px; height: 50px"
+                  src="../static/image 6.png"
+                ></a>
               </v-col>
             </v-row>
           </div>
@@ -111,6 +115,22 @@
       </div>
       <Nuxt v-if="!$slots.default" class="ma-auto" style="max-width: 960px" />
       <slot />
+      <div v-if="!$vuetify.breakpoint.mobile">
+        <v-container style="max-width: 960px">
+          <v-row>
+            <v-col class="footer-pc">
+              <div style="display: flex; justify-content: space-between; width: 250px;">
+                <NuxtLink v-for="(item, i) in pcfitems" :key="i" :to="item.to">
+                  <span>{{ item.page }}</span>
+                </NuxtLink>
+                <NuxtLink to="/">
+                  <b>Govey</b>
+                </NuxtLink>
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
       <div v-if="$vuetify.breakpoint.mobile" class="footer">
         <v-bottom-navigation grow class="elevation-0">
           <v-btn v-for="(item, i) in fitems" :key="i" :to="item.to">
@@ -125,12 +145,14 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       menu: [
         { page: '설문', to: '/surveys/' },
+        { page: '리포트', to: '/reports/' },
         { page: '스토어', to: '/store/' },
-        { page: '마이', to: '/mypage/' },
+        { page: '명예의 전당', to: '/hall-of-fame/' },
+        { page: '마이', to: '/mypage/' }
       ],
       items: [
         { page: '리포트', to: '/reports/' },
@@ -139,28 +161,32 @@ export default {
         { page: '명예의전당', to: '/hall-of-fame/' },
         { page: '고객센터', to: '/service-center/' },
         { page: '개인정보처리방침', to: '/privacy-policy/' },
-        { page: '이용약관', to: '/terms-of-service/' },
+        { page: '이용약관', to: '/terms-of-service/' }
       ],
       fitems: [
         { page: '홈', icon: 'mdi-home', to: '/' },
         { page: '설문', icon: 'mdi-text-box-edit', to: '/surveys/' },
         { page: '스토어', icon: 'mdi-store', to: '/store/' },
-        { page: '마이', icon: 'mdi-account-circle', to: '/mypage/' },
+        { page: '마이', icon: 'mdi-account-circle', to: '/mypage/' }
+      ],
+      pcfitems: [
+        { page: '개인정보처리방침', to: '/privacy-policy/' },
+        { page: '이용약관', to: '/terms-of-service/' }
       ],
       drawer: false,
-      group: null,
+      group: null
     }
   },
   watch: {
-    group() {
+    group () {
       this.drawer = false
-    },
+    }
   },
   methods: {
-    commitTitle(title) {
+    commitTitle (title) {
       this.$store.commit('setPageTitle', title)
-    },
-  },
+    }
+  }
 }
 </script>
 <style scoped>
@@ -190,5 +216,12 @@ export default {
   background-color: white;
   font-size: 14px;
   z-index: 5;
+}
+.footer-pc {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
 }
 </style>
