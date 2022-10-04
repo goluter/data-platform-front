@@ -35,12 +35,10 @@
               </v-card-text>
             </v-card>
           </v-menu>
+          <v-btn icon small @click="checkL">
+            <v-icon>mdi-bookmark-outline</v-icon>
+          </v-btn>
           <v-dialog v-model="bookmark" max-width="600px">
-            <template #activator="{ on, attrs }">
-              <v-btn icon small v-bind="attrs" v-on="on">
-                <v-icon>mdi-bookmark-outline</v-icon>
-              </v-btn>
-            </template>
             <v-card style="border-radius: 10px">
               <div class="d-flex">
                 <span class="bookmark-title ma-auto my-3">북마크</span>
@@ -116,6 +114,7 @@
 <script>
 import axios from 'govey/src/libs/http-client'
 import SurveyCardSingle from '../components/SurveyCardSingle.vue'
+import { isLogin } from '../src/libs/auth/index.js'
 
 export default {
   components: { SurveyCardSingle },
@@ -136,6 +135,8 @@ export default {
       saved: false,
       err: ''
     }
+  },
+  computed: {
   },
   methods: {
     back () {
@@ -171,6 +172,13 @@ export default {
       }).finally(() => {
         this.saved = false
       })
+    },
+    checkL () {
+      if (isLogin()) {
+        this.bookmark = true
+      } else {
+        alert('북마크를 저장하기 위해서는 로그인이 필요합니다.')
+      }
     }
   }
 }
