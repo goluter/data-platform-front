@@ -56,6 +56,7 @@
 </template>
 <script>
 import axios from 'govey/src/libs/http-client'
+import { isLogin } from 'govey/src/libs/auth'
 
 export default {
   data() {
@@ -81,7 +82,12 @@ export default {
         })
     },
     check(event) {
-      alert('포인트가 부족합니다.')
+      if(isLogin()){
+        alert('포인트가 부족합니다.')
+      }
+      else{
+        alert('구매하시려면 로그인이 필요합니다.')
+      }
     },
   },
 }
