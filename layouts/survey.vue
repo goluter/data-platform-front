@@ -63,12 +63,7 @@
                           저장
                         </v-btn>
                       </div>
-                      <div v-if="saved || err" class="pt-3" style="display: flex; justify-content: flex-end">
-                        <div v-if="saved">
-                          <v-icon color="#30cdae">
-                            mdi-check
-                          </v-icon> 저장되었습니다!
-                        </div>
+                      <div v-if="err" class="pt-3" style="display: flex; justify-content: flex-end">
                         <div v-if="err !== ''">
                           <v-icon color="red">
                             mdi-close
@@ -164,7 +159,7 @@ export default {
           priority: 0
         }
       ).then(() => {
-        this.saved = true
+        this.bookmark = false
       }).catch((err) => {
         if (err.response) {
           this.err = err.response.data.message
@@ -177,7 +172,7 @@ export default {
       if (isLogin()) {
         this.bookmark = true
       } else {
-        alert('북마크를 저장하기 위해서는 로그인이 필요합니다.')
+        alert('북마크하려면 로그인이 필요합니다.')
       }
     }
   }
