@@ -104,7 +104,12 @@
                 >
                   <v-row>
                     <v-col class="survey-img-box col-3">
-                      <div class="survey-img" />
+                      <div v-if="partisurveydata[i].survey.imageUrl != null">
+                        <img
+                          style="width: 100%; padding: 8px"
+                          :src="partisurveydata[i].survey.imageUrl"
+                        />
+                      </div>
                     </v-col>
                     <v-col class="survey-content col-9">
                       <span class="survey-title">
