@@ -130,7 +130,7 @@
         <v-col class="pa-4" cols="12" style="background-color: #eeeeee" />
       </v-row>
     </v-container>
-    <div v-if="isLoad" class="mb-8">
+    <div v-if="isPollLoad" class="mb-8">
       <v-container>
         <v-row>
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
@@ -332,6 +332,7 @@ export default {
   data () {
     return {
       isLoad: false,
+      isPollLoad: false,
       tab: null,
       tabs: ['질문', '보상'],
       survVisible: false,
@@ -390,6 +391,7 @@ export default {
             })
           const mix = Object.assign({}, response.data, { rewardsData })
           this.surveyData = mix
+          this.isLoad = true
         })
         .catch((error) => {
           console.log(error)
@@ -416,7 +418,7 @@ export default {
           })
           this.pollGroupsData = pollGroups
           this.pollTransit = pollTransit
-          this.isLoad = true
+          this.isPollLoad = true
         })
         .catch((error) => {
           console.log(error)
