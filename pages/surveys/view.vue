@@ -49,40 +49,15 @@
                 </v-icon>
                 {{ surveyData.answers }}
               </div>
-              <!--              <div class="d-inline text-no-wrap">-->
-              <!--                <v-icon small>-->
-              <!--                  mdi-thumb-up-->
-              <!--                </v-icon>-->
-              <!--                {{ surveyData.goods | comma }}-->
-              <!--              </div>-->
-              <!--                <div>-->
-              <!--                  <v-icon small>-->
-              <!--                    mdi-comment-processing-->
-              <!--                  </v-icon>-->
-              <!--                  {{ surveyData.downloads | comma }}-->
-              <!--                </div>-->
-              <!--                <div>-->
-              <!--                  <v-icon small>-->
-              <!--                    mdi-comment-processing-->
-              <!--                  </v-icon>-->
-              <!--                  {{ surveyData.comments | comma }}-->
-              <!--                </div>-->
-              <!--              <div class="d-inline ml-auto">-->
-              <!--                <v-btn @click="toCSV(surveyData.id)">-->
-              <!--                  <v-icon small>-->
-              <!--                    mdi-download-->
-              <!--                  </v-icon>-->
-              <!--                  다운로드-->
-              <!--                </v-btn>-->
-              <!--                <JsonCSV :data="toCSV(surveyData.id)">-->
-              <!--                  <v-btn>-->
-              <!--                    <v-icon small>-->
-              <!--                      mdi-download-->
-              <!--                    </v-icon>-->
-              <!--                    다운로드-->
-              <!--                  </v-btn>-->
-              <!--                </JsonCSV>-->
-              <!--              </div>-->
+              <div class="d-inline ml-auto">
+                <JsonCSV :data="toCSV(surveyData.id)" :labels="dLabels" :name="dName">
+                  <v-btn text x-small class="px-0">
+                    <v-icon small>
+                      mdi-download
+                    </v-icon> 다운로드
+                  </v-btn>
+                </JsonCSV>
+              </div>
             </v-col>
           </v-row>
         </v-col>
@@ -130,7 +105,7 @@
         <v-col class="pa-4" cols="12" style="background-color: #eeeeee" />
       </v-row>
     </v-container>
-    <div v-if="isLoad" class="mb-8">
+    <div v-if="isPollLoad" class="mb-8">
       <v-container>
         <v-row>
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
@@ -172,15 +147,22 @@
                     >
                       <v-dialog v-model="pollTransit[i]">
                         <template #activator="{ on, attrs }">
-                          <v-btn text class="pl-0 pr-0" v-bind="attrs" v-on="on" @click="pollTransit[i] = !pollTransit[i]">
-                            <span class="survey-q ma-auto">
+                          <v-btn
+                            text
+                            class="pl-0 pr-0"
+                            v-bind="attrs"
+                            style="width: 100%; justify-content: start"
+                            v-on="on"
+                            @click="pollTransit[i] = !pollTransit[i]"
+                          >
+                            <span class="survey-q">
                               {{ i+1 }}. {{ item.subject }}
                             </span>
                           </v-btn>
                         </template>
                         <v-card>
-                          <v-card>
-                            <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" />
+                          <v-card style="display: flex; justify-content: center">
+                            <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" class="ma-auto" />
                           </v-card>
                         </v-card>
                       </v-dialog>
@@ -190,7 +172,7 @@
                     <v-col>
                       <v-expand-transition>
                         <v-row
-                          v-for="(item, i) in pollData.slice(4)"
+                          v-for="(item, i) in pollData.slice(4, )"
                           v-show="visible"
                           :key="i"
                         >
@@ -201,10 +183,16 @@
                           >
                             <v-dialog v-model="pollTransit[i+4]">
                               <template #activator="{ on, attrs }">
-                                <v-btn text class="pl-0 pr-0" v-bind="attrs" v-on="on" @click="pollTransit[i+4] = !pollTransit[i+4]">
-                                  <span class="">
+                                <v-btn
+                                  text
+                                  class="pl-0 pr-0"
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  @click="pollTransit[i+4] = !pollTransit[i+4]"
+                                >
+                                  <v-col cols="12">
                                     {{ i+5 }}. {{ item.subject }}
-                                  </span>
+                                  </v-col>
                                 </v-btn>
                               </template>
                               <v-card>
@@ -286,7 +274,7 @@
           <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="">
             <!--            <Banner :banner-data="bannerData[0]" />-->
             <div class="pa-2" style="width: 100%; border-radius: 10px; background-color: #eeeeee">
-              <a href="https://govey.app/events/6aa02464-6151-4511-8003-feba2e828795"><v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" /></a>
+              <v-img src="https://i.ibb.co/TqYJdVc/event-banner.png" max-height="200" contain style="border-radius: 10px" />
             </div>
           </v-col>
         </v-row>
@@ -324,14 +312,16 @@
 <script>
 import axios from 'govey/src/libs/http-client'
 import { GChart } from 'vue-google-charts'
+import JsonCSV from 'vue-json-csv'
 import Survey from '../../layouts/survey.vue'
 
 export default {
-  components: { Survey, GChart },
+  components: { Survey, GChart, JsonCSV },
   layout: 'empty',
   data () {
     return {
       isLoad: false,
+      isPollLoad: false,
       tab: null,
       tabs: ['질문', '보상'],
       survVisible: false,
@@ -348,9 +338,12 @@ export default {
       ],
       pieOptions: {
         title: '답변 분포',
-        pieHole: 0.3
+        pieHole: 0.3,
+        responsive: true
       },
-      pieData: []
+      pieData: [],
+      dLabels: { user: '', subject: '질문', value: '답변' },
+      dName: ''
     }
   },
   computed: {},
@@ -390,6 +383,7 @@ export default {
             })
           const mix = Object.assign({}, response.data, { rewardsData })
           this.surveyData = mix
+          this.isLoad = true
         })
         .catch((error) => {
           console.log(error)
@@ -416,7 +410,7 @@ export default {
           })
           this.pollGroupsData = pollGroups
           this.pollTransit = pollTransit
-          this.isLoad = true
+          this.isPollLoad = true
         })
         .catch((error) => {
           console.log(error)
@@ -445,17 +439,17 @@ export default {
           id +
           '/polls'
       ).then((response) => {
-        response.data.map((poll) => {
-          axios.get('users/v1/polls/' +
+        response.data.map(async (poll) => {
+          await axios.get('users/v1/polls/' +
               poll.id +
               '/poll-users'
-          ).then((response) => {
-            response.data.map((pa) => {
-              const ud = {}
-              ud.user = 'user'
-              ud.subject = pa.poll.subject
-              ud.value = pa.value
-              Object.assign(data, data, ud)
+          ).then(async (response) => {
+            await response.data.map((pa, i) => {
+              const ua = {}
+              ua.user = 'user' + i
+              ua.subject = pa.poll.subject
+              ua.value = pa.value
+              data.push(ua)
             })
           }).catch((err) => {
             console.log(err)
@@ -464,7 +458,7 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
-      console.log(data)
+      this.dName = this.surveyData.subject + '.csv'
       return data
     }
   }
