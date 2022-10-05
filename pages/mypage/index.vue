@@ -26,7 +26,7 @@
             <div v-for="(item, i) in timelinedata" :key="i" class="achievement">
               <h5>
                 <div class="pl-1 timeline-text">
-                  {{ userinfo.username }}님이
+                  {{ userinfo.nickname }}님이
                   <a>{{ timelinedata[i].content }}</a>
                 </div>
                 <v-divider />
@@ -264,6 +264,7 @@ export default {
         .get('/users/v1/self/info')
         .then((res) => {
           this.userinfo = res.data
+          console.log(this.userinfo)
         })
         .catch((err) => {
           console.log(err)
