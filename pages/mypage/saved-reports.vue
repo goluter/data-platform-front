@@ -49,7 +49,9 @@
               style="text-decoration: none; color: initial"
             >
               <v-col cols="auto">
-                <div class="thumbnail" />
+                <div v-if="users[i].report.imageUrl != null">
+                  <img class="thumbnail" :src="users[i].report.imageUrl" />
+                </div>
               </v-col>
             </NuxtLink>
             <v-col class="grow" cols="auto">
