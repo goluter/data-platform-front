@@ -10,7 +10,7 @@
         md="5"
       >
         <NuxtLink class="survey-box rounded-xl elevation-3" :to="'/surveys/view?id=' + item.id">
-          <v-row class="">
+          <v-row class="pb-1">
             <v-col class="pl-2 pr-0 pb-1" cols="3">
               <div class="banner-img-box">
                 <img v-if="item.imageUrl" :src="item.imageUrl" width="60" height="60" style="border-radius: 14px;">
