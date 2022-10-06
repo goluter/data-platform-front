@@ -188,7 +188,7 @@
                               @click="visible = !visible"
                             >
                               <div class="survey-more-text">
-                                <span> 차트 보기 </span>
+                                <span> 모든 차트 보기 </span>
                               </div>
                               <div class="survey-more-btn ml-auto">
                                 <v-icon>mdi-chevron-right</v-icon>
