@@ -139,7 +139,7 @@
                   </v-col>
                 </v-row>
                 <v-container>
-                  <v-row v-for="(item, i) in pollData.slice(0, 4)" :key="i">
+                  <v-row v-for="(item, i) in pollData" :key="i">
                     <v-col
                       class="my-1 pa-2 elevation-1"
                       cols="12"
@@ -166,43 +166,20 @@
                           </v-card>
                         </v-card>
                       </v-dialog>
+                      <v-expand-transition>
+                        <v-row v-show="visible">
+                          <v-col>
+                            <v-card flat style="display: flex; justify-content: center">
+                              <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" class="ma-auto" />
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-expand-transition>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col>
-                      <v-expand-transition>
-                        <v-row
-                          v-for="(item, i) in pollData.slice(4, )"
-                          v-show="visible"
-                          :key="i"
-                        >
-                          <v-col
-                            class="my-1 pa-2 elevation-1"
-                            cols="12"
-                            style="border: 1px solid black; border-radius: 10px"
-                          >
-                            <v-dialog v-model="pollTransit[i+4]">
-                              <template #activator="{ on, attrs }">
-                                <v-btn
-                                  text
-                                  class="pl-0 pr-0"
-                                  v-bind="attrs"
-                                  v-on="on"
-                                  @click="pollTransit[i+4] = !pollTransit[i+4]"
-                                >
-                                  <v-col cols="12">
-                                    {{ i+5 }}. {{ item.subject }}
-                                  </v-col>
-                                </v-btn>
-                              </template>
-                              <v-card>
-                                <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" />
-                              </v-card>
-                            </v-dialog>
-                          </v-col>
-                        </v-row>
-                      </v-expand-transition>
-                      <v-row v-if="pollData.length > 4">
+                      <v-row>
                         <v-col cols="12" class="pa-0">
                           <v-card-actions class="pa-0 mt-2" style="width: 100%">
                             <button
@@ -211,7 +188,7 @@
                               @click="visible = !visible"
                             >
                               <div class="survey-more-text">
-                                <span> 설문 항목 전체 보기 </span>
+                                <span> 차트 보기 </span>
                               </div>
                               <div class="survey-more-btn ml-auto">
                                 <v-icon>mdi-chevron-right</v-icon>
@@ -411,6 +388,7 @@ export default {
           this.pollGroupsData = pollGroups
           this.pollTransit = pollTransit
           this.isPollLoad = true
+          console.log(this.pollData)
         })
         .catch((error) => {
           console.log(error)
