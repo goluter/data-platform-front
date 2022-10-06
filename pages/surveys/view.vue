@@ -382,7 +382,6 @@ export default {
           this.pollGroupsData = pollGroups
           this.pollTransit = pollTransit
           this.isPollLoad = true
-          console.log(this.pollData)
         })
         .catch((error) => {
           console.log(error)
