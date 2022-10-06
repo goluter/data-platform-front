@@ -105,8 +105,15 @@
         <v-col class="pa-4" cols="12" style="background-color: #eeeeee" />
       </v-row>
     </v-container>
-    <div v-if="isPollLoad" class="mb-8">
-      <v-container>
+    <div v-if="isLoad" class="mb-8">
+      <v-container v-if="!isPollLoad">
+        <v-row>
+          <v-col cols="12" style="padding-top: 100px; display: flex; justify-content: center">
+            <v-progress-circular indeterminate :size="100" color="teal accent-3" />
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container v-if="isPollLoad">
         <v-row>
           <v-col class="pa-0" cols="12" style="background-color: #eeeeee" />
         </v-row>
@@ -240,7 +247,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-container>
+      <v-container v-if="isPollLoad">
         <v-row>
           <v-col class="pa-2 py-3 d-flex justify-center" cols="12" style="">
             <!--            <Banner :banner-data="bannerData[0]" />-->
