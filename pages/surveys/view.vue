@@ -168,35 +168,29 @@
                       </v-dialog>
                       <v-expand-transition>
                         <v-row v-show="visible">
-                          <v-col>
-                            <v-card flat style="display: flex; justify-content: center">
-                              <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" class="ma-auto" />
-                            </v-card>
+                          <v-col cols="12">
+                            <GChart type="PieChart" :data="fetchPollAnswers(item.id)" :options="pieOptions" />
                           </v-col>
                         </v-row>
                       </v-expand-transition>
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col>
-                      <v-row>
-                        <v-col cols="12" class="pa-0">
-                          <v-card-actions class="pa-0 mt-2" style="width: 100%">
-                            <button
-                              class="survey-q-more"
-                              style="width: 100%"
-                              @click="visible = !visible"
-                            >
-                              <div class="survey-more-text">
-                                <span> 차트 보기 </span>
-                              </div>
-                              <div class="survey-more-btn ml-auto">
-                                <v-icon>mdi-chevron-right</v-icon>
-                              </div>
-                            </button>
-                          </v-card-actions>
-                        </v-col>
-                      </v-row>
+                    <v-col cols="12" class="pa-0">
+                      <v-card-actions class="pa-0 mt-2" style="width: 100%">
+                        <button
+                          class="survey-q-more"
+                          style="width: 100%"
+                          @click="visible = !visible"
+                        >
+                          <div class="survey-more-text">
+                            <span> 모든 차트 보기 </span>
+                          </div>
+                          <div class="survey-more-btn ml-auto">
+                            <v-icon>mdi-chevron-right</v-icon>
+                          </div>
+                        </button>
+                      </v-card-actions>
                     </v-col>
                   </v-row>
                 </v-container>
